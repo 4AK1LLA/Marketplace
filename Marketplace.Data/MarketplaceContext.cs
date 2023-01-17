@@ -8,7 +8,7 @@ public class MarketplaceContext : DbContext
     public MarketplaceContext(DbContextOptions options) 
         : base(options)
     {
-
+        //Database.EnsureCreated();
     }
 
     public DbSet<Product>? Products { get; set; }
