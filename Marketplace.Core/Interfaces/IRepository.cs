@@ -4,7 +4,7 @@ namespace Marketplace.Core.Interfaces;
 
 public interface IRepository<T> where T : class
 {
-    public T Get(int id);
+    public T? Get(int id);
 
     public IEnumerable<T> GetAll();
 
