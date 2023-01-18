@@ -1,5 +1,6 @@
 using Marketplace.Core.Entities;
 using Marketplace.Data;
+using Marketplace.WebAPI.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marketplace.WebAPI.Controllers;
@@ -18,64 +19,52 @@ public class ProductController : ControllerBase
     [HttpGet]
     public IEnumerable<GetProductDto>? GetAllProducts()
     {
-        var product = new Product
-        {
-            Name = "Apple",
-            Description = "Tasty",
-            Price = 25,
-            PublicationDate = DateTime.Now,
-            Location = "Kyiv",
-            Categories = new List<Category> { new Category { Name = "Food" } }
-        };
-
+        #region ADDING PRODUCT
         if (context.Database.EnsureCreated())
         {
+            var product = new Product
+            {
+                Name = "Apple",
+                Description = "Tasty",
+                Price = 25,
+                PublicationDate = DateTime.Now,
+                Location = "Kyiv",
+                Categories = new List<Category> { new Category { Name = "Food" } }
+            };
+
             context.Products?.Add(product);
             context.SaveChanges();
         }
+        #endregion
 
-        var products = context.Products?.ToList();
+        var products = context.Products?.ToList(); //Income products do not contain related categories
 
-        List<GetProductDto> result = new List<GetProductDto>();
+        var result = new List<GetProductDto>();
         foreach (var pr in products)
         {
+            var productCategories = context.Categories
+                .Where(c => c.Products.Contains(pr))
+                .ToList();
+
+            var categoryNames = new List<string>();
+
+            foreach (var ct in productCategories)
+                categoryNames.Add(ct.Name);
+
             var productDto = new GetProductDto
             {
+                Id = pr.Id,
                 Name = pr.Name,
                 Description = pr.Description,
                 Price = pr.Price,
                 PublicationDate = pr.PublicationDate,
-                Location = pr.Location
+                Location = pr.Location,
+                Categories = categoryNames
             };
-
-            List<string> categories = new List<string>();
-            foreach (var ct in pr.Categories)
-            {
-                categories.Add(ct.Name);
-            }
-
-            productDto.Categories = categories;
 
             result.Add(productDto);
         }
 
         return result;
-    }
-
-    public class GetProductDto
-    {
-        public int Id { get; set; }
-
-        public string? Name { get; set; }
-
-        public string? Description { get; set; }
-
-        public double Price { get; set; }
-
-        public DateTime PublicationDate { get; set; }
-
-        public string? Location { get; set; }
-
-        public ICollection<string>? Categories { get; set; }
     }
 }
