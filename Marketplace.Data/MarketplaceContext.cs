@@ -5,11 +5,7 @@ namespace Marketplace.Data;
 
 public class MarketplaceContext : DbContext
 {
-    public MarketplaceContext(DbContextOptions options) 
-        : base(options)
-    {
-        //Database.EnsureCreated();
-    }
+    public MarketplaceContext(DbContextOptions options) : base(options) {    }
 
     public DbSet<Product>? Products { get; set; }
 
