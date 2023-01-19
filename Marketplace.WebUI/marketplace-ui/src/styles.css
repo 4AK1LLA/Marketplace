@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --navbar-color: #002f34;
+    --light-color: #00d2d3;
+    --white-color: white;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
