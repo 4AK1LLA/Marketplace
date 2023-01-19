@@ -4,11 +4,15 @@ namespace Marketplace.Core.Interfaces;
 
 public interface IUnitOfWork
 {
-    IRepository<Product> ProductRepository { get; }
+    IProductRepository ProductRepository { get; }
 
-    IRepository<Category> CategoryRepository { get; }
+    ICategoryRepository CategoryRepository { get; }
 
     IRepository<Photo> PhotoRepository { get; }
+
+    IRepository<Tag> TagRepository { get; }
+
+    IRepository<TagValue> TagValueRepository { get; }
 
     bool Save();
 }

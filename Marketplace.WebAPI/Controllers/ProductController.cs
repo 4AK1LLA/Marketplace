@@ -1,6 +1,5 @@
 using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
-using Marketplace.Data;
 using Marketplace.WebAPI.DTO;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,59 +7,62 @@ namespace Marketplace.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProductController : ControllerBase
+public class ProductController : Controller
 {
     private readonly IUnitOfWork _uow;
 
     public ProductController(IUnitOfWork uow) => _uow = uow;
 
-    [HttpGet]
-    public IEnumerable<GetProductDto>? GetAllProducts()
+    [HttpPost]
+    public ProductDto CreateProduct(CreateProductDto dto)
     {
-        #region ADDING PRODUCT
-        if (_uow.ProductRepository.GetAll().Count() == 0)
+        var product = new Product
         {
-            var product = new Product
-            {
-                Name = "Apple",
-                Description = "Tasty",
-                Price = 25,
-                PublicationDate = DateTime.Now,
-                Location = "Kyiv",
-                Categories = new List<Category> { new Category { Name = "Food" } }
-            };
+            Title = dto.Title,
+            Description = dto.Description,
+            Location = dto.Location,
+            PublicationDate = DateTime.Now,
+            Category = _uow.CategoryRepository.Get(dto.CategoryId),
+            TagValues = new List<TagValue>()
+        };
 
-            _uow.ProductRepository.Add(product);
-            _uow.Save();
-        }
+        if (dto.TagIdsAndValues != null)
+            foreach (var item in dto.TagIdsAndValues)
+            {
+                product.TagValues.Add(new TagValue
+                {
+                    Value = item.Value,
+                    Tag = _uow.TagRepository.Get(item.Key)
+                });
+            }
+
+        _uow.ProductRepository.Add(product);
+        _uow.Save();
+
+        #region RETURNING_CREATED_PRODUCT
+
+        var receivedProduct =
+            _uow.ProductRepository
+            .GetIncludingCategoryAndTagValues(product.Id);
+
+        var viewDto = new ProductDto
+        {
+            Id = receivedProduct.Id,
+            Title = receivedProduct.Title,
+            Description = receivedProduct.Description,
+            Location = receivedProduct.Location,
+            PublicationDate = receivedProduct.PublicationDate,
+            Category = receivedProduct.Category!.Name,
+            TagNamesAndValues = new Dictionary<string, string>()
+        };
+
+        if (receivedProduct.TagValues != null)
+            foreach (var item in receivedProduct.TagValues)
+            {
+                viewDto.TagNamesAndValues.Add(item.Tag!.Name!, item.Value!);
+            }
+
         #endregion
-
-        var products = _uow.ProductRepository.GetAll(); //Income products do not contain related categories
-
-        var result = new List<GetProductDto>();
-        foreach (var pr in products)
-        {
-            var productCategories = _uow.CategoryRepository.Find(c => c.Products.Contains(pr));
-
-            var categoryNames = new List<string>();
-
-            foreach (var ct in productCategories)
-                categoryNames.Add(ct.Name);
-
-            var productDto = new GetProductDto
-            {
-                Id = pr.Id,
-                Name = pr.Name,
-                Description = pr.Description,
-                Price = pr.Price,
-                PublicationDate = pr.PublicationDate,
-                Location = pr.Location,
-                Categories = categoryNames
-            };
-
-            result.Add(productDto);
-        }
-
-        return result;
+        return viewDto;
     }
 }

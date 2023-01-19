@@ -5,7 +5,7 @@ namespace Marketplace.Data;
 
 public class Repository<T> : IRepository<T> where T : class
 {
-    private readonly MarketplaceContext _context;
+    private protected readonly MarketplaceContext _context;
 
     public Repository(MarketplaceContext context) => _context = context;
 
@@ -21,4 +21,6 @@ public class Repository<T> : IRepository<T> where T : class
     public void Update(T entity) => _context.Set<T>().Update(entity);
 
     public void Remove(T entity) => _context.Set<T>().Remove(entity);
+
+    public int Count() => _context.Set<T>().Count();
 }
