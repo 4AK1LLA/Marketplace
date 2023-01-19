@@ -1,4 +1,5 @@
 using Marketplace.Core.Entities;
+using Marketplace.Core.Interfaces;
 using Marketplace.Data;
 using Marketplace.WebAPI.DTO;
 using Microsoft.AspNetCore.Mvc;
@@ -9,18 +10,15 @@ namespace Marketplace.WebAPI.Controllers;
 [Route("api/[controller]")]
 public class ProductController : ControllerBase
 {
-    private readonly MarketplaceContext context;
+    private readonly IUnitOfWork _uow;
 
-    public ProductController(MarketplaceContext context)
-    {
-        this.context = context;
-    }
+    public ProductController(IUnitOfWork uow) => _uow = uow;
 
     [HttpGet]
     public IEnumerable<GetProductDto>? GetAllProducts()
     {
         #region ADDING PRODUCT
-        if (context.Database.EnsureCreated())
+        if (_uow.ProductRepository.GetAll().Count() == 0)
         {
             var product = new Product
             {
@@ -32,19 +30,17 @@ public class ProductController : ControllerBase
                 Categories = new List<Category> { new Category { Name = "Food" } }
             };
 
-            context.Products?.Add(product);
-            context.SaveChanges();
+            _uow.ProductRepository.Add(product);
+            _uow.Save();
         }
         #endregion
 
-        var products = context.Products?.ToList(); //Income products do not contain related categories
+        var products = _uow.ProductRepository.GetAll(); //Income products do not contain related categories
 
         var result = new List<GetProductDto>();
         foreach (var pr in products)
         {
-            var productCategories = context.Categories
-                .Where(c => c.Products.Contains(pr))
-                .ToList();
+            var productCategories = _uow.CategoryRepository.Find(c => c.Products.Contains(pr));
 
             var categoryNames = new List<string>();
 

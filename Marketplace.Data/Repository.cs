@@ -16,7 +16,7 @@ public class Repository<T> : IRepository<T> where T : class
     public void Add(T entity) => _context.Set<T>().Add(entity);
 
     public IEnumerable<T> Find(Expression<Func<T, bool>> expression) => 
-        _context.Set<T>().Where(expression);
+        _context.Set<T>().Where(expression).ToList();
 
     public void Update(T entity) => _context.Set<T>().Update(entity);
 
