@@ -42,9 +42,9 @@ public class CategoryController : Controller
             var dto = new CategoryDto
             {
                 Id = ct.Id,
-                Name = ct.Name
+                Name = ct.Name,
+                Tags = new Dictionary<int, string>()
             };
-            dto.Tags = new Dictionary<int, string>();
 
             if (ct.Tags != null)
                 foreach (var ctTag in ct.Tags)

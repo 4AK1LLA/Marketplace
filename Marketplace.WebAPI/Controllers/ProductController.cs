@@ -13,53 +13,56 @@ public class ProductController : Controller
 
     public ProductController(IUnitOfWork uow) => _uow = uow;
 
-    //[HttpGet]
-    //public IEnumerable<GetProductDto>? GetAllProducts()
-    //{
-    //    #region ADDING PRODUCT
-    //    if (_uow.ProductRepository.GetAll().Count() == 0)
-    //    {
-    //        var product = new Product
-    //        {
-    //            Name = "Apple",
-    //            Description = "Tasty",
-    //            Price = 25,
-    //            PublicationDate = DateTime.Now,
-    //            Location = "Kyiv",
-    //            Categories = new List<Category> { new Category { Name = "Food" } }
-    //        };
+    [HttpPost]
+    public ProductDto CreateProduct(CreateProductDto dto)
+    {
+        var product = new Product
+        {
+            Title = dto.Title,
+            Description = dto.Description,
+            Location = dto.Location,
+            PublicationDate = DateTime.Now,
+            Category = _uow.CategoryRepository.Get(dto.CategoryId),
+            TagValues = new List<TagValue>()
+        };
 
-    //        _uow.ProductRepository.Add(product);
-    //        _uow.Save();
-    //    }
-    //    #endregion
+        if (dto.TagIdsAndValues != null)
+            foreach (var item in dto.TagIdsAndValues)
+            {
+                product.TagValues.Add(new TagValue
+                {
+                    Value = item.Value,
+                    Tag = _uow.TagRepository.Get(item.Key)
+                });
+            }
 
-    //    var products = _uow.ProductRepository.GetAll(); //Income products do not contain related categories
+        _uow.ProductRepository.Add(product);
+        _uow.Save();
 
-    //    var result = new List<GetProductDto>();
-    //    foreach (var pr in products)
-    //    {
-    //        var productCategories = _uow.CategoryRepository.Find(c => c.Products.Contains(pr));
+        #region RETURNING_CREATED_PRODUCT
 
-    //        var categoryNames = new List<string>();
+        var receivedProduct =
+            _uow.ProductRepository
+            .GetIncludingCategoryAndTagValues(product.Id);
 
-    //        foreach (var ct in productCategories)
-    //            categoryNames.Add(ct.Name);
+        var viewDto = new ProductDto
+        {
+            Id = receivedProduct.Id,
+            Title = receivedProduct.Title,
+            Description = receivedProduct.Description,
+            Location = receivedProduct.Location,
+            PublicationDate = receivedProduct.PublicationDate,
+            Category = receivedProduct.Category!.Name,
+            TagNamesAndValues = new Dictionary<string, string>()
+        };
 
-    //        var productDto = new GetProductDto
-    //        {
-    //            Id = pr.Id,
-    //            Name = pr.Name,
-    //            Description = pr.Description,
-    //            Price = pr.Price,
-    //            PublicationDate = pr.PublicationDate,
-    //            Location = pr.Location,
-    //            Categories = categoryNames
-    //        };
+        if (receivedProduct.TagValues != null)
+            foreach (var item in receivedProduct.TagValues)
+            {
+                viewDto.TagNamesAndValues.Add(item.Tag!.Name!, item.Value!);
+            }
 
-    //        result.Add(productDto);
-    //    }
-
-    //    return result;
-    //}
+        #endregion
+        return viewDto;
+    }
 }
