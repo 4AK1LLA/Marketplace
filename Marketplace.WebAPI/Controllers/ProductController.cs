@@ -1,81 +1,68 @@
 using Marketplace.Core.Entities;
-using Marketplace.Data;
+using Marketplace.Core.Interfaces;
+using Marketplace.WebAPI.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marketplace.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProductController : ControllerBase
+public class ProductController : Controller
 {
-    private readonly MarketplaceContext context;
+    private readonly IUnitOfWork _uow;
 
-    public ProductController(MarketplaceContext context)
-    {
-        this.context = context;
-    }
+    public ProductController(IUnitOfWork uow) => _uow = uow;
 
-    [HttpGet]
-    public IEnumerable<GetProductDto>? GetAllProducts()
+    [HttpPost]
+    public ProductDto CreateProduct(CreateProductDto dto)
     {
         var product = new Product
         {
-            Name = "Apple",
-            Description = "Tasty",
-            Price = 25,
+            Title = dto.Title,
+            Description = dto.Description,
+            Location = dto.Location,
             PublicationDate = DateTime.Now,
-            Location = "Kyiv",
-            Categories = new List<Category> { new Category { Name = "Food" } }
+            Category = _uow.CategoryRepository.Get(dto.CategoryId),
+            TagValues = new List<TagValue>()
         };
 
-        if (context.Database.EnsureCreated())
-        {
-            context.Products?.Add(product);
-            context.SaveChanges();
-        }
-
-        var products = context.Products?.ToList();
-
-        List<GetProductDto> result = new List<GetProductDto>();
-        foreach (var pr in products)
-        {
-            var productDto = new GetProductDto
+        if (dto.TagIdsAndValues != null)
+            foreach (var item in dto.TagIdsAndValues)
             {
-                Name = pr.Name,
-                Description = pr.Description,
-                Price = pr.Price,
-                PublicationDate = pr.PublicationDate,
-                Location = pr.Location
-            };
-
-            List<string> categories = new List<string>();
-            foreach (var ct in pr.Categories)
-            {
-                categories.Add(ct.Name);
+                product.TagValues.Add(new TagValue
+                {
+                    Value = item.Value,
+                    Tag = _uow.TagRepository.Get(item.Key)
+                });
             }
 
-            productDto.Categories = categories;
+        _uow.ProductRepository.Add(product);
+        _uow.Save();
 
-            result.Add(productDto);
-        }
+        #region RETURNING_CREATED_PRODUCT
 
-        return result;
-    }
+        var receivedProduct =
+            _uow.ProductRepository
+            .GetIncludingCategoryAndTagValues(product.Id);
 
-    public class GetProductDto
-    {
-        public int Id { get; set; }
+        var viewDto = new ProductDto
+        {
+            Id = receivedProduct.Id,
+            Title = receivedProduct.Title,
+            Description = receivedProduct.Description,
+            Location = receivedProduct.Location,
+            PublicationDate = receivedProduct.PublicationDate,
+            Category = receivedProduct.Category!.Name,
+            TagNamesAndValues = new Dictionary<string, string>()
+        };
 
-        public string? Name { get; set; }
+        if (receivedProduct.TagValues != null)
+            foreach (var item in receivedProduct.TagValues)
+            {
+                viewDto.TagNamesAndValues.Add(item.Tag!.Name!, item.Value!);
+            }
 
-        public string? Description { get; set; }
-
-        public double Price { get; set; }
-
-        public DateTime PublicationDate { get; set; }
-
-        public string? Location { get; set; }
-
-        public ICollection<string>? Categories { get; set; }
+        #endregion
+        return viewDto;
     }
 }
