@@ -5,7 +5,7 @@ namespace Marketplace.Data;
 
 public class Repository<T> : IRepository<T> where T : class
 {
-    private readonly MarketplaceContext _context;
+    private protected readonly MarketplaceContext _context;
 
     public Repository(MarketplaceContext context) => _context = context;
 

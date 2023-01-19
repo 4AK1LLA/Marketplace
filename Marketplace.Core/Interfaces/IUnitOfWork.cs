@@ -6,7 +6,7 @@ public interface IUnitOfWork
 {
     IRepository<Product> ProductRepository { get; }
 
-    IRepository<Category> CategoryRepository { get; }
+    ICategoryRepository CategoryRepository { get; }
 
     IRepository<Photo> PhotoRepository { get; }
 

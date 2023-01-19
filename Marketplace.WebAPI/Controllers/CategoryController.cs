@@ -34,7 +34,7 @@ public class CategoryController : Controller
         }
         #endregion
 
-        var categories = _uow.CategoryRepository.GetAll(); //TODO: Include() tags
+        var categories = _uow.CategoryRepository.GetAllIncludingTags();
         var result = new List<CategoryDto>();
 
         foreach (var ct in categories)
@@ -49,7 +49,7 @@ public class CategoryController : Controller
             if (ct.Tags != null)
                 foreach (var ctTag in ct.Tags)
                 {
-                    dto.Tags.Add(ctTag.Id, ctTag.Name);
+                    dto.Tags.Add(ctTag.Id, ctTag.Name!);
                 }
 
             result.Add(dto);

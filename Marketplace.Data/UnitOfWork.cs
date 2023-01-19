@@ -14,13 +14,13 @@ public class UnitOfWork : IUnitOfWork
         _context.Database.EnsureCreated();
 
         ProductRepository = new Repository<Product>(context);
-        CategoryRepository = new Repository<Category>(context);
+        CategoryRepository = new CategoryRepository(context);
         PhotoRepository = new Repository<Photo>(context);
     }
 
     public IRepository<Product> ProductRepository { get; private set; }
 
-    public IRepository<Category> CategoryRepository { get; private set; }
+    public ICategoryRepository CategoryRepository { get; private set; }
 
     public IRepository<Photo> PhotoRepository { get; private set; }
 
