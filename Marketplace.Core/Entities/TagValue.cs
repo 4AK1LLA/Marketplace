@@ -7,4 +7,6 @@ public class TagValue
     public string? Value { get; set; }
 
     public Tag? Tag { get; set; }
+
+    public Product? Product { get; set; }
 }
