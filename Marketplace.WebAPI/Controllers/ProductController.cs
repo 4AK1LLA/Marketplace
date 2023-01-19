@@ -7,22 +7,11 @@ namespace Marketplace.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProductController : ControllerBase
+public class ProductController : Controller
 {
     private readonly IUnitOfWork _uow;
 
     public ProductController(IUnitOfWork uow) => _uow = uow;
-
-    [HttpGet]
-    public IEnumerable<CategoryDto> GetAllCategories()
-    {
-        if (_uow.CategoryRepository.GetAll().)
-        {
-            
-        }
-
-        
-    }
 
     //[HttpGet]
     //public IEnumerable<GetProductDto>? GetAllProducts()
