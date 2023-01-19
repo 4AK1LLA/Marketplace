@@ -21,4 +21,6 @@ public class Repository<T> : IRepository<T> where T : class
     public void Update(T entity) => _context.Set<T>().Update(entity);
 
     public void Remove(T entity) => _context.Set<T>().Remove(entity);
+
+    public int Count() => _context.Set<T>().Count();
 }
