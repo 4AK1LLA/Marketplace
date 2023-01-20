@@ -1,10 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --navbar-color: #002f34;
-    --light-color: #00d2d3;
+    --main-color: #002f34;
+    --secondary-color: #00d2d3;
     --white-color: white;
+    --grey-color: #f2f4f5;
 }
 
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: var(--grey-color);
+    color: var(--main-color);
+}
+
+a, a:hover {
+    color: var(--main-color);
 }

@@ -1,0 +1,19 @@
+<div class="container">
+    <section class="mc-section text-center">
+        <div class="mc-sub">
+            <h1>Main categories</h1>
+        </div>
+        <div class="mc-sub">
+            <div class="row">
+                <div *ngFor="let mc of mainCategories" class="col-2">
+                    <div class="card">
+                        <a href="#" class="mc-link">
+                            <img [src]="mc.photoUrl"><br>
+                            <span>{{ mc.name }}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
