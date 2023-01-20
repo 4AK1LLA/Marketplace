@@ -1,6 +1,6 @@
+using Marketplace.Core.DTO;
 using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
-using Marketplace.WebAPI.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marketplace.WebAPI.Controllers;
