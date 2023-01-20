@@ -1,0 +1,33 @@
+.navbar {
+    background-color: var(--navbar-color);
+}
+
+.logo-icon, .nav-link {
+    color: var(--light-color);
+}
+
+.nav-item {
+    margin-left: 2rem;
+}
+
+.nav-link span {
+    margin-left: .5rem;
+}
+
+.btn {
+    color: var(--navbar-color);
+    background-color: var(--white-color);
+    border: .1rem solid transparent;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: lightgray;
+}
+
+.btn:hover {
+    color: var(--white-color);
+    background-color: var(--navbar-color);
+    border: .1rem solid var(--white-color);
+    transition: .5s;
+}
