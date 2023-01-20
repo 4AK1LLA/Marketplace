@@ -13,8 +13,17 @@ public class MainCategoryController : Controller
     public MainCategoryController(IMainCategoryService service) => _service = service;
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<ActionResult<IEnumerable<MainCategory>>> GetMainCategories()
     {
+        //_service.SeedData();
 
+        var mainCategories = _service.GetAllMainCategories();
+
+        if (mainCategories is null || mainCategories.Count() == 0)
+        {
+            return NoContent();
+        }
     }
 }

@@ -6,5 +6,7 @@ public class MainCategory
 
     public string? Name { get; set; }
 
+    public string? PhotoUrl { get; set; }
+
     public ICollection<Category>? SubCategories { get; set; }
 }
