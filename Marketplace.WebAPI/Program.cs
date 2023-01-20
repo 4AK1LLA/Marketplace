@@ -1,5 +1,4 @@
-using AutoMapper;
-using Marketplace.Core.Infrastructure.AutoMapper;
+using Marketplace.Infrastructure;
 using Marketplace.Core.Interfaces;
 using Marketplace.Data;
 using Microsoft.EntityFrameworkCore;
@@ -15,12 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<MarketplaceContext>(options => options
     .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-var mapperConfig = new MapperConfiguration(mc =>
-{
-    mc.AddProfile(new MappingProfile());
-});
-builder.Services.AddSingleton(mapperConfig.CreateMapper() as IMapper);
+builder.Services.AddAutoMapper();
 
 var app = builder.Build();
 
