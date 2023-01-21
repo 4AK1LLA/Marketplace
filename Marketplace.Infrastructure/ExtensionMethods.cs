@@ -11,7 +11,7 @@ public static class ExtensionMethods
     {
         var mapperConfig = new MapperConfiguration(mc => mc.AddProfile(new MappingProfile()));
 
-        services.AddSingleton(new MapperAbstraction(mapperConfig));
+        services.AddSingleton(new MapperAbstraction(mapperConfig) as IMapperAbstraction);
 
         return services;
     }
