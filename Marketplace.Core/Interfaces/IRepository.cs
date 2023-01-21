@@ -10,6 +10,8 @@ public interface IRepository<T> where T : class
 
     void Add(T entity);
 
+    void AddRange(IEnumerable<T> entities);
+
     IEnumerable<T> Find(Expression<Func<T, bool>> expression);
 
     void Update(T entity);

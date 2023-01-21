@@ -9,4 +9,6 @@ public class Category
     public ICollection<Product>? Products { get; set; }
 
     public ICollection<Tag>? Tags { get; set; }
+
+    public MainCategory? MainCategory { get; set; }
 }

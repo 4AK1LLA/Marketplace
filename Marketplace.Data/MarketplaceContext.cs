@@ -17,6 +17,8 @@ public class MarketplaceContext : DbContext
 
     public DbSet<Photo>? Photos { get; set; }
 
+    public DbSet<MainCategory>? MainCategories { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder
@@ -48,5 +50,15 @@ public class MarketplaceContext : DbContext
             .Entity<TagValue>()
             .HasOne(tv => tv.Product)
             .WithMany(pr => pr.TagValues);
+
+        builder
+            .Entity<Category>()
+            .HasOne(ct => ct.MainCategory)
+            .WithMany(mc => mc.SubCategories);
+
+        builder
+            .Entity<MainCategory>()
+            .HasMany(mc => mc.SubCategories)
+            .WithOne(ct => ct.MainCategory);
     }
 }
