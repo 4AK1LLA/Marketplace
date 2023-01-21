@@ -1,0 +1,42 @@
+.navbar {
+    background-color: var(--main-color);
+}
+
+.logo-icon, .nav-link {
+    color: var(--secondary-color);
+}
+
+.navbar-brand {
+    align-items: center;
+}
+
+.navbar-brand span {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.nav-item {
+    margin-left: 2rem;
+}
+
+.nav-link span {
+    margin-left: .5rem;
+}
+
+.btn {
+    color: var(--main-color);
+    background-color: var(--secondary-color);
+    border: .1rem solid transparent;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: var(--white-color);
+}
+
+.btn:hover {
+    color: var(--secondary-color);
+    background-color: var(--main-color);
+    border: .1rem solid var(--secondary-color);
+    transition: .5s;
+}

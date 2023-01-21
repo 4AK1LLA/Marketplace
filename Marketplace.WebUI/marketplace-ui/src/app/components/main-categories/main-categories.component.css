@@ -1,0 +1,31 @@
+.mc-section {
+    margin-top: 5rem;
+    padding: .1px 2rem 0 2rem;
+    background-color: var(--white-color);
+}
+
+.mc-sub {
+    margin-top: 2rem;
+}
+
+.card {
+    margin-bottom: 1.5rem;
+}
+
+.mc-link {
+    padding: 1rem 1rem 0 1rem;
+    min-height: 9rem;
+}
+
+.mc-link:hover {
+    background-color: var(--grey-color);
+}
+
+img {
+    width: 30%;
+}
+
+span {
+    display: inline-block; 
+    font-size: 1.25rem;
+}
