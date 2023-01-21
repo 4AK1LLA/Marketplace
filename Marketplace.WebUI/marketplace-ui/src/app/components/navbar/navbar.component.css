@@ -2,17 +2,18 @@
     background-color: var(--main-color);
 }
 
-.logo-icon, .nav-link {
+.nav-link {
     color: var(--secondary-color);
 }
 
 .navbar-brand {
+    color: var(--secondary-color);
+    font-weight: bold;
     align-items: center;
 }
 
-.navbar-brand span {
-    color: var(--secondary-color);
-    font-weight: bold;
+.navbar-nav {
+    align-items: center;
 }
 
 .nav-item {
@@ -35,8 +36,8 @@
 }
 
 .btn:hover {
-    color: var(--secondary-color);
+    color: var(--white-color);
     background-color: var(--main-color);
-    border: .1rem solid var(--secondary-color);
+    border: .1rem solid var(--white-color);
     transition: .5s;
 }
