@@ -12,7 +12,7 @@ public class MainCategoryService : IMainCategoryService
 
     public IEnumerable<MainCategory> GetAllMainCategories() => _uow.MainCategoryRepository.GetAll();
 
-    public void SeedMainCategoryData()
+    public void SeedMainCategoryData() //Temporary
     {
         if (_uow.MainCategoryRepository.Count() != 0)
         {
