@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Marketplace.Infrastructure.Abstraction;
 using Marketplace.Infrastructure.AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,7 +11,7 @@ public static class ExtensionMethods
     {
         var mapperConfig = new MapperConfiguration(mc => mc.AddProfile(new MappingProfile()));
 
-        services.AddSingleton(mapperConfig.CreateMapper() as IMapper);
+        services.AddSingleton(new MapperAbstraction(mapperConfig));
 
         return services;
     }

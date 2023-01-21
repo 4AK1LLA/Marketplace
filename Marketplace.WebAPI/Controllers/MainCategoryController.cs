@@ -1,4 +1,5 @@
-﻿using Marketplace.Core.Entities;
+﻿using Marketplace.Core.DTO;
+using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces.Services;
 using Marketplace.Infrastructure.Abstraction;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,9 @@ namespace Marketplace.WebAPI.Controllers;
 public class MainCategoryController : Controller
 {
     private readonly IMainCategoryService _service;
-    private readonly IAutoMapper _mapper;
+    private readonly IMapperAbstraction _mapper;
 
-    public MainCategoryController(IMainCategoryService service, IAutoMapper mapper)
+    public MainCategoryController(IMainCategoryService service, IMapperAbstraction mapper)
     {
         _service = service;
         _mapper = mapper;
@@ -21,7 +22,7 @@ public class MainCategoryController : Controller
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<ActionResult<IEnumerable<MainCategory>>> GetMainCategories()
+    public async Task<ActionResult<IEnumerable<MainCategoryDto>>> GetMainCategories()
     {
         //_service.SeedData();
 
@@ -32,6 +33,6 @@ public class MainCategoryController : Controller
             return NoContent();
         }
 
-
+        return Ok(_mapper.Map<IEnumerable<MainCategoryDto>>(mainCategories));
     }
 }

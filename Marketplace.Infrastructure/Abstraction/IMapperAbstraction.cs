@@ -2,7 +2,7 @@
 
 namespace Marketplace.Infrastructure.Abstraction;
 
-public interface IAutoMapper : IMapper
+public interface IMapperAbstraction : IMapper
 {
 
 }
