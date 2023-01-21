@@ -18,6 +18,7 @@ public class UnitOfWork : IUnitOfWork
         PhotoRepository = new Repository<Photo>(context);
         TagRepository = new Repository<Tag>(context);
         TagValueRepository = new Repository<TagValue>(context);
+        MainCategoryRepository = new Repository<MainCategory>(context);
     }
 
     public IProductRepository ProductRepository { get; private set; }
@@ -29,6 +30,8 @@ public class UnitOfWork : IUnitOfWork
     public IRepository<Tag> TagRepository { get; private set; }
 
     public IRepository<TagValue> TagValueRepository { get; private set; }
+
+    public IRepository<MainCategory> MainCategoryRepository { get; private set; }
 
     public bool Save() => _context.SaveChanges() > 0;
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -14,6 +14,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Marketplace.Core\Marketplace.Core.csproj" />
     <ProjectReference Include="..\Marketplace.Data\Marketplace.Data.csproj" />
+    <ProjectReference Include="..\Marketplace.Infrastructure\Marketplace.Infrastructure.csproj" />
+    <ProjectReference Include="..\Marketplace.Services\Marketplace.Services.csproj" />
   </ItemGroup>
 
 </Project>

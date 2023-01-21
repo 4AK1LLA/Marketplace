@@ -1,4 +1,4 @@
-﻿namespace Marketplace.WebAPI.DTO;
+﻿namespace Marketplace.Core.DTO;
 
 public class CreateProductDto
 {
