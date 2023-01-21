@@ -37,5 +37,8 @@ public class MainCategoryService : IMainCategoryService
             new MainCategory { Name = "Exchange", PhotoUrl = "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/collapse-horizontal-regular-96_kfdrld.png" },
             new MainCategory { Name = "Generators", PhotoUrl = "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/bulb-solid-96_fsawfj.png" }
         };
+
+        _uow.MainCategoryRepository.AddRange(mainCategories);
+        _uow.Save();
     }
 }

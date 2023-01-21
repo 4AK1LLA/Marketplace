@@ -22,17 +22,14 @@ public class MainCategoryController : Controller
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<ActionResult<IEnumerable<MainCategoryDto>>> GetMainCategories()
+    public ActionResult<IEnumerable<MainCategoryDto>> GetMainCategories()
     {
-        //_service.SeedData();
+        _service.SeedMainCategoryData(); //Temporary
 
         var mainCategories = _service.GetAllMainCategories();
 
-        if (mainCategories is null || mainCategories.Count() == 0)
-        {
-            return NoContent();
-        }
-
-        return Ok(_mapper.Map<IEnumerable<MainCategoryDto>>(mainCategories));
+        return (mainCategories is null || mainCategories.Count() == 0) ? 
+            NoContent() : 
+            Ok(_mapper.Map<IEnumerable<MainCategoryDto>>(mainCategories));
     }
 }
