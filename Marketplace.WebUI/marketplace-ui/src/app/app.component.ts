@@ -18,11 +18,5 @@ export class AppComponent {
   initMainCategories = () =>
     this.service
       .getAll()
-      .subscribe(data => { 
-        this.mainCategories = data; 
-        this.mainCategories[0].subCategories = [
-          { id: 1, name: "Need help" },
-          { id: 2, name: "Give help" }
-        ];
-      });
+      .subscribe(data => this.mainCategories = data);
 }
