@@ -7,4 +7,6 @@ public class MainCategoryDto
     public string? Name { get; set; }
 
     public string? PhotoUrl { get; set; }
+
+    public IEnumerable<GetCategoryDto>? SubCategories { get; set; }
 }
