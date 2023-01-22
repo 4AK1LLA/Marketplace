@@ -14,7 +14,7 @@ public interface IUnitOfWork
 
     IRepository<TagValue> TagValueRepository { get; }
 
-    IRepository<MainCategory> MainCategoryRepository { get; }
+    IMainCategoryRepository MainCategoryRepository { get; }
 
     bool Save();
 }

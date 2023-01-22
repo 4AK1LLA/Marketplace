@@ -10,5 +10,8 @@ public class MappingProfile : Profile
     {
         CreateMap<MainCategoryDto, MainCategory>();
         CreateMap<MainCategory, MainCategoryDto>();
+
+        CreateMap<GetCategoryDto, Category>();
+        CreateMap<Category, GetCategoryDto>();
     }
 }

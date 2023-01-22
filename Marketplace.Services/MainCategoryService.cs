@@ -10,7 +10,7 @@ public class MainCategoryService : IMainCategoryService
 
     public MainCategoryService(IUnitOfWork uow) => _uow = uow;
 
-    public IEnumerable<MainCategory> GetAllMainCategories() => _uow.MainCategoryRepository.GetAll();
+    public IEnumerable<MainCategory> GetAllMainCategories() => _uow.MainCategoryRepository.GetAllIncludingSubcategories();
 
     public void SeedMainCategoryData() //Temporary
     {
