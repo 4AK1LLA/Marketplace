@@ -1,0 +1,37 @@
+.accordion-body {
+    padding: 0;
+}
+
+.list-group {
+    border: 1px solid var(--bs-accordion-border-color);
+}
+
+.list-group-item:hover {
+    background-color: var(--grey-color);
+    cursor: pointer;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.accordion {
+    --bs-accordion-btn-active-icon: none;
+}
+
+h5 {
+    color: var(--main-color);
+}
+
+.offcanvas.offcanvas-end {
+    width: 350px;
+}
+
+.offcanvas-title {
+    font-weight: bold;
+}
