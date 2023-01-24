@@ -1,0 +1,121 @@
+[
+  {
+    "Name": "Help",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/donate-heart-solid-96_n70lpq.png",
+    "SubCategories": [
+      { "Name": "I need help" },
+      { "Name": "I offer help" }
+    ]
+  },
+  {
+    "Name": "For children",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/baby-carriage-solid-96_nbpuhk.png",
+    "SubCategories": [
+      { "Name": "Baby clothes" },
+      { "Name": "Toys" },
+      { "Name": "Nutrition" }
+    ]
+  },
+  {
+    "Name": "Realty",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/key-solid-96_hftmhp.png",
+    "SubCategories": [
+      { "Name": "Apartments" },
+      { "Name": "Houses" },
+      { "Name": "Garages" }
+    ]
+  },
+  {
+    "Name": "Transport",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/car-solid-96_tzqygl.png",
+    "SubCategories": [
+      { "Name": "Cars" },
+      { "Name": "Bikes" },
+      { "Name": "Buses" }
+    ]
+  },
+  {
+    "Name": "Spare parts",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/wrench-solid-96_btyqrm.png",
+    "SubCategories": [
+      { "Name": "Auto spare parts" },
+      { "Name": "Video recorders" },
+      { "Name": "Wheels and tires" }
+    ]
+  },
+  {
+    "Name": "Job",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/briefcase-solid-96_fhc7se.png",
+    "SubCategories": [
+      { "Name": "Security" },
+      { "Name": "Medicine" },
+      { "Name": "IT" }
+    ]
+  },
+  {
+    "Name": "Animals",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/cat-solid-96_i35w4q.png",
+    "SubCategories": [
+      { "Name": "Cats" },
+      { "Name": "Dogs" },
+      { "Name": "Animal products" }
+    ]
+  },
+  {
+    "Name": "House and garden",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/building-house-solid-96_ucduvn.png",
+    "SubCategories": [
+      { "Name": "Furniture" },
+      { "Name": "Garden" },
+      { "Name": "Interior items" }
+    ]
+  },
+  {
+    "Name": "Electronics",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674239930/main-categories/tv-solid-96_1_pifkzw.png",
+    "SubCategories": [
+      { "Name": "Smartphones" },
+      { "Name": "PCs" },
+      { "Name": "TV" }
+    ]
+  },
+  {
+    "Name": "Business and services",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/dollar-circle-solid-96_trmr52.png",
+    "SubCategories": [
+      { "Name": "Transport services" },
+      { "Name": "Law services" },
+      { "Name": "Babysitters" }
+    ]
+  },
+  {
+    "Name": "Fashion and style",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/t-shirt-solid-96_y3kgrq.png",
+    "SubCategories": [
+      { "Name": "Women clothes" },
+      { "Name": "Accessories" },
+      { "Name": "Underwear" }
+    ]
+  },
+  {
+    "Name": "Hobby, rest and sport",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/football-regular-96_wgwuwe.png",
+    "SubCategories": [
+      { "Name": "Musical Instruments" },
+      { "Name": "Books and magazines" },
+      { "Name": "Antiques" }
+    ]
+  },
+  {
+    "Name": "For free",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/purchase-tag-solid-96_e0pi0g.png"
+  },
+  {
+    "Name": "Exchange",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/collapse-horizontal-regular-96_kfdrld.png"
+  },
+  {
+    "Name": "Generators",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/bulb-solid-96_fsawfj.png"
+  }
+]
