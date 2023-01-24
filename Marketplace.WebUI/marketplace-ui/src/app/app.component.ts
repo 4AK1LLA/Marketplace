@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CategoryDto, MainCategoryDto } from './dto/main-category.dto';
+import { MainCategoryDto } from './dto/main-category.dto';
 import { MainCategoriesService } from './services/main-categories.service';
 
 @Component({
