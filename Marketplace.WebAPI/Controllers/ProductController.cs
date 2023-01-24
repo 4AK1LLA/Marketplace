@@ -14,7 +14,7 @@ public class ProductController : Controller
     public ProductController(IUnitOfWork uow) => _uow = uow;
 
     [HttpPost]
-    public ProductDto CreateProduct(CreateProductDto dto)
+    public GetProductDto CreateProduct(CreateProductDto dto)
     {
         var product = new Product
         {
@@ -45,7 +45,7 @@ public class ProductController : Controller
             _uow.ProductRepository
             .GetIncludingCategoryAndTagValues(product.Id);
 
-        var viewDto = new ProductDto
+        var viewDto = new GetProductDto
         {
             Id = receivedProduct.Id,
             Title = receivedProduct.Title,

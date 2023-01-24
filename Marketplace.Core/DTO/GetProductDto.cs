@@ -1,6 +1,6 @@
 ﻿namespace Marketplace.Core.DTO;
 
-public class ProductDto
+public class GetProductDto
 {
     public int Id { get; set; }
 
@@ -12,9 +12,7 @@ public class ProductDto
 
     public string? Location { get; set; }
 
-    public CategoryDto? Category { get; set; }
+    public string? Category { get; set; }
 
     public Dictionary<string, string>? TagNamesAndValues { get; set; }
-
-    public ICollection<PhotoDto>? Photos { get; set; }
 }
