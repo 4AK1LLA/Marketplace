@@ -1,7 +1,9 @@
+@import 'src/styles/variables.scss';
+
 .mc-section {
     margin-top: 5rem;
     padding: .1px 2rem 0 2rem;
-    background-color: var(--white-color);
+    background-color: $white-color;
 }
 
 .mc-sub {
@@ -18,14 +20,15 @@
 }
 
 .mc-link:hover {
-    background-color: var(--grey-color);
+    background-color: $grey-color;
 }
 
 img {
     width: 30%;
+    margin-bottom: .5rem;
 }
 
 span {
-    display: inline-block; 
+    display: inline-block;
     font-size: 1.25rem;
 }

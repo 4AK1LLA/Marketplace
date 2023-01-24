@@ -1,0 +1,44 @@
+@import 'src/styles/variables.scss';
+
+.navbar {
+    background-color: $main-color;
+}
+
+.nav-link {
+    color: $secondary-color;
+    span {
+        margin-left: .5rem;
+    }
+}
+
+.navbar-brand {
+    color: $secondary-color;
+    font-weight: bold;
+    align-items: center;
+}
+
+.navbar-nav {
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 2rem;
+}
+
+.btn {
+    color: $main-color;
+    background-color: $secondary-color;
+    border: .1rem solid transparent;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: $white-color;
+}
+
+.btn:hover {
+    color: $white-color;
+    background-color: $main-color;
+    border: .1rem solid $white-color;
+    transition: .5s;
+}
