@@ -1,0 +1,35 @@
+/*BS accordion, list group, offcanvas for sidenav*/
+
+.accordion-body {
+    padding: 0;
+}
+
+.list-group {
+    border: 1px solid var(--bs-accordion-border-color);
+}
+
+.list-group-item:hover {
+    background-color: $grey-color;
+    cursor: pointer;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: $secondary-color;
+    color: $white-color;
+}
+
+.accordion {
+    --bs-accordion-btn-active-icon: none;
+}
+
+.offcanvas.offcanvas-end {
+    width: 350px;
+}
+
+.offcanvas-title {
+    font-weight: bold;
+}
