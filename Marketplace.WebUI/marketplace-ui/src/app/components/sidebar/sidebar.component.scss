@@ -1,3 +1,10 @@
+@import 'src/variables.scss';
+
+h5 {
+    color: $main-color;
+}
+
+/*BS accordion, list group, offcanvas*/
 .accordion-body {
     padding: 0;
 }
@@ -7,7 +14,7 @@
 }
 
 .list-group-item:hover {
-    background-color: var(--grey-color);
+    background-color: $grey-color;
     cursor: pointer;
 }
 
@@ -16,16 +23,12 @@
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: var(--secondary-color);
-    color: white;
+    background-color: $secondary-color;
+    color: $white-color;
 }
 
 .accordion {
     --bs-accordion-btn-active-icon: none;
-}
-
-h5 {
-    color: var(--main-color);
 }
 
 .offcanvas.offcanvas-end {
