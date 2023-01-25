@@ -13,5 +13,14 @@ public class MappingProfile : Profile
 
         CreateMap<GetCategoryDto, Category>();
         CreateMap<Category, GetCategoryDto>();
+
+        CreateMap<ProductDto, Product>();
+        CreateMap<Product, ProductDto>();
+
+        CreateMap<TagValue, TagValueDto>()
+            .ForMember(
+                dest => dest.Name,
+                opt => opt.MapFrom(src => src.Tag!.Name)
+            );
     }
 }

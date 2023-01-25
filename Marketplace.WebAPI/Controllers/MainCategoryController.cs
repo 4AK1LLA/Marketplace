@@ -1,5 +1,4 @@
 ﻿using Marketplace.Core.DTO;
-using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces.Services;
 using Marketplace.Infrastructure.Abstraction;
 using Microsoft.AspNetCore.Mvc;
