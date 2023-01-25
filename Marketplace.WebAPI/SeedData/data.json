@@ -1,0 +1,532 @@
+﻿[
+  {
+    "Name": "Help",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/donate-heart-solid-96_n70lpq.png",
+    "SubCategories": [
+      { "Name": "I need help" },
+      { "Name": "I offer help" }
+    ]
+  },
+  {
+    "Name": "For children",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/baby-carriage-solid-96_nbpuhk.png",
+    "SubCategories": [
+      { "Name": "Baby clothes" },
+      { "Name": "Toys" },
+      { "Name": "Nutrition" }
+    ]
+  },
+  {
+    "Name": "Realty",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/key-solid-96_hftmhp.png",
+    "SubCategories": [
+      { "Name": "Apartments" },
+      { "Name": "Houses" },
+      { "Name": "Garages" }
+    ]
+  },
+  {
+    "Name": "Transport",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/car-solid-96_tzqygl.png",
+    "SubCategories": [
+      { "Name": "Cars" },
+      { "Name": "Bikes" },
+      { "Name": "Buses" }
+    ]
+  },
+  {
+    "Name": "Spare parts",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/wrench-solid-96_btyqrm.png",
+    "SubCategories": [
+      { "Name": "Auto spare parts" },
+      { "Name": "Video recorders" },
+      { "Name": "Wheels and tires" }
+    ]
+  },
+  {
+    "Name": "Job1",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/briefcase-solid-96_fhc7se.png",
+    "SubCategories": [
+      {
+        "Name": "Security",
+        "Products": [
+          {
+            "Title": "A security guard is needed for a recreation center",
+            "Description": "Green Park recreation center is recruiting employees. For more than 9 years, we have been providing jobs to residents of the city of Kamianske. Location of the base: Green Park base is located on Blue Lake. 5-7 minutes from the exit from the bridge on the left bank in the direction of Elizavetivka. We need a security guard for permanent work. The security guard's duties include: - control of the territory of the protected object. - access control. Day-to-day schedule Requirements for candidates: - absence of bad habits - work experience Vacancy details at number 38********84 Yuliya",
+            "Location": "Kamianske, Dnipropetrovsk region",
+            "TagValues": [
+              {
+                "Value": "8000-12000",
+                "Tag": { "Name": "Salary" }
+              },
+              {
+                "Value": "Full employment",
+                "Tag": { "Name": "Type of employment" }
+              },
+              {
+                "Value": "1-3",
+                "Tag": { "Name": "Experience" }
+              }
+            ]
+          },
+          {
+            "Title": "Guard on duty",
+            "Description": "We are hiring security guards. Watch method. Two days later. Salary 7500 hryvnias. Objects in the city of Khmelnytskyi.",
+            "Location": "Khmelnytsky, Khmelnitsky region",
+            "TagValues": [
+              {
+                "Value": "7500-9000",
+                "Tag": { "Name": "Salary" }
+              },
+              {
+                "Value": "Part-time employment",
+                "Tag": { "Name": "Type of employment" }
+              },
+              {
+                "Value": "0",
+                "Tag": { "Name": "Experience" }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Name": "Medicine",
+        "Products": [
+          {
+            "Title": "Doctor and nurse",
+            "Description": "We are looking for a nurse and a doctor for permanent work in a private clinic",
+            "Location": "Lviv, Lviv region",
+            "TagValues": [
+              {
+                "Value": "12000-15000",
+                "Tag": { "Name": "Salary" }
+              },
+              {
+                "Value": "Flexible schedule",
+                "Tag": { "Name": "Work schedule" }
+              },
+              {
+                "Value": "Full employment",
+                "Tag": { "Name": "Type of employment" }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Name": "IT"
+      }
+    ]
+  },
+  {
+    "Name": "Animals",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/cat-solid-96_i35w4q.png",
+    "SubCategories": [
+      { "Name": "Cats" },
+      { "Name": "Dogs" },
+      { "Name": "Animal products" }
+    ]
+  },
+  {
+    "Name": "House and garden1",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/building-house-solid-96_ucduvn.png",
+    "SubCategories": [
+      {
+        "Name": "Furniture",
+        "Products": [
+          {
+            "Title": "Double bed and mattress",
+            "Description": "Bed and mattress. Condition as new, no damage. Length 230 cm, width 167 cm",
+            "Location": "Kaniv, Cherkasy region",
+            "TagValues": [
+              {
+                "Value": "8700",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "Beds",
+                "Tag": { "Name": "Type" }
+              },
+              {
+                "Value": "Used",
+                "Tag": { "Name": "Condition" }
+              }
+            ]
+          },
+          {
+            "Title": "A shelf for the house, a shelf for books, a shelf for books made of chipboard",
+            "Description": "Features: Shelf size: W 70 / H 192 / D 24 cm Available to order in the following colors: White, Concrete, Wenge Dark, Sonoma Oak",
+            "Location": "Kiev, Kiev region",
+            "TagValues": [
+              {
+                "Value": "1489",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "Other living room furniture",
+                "Tag": { "Name": "Type" }
+              },
+              {
+                "Value": "New",
+                "Tag": { "Name": "Condition" }
+              }
+            ]
+          },
+          {
+            "Title": "NOLAN kitchen table AVAILABLE! Signal Kitchen Furniture",
+            "Description": "Table NOLAN is in stock! Dimensions: Height: 73 cm. Width: 80 cm. Length: 120 cm. Folding: no. Tabletop: MDF. Frame: Wood. Color: White For any questions, please contact by phone! We send carriers across all Ukraine, New Mail or Deliveri. Delivery is paid by the client. You can always check the approximate cost of delivery with the manager! Payment is possible on a Privat Bank card or upon receipt of cash on delivery with an advance payment. See also our other ads! Lots of popular furniture in stock!",
+            "Location": "Kovel, Volyn region",
+            "TagValues": [
+              {
+                "Value": "4000",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "New",
+                "Tag": { "Name": "Condition" }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Name": "Garden",
+        "Products": [
+          {
+            "Title": "Carnation terry Oscar and Super Trouper",
+            "Description": "A rooted cutting of a perennial carnation of two excellent varieties of Oscar and Super Trouper, only 6 colors.",
+            "Location": "Radekhov, Lviv region",
+            "TagValues": [
+              {
+                "Value": "630",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "OLX Shipping",
+                "Tag": { "Name": "OLX Shipping" }
+              }
+            ]
+          },
+          {
+            "Title": "Water tank",
+            "Description": "I will sell a water tank, the volume is 200 liters, the price for one is 1300 UAH. very comfortable, light, practical, at the moment there is drinking water.",
+            "Location": "Kostyantynivka, Donetsk region",
+            "TagValues": [
+              {
+                "Value": "1200",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "OLX Shipping",
+                "Tag": { "Name": "OLX Shipping" }
+              }
+            ]
+          },
+          {
+            "Title": "Karvi MK 2170 corn seeds",
+            "Description": "Karvi MK 2170 corn seeds FAO-270. 15 bags available. Contact by number. 09*********20 06*********63 Yura.",
+            "Location": "Zinkov, Poltava",
+            "TagValues": [
+              {
+                "Value": "1000",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "OLX Shipping",
+                "Tag": { "Name": "OLX Shipping" }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Name": "Interior items",
+        "Products": [
+          {
+            "Title": "Textiles / Bed linen / Sheet, duvet cover.",
+            "Description": "Material: Beige gold Composition: Cotton 92% Polyester 8% - Half a day 806 hryvnias. - Double bedroom 892 hryvnias. - Euro 7940 hryvnias. - Family 1255 hryvnias.",
+            "Location": "Lviv, Lviv region",
+            "TagValues": [
+              {
+                "Value": "806",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "New",
+                "Tag": { "Name": "Condition" }
+              },
+              {
+                "Value": "OLX Shipping",
+                "Tag": { "Name": "OLX Shipping" }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Electronics1",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674239930/main-categories/tv-solid-96_1_pifkzw.png",
+    "SubCategories": [
+      {
+        "Name": "Smartphones",
+        "Products": [
+          {
+            "Title": "Apple iPhone XR 64, 128, 256Gb. (Neverlock) warranty, exchange, credit",
+            "Description": "Store & Service One Apple offers: Used Apple iPhone XR 64, 128, 256Gb. Neverlock Color: Coral, Red, Yellow, Blue, Black, White XR 64Gb.: from $225 to $275 XR 128Gb.: from $275 to $325 XR 256Gb.: (specify individually)",
+            "Location": "Lviv, Lviv region",
+            "TagValues": [
+              {
+                "Value": "8999",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "Apple",
+                "Tag": { "Name": "Phone brand" }
+              },
+              {
+                "Value": "Used",
+                "Tag": { "Name": "Condition" }
+              },
+              {
+                "Value": "IOS",
+                "Tag": { "Name": "OS" }
+              }
+            ]
+          },
+          {
+            "Title": "Smartphone LG L90 Dual",
+            "Description": "I will sell the phone LG Optimus L90 Dual D410 White with 2 SIM cards in good condition: - The battery lasts 2 days, works perfectly, without freezes, catches the network and WI-FI well;",
+            "Location": "Mykolaiv, Lviv region",
+            "TagValues": [
+              {
+                "Value": "699",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "LG",
+                "Tag": { "Name": "Phone brand" }
+              },
+              {
+                "Value": "Used",
+                "Tag": { "Name": "Condition" }
+              },
+              {
+                "Value": "4.5-5",
+                "Tag": { "Name": "Screen diagonal" }
+              }
+            ]
+          },
+          {
+            "Title": "IPhone 7 128gb Neverlock",
+            "Description": "I have an iPhone 7 with 128 GB, the battery is 100%, the fingerprint works, all functions work, the case is almost perfect, there are no white dots on the case, it did not melt, the set includes: cable, block, original wired headphones from Apple, ios 15.7, iCloud is clean. sending olh by delivery or the city of Rivne More phones in Telegram: dishovka_store",
+            "Location": "Rivne, Rivne region",
+            "TagValues": [
+              {
+                "Value": "4300",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "Apple",
+                "Tag": { "Name": "Phone brand" }
+              },
+              {
+                "Value": "Used",
+                "Tag": { "Name": "Condition" }
+              },
+              {
+                "Value": "IOS",
+                "Tag": { "Name": "OS" }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Name": "PCs",
+        "Products": [
+          {
+            "Title": "Powerful PC 20/40 cores, 2xIntel Xeon E5-2690v2 (Core i9), 128Gb RAM",
+            "Description": "I will sell a productive system unit assembled on 2x Intel Xeon E5-2690v2 processors (it competes with Core i9 in terms of performance). Suitable for working in heavy programs for photo / video / audio processing, rendering, as a server, etc. Also, you can play all games at high graphics settings without any problems! Works very fast, without glitches and brakes! The latest Windows 11 is installed, all drivers and necessary programs are completely ready to go! You can do any tests and checks! In Kyiv I can deliver and connect. Across Ukraine I send by Nova Poshta olx delivery. * * * Characteristics: Motherboard - Intel X79-S (2011s, USB 3.0 (2pcs rear + 1 front), USB 2.0 (6pcs rear + 2 front), SATA 3.0 4pcs, PCI-Ex 3.0 2pcs, Sound: Realtek ALC662, network 1Gbps) Processor - 2x Intel Xeon E5-2690v2 (20 cores 40 threads) RAM - 128Gb Quad Chanel (4x channel) Hunix, in cooling radiators. The video card is the top in its series Nvidia GTX 1070 8Gb 256bit GDDR5 Dx12 from Zotac AMP with a chic cooling system! (DVI, HDMI, DisplayPort) (can be replaced with GTX1080, RTX 2060 Super, RTX 3070) SSD disk - 480Gb. HDD disk - 3Tb SATA3 7200rpm Seagate Skyhawk. High-quality huge Full Tower case with excellent ventilation and beautiful RGB backlighting. Bottom PSU, Tempered Glass Side Panel, Dust Filters, USB 3.0 Branded and reliable Chieftec 700W modular power supply with 140mm cooler, 80+ certification and 4 12V lines at 18A (72A x 12V = 864W) Cooling - 2 large towers with copper pipes and 120mm RGB coolers (150W TDP each). 3pcs RGB LED 120mm front blow-in, 1 rear and 3 top blow-out. * * * Separately, I can sell the Razer keyboard, mouse, HyperX headphones, wi-fi adapter, speakers. Write here or on Viber / Telegram at any time, seven days a week or call the number indicated in the ad. Buy quality goods from trusted sellers! All successful shopping.",
+            "Location": "Kiev, Kiev region",
+            "TagValues": [
+              {
+                "Value": "40000",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "New",
+                "Tag": { "Name": "Condition" }
+              }
+            ]
+          },
+          {
+            "Title": "Sell ​​Apple iMac IDEAL 2015 27” 5K 1Tb 24Gb RAM",
+            "Description": "I will sell my aimag 2015 year of release 27 inches 5K extension 1 TB of memory 24 GB of RAM Screen with no damage, dead pixels or highlights. There are traces of normal use on the case. Aimak is in full working order. I work for him every day. There is no such thing as something not working somewhere, or not working as it should. If necessary, I can take additional photos for you, or make a video call. *in the last photo, the Christmas scents are shining The city of Rivne or sending via olh delivery",
+            "Location": "Rivne, Rivne region",
+            "TagValues": [
+              {
+                "Value": "26000",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "Used",
+                "Tag": { "Name": "Condition" }
+              },
+              {
+                "Value": "OLX Shipping",
+                "Tag": { "Name": "OLX Shipping" }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Name": "TV",
+        "Products": [
+          {
+            "Title": "TV 58 inches Philips 58PUS7855/12 ( 4K / Saphi / Direct LED )",
+            "Description": "TV 58 Philips 58PUS7855/12 ( 4K / Saphi / Direct LED ) High-quality European TV at a Ukrainian price! We offer you a wide range of TVs (from 22 to 75 inches), the lowest prices in Ukraine, gifts for every buyer. For detailed information and photos, contact the seller or call the indicated phone number.",
+            "Location": "Dnipro, Dnipropetrovsk region",
+            "TagValues": [
+              {
+                "Value": "20699",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "Liquid crystal",
+                "Tag": { "Name": "Type" }
+              },
+              {
+                "Value": "Philips",
+                "Tag": { "Name": "TV brand" }
+              }
+            ]
+          },
+          {
+            "Title": "TV SONY 21",
+            "Description": "The TV is in good working condition, there is a new (universal) remote control. Pickup in the Dnieper.",
+            "Location": "Dnipro, Dnipropetrovsk region",
+            "TagValues": [
+              {
+                "Value": "450",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "Sony",
+                "Tag": { "Name": "TV brand" }
+              },
+              {
+                "Value": "Used",
+                "Tag": { "Name": "Condition" }
+              }
+            ]
+          },
+          {
+            "Title": "49 Plasma TV for sale",
+            "Description": "LG 49 diagonal. Composition new. without any problem. WiFi support, usb input, internet. Was not under repair. There are no faults. Made in 2020.",
+            "Location": "Zhytomyr, Airport Zhytomyr region",
+            "TagValues": [
+              {
+                "Value": "2300",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "LG",
+                "Tag": { "Name": "TV brand" }
+              },
+              {
+                "Value": "Plasma",
+                "Tag": { "Name": "Type" }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Business and services",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/dollar-circle-solid-96_trmr52.png",
+    "SubCategories": [
+      { "Name": "Transport services" },
+      { "Name": "Law services" },
+      { "Name": "Babysitters" }
+    ]
+  },
+  {
+    "Name": "Fashion and style",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/t-shirt-solid-96_y3kgrq.png",
+    "SubCategories": [
+      { "Name": "Women clothes" },
+      { "Name": "Accessories" },
+      { "Name": "Underwear" }
+    ]
+  },
+  {
+    "Name": "Hobby, rest and sport",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/football-regular-96_wgwuwe.png",
+    "SubCategories": [
+      { "Name": "Musical Instruments" },
+      { "Name": "Books and magazines" },
+      { "Name": "Antiques" }
+    ]
+  },
+  {
+    "Name": "For free1",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/purchase-tag-solid-96_e0pi0g.png",
+    "SubCategories": [
+      {
+        "Name": "For free",
+        "Products": [
+          {
+            "Title": "Little kittens are looking for a home",
+            "Description": "Little kittens, each two months old, vaccinated, trained to go to the toilet to the tray, various colors: red and striped, boys, hoping to find a home. location Kozyatyn, but transportation to other cities is possible.",
+            "Location": "Kozyatyn, Vinnytsia region",
+            "TagValues": [
+              {
+                "Value": "0",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "Cats",
+                "Tag": { "Name": "Type of animal" }
+              }
+            ]
+          },
+          {
+            "Title": "I will give you a coat for free",
+            "Description": "I'll give you a coat for free, I'll throw off the photo in Viber",
+            "Location": "Vinnytsia, Vinnytsia region",
+            "TagValues": [
+              {
+                "Value": "0",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "Women clothing",
+                "Tag": { "Name": "Type" }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Exchange",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/collapse-horizontal-regular-96_kfdrld.png",
+    "SubCategories": [
+      { "Name": "Exchange" }
+    ]
+  },
+  {
+    "Name": "Generators",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/bulb-solid-96_fsawfj.png",
+    "SubCategories": [
+      { "Name": "Generators" }
+    ]
+  }
+]

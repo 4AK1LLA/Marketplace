@@ -24,8 +24,6 @@ public class MainCategoryController : Controller
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public ActionResult<IEnumerable<MainCategoryDto>> GetMainCategories()
     {
-        _service.SeedMainCategoryData(); //Temporary
-
         var mainCategories = _service.GetAllMainCategories();
 
         return (mainCategories is null || mainCategories.Count() == 0) ? 
