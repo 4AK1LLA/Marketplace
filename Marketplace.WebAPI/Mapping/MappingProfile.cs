@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Marketplace.Core.DTO;
 using Marketplace.Core.Entities;
+using Marketplace.WebAPI.DTO;
 
-namespace Marketplace.Infrastructure.AutoMapper;
+namespace Marketplace.WebAPI.Mapping;
 
 public class MappingProfile : Profile
 {
