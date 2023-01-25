@@ -7,13 +7,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainCategoriesComponent } from './components/main-categories/main-categories.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     MainCategoriesComponent,
-    SidebarComponent
+    SidebarComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
