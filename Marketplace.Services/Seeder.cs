@@ -29,5 +29,8 @@ public class Seeder : ISeeder
         }
 
         var models = JsonSerializer.Deserialize<IEnumerable<MainCategory>>(modelsJson);
+
+        _uow.MainCategoryRepository.AddRange(models!);
+        _uow.Save();
     }
 }
