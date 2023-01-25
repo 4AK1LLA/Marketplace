@@ -1,6 +1,6 @@
-﻿using Marketplace.Core.DTO;
+﻿using AutoMapper;
 using Marketplace.Core.Interfaces.Services;
-using Marketplace.Infrastructure.Abstraction;
+using Marketplace.WebAPI.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marketplace.WebAPI.Controllers;
@@ -10,9 +10,9 @@ namespace Marketplace.WebAPI.Controllers;
 public class MainCategoryController : Controller
 {
     private readonly IMainCategoryService _service;
-    private readonly IMapperAbstraction _mapper;
+    private readonly IMapper _mapper;
 
-    public MainCategoryController(IMainCategoryService service, IMapperAbstraction mapper)
+    public MainCategoryController(IMainCategoryService service, IMapper mapper)
     {
         _service = service;
         _mapper = mapper;
