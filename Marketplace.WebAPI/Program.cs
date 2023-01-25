@@ -16,6 +16,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ISeeder, Seeder>();
 builder.Services.AddScoped<IMainCategoryService, MainCategoryService>();
 builder.Services.AddDbContext<MarketplaceContext>(options => options
     .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -30,6 +31,13 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<ISeeder>();
+
+    seeder.Seed();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
