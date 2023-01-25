@@ -13,5 +13,8 @@ public class MappingProfile : Profile
 
         CreateMap<GetCategoryDto, Category>();
         CreateMap<Category, GetCategoryDto>();
+
+        CreateMap<ProductDto, Product>();
+        CreateMap<Product, ProductDto>();
     }
 }

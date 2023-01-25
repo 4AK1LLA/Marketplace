@@ -1,6 +1,8 @@
 using Marketplace.Core.DTO;
 using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
+using Marketplace.Core.Interfaces.Services;
+using Marketplace.Infrastructure.Abstraction;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marketplace.WebAPI.Controllers;
@@ -9,60 +11,79 @@ namespace Marketplace.WebAPI.Controllers;
 [Route("api/[controller]")]
 public class ProductController : Controller
 {
-    private readonly IUnitOfWork _uow;
+    private readonly IProductService _service;
+    private readonly IMapperAbstraction _mapper;
 
-    public ProductController(IUnitOfWork uow) => _uow = uow;
-
-    [HttpPost]
-    public GetProductDto CreateProduct(CreateProductDto dto)
+    public ProductController(IProductService service, IMapperAbstraction mapper)
     {
-        var product = new Product
-        {
-            Title = dto.Title,
-            Description = dto.Description,
-            Location = dto.Location,
-            PublicationDate = DateTime.Now,
-            Category = _uow.CategoryRepository.Get(dto.CategoryId),
-            TagValues = new List<TagValue>()
-        };
-
-        if (dto.TagIdsAndValues != null)
-            foreach (var item in dto.TagIdsAndValues)
-            {
-                product.TagValues.Add(new TagValue
-                {
-                    Value = item.Value,
-                    Tag = _uow.TagRepository.Get(item.Key)
-                });
-            }
-
-        _uow.ProductRepository.Add(product);
-        _uow.Save();
-
-        #region RETURNING_CREATED_PRODUCT
-
-        var receivedProduct =
-            _uow.ProductRepository
-            .GetIncludingCategoryAndTagValues(product.Id);
-
-        var viewDto = new GetProductDto
-        {
-            Id = receivedProduct.Id,
-            Title = receivedProduct.Title,
-            Description = receivedProduct.Description,
-            Location = receivedProduct.Location,
-            PublicationDate = receivedProduct.PublicationDate,
-            Category = receivedProduct.Category!.Name,
-            TagNamesAndValues = new Dictionary<string, string>()
-        };
-
-        if (receivedProduct.TagValues != null)
-            foreach (var item in receivedProduct.TagValues)
-            {
-                viewDto.TagNamesAndValues.Add(item.Tag!.Name!, item.Value!);
-            }
-
-        #endregion
-        return viewDto;
+        _service = service;
+        _mapper = mapper;
     }
+
+    [HttpGet("{categoryId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public ActionResult<IEnumerable<ProductDto>> Get(int categoryId)
+    {
+        var products = _service.GetProductsByCategory(categoryId);
+
+        return (products is null || products.Count() == 0) ?
+            NoContent() :
+            Ok(_mapper.Map<IEnumerable<ProductDto>>(products));
+    }
+
+    //TODO: change create product endpoint
+
+    //[HttpPost]
+    //public GetProductDto CreateProduct(CreateProductDto dto)
+    //{
+    //    var product = new Product
+    //    {
+    //        Title = dto.Title,
+    //        Description = dto.Description,
+    //        Location = dto.Location,
+    //        PublicationDate = DateTime.Now,
+    //        Category = _uow.CategoryRepository.Get(dto.CategoryId),
+    //        TagValues = new List<TagValue>()
+    //    };
+
+    //    if (dto.TagIdsAndValues != null)
+    //        foreach (var item in dto.TagIdsAndValues)
+    //        {
+    //            product.TagValues.Add(new TagValue
+    //            {
+    //                Value = item.Value,
+    //                Tag = _uow.TagRepository.Get(item.Key)
+    //            });
+    //        }
+
+    //    _uow.ProductRepository.Add(product);
+    //    _uow.Save();
+
+    //    #region RETURNING_CREATED_PRODUCT
+
+    //    var receivedProduct =
+    //        _uow.ProductRepository
+    //        .GetIncludingCategoryAndTagValues(product.Id);
+
+    //    var viewDto = new GetProductDto
+    //    {
+    //        Id = receivedProduct.Id,
+    //        Title = receivedProduct.Title,
+    //        Description = receivedProduct.Description,
+    //        Location = receivedProduct.Location,
+    //        PublicationDate = receivedProduct.PublicationDate,
+    //        Category = receivedProduct.Category!.Name,
+    //        TagNamesAndValues = new Dictionary<string, string>()
+    //    };
+
+    //    if (receivedProduct.TagValues != null)
+    //        foreach (var item in receivedProduct.TagValues)
+    //        {
+    //            viewDto.TagNamesAndValues.Add(item.Tag!.Name!, item.Value!);
+    //        }
+
+    //    #endregion
+    //    return viewDto;
+    //}
 }

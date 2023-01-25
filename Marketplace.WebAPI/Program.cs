@@ -18,6 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ISeeder, Seeder>();
 builder.Services.AddScoped<IMainCategoryService, MainCategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddDbContext<MarketplaceContext>(options => options
     .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddAutoMapper();
