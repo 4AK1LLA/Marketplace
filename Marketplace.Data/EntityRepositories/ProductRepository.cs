@@ -18,6 +18,7 @@ public class ProductRepository : Repository<Product>, IProductRepository
     public IEnumerable<Product> GetByCategoryIdIncludingTagValues(int categoryId) =>
         _context.Products!
             .Where(pr => pr.Category!.Id == categoryId)
-            .Include(pr => pr.TagValues)
+            .Include(pr => pr.TagValues)!
+            .ThenInclude(tv => tv.Tag)
             .ToList();
 }
