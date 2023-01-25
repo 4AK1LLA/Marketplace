@@ -16,5 +16,8 @@ public class MappingProfile : Profile
 
         CreateMap<ProductDto, Product>();
         CreateMap<Product, ProductDto>();
+
+        CreateMap<TagValue, TagValueDto>();
+        CreateMap<TagValueDto, TagValue>();
     }
 }

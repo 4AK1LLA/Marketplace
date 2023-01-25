@@ -12,7 +12,7 @@ public class ProductDto
 
     public string? Location { get; set; }
 
-    public Dictionary<string, string>? TagNamesAndValues { get; set; }
+    public ICollection<TagValueDto>? TagValues { get; set; }
 
     public ICollection<PhotoDto>? Photos { get; set; }
 }
