@@ -7,7 +7,7 @@
         <div class="accordion accordion-flush" id="accordionId">
             <div class="accordion-item" *ngFor="let mc of mainCategories">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-toggle="collapse"
+                    <button [id]="mc.route+'button'" class="accordion-button collapsed" data-bs-toggle="collapse"
                         [attr.data-bs-target]="'#'+mc.route" [attr.aria-controls]="mc.route">
                         {{ mc.name }}
                     </button>

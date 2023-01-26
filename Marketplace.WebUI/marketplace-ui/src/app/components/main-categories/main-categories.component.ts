@@ -15,4 +15,22 @@ export class MainCategoriesComponent implements OnInit {
   ngOnInit() {
     this.categoriesService.getAll().subscribe(data => this.mainCategories = data);
   }
+
+  onClick(route: string): void {
+    this.mainCategories.forEach(item => {
+      document.getElementById(item.route)?.classList.remove('show');
+      document.getElementById(item.route + 'button')?.classList.add('collapsed');
+    });
+
+    let collapsedClasses = document.getElementById(route)!.classList;
+    let buttonClasses = document.getElementById(route + 'button')!.classList;
+
+    collapsedClasses.add('show');
+    buttonClasses.remove('collapsed');
+
+    document.getElementById('offcanvasId')?.addEventListener('hidden.bs.offcanvas', () => {
+      collapsedClasses.remove('show');
+      buttonClasses.add('collapsed');
+    });
+  }
 }
