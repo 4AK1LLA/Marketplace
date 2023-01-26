@@ -1,7 +1,10 @@
 @import 'src/styles/variables.scss';
 
+.container {
+    margin-top: 8rem;
+}
+
 .mc-section {
-    margin-top: 5rem;
     padding: .1px 2rem 0 2rem;
     background-color: $white-color;
 }
