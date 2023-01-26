@@ -8,11 +8,18 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<MainCategoryDto, MainCategory>();
-        CreateMap<MainCategory, MainCategoryDto>();
+        CreateMap<MainCategory, MainCategoryDto>()
+            .ForMember(
+                dest => dest.Route,
+                opt => opt.MapFrom(src => src.Name!.ToLower().Replace(' ', '-'))
+            );
 
-        CreateMap<GetCategoryDto, Category>();
-        CreateMap<Category, GetCategoryDto>();
+        CreateMap<Category, GetCategoryDto>()
+            .ForMember(
+                dest => dest.Route,
+                opt => opt.MapFrom(src => src.Name!.ToLower().Replace(' ', '-'))
+            );
+        //I need help => i-need-help
 
         CreateMap<ProductDto, Product>();
         CreateMap<Product, ProductDto>();
