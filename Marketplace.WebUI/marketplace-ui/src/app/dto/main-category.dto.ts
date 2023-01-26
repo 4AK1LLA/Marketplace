@@ -1,11 +1,11 @@
 export class MainCategoryDto {
-    route!: number;
+    route!: string;
     name!: string;
     photoUrl!: string;
     subCategories!: CategoryDto[];
 }
 
 export class CategoryDto {
-    route!: number;
+    route!: string;
     name!: string;
 }
