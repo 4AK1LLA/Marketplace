@@ -15,9 +15,9 @@ public class ProductRepository : Repository<Product>, IProductRepository
             .Include(pr => pr.TagValues)
             .First();
 
-    public IEnumerable<Product> GetByCategoryIdIncludingTagValues(int categoryId) =>
+    public IEnumerable<Product> GetByCategoryNameIncludingTagValues(string name) =>
         _context.Products!
-            .Where(pr => pr.Category!.Id == categoryId)
+            .Where(pr => pr.Category!.Name == name)
             .Include(pr => pr.TagValues)!
             .ThenInclude(tv => tv.Tag)
             .ToList();
