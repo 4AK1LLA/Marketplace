@@ -18,12 +18,16 @@ public class ProductController : Controller
         _mapper = mapper;
     }
 
-    [HttpGet("{categoryId}")]
+    [HttpGet("{categoryRoute}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public ActionResult<IEnumerable<ProductDto>> Get(int categoryId)
+    public ActionResult<IEnumerable<ProductDto>> Get(string categoryRoute)
     {
-        var products = _service.GetProductsByCategory(categoryId);
+        //Mapping route to name
+        var str = categoryRoute.Replace('-', ' ');
+        var categoryName = char.ToUpper(str[0]) + str.Substring(1);
+
+        var products = _service.GetProductsByCategory(categoryName);
 
         return (products is null || products.Count() == 0) ?
             NoContent() :

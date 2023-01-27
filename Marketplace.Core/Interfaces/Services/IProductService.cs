@@ -4,5 +4,5 @@ namespace Marketplace.Core.Interfaces.Services;
 
 public interface IProductService
 {
-    IEnumerable<Product> GetProductsByCategory(int categoryId);
+    IEnumerable<Product> GetProductsByCategory(string categoryName);
 }
