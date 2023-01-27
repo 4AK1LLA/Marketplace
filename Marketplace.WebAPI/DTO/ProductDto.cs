@@ -12,5 +12,5 @@ public class ProductDto
 
     public ICollection<TagValueDto>? TagValues { get; set; }
 
-    public PhotoDto? MainPhoto { get; set; }
+    public string? MainPhotoUrl { get; set; }
 }
