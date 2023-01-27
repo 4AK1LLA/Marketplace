@@ -6,13 +6,11 @@ public class ProductDto
 
     public string? Title { get; set; }
 
-    public string? Description { get; set; }
-
-    public DateTime PublicationDate { get; set; }
+    public DateOnly PublicationDate { get; set; }
 
     public string? Location { get; set; }
 
     public ICollection<TagValueDto>? TagValues { get; set; }
 
-    public ICollection<PhotoDto>? Photos { get; set; }
+    public PhotoDto? MainPhoto { get; set; }
 }
