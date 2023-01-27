@@ -31,6 +31,10 @@ public class MappingProfile : Profile
                     tv.Tag!.Name!.Equals(significantTags[1]) ||
                     tv.Tag!.Name!.Equals(significantTags[2])
                 ))
+            )
+            .ForMember(
+                dest => dest.PublicationDate,
+                opt => opt.MapFrom(src => src.PublicationDate.ToString("m"))
             );
 
         CreateMap<TagValue, TagValueDto>()

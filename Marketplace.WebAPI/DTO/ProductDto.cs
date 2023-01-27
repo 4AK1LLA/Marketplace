@@ -6,7 +6,7 @@ public class ProductDto
 
     public string? Title { get; set; }
 
-    public DateTime PublicationDate { get; set; }
+    public string? PublicationDate { get; set; }
 
     public string? Location { get; set; }
 
