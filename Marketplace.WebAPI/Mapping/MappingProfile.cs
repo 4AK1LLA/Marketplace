@@ -6,6 +6,8 @@ namespace Marketplace.WebAPI.Mapping;
 
 public class MappingProfile : Profile
 {
+    private readonly string[] significantTags = { "Price", "Salary", "Condition" };
+
     public MappingProfile()
     {
         CreateMap<MainCategory, MainCategoryDto>()
@@ -21,8 +23,15 @@ public class MappingProfile : Profile
             );
         //I need help => i-need-help
 
-        CreateMap<ProductDto, Product>();
-        CreateMap<Product, ProductDto>();
+        CreateMap<Product, ProductDto>()
+            .ForMember(
+                dest => dest.TagValues,
+                opt => opt.MapFrom(src => src.TagValues!.Where(tv =>
+                    tv.Tag!.Name!.Equals(significantTags[0]) ||
+                    tv.Tag!.Name!.Equals(significantTags[1]) ||
+                    tv.Tag!.Name!.Equals(significantTags[2])
+                ))
+            );
 
         CreateMap<TagValue, TagValueDto>()
             .ForMember(
