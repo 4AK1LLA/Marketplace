@@ -4,8 +4,8 @@ import { MainCategoriesComponent } from './components/main-categories/main-categ
 import { ProductsComponent } from './components/products/products.component';
 
 const routes: Routes = [
-  { path: ':mainCategoryId/:categoryId', component: ProductsComponent },
-  { path: ':mainCategoryId', component: ProductsComponent },
+  { path: ':mainCategoryRoute/:categoryRoute', component: ProductsComponent },
+  { path: ':mainCategoryRoute', component: ProductsComponent },
   { path: '', component: MainCategoriesComponent }
 ];
 

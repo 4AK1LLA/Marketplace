@@ -12,7 +12,6 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  getProductsByCategory = (route: string): Observable<ProductDto[]> => 
-  //this.http.get<ProductDto[]>(`${environment.baseApiUrl}/Product/${route}`);
-
+  getProductsByCategory = (route: string): Observable<ProductDto[]> =>
+    this.http.get<ProductDto[]>(`${environment.baseApiUrl}/Product/${route}`);
 }
