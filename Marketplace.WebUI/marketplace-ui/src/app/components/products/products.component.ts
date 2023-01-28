@@ -23,5 +23,23 @@ export class ProductsComponent implements OnInit {
     this.initProducts();
   }
 
-  private initProducts = () => this.productsService.getProductsByCategory(this.routeValue).subscribe(data => this.products = data);
+  initCondition(): void {
+    this.products.forEach(pr => {
+      pr.tagValues.forEach(tv => {
+        if (tv.name === 'Condition') {
+          pr.condition = tv.value;
+        }
+      })
+    });
+  }
+
+  private initProducts() {
+    this.productsService
+      .getProductsByCategory(this.routeValue)
+      .subscribe(data => {
+        this.products = data;
+        console.log(this.products)
+        this.initCondition();
+      });
+  }
 }

@@ -6,14 +6,14 @@
             <li class="breadcrumb-item active" aria-current="page">Category</li>
         </ol>
     </nav>
-    <div class="found">Found 4 products</div>
+    <div class="found">Found {{ products.length }} products</div>
     <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-        <div class="col">
+        <div class="col" *ngFor="let pr of products">
             <div class="card shadow-sm">
                 <div class="card-top">
                     <img src="https://ireland.apollo.olxcdn.com/v1/files/k1nng0ftn4453-UA/image;s=1000x700"
                         class="card-img-top">
-                    <div class="label-top">used</div>
+                    <div class="label-top" *ngIf="pr.condition">{{ pr.condition }}</div>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam
@@ -28,90 +28,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card shadow-sm">
-                <div class="card-top">
-                    <img src="https://ireland.apollo.olxcdn.com/v1/files/k1nng0ftn4453-UA/image;s=1000x700"
-                        class="card-img-top">
-                    <div class="label-top">used</div>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam
-                        quidem eaque ut eveniet aut quis rerum. Asperiores accusamus harum ducimus velit
-                        odit ut. Saepe, iste optio laudantium sed aliquam sequi.</h5>
-                    <div class="labels d-flex justify-content-between">
-                        <div class="date-location">January 26<br>Kyiv, Kyiv region</div>
-                        <div class="price">2000 &#8372;</div>
-                    </div>
-                    <div class="text-center my-4">
-                        <a href="#" class="btn">see details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card shadow-sm">
-                <div class="card-top">
-                    <img src="https://ireland.apollo.olxcdn.com/v1/files/k1nng0ftn4453-UA/image;s=1000x700"
-                        class="card-img-top">
-                    <div class="label-top">used</div>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam
-                        quidem eaque ut eveniet aut quis rerum. Asperiores accusamus harum ducimus velit
-                        odit ut. Saepe, iste optio laudantium sed aliquam sequi.</h5>
-                    <div class="d-flex justify-content-between">
-                        <div class="date-location">January 26<br>Kyiv, Kyiv region</div>
-                        <div class="price">2000 &#8372;</div>
-                    </div>
-                    <div class="text-center my-4">
-                        <a href="#" class="btn">see details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card shadow-sm">
-                <div class="card-top">
-                    <img src="https://ireland.apollo.olxcdn.com/v1/files/k1nng0ftn4453-UA/image;s=1000x700"
-                        class="card-img-top">
-                    <div class="label-top">used</div>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam
-                        quidem eaque ut eveniet aut quis rerum. Asperiores accusamus harum ducimus velit
-                        odit ut. Saepe, iste optio laudantium sed aliquam sequi.</h5>
-                    <div class="labels d-flex justify-content-between">
-                        <div class="date-location">January 26<br>Kyiv, Kyiv region</div>
-                        <div class="price">2000 &#8372;</div>
-                    </div>
-                    <div class="text-center my-4">
-                        <a href="#" class="btn">see details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card shadow-sm">
-                <div class="card-top">
-                    <img src="https://ireland.apollo.olxcdn.com/v1/files/k1nng0ftn4453-UA/image;s=1000x700"
-                        class="card-img-top">
-                    <div class="label-top">used</div>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam
-                        quidem eaque ut eveniet aut quis rerum. Asperiores accusamus harum ducimus velit
-                        odit ut. Saepe, iste optio laudantium sed aliquam sequi.</h5>
-                    <div class="d-flex justify-content-between">
-                        <div class="date-location">January 26<br>Kyiv, Kyiv region</div>
-                        <div class="price">2000 &#8372;</div>
-                    </div>
-                    <div class="text-center my-4">
-                        <a href="#" class="btn">see details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div>        
     </div>
 </div>

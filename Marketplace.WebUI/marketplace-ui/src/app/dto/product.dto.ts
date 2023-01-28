@@ -5,4 +5,6 @@ export class ProductDto {
     location!: string;
     tagValues!: { value: string, name: string }[];
     mainPhotoUrl!: string;
+
+    condition?: string;
 }
