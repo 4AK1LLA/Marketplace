@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { ProductDto } from 'src/app/dto/product.dto';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -16,14 +16,13 @@ export class ProductsComponent implements OnInit {
   constructor(private productsService: ProductsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let mainCategoryRoute = this.route.snapshot.paramMap.get('mainCategoryRoute')!;
-    let categoryRoute = this.route.snapshot.paramMap.get('categoryRoute')!;
-
-    this.routeValue = (categoryRoute) ? categoryRoute : mainCategoryRoute;
-    this.initProducts();
+    this.route.url.subscribe(url => {
+      this.routeValue = url[url.length - 1].path;
+      this.initProducts();
+    });
   }
 
-  initCondition(): void {
+  private initCondition(): void {
     this.products.forEach(pr => {
       pr.tagValues.forEach(tv => {
         if (tv.name === 'Condition') {
@@ -33,7 +32,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  private initProducts() {
+  private initProducts(): void {
     this.productsService
       .getProductsByCategory(this.routeValue)
       .subscribe(data => {
