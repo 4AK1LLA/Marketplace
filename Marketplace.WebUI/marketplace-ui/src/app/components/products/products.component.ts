@@ -22,12 +22,16 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  private initCondition(): void {
+  private initProperties(): void {
+    if (!this.products)
+      return;
+
     this.products.forEach(pr => {
       pr.tagValues.forEach(tv => {
-        if (tv.name === 'Condition') {
+        if (tv.name === 'Condition')
           pr.condition = tv.value;
-        }
+        if (tv.name === 'Price' || tv.name === 'Salary')
+          pr.price = tv.value;
       })
     });
   }
@@ -38,7 +42,7 @@ export class ProductsComponent implements OnInit {
       .subscribe(data => {
         this.products = data;
         console.log(this.products)
-        this.initCondition();
+        this.initProperties();
       });
   }
 }

@@ -7,4 +7,5 @@ export class ProductDto {
     mainPhotoUrl!: string;
 
     condition?: string;
+    price?: string;
 }
