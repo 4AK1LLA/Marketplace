@@ -1,22 +1,22 @@
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasId" aria-labelledby="offcanvasLabel">
+<div class="offcanvas offcanvas-end" id="offcanvasId">
     <div class="offcanvas-header">
-        <h5 class="oc-title offcanvas-title" id="offcanvasLabel">Categories</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <h5 class="oc-title offcanvas-title">Categories</h5>
+        <button class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
     </div>
     <div class="offcanvas-body">
         <div class="accordion accordion-flush" id="accordionId">
             <div class="accordion-item" *ngFor="let mc of mainCategories">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        [attr.data-bs-target]="'#'+mc.id" aria-expanded="false" [attr.aria-controls]="mc.id">
+                    <button [id]="mc.route+'button'" class="accordion-button collapsed" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#'+mc.route" [attr.aria-controls]="mc.route">
                         {{ mc.name }}
                     </button>
                 </h2>
-                <div [id]="mc.id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                    data-bs-parent="#accordionId">
+                <div [id]="mc.route" class="accordion-collapse collapse" data-bs-parent="#accordionId">
                     <div class="accordion-body">
                         <div class="list-group list-group-flush">
-                            <a class="list-group-item" *ngFor="let sc of mc.subCategories">{{ sc.name }}</a>
+                            <a [routerLink]="[mc.route, sc.route]" class="list-group-item"
+                                *ngFor="let sc of mc.subCategories" data-bs-dismiss="offcanvas">{{ sc.name }}</a>
                         </div>
                     </div>
                 </div>
