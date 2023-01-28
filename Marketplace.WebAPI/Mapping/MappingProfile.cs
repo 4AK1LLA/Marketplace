@@ -6,16 +6,36 @@ namespace Marketplace.WebAPI.Mapping;
 
 public class MappingProfile : Profile
 {
+    private readonly string[] significantTags = { "Price", "Salary", "Condition" };
+
     public MappingProfile()
     {
-        CreateMap<MainCategoryDto, MainCategory>();
-        CreateMap<MainCategory, MainCategoryDto>();
+        CreateMap<MainCategory, MainCategoryDto>()
+            .ForMember(
+                dest => dest.Route,
+                opt => opt.MapFrom(src => src.Name!.ToLower().Replace(' ', '-'))
+            );
 
-        CreateMap<GetCategoryDto, Category>();
-        CreateMap<Category, GetCategoryDto>();
+        CreateMap<Category, GetCategoryDto>()
+            .ForMember(
+                dest => dest.Route,
+                opt => opt.MapFrom(src => src.Name!.ToLower().Replace(' ', '-'))
+            );
+        //I need help => i-need-help
 
-        CreateMap<ProductDto, Product>();
-        CreateMap<Product, ProductDto>();
+        CreateMap<Product, ProductDto>()
+            .ForMember(
+                dest => dest.TagValues,
+                opt => opt.MapFrom(src => src.TagValues!.Where(tv =>
+                    tv.Tag!.Name!.Equals(significantTags[0]) ||
+                    tv.Tag!.Name!.Equals(significantTags[1]) ||
+                    tv.Tag!.Name!.Equals(significantTags[2])
+                ))
+            )
+            .ForMember(
+                dest => dest.PublicationDate,
+                opt => opt.MapFrom(src => src.PublicationDate.ToString("m"))
+            );
 
         CreateMap<TagValue, TagValueDto>()
             .ForMember(
