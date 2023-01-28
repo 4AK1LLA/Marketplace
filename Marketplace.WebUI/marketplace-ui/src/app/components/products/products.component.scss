@@ -47,12 +47,16 @@
 }
 
 .price {
+    min-height: 58px;
+    text-align: right;
+    width: 30%;
     font-size: 1rem;
     font-weight: bold;
     color: $main-color
 }
 
 .date-location {
+    width: 70%;
     font-size: .8rem;
     color: $main-color
 }
