@@ -1,14 +1,15 @@
 ﻿using Marketplace.Core.Entities;
+using Marketplace.Data.Options;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace Marketplace.Data;
 
 public class MarketplaceContext : DbContext
 {
-    private readonly IConfiguration _configuration;
+    private readonly IOptions<DbConnectionOptions> _options;
 
-    public MarketplaceContext(IConfiguration configuration) { _configuration = configuration; }
+    public MarketplaceContext(IOptions<DbConnectionOptions> options) { _options = options; }
 
     public DbSet<Product>? Products { get; set; }
 
@@ -24,7 +25,7 @@ public class MarketplaceContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")!);
+        options.UseSqlServer(_options.Value.DefaultConnection);
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
