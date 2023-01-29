@@ -32,13 +32,13 @@ public static class ServiceExtensions
 
     public static IServiceCollection AddMyCors(this IServiceCollection services, IConfiguration configuration, string myAllowSpecificOrigins)
     {
-        var corsOptions = configuration.Get<CorsOptions>();
+        var origins = configuration.Get<CorsOptions>().AllowedOrigins.Split(";");
 
         services.AddCors(options =>
         {
             options.AddPolicy(
                 name: myAllowSpecificOrigins, 
-                policy => policy.WithOrigins(corsOptions.AllowedOrigins));
+                policy => policy.WithOrigins(origins));
         });
 
         return services;
