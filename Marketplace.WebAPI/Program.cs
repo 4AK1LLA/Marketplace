@@ -1,8 +1,5 @@
 using Marketplace.Core.Interfaces;
-using Marketplace.Data;
-using Marketplace.Services;
-using AutoMapper;
-using Marketplace.WebAPI.Mapping;
+using Marketplace.WebAPI.Extensions;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -14,23 +11,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<ISeeder, Seeder>();
-builder.Services.AddScoped<IMainCategoryService, MainCategoryService>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddDbContext<MarketplaceContext>();
-builder.Services.AddSingleton(new Mapper(
-    new MapperConfiguration(mc => mc.AddProfile(new MappingProfile()))
-    ) as IMapper);
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins("http://localhost:4200");
-                      });
-});
+builder.Services.AddUnitOfWork();
+builder.Services.AddMyServices();
+builder.Services.AddMyDbContext();
+builder.Services.AddAutoMapper();
+builder.Services.AddMyCors(MyAllowSpecificOrigins);
 
 var app = builder.Build();
 
