@@ -8,5 +8,5 @@ public class MainCategoryDto
 
     public string? PhotoUrl { get; set; }
 
-    public ICollection<GetCategoryDto>? SubCategories { get; set; }
+    public ICollection<CategoryDto>? SubCategories { get; set; }
 }

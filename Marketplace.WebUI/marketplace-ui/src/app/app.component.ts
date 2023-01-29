@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MainCategoryDto } from './dto/main-category.dto';
-import { MainCategoriesService } from './services/main-categories.service';
+import { MainCategoriesService } from './services/main-categories-service/main-categories.service';
 
 @Component({
   selector: 'app-root',

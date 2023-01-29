@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainCategoryDto } from 'src/app/dto/main-category.dto';
-import { MainCategoriesService } from 'src/app/services/main-categories.service';
+import { MainCategoriesService } from 'src/app/services/main-categories-service/main-categories.service';
 
 @Component({
   selector: 'app-sidebar',

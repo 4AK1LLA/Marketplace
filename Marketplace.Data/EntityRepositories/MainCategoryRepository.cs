@@ -9,7 +9,7 @@ public class MainCategoryRepository : Repository<MainCategory>, IMainCategoryRep
     public MainCategoryRepository(MarketplaceContext context) : base(context) { }
 
     public IEnumerable<MainCategory> GetAllIncludingSubcategories() => 
-        _context.MainCategories!
-        .Include(mc => mc.SubCategories)
-        .ToList();
+        GetAll()
+        .AsQueryable()
+        .Include(mc => mc.SubCategories);
 }

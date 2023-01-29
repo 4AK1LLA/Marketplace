@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Marketplace.Core.Interfaces.Services;
+using Marketplace.Core.Interfaces;
 using Marketplace.WebAPI.DTO;
 using Microsoft.AspNetCore.Mvc;
 

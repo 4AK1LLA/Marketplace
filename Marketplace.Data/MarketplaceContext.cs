@@ -1,11 +1,14 @@
 ﻿using Marketplace.Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Marketplace.Data;
 
 public class MarketplaceContext : DbContext
 {
-    public MarketplaceContext(DbContextOptions options) : base(options) {    }
+    private readonly IConfiguration _configuration;
+
+    public MarketplaceContext(IConfiguration configuration) { _configuration = configuration; }
 
     public DbSet<Product>? Products { get; set; }
 
@@ -18,6 +21,11 @@ public class MarketplaceContext : DbContext
     public DbSet<Photo>? Photos { get; set; }
 
     public DbSet<MainCategory>? MainCategories { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+    {
+        options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")!);
+    }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
