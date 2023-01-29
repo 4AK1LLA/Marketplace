@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Marketplace.Core.Interfaces;
 using Marketplace.Data;
+using Marketplace.Data.Options;
 using Marketplace.Services;
 using Marketplace.WebAPI.Mapping;
 
@@ -36,6 +37,13 @@ public static class ServiceExtensions
                 name: myAllowSpecificOrigins, 
                 policy => policy.WithOrigins("http://localhost:4200"));
         });
+
+        return services;
+    }
+
+    public static IServiceCollection ConfigureOptions(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<DbConnectionOptions>(configuration.GetSection(DbConnectionOptions.Position));
 
         return services;
     }
