@@ -16,7 +16,7 @@ builder.Services.AddUnitOfWork();
 builder.Services.AddMyServices();
 builder.Services.AddMyDbContext();
 builder.Services.AddAutoMapper();
-builder.Services.AddMyCors(MyAllowSpecificOrigins);
+builder.Services.AddMyCors(builder.Configuration, MyAllowSpecificOrigins);
 
 var app = builder.Build();
 
