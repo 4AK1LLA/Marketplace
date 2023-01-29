@@ -11,14 +11,14 @@ public class Repository<T> : IRepository<T> where T : class
 
     public T? Get(int id) => _context.Set<T>().Find(id);
 
-    public IEnumerable<T> GetAll() => _context.Set<T>().ToList();
+    public IEnumerable<T> GetAll() => _context.Set<T>();
 
     public void Add(T entity) => _context.Set<T>().Add(entity);
 
     public void AddRange(IEnumerable<T> entities) => _context.Set<T>().AddRange(entities);
 
     public IEnumerable<T> Find(Expression<Func<T, bool>> expression) => 
-        _context.Set<T>().Where(expression).ToList();
+        _context.Set<T>().Where(expression);
 
     public void Update(T entity) => _context.Set<T>().Update(entity);
 

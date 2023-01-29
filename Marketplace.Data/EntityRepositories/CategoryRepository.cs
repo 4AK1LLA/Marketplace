@@ -9,7 +9,7 @@ public class CategoryRepository : Repository<Category>, ICategoryRepository
     public CategoryRepository(MarketplaceContext context) : base(context) { }
 
     public IEnumerable<Category> GetAllIncludingTags() => 
-        _context.Categories!
-        .Include(ct => ct.Tags)
-        .ToList();
+        GetAll()
+        .AsQueryable()
+        .Include(ct => ct.Tags);
 }
