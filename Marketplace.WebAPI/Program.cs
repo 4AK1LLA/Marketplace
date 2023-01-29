@@ -1,6 +1,5 @@
 using Marketplace.Core.Interfaces;
 using Marketplace.Data;
-using Microsoft.EntityFrameworkCore;
 using Marketplace.Services;
 using AutoMapper;
 using Marketplace.WebAPI.Mapping;
@@ -19,8 +18,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ISeeder, Seeder>();
 builder.Services.AddScoped<IMainCategoryService, MainCategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddDbContext<MarketplaceContext>(options => options
-    .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<MarketplaceContext>();
 builder.Services.AddSingleton(new Mapper(
     new MapperConfiguration(mc => mc.AddProfile(new MappingProfile()))
     ) as IMapper);
