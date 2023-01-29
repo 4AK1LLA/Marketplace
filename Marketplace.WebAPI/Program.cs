@@ -1,7 +1,6 @@
 using Marketplace.Core.Interfaces;
 using Marketplace.Data;
 using Microsoft.EntityFrameworkCore;
-using Marketplace.Core.Interfaces.Services;
 using Marketplace.Services;
 using AutoMapper;
 using Marketplace.WebAPI.Mapping;

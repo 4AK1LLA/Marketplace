@@ -10,19 +10,20 @@ public class MappingProfile : Profile
 
     public MappingProfile()
     {
+        //Mapping routes I need help => i-need-help
         CreateMap<MainCategory, MainCategoryDto>()
             .ForMember(
                 dest => dest.Route,
                 opt => opt.MapFrom(src => src.Name!.ToLower().Replace(' ', '-'))
             );
 
-        CreateMap<Category, GetCategoryDto>()
+        CreateMap<Category, CategoryDto>()
             .ForMember(
                 dest => dest.Route,
                 opt => opt.MapFrom(src => src.Name!.ToLower().Replace(' ', '-'))
             );
-        //I need help => i-need-help
 
+        //Mapping only important tags and date (1 January) format
         CreateMap<Product, ProductDto>()
             .ForMember(
                 dest => dest.TagValues,
@@ -37,6 +38,7 @@ public class MappingProfile : Profile
                 opt => opt.MapFrom(src => src.PublicationDate.ToString("m"))
             );
 
+        //Mapping tagvalues
         CreateMap<TagValue, TagValueDto>()
             .ForMember(
                 dest => dest.Name,

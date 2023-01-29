@@ -1,6 +1,5 @@
 ﻿using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
-using Marketplace.Core.Interfaces.Services;
 
 namespace Marketplace.Services;
 

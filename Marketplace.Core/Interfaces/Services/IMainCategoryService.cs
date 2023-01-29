@@ -1,6 +1,6 @@
 ﻿using Marketplace.Core.Entities;
 
-namespace Marketplace.Core.Interfaces.Services;
+namespace Marketplace.Core.Interfaces;
 
 public interface IMainCategoryService
 {
