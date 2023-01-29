@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Marketplace.Core.Interfaces;
 using Marketplace.Data;
+using Marketplace.Data.Options;
 using Marketplace.Services;
 using Marketplace.WebAPI.Mapping;
+using Marketplace.WebAPI.Options;
 
 namespace Marketplace.WebAPI.Extensions;
 
@@ -28,14 +30,23 @@ public static class ServiceExtensions
             new MapperConfiguration(mc => mc.AddProfile(new MappingProfile()))) as IMapper
             );
 
-    public static IServiceCollection AddMyCors(this IServiceCollection services, string myAllowSpecificOrigins)
+    public static IServiceCollection AddMyCors(this IServiceCollection services, IConfiguration configuration, string myAllowSpecificOrigins)
     {
+        var origins = configuration.Get<CorsOptions>().AllowedOrigins.Split(";");
+
         services.AddCors(options =>
         {
             options.AddPolicy(
                 name: myAllowSpecificOrigins, 
-                policy => policy.WithOrigins("http://localhost:4200"));
+                policy => policy.WithOrigins(origins));
         });
+
+        return services;
+    }
+
+    public static IServiceCollection ConfigureOptions(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<DbConnectionOptions>(configuration.GetSection(DbConnectionOptions.Position));
 
         return services;
     }
