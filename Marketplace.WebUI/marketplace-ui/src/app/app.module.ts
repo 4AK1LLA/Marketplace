@@ -8,6 +8,7 @@ import { MainCategoriesComponent } from './components/main-categories/main-categ
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductsComponent } from './components/products/products.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ProductsComponent } from './components/products/products.component';
     NavbarComponent,
     MainCategoriesComponent,
     SidebarComponent,
-    ProductsComponent
+    ProductsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
