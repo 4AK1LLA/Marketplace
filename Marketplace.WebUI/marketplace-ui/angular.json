@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "marketplace-ui": {
+      "i18n": {
+        "sourceLocale":"en-US",
+        "locales": { 
+          "uk-UA": "src/locale/messages.uk.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,6 +19,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": [
+              "uk-UA"
+            ],
             "outputPath": "dist/marketplace-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
