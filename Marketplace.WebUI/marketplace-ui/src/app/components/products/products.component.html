@@ -6,10 +6,10 @@
             <li class="breadcrumb-item active" aria-current="page">Category</li>
         </ol>
     </nav>
-    <div class="found" *ngIf="products; else notfound">Found {{ products.length }} products</div>
+    <div i18n class="found" *ngIf="products; else notfound">Found {{ products.length }} products</div>
     <!--TODO: Add pipe for displaying amount of found-->
     <ng-template #notfound>
-        <div class="found">There are no products of this category :(</div>
+        <div i18n class="found">There are no products of this category :(</div>
     </ng-template>
     <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
         <div class="col" *ngFor="let pr of products">
@@ -27,7 +27,7 @@
                         <div class="price">{{ pr.price }} &#8372;</div>
                     </div>
                     <div class="text-center my-2">
-                        <a href="#" class="btn">see details</a>
+                        <a i18n href="#" class="btn">see details</a>
                     </div>
                 </div>
             </div>
