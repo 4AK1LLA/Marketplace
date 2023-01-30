@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  links:{ name: string, ref: string }[] = [];
 
   ngOnInit(): void {
+    this.links = [
+      { name: 'Home', ref: '' }, 
+      { name: 'Link', ref: '#' }, 
+      { name: 'Link', ref: '#' }
+    ]
   }
 
 }
