@@ -7,9 +7,7 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "uk-UA": {
-            "translation": "src/locale/messages.uk.xlf"
-          }
+          "uk-UA": "src/locale/messages.uk.xlf"
         }
       },
       "projectType": "application",
@@ -36,9 +34,6 @@
             "scripts": []
           },
           "configurations": {
-            "uk": {
-              "localize": ["uk-UA"]
-            },
             "production": {
               "budgets": [
                 {
@@ -74,9 +69,6 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "uk": {
-              "browserTarget": "marketplace-ui:build:uk"
-            },
             "production": {
               "browserTarget": "marketplace-ui:build:production"
             },
