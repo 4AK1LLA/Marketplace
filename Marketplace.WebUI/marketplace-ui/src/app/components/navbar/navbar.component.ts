@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  locales = [
+    { code: 'en-US', label: 'English', class: 'fi fi-us me-2' },
+    { code: 'uk-UA', label: 'Українська', class: 'fi fi-ua me-2' }
+  ];
+
   constructor() { }
 
   ngOnInit(): void {

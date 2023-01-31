@@ -12,8 +12,11 @@
                         <span class="selected fi fi-ua me-1"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><span class="fi fi-us me-2"></span>English</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="fi fi-ua me-2"></span>Українська</a></li>
+                        <li *ngFor="let l of locales">
+                            <a class="dropdown-item" href="#">
+                                <span [class]="l.class"></span>{{ l.label }}
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
