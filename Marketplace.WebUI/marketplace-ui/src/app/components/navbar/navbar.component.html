@@ -17,7 +17,7 @@
 
                     <ul class="dropdown-menu">
                         <li *ngFor="let l of locales">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" [href]="'/'+l.code+'/'">
                                 <span [class]="l.class+' me-2'"></span>{{ l.label }}
                             </a>
                         </li>
