@@ -5,9 +5,11 @@
   "projects": {
     "marketplace-ui": {
       "i18n": {
-        "sourceLocale":"en-US",
-        "locales": { 
-          "uk-UA": "src/locale/messages.uk.xlf"
+        "sourceLocale": "en-US",
+        "locales": {
+          "uk-UA": {
+            "translation": "src/locale/messages.uk.xlf"
+          }
         }
       },
       "projectType": "application",
@@ -19,9 +21,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "localize": [
-              "uk-UA"
-            ],
             "outputPath": "dist/marketplace-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -37,6 +36,9 @@
             "scripts": []
           },
           "configurations": {
+            "uk": {
+              "localize": ["uk-UA"]
+            },
             "production": {
               "budgets": [
                 {
@@ -72,6 +74,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "uk": {
+              "browserTarget": "marketplace-ui:build:uk"
+            },
             "production": {
               "browserTarget": "marketplace-ui:build:production"
             },

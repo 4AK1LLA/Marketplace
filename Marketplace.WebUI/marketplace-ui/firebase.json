@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/marketplace-ui",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
