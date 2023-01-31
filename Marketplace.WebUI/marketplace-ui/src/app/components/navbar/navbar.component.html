@@ -10,14 +10,14 @@
                 <div class="dropdown">
                     <ng-container *ngFor="let l of locales">
                         <a *ngIf="l.code===currentLocale" class="language-switcher dropdown-toggle"
-                            id="dropdownMenuLink" data-bs-toggle="dropdown">
+                            id="dropdownMenuLink" data-bs-toggle="dropdown" (click)="onClick()">
                             <span [class]="'selected '+l.class+' me-1'"></span>
                         </a>
                     </ng-container>
 
                     <ul class="dropdown-menu">
                         <li *ngFor="let l of locales">
-                            <a class="dropdown-item" [href]="'/'+l.code+'/'">
+                            <a class="dropdown-item" [href]="l.href">
                                 <span [class]="l.class+' me-2'"></span>{{ l.label }}
                             </a>
                         </li>
