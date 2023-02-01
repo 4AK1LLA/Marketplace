@@ -27,3 +27,4 @@ Users will interact with main categories that may contain subcategories with rel
 - Main categories is a section where users can pick what they need
 - Sidebar is an extended version of main categories wich has subcategories for routing users to products page
 - Products page shows all products of some category (product data on this level includes title, publication date, location, price and main photo) and users can click on them to buy or see details
+- Supporting en-US and uk-UA locales, users can switch language
