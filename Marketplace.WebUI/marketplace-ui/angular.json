@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "marketplace-ui": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "uk-UA": "src/locale/messages.uk.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",

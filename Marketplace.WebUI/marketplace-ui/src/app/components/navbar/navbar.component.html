@@ -7,25 +7,44 @@
 
         <ul class="navbar-nav ms-auto flex-row">
             <li class="nav-item">
+                <div class="dropdown">
+                    <ng-container *ngFor="let l of locales">
+                        <a *ngIf="l.code===currentLocale" class="language-switcher dropdown-toggle"
+                            id="dropdownMenuLink" data-bs-toggle="dropdown" (click)="onClick()">
+                            <span [class]="'selected '+l.class+' me-1'"></span>
+                        </a>
+                    </ng-container>
+
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let l of locales">
+                            <a class="dropdown-item" [href]="l.href">
+                                <span [class]="l.class+' me-2'"></span>{{ l.label }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link d-flex" href="#">
                     <i class='bx bx-message bx-sm nav-icon'></i>
-                    <span>Messages</span>
+                    <span i18n>Messages</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link d-flex" href="#">
                     <i class='bx bx-heart bx-sm nav-icon'></i>
-                    <span>Favourites</span>
+                    <span i18n>Favourites</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link d-flex" href="#">
                     <i class='bx bx-user bx-sm nav-icon'></i>
-                    <span>Your profile</span>
+                    <span i18n>Your profile</span>
                 </a>
             </li>
             <li class="nav-item">
-                <button class="btn">Sell product</button>
+                <button i18n class="btn">Sell product</button>
             </li>
             <li class="nav-item">
                 <a class="nav-link d-flex" data-bs-toggle="offcanvas" data-bs-target="#offcanvasId">

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="6075818563304430532" datatype="html">
+        <source> All online ads are on Marketplace - here you will find what you were looking for! By clicking on the Sell product button, you can place an ad on any topic easily and quickly. With the help of the Marketplace service, you can buy or sell almost anything from hand to hand. </source>
+        <target> Усі онлайн-оголошення на Marketplace - тут ви знайдете те, що шукали! Натиснувши на кнопку Додати оголошення, ви зможете розмістити оголошення на будь-яку тематику легко й швидко. За допомогою сервісу Marketplace ви зможете купити чи продати з рук у руки практично все, що завгодно. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">10,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2456433949573962818" datatype="html">
+        <source> Links </source>
+        <target> Посилання </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">19,21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7922989125096435449" datatype="html">
+        <source>Contact</source>
+        <target>Контакти</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7682435785317436784" datatype="html">
+        <source>Feel free to contact us</source>
+        <target>Якщо виникли запитання, звертайтесь</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1046168957904267891" datatype="html">
+        <source>Main categories</source>
+        <target>Головні рубрики</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/main-categories/main-categories.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6452372740127749380" datatype="html">
+        <source>Messages</source>
+        <target>Повідомлення</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4158925728608139729" datatype="html">
+        <source>Favourites</source>
+        <target>Вибране</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="792930787826735850" datatype="html">
+        <source>Your profile</source>
+        <target>Ваш профіль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5810538357933540106" datatype="html">
+        <source>Sell product</source>
+        <target>Додати оголошення</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4547188585165055349" datatype="html">
+        <source>Found <x id="INTERPOLATION" equiv-text="{{ products.length }}"/> products</source>
+        <target>Ми знайшли <x id="INTERPOLATION" equiv-text="{{ products.length }}"/> оголошення</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products/products.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8067539505853047876" datatype="html">
+        <source>There are no products of this category :(</source>
+        <target>Немає товарів цієї категорії :(</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products/products.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8497766758468469066" datatype="html">
+        <source>see details</source>
+        <target>Детальніше</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products/products.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1902100407096396858" datatype="html">
+        <source>Categories</source>
+        <target>Рубрики</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/sidebar/sidebar.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
