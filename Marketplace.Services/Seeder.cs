@@ -14,11 +14,11 @@ public class Seeder : ISeeder
         _uow = uow;
     }
 
-    public void Seed()
+    public bool Seed()
     {
         if (_uow.MainCategoryRepository.Count() != 0 || _uow.ProductRepository.Count() != 0)
         {
-            return;
+            return false;
         }
 
         string modelsJson;
@@ -32,5 +32,7 @@ public class Seeder : ISeeder
 
         _uow.MainCategoryRepository.AddRange(models!);
         _uow.Save();
+
+        return true;
     }
 }
