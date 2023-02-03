@@ -2,5 +2,5 @@
 
 public interface ISeeder
 {
-    void Seed();
+    bool Seed();
 }
