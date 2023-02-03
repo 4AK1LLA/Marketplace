@@ -17,6 +17,6 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
       - name: Test services
-        run: dotnet test --no-restore --verbosity normal Tests/MarketplaceServices.Tests.csproj
+        run: dotnet test --no-restore --verbosity normal Tests/MarketplaceServices.Tests/MarketplaceServices.Tests.csproj
       - name: Test api
-        run: dotnet test --no-restore --verbosity normal Tests/MarketplaceWebAPI.Tests.csproj
+        run: dotnet test --no-restore --verbosity normal Tests/MarketplaceWebAPI.Tests/MarketplaceWebAPI.Tests.csproj
