@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Marketplace.Services\Marketplace.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\Parameters\" />
+  </ItemGroup>
+
 </Project>
