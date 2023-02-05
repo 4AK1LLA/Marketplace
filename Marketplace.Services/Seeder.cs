@@ -1,4 +1,5 @@
-﻿using Marketplace.Core.Entities;
+﻿using Bogus;
+using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
 using System.Text.Json;
 
@@ -29,10 +30,42 @@ public class Seeder : ISeeder
         }
 
         var models = JsonSerializer.Deserialize<IEnumerable<MainCategory>>(modelsJson);
+        var mainCategories = models!.ToList();
+        mainCategories.Add(CreateMainCategoryForPaging());
 
-        _uow.MainCategoryRepository.AddRange(models!);
+        _uow.MainCategoryRepository.AddRange(mainCategories);
         _uow.Save();
 
         return true;
+    }
+
+    private MainCategory CreateMainCategoryForPaging()
+    {
+        Random random = new Random();
+        var productsForPaging = new Faker<Product>()
+            .RuleFor(pr => pr.Title, f => f.Lorem.Sentence(6))
+            .RuleFor(pr => pr.PublicationDate, f => f.Date.Future())
+            .RuleFor(pr => pr.Location, f => f.Address.City());
+
+        var products = productsForPaging.Generate(40);
+
+        foreach (var pr in products)
+        {
+            pr.TagValues = new List<TagValue>();
+            pr.TagValues.Add(new TagValue
+            {
+                Tag = new Tag { Name = "Price" },
+                Value = random.Next(1000, 10000).ToString()
+            });
+        }
+
+        return new MainCategory
+        {
+            Name = "Main Category For Paging",
+            SubCategories = new List<Category>
+            {
+                new Category { Name = "Category For Paging", Products = products }
+            }
+        };
     }
 }
