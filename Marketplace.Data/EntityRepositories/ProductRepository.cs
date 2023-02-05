@@ -16,10 +16,11 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .Include(pr => pr.TagValues)
         .First();
 
-    public IEnumerable<Product> GetByCategoryNameIncludingTagValues(string name) =>
+    public IEnumerable<Product> GetByCategoryNameIncludingTagValuesAndPhotos(string name) =>
         GetAll()
         .AsQueryable()
         .Where(pr => pr.Category!.Name == name)
+        .Include(pr => pr.Photos)
         .Include(pr => pr.TagValues)!
         .ThenInclude(tv => tv.Tag);
 }

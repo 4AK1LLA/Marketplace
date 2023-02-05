@@ -10,5 +10,5 @@ public class ProductService : IProductService
     public ProductService(IUnitOfWork uow) => _uow = uow;
 
     public IEnumerable<Product> GetProductsByCategory(string name) => 
-        _uow.ProductRepository.GetByCategoryNameIncludingTagValues(name).ToList();
+        _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(name).ToList();
 }

@@ -36,6 +36,10 @@ public class MappingProfile : Profile
             .ForMember(
                 dest => dest.PublicationDate,
                 opt => opt.MapFrom(src => src.PublicationDate.ToString("m"))
+            )
+            .ForMember(
+                dest => dest.MainPhotoUrl,
+                opt => opt.MapFrom(src => src.Photos!.Where(ph => ph.IsMain == true).First().URL)
             );
 
         //Mapping tagvalues

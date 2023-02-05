@@ -57,6 +57,7 @@ public class Seeder : ISeeder
                 Tag = new Tag { Name = "Price" },
                 Value = random.Next(1000, 10000).ToString()
             });
+            pr.Photos = new List<Photo> { new Photo { IsMain = true, URL = "https://picsum.photos/700/700" } };
         }
 
         return new MainCategory
