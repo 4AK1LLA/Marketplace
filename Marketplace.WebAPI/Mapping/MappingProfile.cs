@@ -39,7 +39,7 @@ public class MappingProfile : Profile
             )
             .ForMember(
                 dest => dest.MainPhotoUrl,
-                opt => opt.MapFrom(src => src.Photos!.Where(ph => ph.IsMain == true).First().URL)
+                opt => opt.MapFrom(src => (src.Photos!.Count != 0) ? src.Photos!.Where(ph => ph.IsMain == true).First().URL : null)
             );
 
         //Mapping tagvalues

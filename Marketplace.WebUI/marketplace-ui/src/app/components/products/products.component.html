@@ -15,7 +15,7 @@
         <div class="col" *ngFor="let pr of products">
             <div class="card shadow-sm">
                 <div class="card-top">
-                    <img [src]="pr.mainPhotoUrl"
+                    <img [src]="(pr.mainPhotoUrl)?pr.mainPhotoUrl:'https://picsum.photos/700/700'"
                         class="card-img-top">
                     <div class="label-top" *ngIf="pr.condition">{{ pr.condition }}</div>
                 </div>
