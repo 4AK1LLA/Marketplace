@@ -7,21 +7,25 @@ export class PaginationService {
 
   constructor() { }
 
-  getPaginationArray(currentPage: number, pagesCount: number): number[] {
+  getPaginationArray(currentPage: number, pagesCount: number): PaginationItem[] {
 
-    if (currentPage <= 0 || currentPage > pagesCount || pagesCount == 1) {
+    if (currentPage <= 0 || currentPage > pagesCount || pagesCount == 1)
       return [];
-    }
-    const paginationLimit: number = 5;
-    let paginationArray: number[] = [];
 
-    paginationArray = (pagesCount > 0 && pagesCount <= paginationLimit) 
-      ? new Array<number>(pagesCount) 
-      : new Array<number>(paginationLimit);
+    const paginationLimit: number = 5;
+    let paginationArray: PaginationItem[] = [];
+
+    paginationArray = (pagesCount > 0 && pagesCount <= paginationLimit)
+      ? new Array<PaginationItem>(pagesCount)
+      : new Array<PaginationItem>(paginationLimit);
+    for (let i = 0; i < paginationArray.length; i++)
+      paginationArray[i] = new PaginationItem;
 
     if (currentPage == 1 || currentPage == 2 || currentPage == 3) {
       for (let i = 0; i < paginationArray.length; i++) {
-        paginationArray[i] = i + 1;
+        paginationArray[i].value = i + 1;
+        if (paginationArray[i].value == currentPage)
+          paginationArray[i].isActive = !paginationArray[i].isActive;
       }
 
       console.log(paginationArray)
@@ -31,8 +35,10 @@ export class PaginationService {
     if (currentPage == pagesCount || currentPage == pagesCount - 1 || currentPage == pagesCount - 2) {
       let index2 = 0;
       for (let i = paginationArray.length - 1; i >= 0; i--) {
-        paginationArray[i] = pagesCount - index2;
+        paginationArray[i].value = pagesCount - index2;
         index2++;
+        if (paginationArray[i].value == currentPage)
+          paginationArray[i].isActive = !paginationArray[i].isActive;
       }
 
       console.log(paginationArray)
@@ -41,11 +47,18 @@ export class PaginationService {
 
     let margin: number = 2;
     for (let i = 0; i < paginationArray.length; i++) {
-      paginationArray[i] = currentPage - margin;
+      paginationArray[i].value = currentPage - margin;
       margin--;
+      if (paginationArray[i].value == currentPage)
+        paginationArray[i].isActive = !paginationArray[i].isActive;
     }
 
     console.log(paginationArray)
     return paginationArray;
   }
+}
+
+class PaginationItem {
+  value!: number;
+  isActive: boolean = false;
 }

@@ -28,7 +28,7 @@ export class ProductsComponent implements OnInit {
       });
       this.routeValue = url[url.length - 1].path;
       this.initProductsAndCount();
-      this.paginationService.getPaginationArray(1, 1)
+      this.paginationService.getPaginationArray(2, 3);
     });
   }
 
