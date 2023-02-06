@@ -11,4 +11,7 @@ public class ProductService : IProductService
 
     public IEnumerable<Product> GetProductsByCategoryAndPage(string categoryName, int pageNumber) => 
         _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, pageNumber).ToList();
+
+    public int GetProductsCountByCategory(string categoryName) => 
+        _uow.ProductRepository.CountByCategoryName(categoryName);
 }
