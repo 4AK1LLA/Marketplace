@@ -12,6 +12,7 @@ export class ProductsComponent implements OnInit {
 
   products: ProductDto[] = [];
   routeValue!: string;
+  page!: number;
 
   constructor(private productsService: ProductsService, private route: ActivatedRoute) { }
 
@@ -19,6 +20,10 @@ export class ProductsComponent implements OnInit {
     this.route.url.subscribe(url => {
       this.routeValue = url[url.length - 1].path;
       this.initProducts();
+    });
+
+    this.route.queryParams.subscribe(params => {
+      this.page = (params['page'] === undefined) ? 1 : params['page'];
     });
   }
 
