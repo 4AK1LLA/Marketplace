@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
   page!: number;
   pagesCount!: number;
   paginationArray: any[] = [];
+  paginationHref: string = '';
 
   constructor(
     private productsService: ProductsService,
@@ -28,10 +29,14 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.route.url.subscribe(url => {
       this.route.queryParams.subscribe(params => {
-        this.page = (params['page'] === undefined) ? 1 : params['page'];
+        this.page = (params['page'] === undefined) ? 1 : Number(params['page']);
       });
       this.routeValue = url[url.length - 1].path;
       this.initProductsAndCount();
+      url.forEach(segment => {
+        this.paginationHref += '/' + segment.path;
+      });
+      this.paginationHref += '?page=';
     });
   }
 
