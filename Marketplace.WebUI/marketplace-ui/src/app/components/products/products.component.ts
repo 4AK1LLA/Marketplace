@@ -10,8 +10,6 @@ import { ProductsService } from 'src/app/services/products-service/products.serv
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-
-  private readonly _maxProductsPerPage: number = 16;
   productsCount!: number;
   products: ProductDto[] = [];
   routeValue!: string;
@@ -21,7 +19,11 @@ export class ProductsComponent implements OnInit {
   pagesCount!: number;
   paginationArray: any[] = [];
 
-  constructor(private productsService: ProductsService, private route: ActivatedRoute, private paginationService: PaginationService) { }
+  constructor(
+    private productsService: ProductsService,
+    private route: ActivatedRoute,
+    private paginationService: PaginationService
+  ) { }
 
   ngOnInit(): void {
     this.route.url.subscribe(url => {
@@ -60,9 +62,7 @@ export class ProductsComponent implements OnInit {
       .getProductsCountByCategory(this.routeValue)
       .subscribe(data => {
         this.productsCount = data;
-        this.pagesCount = (data % this._maxProductsPerPage == 0)
-          ? data / this._maxProductsPerPage
-          : Math.floor(data / this._maxProductsPerPage) + 1;
+        this.pagesCount = this.paginationService.calculatePagesCount(data);
         this.paginationArray = this.paginationService.getPaginationArray(this.page, this.pagesCount);
       });
   }

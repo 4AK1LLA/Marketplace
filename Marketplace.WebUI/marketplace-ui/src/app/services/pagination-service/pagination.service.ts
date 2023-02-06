@@ -54,6 +54,14 @@ export class PaginationService {
     console.log(paginationArray)
     return paginationArray;
   }
+
+  calculatePagesCount(itemsCount: number): number {
+    const maxItemsPerPage: number = 16;
+
+    return (itemsCount % maxItemsPerPage == 0)
+      ? itemsCount / maxItemsPerPage
+      : Math.floor(itemsCount / maxItemsPerPage) + 1;
+  }
 }
 
 class PaginationItem {
