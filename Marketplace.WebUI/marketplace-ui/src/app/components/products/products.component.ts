@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductDto } from 'src/app/dto/product.dto';
+import { PaginationService } from 'src/app/services/pagination-service/pagination.service';
 import { ProductsService } from 'src/app/services/products-service/products.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class ProductsComponent implements OnInit {
   page!: number;
   pagesCount!: number;
 
-  constructor(private productsService: ProductsService, private route: ActivatedRoute) { }
+  constructor(private productsService: ProductsService, private route: ActivatedRoute, private paginationService: PaginationService) { }
 
   ngOnInit(): void {
     this.route.url.subscribe(url => {
@@ -27,8 +28,8 @@ export class ProductsComponent implements OnInit {
       });
       this.routeValue = url[url.length - 1].path;
       this.initProductsAndCount();
+      this.paginationService.getPaginationArray(1, 1)
     });
-
   }
 
   private initProperties(): void {
