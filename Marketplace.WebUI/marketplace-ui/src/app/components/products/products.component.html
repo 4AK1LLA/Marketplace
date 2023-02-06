@@ -6,7 +6,7 @@
             <li class="breadcrumb-item active" aria-current="page">Category</li>
         </ol>
     </nav>
-    <div i18n class="found" *ngIf="products; else notfound">Found {{ products.length }} products</div>
+    <div i18n class="found" *ngIf="productsCount!==undefined&&productsCount!==0; else notfound">Found {{ productsCount }} products</div>
     <!--TODO: Add pipe for displaying amount of found-->
     <ng-template #notfound>
         <div i18n class="found">There are no products of this category :(</div>

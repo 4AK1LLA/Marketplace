@@ -14,4 +14,7 @@ export class ProductsService {
 
   getProductsByCategory = (route: string): Observable<ProductDto[]> =>
     this.http.get<ProductDto[]>(`${environment.baseApiUrl}/Product/${route}`);
+
+  getProductsCountByCategory = (route: string): Observable<number> =>
+    this.http.get<number>(`${environment.baseApiUrl}/Product/GetCount/${route}`);
 }

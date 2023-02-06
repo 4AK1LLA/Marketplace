@@ -10,6 +10,7 @@ import { ProductsService } from 'src/app/services/products-service/products.serv
 })
 export class ProductsComponent implements OnInit {
 
+  productsCount!: number;
   products: ProductDto[] = [];
   routeValue!: string;
   page!: number;
@@ -19,7 +20,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.route.url.subscribe(url => {
       this.routeValue = url[url.length - 1].path;
-      this.initProducts();
+      this.initProductsAndCount();
     });
 
     this.route.queryParams.subscribe(params => {
@@ -41,13 +42,19 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  private initProducts(): void {
+  private initProductsAndCount(): void {
     this.productsService
       .getProductsByCategory(this.routeValue)
       .subscribe(data => {
         this.products = data;
         console.log(this.products)
         this.initProperties();
+      });
+
+    this.productsService
+      .getProductsCountByCategory(this.routeValue)
+      .subscribe(data => {
+        this.productsCount = data;
       });
   }
 }
