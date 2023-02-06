@@ -19,13 +19,13 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.url.subscribe(url => {
+      this.route.queryParams.subscribe(params => {
+        this.page = (params['page'] === undefined) ? 1 : params['page'];
+      });
       this.routeValue = url[url.length - 1].path;
       this.initProductsAndCount();
     });
 
-    this.route.queryParams.subscribe(params => {
-      this.page = (params['page'] === undefined) ? 1 : params['page'];
-    });
   }
 
   private initProperties(): void {
@@ -44,7 +44,7 @@ export class ProductsComponent implements OnInit {
 
   private initProductsAndCount(): void {
     this.productsService
-      .getProductsByCategory(this.routeValue)
+      .getProductsByCategoryAndPage(this.routeValue, this.page)
       .subscribe(data => {
         this.products = data;
         console.log(this.products)
