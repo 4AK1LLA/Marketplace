@@ -28,7 +28,6 @@ export class ProductsComponent implements OnInit {
       });
       this.routeValue = url[url.length - 1].path;
       this.initProductsAndCount();
-      this.paginationService.getPaginationArray(2, 3);
     });
   }
 
@@ -62,6 +61,7 @@ export class ProductsComponent implements OnInit {
         this.pagesCount = (data % this._maxProductsPerPage == 0)
           ? data / this._maxProductsPerPage
           : Math.floor(data / this._maxProductsPerPage) + 1;
+        this.paginationService.getPaginationArray(this.page, this.pagesCount);
       });
   }
 }

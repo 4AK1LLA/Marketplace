@@ -5,11 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class PaginationService {
 
-  constructor() { }
-
   getPaginationArray(currentPage: number, pagesCount: number): PaginationItem[] {
 
-    if (currentPage <= 0 || currentPage > pagesCount || pagesCount == 1)
+    if (!currentPage || !pagesCount || currentPage <= 0 || currentPage > pagesCount || pagesCount == 1)
       return [];
 
     const paginationLimit: number = 5;
