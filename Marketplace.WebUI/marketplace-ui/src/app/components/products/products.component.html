@@ -6,7 +6,8 @@
             <li class="breadcrumb-item active" aria-current="page">Category</li>
         </ol>
     </nav>
-    <div i18n class="found" *ngIf="productsCount!==undefined&&productsCount!==0; else notfound">Found {{ productsCount }} products</div>
+    <div i18n class="found" *ngIf="productsCount!==undefined&&productsCount!==0; else notfound">Found {{ productsCount
+        }} products</div>
     <!--TODO: Add pipe for displaying amount of found-->
     <ng-template #notfound>
         <div i18n class="found">There are no products of this category :(</div>
@@ -34,87 +35,16 @@
         </div>
     </div>
 
-    <ng-template>
-
-    </ng-template>
-
-    7 pages <br>
-    1 Page
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled"><a class="page-link" href="#"><span>&laquo;</span></a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+    <!-- Pagination -->
+    <ul *ngIf="pagesCount&&pagesCount>1" class="pagination justify-content-center">
+        <li [class]="(page==1)?'page-item disabled':'page-item'">
+            <a class="page-link" href="#"><span>&laquo;</span></a>
+        </li>
+        <li *ngFor="let pageItem of paginationArray" [class]="(pageItem.isActive)?'page-item active':'page-item'">
+            <a class="page-link" href="#">{{ pageItem.value }}</a>
+        </li>
+        <li [class]="(page==pagesCount)?'page-item disabled':'page-item'">
+            <a class="page-link" href="#">&raquo;</a>
+        </li>
     </ul>
-
-    2 Page
-    <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#"><span>&laquo;</span></a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-    </ul>
-
-    3 Page
-    <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#"><span>&laquo;</span></a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item active"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-    </ul>
-
-    4 Page
-    <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#"><span>&laquo;</span></a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item active"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item"><a class="page-link" href="#">6</a></li>
-        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-    </ul>
-
-    5 Page
-    <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#"><span>&laquo;</span></a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item active"><a class="page-link" href="#">5</a></li>
-        <li class="page-item"><a class="page-link" href="#">6</a></li>
-        <li class="page-item"><a class="page-link" href="#">7</a></li>
-        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-    </ul>
-
-    6 Page
-    <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#"><span>&laquo;</span></a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item active"><a class="page-link" href="#">6</a></li>
-        <li class="page-item"><a class="page-link" href="#">7</a></li>
-        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-    </ul>
-
-    7 Page
-    <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#"><span>&laquo;</span></a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item"><a class="page-link" href="#">6</a></li>
-        <li class="page-item active"><a class="page-link" href="#">7</a></li>
-        <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
-    </ul>
-
-
 </div>

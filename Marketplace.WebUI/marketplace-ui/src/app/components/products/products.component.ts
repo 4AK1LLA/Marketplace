@@ -16,8 +16,10 @@ export class ProductsComponent implements OnInit {
   products: ProductDto[] = [];
   routeValue!: string;
 
+  //pagination
   page!: number;
   pagesCount!: number;
+  paginationArray: any[] = [];
 
   constructor(private productsService: ProductsService, private route: ActivatedRoute, private paginationService: PaginationService) { }
 
@@ -61,7 +63,7 @@ export class ProductsComponent implements OnInit {
         this.pagesCount = (data % this._maxProductsPerPage == 0)
           ? data / this._maxProductsPerPage
           : Math.floor(data / this._maxProductsPerPage) + 1;
-        this.paginationService.getPaginationArray(this.page, this.pagesCount);
+        this.paginationArray = this.paginationService.getPaginationArray(this.page, this.pagesCount);
       });
   }
 }
