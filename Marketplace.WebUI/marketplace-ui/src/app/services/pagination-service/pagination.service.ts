@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { PaginationItem } from 'src/app/dto/pagination-item';
 
 @Injectable({
   providedIn: 'root'
@@ -62,9 +63,4 @@ export class PaginationService {
       ? itemsCount / maxItemsPerPage
       : Math.floor(itemsCount / maxItemsPerPage) + 1;
   }
-}
-
-class PaginationItem {
-  value!: number;
-  isActive: boolean = false;
 }
