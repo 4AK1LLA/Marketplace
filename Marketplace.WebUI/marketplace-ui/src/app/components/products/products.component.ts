@@ -10,10 +10,13 @@ import { ProductsService } from 'src/app/services/products-service/products.serv
 })
 export class ProductsComponent implements OnInit {
 
+  private readonly _maxProductsPerPage: number = 16;
   productsCount!: number;
   products: ProductDto[] = [];
   routeValue!: string;
+
   page!: number;
+  pagesCount!: number;
 
   constructor(private productsService: ProductsService, private route: ActivatedRoute) { }
 
@@ -55,6 +58,9 @@ export class ProductsComponent implements OnInit {
       .getProductsCountByCategory(this.routeValue)
       .subscribe(data => {
         this.productsCount = data;
+        this.pagesCount = (data % this._maxProductsPerPage == 0)
+          ? data / this._maxProductsPerPage
+          : Math.floor(data / this._maxProductsPerPage) + 1;
       });
   }
 }
