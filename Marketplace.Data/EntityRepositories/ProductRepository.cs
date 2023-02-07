@@ -16,10 +16,21 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .Include(pr => pr.TagValues)
         .First();
 
-    public IEnumerable<Product> GetByCategoryNameIncludingTagValues(string name) =>
+    public IEnumerable<Product> GetByCategoryNameIncludingTagValuesAndPhotos(string name, int page) =>
         GetAll()
         .AsQueryable()
         .Where(pr => pr.Category!.Name == name)
+        .OrderBy(pr => pr.Id)
+        .Skip((page - 1) * 16)
+        .Take(16)
+        .Include(pr => pr.Photos)
         .Include(pr => pr.TagValues)!
         .ThenInclude(tv => tv.Tag);
+
+    public int CountByCategoryName(string name) =>
+        GetAll()
+        .AsQueryable()
+        .Where(pr => pr.Category!.Name == name)
+        .Count();
+
 }

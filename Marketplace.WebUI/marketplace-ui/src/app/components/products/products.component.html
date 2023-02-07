@@ -6,7 +6,8 @@
             <li class="breadcrumb-item active" aria-current="page">Category</li>
         </ol>
     </nav>
-    <div i18n class="found" *ngIf="products; else notfound">Found {{ products.length }} products</div>
+    <div i18n class="found" *ngIf="productsCount!==undefined&&productsCount!==0; else notfound">Found {{ productsCount
+        }} products</div>
     <!--TODO: Add pipe for displaying amount of found-->
     <ng-template #notfound>
         <div i18n class="found">There are no products of this category :(</div>
@@ -15,7 +16,7 @@
         <div class="col" *ngFor="let pr of products">
             <div class="card shadow-sm">
                 <div class="card-top">
-                    <img src="https://ireland.apollo.olxcdn.com/v1/files/k1nng0ftn4453-UA/image;s=1000x700"
+                    <img [src]="(pr.mainPhotoUrl)?pr.mainPhotoUrl:'https://ireland.apollo.olxcdn.com/v1/files/k1nng0ftn4453-UA/image;s=1000x700'"
                         class="card-img-top">
                     <div class="label-top" *ngIf="pr.condition">{{ pr.condition }}</div>
                 </div>
@@ -33,4 +34,17 @@
             </div>
         </div>
     </div>
+
+    <!-- Pagination -->
+    <ul *ngIf="pagesCount&&pagesCount>1&&page>0&&page<=pagesCount" class="pagination justify-content-center mt-5">
+        <li [class]="(page==1)?'page-item disabled':'page-item'">
+            <a class="page-link" [href]="paginationHref+(page-1)"><span>&laquo;</span></a>
+        </li>
+        <li *ngFor="let pageItem of paginationArray" [class]="(pageItem.isActive)?'page-item active':'page-item'">
+            <a class="page-link" [href]="paginationHref+pageItem.value">{{ pageItem.value }}</a>
+        </li>
+        <li [class]="(page==pagesCount)?'page-item disabled':'page-item'">
+            <a class="page-link" [href]="paginationHref+(page+1)">&raquo;</a>
+        </li>
+    </ul>
 </div>

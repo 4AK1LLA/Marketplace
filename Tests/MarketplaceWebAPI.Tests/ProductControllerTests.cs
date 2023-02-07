@@ -16,6 +16,7 @@ namespace MarketplaceWebAPI.Tests
 {
     public class ProductControllerTests
     {
+        private const int validPage = 1;
         private readonly ProductController _productController;
         private readonly Mock<IProductService> _productService;
 
@@ -29,15 +30,15 @@ namespace MarketplaceWebAPI.Tests
         }
 
         [Fact]
-        public void Get_ReturnOk_WhenProductsAreNotEmpty()
+        public void Get_ReturnOk_WhenProductsAreNotEmptyAndPageIsValid()
         {
             _productService
-                .Setup(ps => ps.GetProductsByCategory("CategoryName"))
+                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", validPage))
                 .Returns(new List<Product> {
                     new Product(), new Product(), new Product()
                 });
 
-            var products = _productController.Get("CategoryName");
+            var products = _productController.Get("CategoryName", validPage);
 
             var result = products.Result as ObjectResult;
             var value = result!.Value as IEnumerable<ProductDto>;
@@ -51,13 +52,77 @@ namespace MarketplaceWebAPI.Tests
         }
 
         [Fact]
-        public void Get_ReturnNoContent_WhenProductsAreEmpty()
+        public void Get_ReturnNoContent_WhenProductsAreEmptyAndPageIsValid()
         {
             _productService
-                .Setup(ps => ps.GetProductsByCategory("CategoryName"))
+                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", validPage))
                 .Returns(Enumerable.Empty<Product>);
 
-            var products = _productController.Get("CategoryName");
+            var products = _productController.Get("CategoryName", validPage);
+
+            (products.Result as StatusCodeResult)!.StatusCode.Should().Be(StatusCodes.Status204NoContent);
+        }
+
+        [Fact]
+        public void GetCount_ReturnOk_WhenProductsAreNotEmpty()
+        {
+            _productService
+                .Setup(ps => ps.GetProductsCountByCategory("CategoryName"))
+                .Returns(3);
+
+            var count = _productController.GetCount("CategoryName");
+
+            var result = count.Result as ObjectResult;
+            var value = result!.Value;
+
+            result.Should().NotBeNull();
+            result.StatusCode.Should().Be(StatusCodes.Status200OK);
+
+            value.Should().Be(3);
+        }
+
+        [Fact]
+        public void GetCount_ReturnOk_WhenProductsAreEmpty()
+        {
+            _productService
+                .Setup(ps => ps.GetProductsCountByCategory("CategoryName"))
+                .Returns(0);
+
+            var count = _productController.GetCount("CategoryName");
+
+            var result = count.Result as ObjectResult;
+            var value = result!.Value;
+
+            result.Should().NotBeNull();
+            result.StatusCode.Should().Be(StatusCodes.Status200OK);
+
+            value.Should().Be(0);
+        }
+
+        [Fact]
+        public void Get_ReturnNoContent_WhenPageIsNotValid()
+        {
+            var page = 100;
+
+            _productService
+                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", page))
+                .Returns(Enumerable.Empty<Product>);
+
+            var products = _productController.Get("CategoryName", page);
+
+            (products.Result as StatusCodeResult)!.StatusCode.Should().Be(StatusCodes.Status204NoContent);
+        }
+
+        [Fact]
+        public void Get_ReturnNoContent_WhenProductsAreNullAndPageIsNotValid()
+        {
+            var page = 100;
+
+            _productService
+                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", page))
+                .Returns((IEnumerable<Product>)null!);
+
+            var products = _productController.Get("CategoryName", page);
 
             (products.Result as StatusCodeResult)!.StatusCode.Should().Be(StatusCodes.Status204NoContent);
         }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductDto } from 'src/app/dto/product.dto';
+import { PaginationService } from 'src/app/services/pagination-service/pagination.service';
 import { ProductsService } from 'src/app/services/products-service/products.service';
 
 @Component({
@@ -9,16 +10,33 @@ import { ProductsService } from 'src/app/services/products-service/products.serv
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-
+  productsCount!: number;
   products: ProductDto[] = [];
   routeValue!: string;
 
-  constructor(private productsService: ProductsService, private route: ActivatedRoute) { }
+  //pagination
+  page!: number;
+  pagesCount!: number;
+  paginationArray: any[] = [];
+  paginationHref: string = '';
+
+  constructor(
+    private productsService: ProductsService,
+    private route: ActivatedRoute,
+    private paginationService: PaginationService
+  ) { }
 
   ngOnInit(): void {
     this.route.url.subscribe(url => {
+      this.route.queryParams.subscribe(params => {
+        this.page = (params['page'] === undefined) ? 1 : Number(params['page']);
+      });
       this.routeValue = url[url.length - 1].path;
-      this.initProducts();
+      this.initProductsAndCount();
+      url.forEach(segment => {
+        this.paginationHref += '/' + segment.path;
+      });
+      this.paginationHref += '?page=';
     });
   }
 
@@ -36,13 +54,21 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  private initProducts(): void {
+  private initProductsAndCount(): void {
     this.productsService
-      .getProductsByCategory(this.routeValue)
+      .getProductsByCategoryAndPage(this.routeValue, this.page)
       .subscribe(data => {
         this.products = data;
         console.log(this.products)
         this.initProperties();
+      });
+
+    this.productsService
+      .getProductsCountByCategory(this.routeValue)
+      .subscribe(data => {
+        this.productsCount = data;
+        this.pagesCount = this.paginationService.calculatePagesCount(data);
+        this.paginationArray = this.paginationService.getPaginationArray(this.page, this.pagesCount);
       });
   }
 }

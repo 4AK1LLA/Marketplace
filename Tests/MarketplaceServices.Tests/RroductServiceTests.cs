@@ -10,6 +10,8 @@ namespace Marketplace.Services.Tests
 {
     public class RroductServiceTests
     {
+        private const int pagingValidCount = 20;
+        private const int pagingValidPage = 1;
         private readonly ProductService _productService;
         private readonly Mock<IUnitOfWork> _mockUow;
         private readonly Mock<IProductRepository> _productRepository;
@@ -25,19 +27,22 @@ namespace Marketplace.Services.Tests
         }
 
         [Fact]
-        public void GetProductsByCategory_ReturnAllProductsOfThisCategory_WhenCategoryWithProperNameFound()
+        public void GetProductsByCategoryAndPage_ReturnAllProductsOfThisCategory_WhenCategoryWithProperNameFound()
         {
             var category = new Category { Name = "CategoryName" };
 
             _productRepository
-                .Setup(pr => pr.GetByCategoryNameIncludingTagValues(category.Name))
+                .Setup(pr => pr.GetByCategoryNameIncludingTagValuesAndPhotos(category.Name, pagingValidPage))
                 .Returns(new List<Product> {
                     new Product { Category = category },
                     new Product { Category = category },
                     new Product { Category = category }
                 });
+            _productRepository
+                .Setup(pr => pr.CountByCategoryName(category.Name))
+                .Returns(pagingValidCount);
 
-            var products = _productService.GetProductsByCategory("CategoryName");
+            var products = _productService.GetProductsByCategoryAndPage("CategoryName", pagingValidPage);
 
             products.Should().NotBeNullOrEmpty()
                 .And.HaveCount(3)
@@ -50,13 +55,16 @@ namespace Marketplace.Services.Tests
         }
 
         [Fact]
-        public void GetProductsByCategory_ReturnEmptyProducts_WhenCategoryWithProperNameNotFound()
+        public void GetProductsByCategoryAndPage_ReturnEmptyProducts_WhenCategoryWithProperNameNotFound()
         {
             _productRepository
-                .Setup(pr => pr.GetByCategoryNameIncludingTagValues("CategoryName"))
+                .Setup(pr => pr.GetByCategoryNameIncludingTagValuesAndPhotos("CategoryName", pagingValidPage))
                 .Returns(Enumerable.Empty<Product>());
+            _productRepository
+                .Setup(pr => pr.CountByCategoryName("CategoryName"))
+                .Returns(pagingValidCount);
 
-            var products = _productService.GetProductsByCategory("CategoryName");
+            var products = _productService.GetProductsByCategoryAndPage("CategoryName", pagingValidPage);
 
             products.Should().BeEmpty()
                 .And.NotBeNull()
@@ -64,10 +72,10 @@ namespace Marketplace.Services.Tests
         }
 
         [Fact]
-        public void GetProductsByCategory_ReturnProductsWithTags_WhenCategoryWithProperNameFound()
+        public void GetProductsByCategoryAndPage_ReturnProductsWithTags_WhenCategoryWithProperNameFound()
         {
             _productRepository
-                .Setup(pr => pr.GetByCategoryNameIncludingTagValues("CategoryName"))
+                .Setup(pr => pr.GetByCategoryNameIncludingTagValuesAndPhotos("CategoryName", pagingValidPage))
                 .Returns(new List<Product> {
                     new Product {
                         TagValues = new List<TagValue> {
@@ -82,8 +90,11 @@ namespace Marketplace.Services.Tests
                         }
                     }
                 });
+            _productRepository
+                .Setup(pr => pr.CountByCategoryName("CategoryName"))
+                .Returns(pagingValidCount);
 
-            var products = _productService.GetProductsByCategory("CategoryName");
+            var products = _productService.GetProductsByCategoryAndPage("CategoryName", pagingValidPage);
 
             products.Should().NotBeNullOrEmpty()
                 .And.AllBeOfType<Product>()
@@ -95,6 +106,36 @@ namespace Marketplace.Services.Tests
                             tv.Tag.Should().NotBeNull()
                                 .And.BeOfType<Tag>());
                 });
+        }
+
+        [Fact]
+        public void GetProductsByCategoryAndPage_ReturnNull_WhenPageIsNotValid()
+        {
+            var page = 100;
+
+            _productRepository
+                .Setup(pr => pr.CountByCategoryName("CategoryName"))
+                .Returns(16);
+
+            var products = _productService.GetProductsByCategoryAndPage("CategoryName", page);
+
+            products.Should().BeNull();
+        }
+
+        [Fact]
+        public void GetProductsByCategoryAndPage_ReturnProductsWithCountInRange1And16_WhenCategoryAndPageIsValid()
+        {
+            _productRepository
+                .Setup(pr => pr.GetByCategoryNameIncludingTagValuesAndPhotos("CategoryName", pagingValidPage))
+                .Returns(new List<Product> { new Product { Category = new Category() } });
+            _productRepository
+                .Setup(pr => pr.CountByCategoryName("CategoryName"))
+                .Returns(pagingValidCount);
+
+            var products = _productService.GetProductsByCategoryAndPage("CategoryName", pagingValidPage);
+
+            products.Should().NotBeNullOrEmpty();
+            products.Count().Should().BeInRange(minimumValue: 1, maximumValue: 16);
         }
     }
 }

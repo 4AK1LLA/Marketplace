@@ -22,12 +22,13 @@ Users will interact with main categories that may contain subcategories with rel
       ]
     }
 
-## UI implementation
+## Implemented features
 - Navbar is a navigation header that is placed at the top of the page
 - Main categories is a section where users can pick what they need
 - Sidebar is an extended version of main categories wich has subcategories for routing users to products page
 - Products page shows all products of some category (product data on this level includes title, publication date, location, price and main photo) and users can click on them to buy or see details
 - Supporting en-US and uk-UA locales, users can switch language
+- Paging for getting products in stacks, handy pagination bar to navigate through pages
 
 ## DB Structure
 ![image](https://user-images.githubusercontent.com/90700933/216784561-1227c893-45ce-4329-bb16-3949116f1b2b.png)

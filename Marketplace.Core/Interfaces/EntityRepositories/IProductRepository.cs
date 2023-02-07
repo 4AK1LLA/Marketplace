@@ -6,5 +6,7 @@ public interface IProductRepository : IRepository<Product>
 {
     Product GetIncludingCategoryAndTagValues(int id);
 
-    IEnumerable<Product> GetByCategoryNameIncludingTagValues(string name);
+    IEnumerable<Product> GetByCategoryNameIncludingTagValuesAndPhotos(string name, int page);
+
+    int CountByCategoryName(string name);
 }
