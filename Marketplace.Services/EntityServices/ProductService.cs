@@ -17,7 +17,7 @@ public class ProductService : IProductService
             return null!;
         }
 
-        return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, pageNumber).ToList();
+        return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, pageNumber);
     }
 
     public int GetProductsCountByCategory(string categoryName) => 

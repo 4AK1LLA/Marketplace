@@ -67,8 +67,7 @@ namespace Marketplace.Services.Tests
             var products = _productService.GetProductsByCategoryAndPage("CategoryName", pagingValidPage);
 
             products.Should().BeEmpty()
-                .And.NotBeNull()
-                .And.BeOfType<List<Product>>();
+                .And.NotBeNull();
         }
 
         [Fact]
