@@ -31,13 +31,15 @@ namespace MarketplaceWebAPI.Tests
         [Fact]
         public void Get_ReturnOk_WhenProductsAreNotEmpty()
         {
+            var page = 1;
+
             _productService
-                .Setup(ps => ps.GetProductsByCategory("CategoryName"))
+                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", page))
                 .Returns(new List<Product> {
                     new Product(), new Product(), new Product()
                 });
 
-            var products = _productController.Get("CategoryName");
+            var products = _productController.Get("CategoryName", page);
 
             var result = products.Result as ObjectResult;
             var value = result!.Value as IEnumerable<ProductDto>;
@@ -53,11 +55,13 @@ namespace MarketplaceWebAPI.Tests
         [Fact]
         public void Get_ReturnNoContent_WhenProductsAreEmpty()
         {
+            var page = 1;
+
             _productService
-                .Setup(ps => ps.GetProductsByCategory("CategoryName"))
+                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", page))
                 .Returns(Enumerable.Empty<Product>);
 
-            var products = _productController.Get("CategoryName");
+            var products = _productController.Get("CategoryName", page);
 
             (products.Result as StatusCodeResult)!.StatusCode.Should().Be(StatusCodes.Status204NoContent);
         }
