@@ -12,7 +12,7 @@ public class ProductService : IProductService
 
     public IEnumerable<Product> GetProductsByCategoryAndPage(string categoryName, int pageNumber)
     {
-        if (pageNumber <= 0 || pageNumber > (GetProductsCountByCategory(categoryName) / maxProductsPerPage))
+        if (pageNumber <= 0 || (pageNumber - 1) > (GetProductsCountByCategory(categoryName) / maxProductsPerPage))
         {
             return null!;
         }
