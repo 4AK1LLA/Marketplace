@@ -29,7 +29,7 @@ public class Seeder : ISeeder
             modelsJson = sr.ReadToEnd();
         }
 
-        var models = JsonSerializer.Deserialize<IEnumerable<MainCategory>>(modelsJson);
+        var models = JsonSerializer.Deserialize<List<MainCategory>>(modelsJson);
         var mainCategories = models!.ToList();
         mainCategories.Add(CreateMainCategoryForPaging("MC for paging with 40 products", "categoryyy1", 40));
         mainCategories.Add(CreateMainCategoryForPaging("MC for paging with 128 products", "categoryyy2", 128));
