@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { combineLatest, debounceTime } from 'rxjs';
 import { ProductDto } from 'src/app/dto/product.dto';
 import { PaginationService } from 'src/app/services/pagination-service/pagination.service';
 import { ProductsService } from 'src/app/services/products-service/products.service';
@@ -18,25 +19,23 @@ export class ProductsComponent implements OnInit {
   page!: number;
   pagesCount!: number;
   paginationArray: any[] = [];
-  paginationHref: string = '';
 
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute,
-    private paginationService: PaginationService
+    private paginationService: PaginationService,
   ) { }
 
-  ngOnInit(): void {
-    this.route.url.subscribe(url => {
-      this.route.queryParams.subscribe(params => {
-        this.page = (params['page'] === undefined) ? 1 : Number(params['page']);
-      });
-      this.routeValue = url[url.length - 1].path;
+  ngOnInit(): void { //now Im using routerLink (removed hrefs) wich doesnt require page reloading, so this hook and observable subscription are executing during whole component lifetime
+    let route$ = combineLatest({ qparams: this.route.queryParams, params: this.route.params }).pipe(debounceTime(0)); //debounceTime(0) solves issue when combineLatest emitts two values when navigating
+
+    route$.subscribe(context => {
+      console.warn('Subscription');
+
+      this.routeValue = (context.params['categoryRoute']) ? context.params['categoryRoute']! : context.params['mainCategoryRoute']!;
+      this.page = (isNaN(context.qparams['page'])) ? 1 : Number(context.qparams['page']);
+
       this.initProductsAndCount();
-      url.forEach(segment => {
-        this.paginationHref += '/' + segment.path;
-      });
-      this.paginationHref += '?page=';
     });
   }
 
@@ -59,7 +58,7 @@ export class ProductsComponent implements OnInit {
       .getProductsByCategoryAndPage(this.routeValue, this.page)
       .subscribe(data => {
         this.products = data;
-        console.log(this.products)
+        console.warn('page: ' + this.page + ' | route: ' + this.routeValue + ' | products: ' + JSON.stringify(this.products));
         this.initProperties();
       });
 
