@@ -19,7 +19,6 @@ export class ProductsComponent implements OnInit {
   page!: number;
   pagesCount!: number;
   paginationArray: any[] = [];
-  paginationHref: string = '';
 
   constructor(
     private productsService: ProductsService,
