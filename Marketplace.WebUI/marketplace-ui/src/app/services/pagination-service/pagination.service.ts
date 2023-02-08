@@ -27,7 +27,6 @@ export class PaginationService {
           paginationArray[i].isActive = !paginationArray[i].isActive;
       }
 
-      console.log(paginationArray)
       return paginationArray;
     }
 
@@ -40,7 +39,6 @@ export class PaginationService {
           paginationArray[i].isActive = !paginationArray[i].isActive;
       }
 
-      console.log(paginationArray)
       return paginationArray;
     }
 
@@ -52,7 +50,6 @@ export class PaginationService {
         paginationArray[i].isActive = !paginationArray[i].isActive;
     }
 
-    console.log(paginationArray)
     return paginationArray;
   }
 

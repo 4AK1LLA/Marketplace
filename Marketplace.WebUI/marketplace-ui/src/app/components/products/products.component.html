@@ -38,13 +38,13 @@
     <!-- Pagination -->
     <ul *ngIf="pagesCount&&pagesCount>1&&page>0&&page<=pagesCount" class="pagination justify-content-center mt-5">
         <li [class]="(page==1)?'page-item disabled':'page-item'">
-            <a class="page-link" [href]="paginationHref+(page-1)"><span>&laquo;</span></a>
+            <a class="page-link" routerLink="./" [queryParams]="{page:page-1}"><span>&laquo;</span></a>
         </li>
         <li *ngFor="let pageItem of paginationArray" [class]="(pageItem.isActive)?'page-item active':'page-item'">
-            <a class="page-link" [href]="paginationHref+pageItem.value">{{ pageItem.value }}</a>
+            <a class="page-link" routerLink="./" [queryParams]="{page:pageItem.value}">{{ pageItem.value }}</a>
         </li>
         <li [class]="(page==pagesCount)?'page-item disabled':'page-item'">
-            <a class="page-link" [href]="paginationHref+(page+1)">&raquo;</a>
+            <a class="page-link" routerLink="./" [queryParams]="{page:page+1}">&raquo;</a>
         </li>
     </ul>
 </div>
