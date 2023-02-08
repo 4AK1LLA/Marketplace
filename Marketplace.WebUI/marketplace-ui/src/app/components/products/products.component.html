@@ -6,12 +6,19 @@
             <li class="breadcrumb-item active" aria-current="page">Category</li>
         </ol>
     </nav>
-    <div i18n class="found" *ngIf="productsCount!==undefined&&productsCount!==0; else notfound">Found {{ productsCount
-        }} products</div>
-    <!--TODO: Add pipe for displaying amount of found-->
+
+    <div *ngIf="page>pagesCount&&pagesCount>1; else notfound" class="found">Run out of pages :(</div>
+
     <ng-template #notfound>
-        <div i18n class="found">There are no products of this category :(</div>
+        <div *ngIf="products===null; else found" class="found">There are no products of this category :(</div>
     </ng-template>
+
+    <ng-template #found>
+        <div i18n class="found" *ngIf="productsCount!==undefined&&productsCount!==0">
+            Found {{ productsCount }} products <!--TODO: Add pipe for displaying amount of found-->
+        </div>
+    </ng-template>
+
     <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
         <div class="col" *ngFor="let pr of products">
             <div class="card shadow-sm">
