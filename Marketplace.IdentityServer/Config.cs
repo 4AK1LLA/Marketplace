@@ -1,10 +1,16 @@
-﻿using IdentityModel;
-using IdentityServer4.Models;
+﻿using IdentityServer4.Models;
 
 namespace Marketplace.IdentityServer;
 
 public static class Config
 {
+    public static IEnumerable<IdentityResource> GetIdentityResources() =>
+        new List<IdentityResource>
+        {
+            new IdentityResources.OpenId()
+        };
+
+
     public static IEnumerable<ApiResource> GetApiResources() =>
         new List<ApiResource>
         {
@@ -23,12 +29,16 @@ public static class Config
         {
             new Client
             {
-                ClientId = "ui_client",
+                ClientId = "angular_ui",
                 AllowedGrantTypes = GrantTypes.Code,
-                AllowedScopes = { "Marketplace.WebAPI" },
+                AllowedScopes = { "openid", "Marketplace.WebAPI" },
                 AllowAccessTokensViaBrowser = true, 
                 RequireClientSecret = false,
-                RequirePkce = true
+                RequirePkce = true,
+
+                RedirectUris = { "http://localhost:4200" },
+                PostLogoutRedirectUris = { "http://localhost:4200" },
+                AllowedCorsOrigins = { "http://localhost:4200" }
             }
         };
 }

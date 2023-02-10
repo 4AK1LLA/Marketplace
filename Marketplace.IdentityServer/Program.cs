@@ -3,6 +3,7 @@ using Marketplace.IdentityServer;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddIdentityServer()
+    .AddInMemoryIdentityResources(Config.GetIdentityResources())
     .AddInMemoryApiResources(Config.GetApiResources())
     .AddInMemoryClients(Config.GetClients())
     .AddDeveloperSigningCredential();
