@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<IdentityContext>(opt => 
 {
     opt.UseInMemoryDatabase("Memory");
@@ -21,11 +23,12 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
 
 builder.Services.ConfigureApplicationCookie(opt =>
 {
-    opt.Cookie.Name = "MyIdentityCookie";
+    opt.Cookie.Name = "identity_cookie";
     opt.LoginPath = "/Auth/Login";
 });
 
 builder.Services.AddIdentityServer()
+    .AddAspNetIdentity<IdentityUser>()
     .AddInMemoryIdentityResources(Config.GetIdentityResources())
     .AddInMemoryApiResources(Config.GetApiResources())
     .AddInMemoryClients(Config.GetClients())
@@ -44,6 +47,6 @@ using (var scope = app.Services.CreateScope())
 
 app.UseIdentityServer();
 
-app.MapGet("/", () => "Hello World!");
+app.MapDefaultControllerRoute();
 
 app.Run();

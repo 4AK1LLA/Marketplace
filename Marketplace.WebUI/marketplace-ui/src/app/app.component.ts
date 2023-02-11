@@ -15,9 +15,12 @@ export class AppComponent {
   constructor(private service: MainCategoriesService, public oidcSecurityService: OidcSecurityService) {
     this.initMainCategories();
 
-    this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
-      console.log(userData)
-    });
+    //identity_cookie is IS cookie that used for telling IS authentication was proceeded earlier
+    //OidcSecurityService stores auth data in session storage (when closing site it disappears)
+    
+    //The method checkAuth() is needed to process the redirect from your Security Token Service and set the correct states. This method must be used to ensure the correct functioning of the library. (from docs)
+    this.oidcSecurityService.checkAuth().subscribe(isAuthenticated => 
+      console.warn('isAuthenticated (OidcSecurityService): ' + isAuthenticated));
   }
 
   initMainCategories = () =>

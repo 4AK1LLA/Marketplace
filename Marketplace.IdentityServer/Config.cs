@@ -35,7 +35,7 @@ public static class Config
                 AllowAccessTokensViaBrowser = true, 
                 RequireClientSecret = false,
                 RequirePkce = true,
-
+                RequireConsent = false,
                 RedirectUris = { "http://localhost:4200" },
                 PostLogoutRedirectUris = { "http://localhost:4200" },
                 AllowedCorsOrigins = { "http://localhost:4200" }
