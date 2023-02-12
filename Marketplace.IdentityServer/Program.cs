@@ -45,8 +45,10 @@ using (var scope = app.Services.CreateScope())
     userManager!.CreateAsync(user, "password").Wait();
 }
 
+app.UseStaticFiles();
+
 app.UseIdentityServer();
 
-app.MapDefaultControllerRoute();
+app.MapControllerRoute("LoginRoute", "{controller=Auth}/{action=Login}");
 
 app.Run();
