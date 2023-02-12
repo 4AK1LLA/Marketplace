@@ -22,7 +22,7 @@ public class AuthController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel vm)
     {
-        var result = await _signInManager.PasswordSignInAsync(vm.Username, vm.Password, isPersistent: false, lockoutOnFailure: false);
+        var result = await _signInManager.PasswordSignInAsync(vm.Email, vm.Password, isPersistent: false, lockoutOnFailure: false);
 
         if (result.Succeeded)
         {

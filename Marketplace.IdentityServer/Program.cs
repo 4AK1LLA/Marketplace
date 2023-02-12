@@ -41,7 +41,7 @@ using (var scope = app.Services.CreateScope())
     var userManager = scope.ServiceProvider
         .GetService<UserManager<IdentityUser>>();
 
-    var user = new IdentityUser("jack");
+    var user = new IdentityUser { Email = "admin@marketplace.com" };
     userManager!.CreateAsync(user, "password").Wait();
 }
 
