@@ -24,7 +24,7 @@ export class AppComponent {
 
     //The method checkAuth() is needed to process the redirect from your Security Token Service and set the correct states. This method must be used to ensure the correct functioning of the library. (from docs)
     this.oidcSecurityService.checkAuth().subscribe(authResponse =>
-      console.warn(authResponse));
+      console.warn(authResponse.isAuthenticated));
   }
 
   initMainCategories = () =>

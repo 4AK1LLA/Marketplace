@@ -22,13 +22,30 @@ public class AuthController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel vm)
     {
-        var result = await _signInManager.PasswordSignInAsync(vm.Email, vm.Password, isPersistent: false, lockoutOnFailure: false);
+        if (!ModelState.IsValid)
+        {
+            return View(vm);
+        }
+
+        var result = await _signInManager.PasswordSignInAsync(vm.Email, vm.Password, isPersistent: false, lockoutOnFailure: false); //FIX: failed with valid credentials
 
         if (result.Succeeded)
         {
             return Redirect(vm.ReturnUrl!);
         }
 
-        return View();
+        return View(vm.ReturnUrl);
+    }
+
+    [HttpGet]
+    public IActionResult Register(string returnUrl)
+    {
+        return View(new RegisterViewModel { ReturnUrl = returnUrl });
+    }
+
+    [HttpPost]
+    public IActionResult Register(RegisterViewModel vm)
+    {
+        return Redirect(vm.ReturnUrl!);
     }
 }
