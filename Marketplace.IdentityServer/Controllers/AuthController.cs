@@ -22,7 +22,7 @@ public class AuthController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Login(LoginViewModel vm)
+    public async Task<IActionResult> Login([FromForm] LoginViewModel vm)
     {
         if (!ModelState.IsValid)
         {
@@ -37,6 +37,7 @@ public class AuthController : Controller
             return Redirect(vm.ReturnUrl!);
         }
 
+        ModelState.AddModelError("Password", "Email or Password is incorrect");
         return View(vm);
     }
 
@@ -47,8 +48,9 @@ public class AuthController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Register(RegisterViewModel vm)
+    public async Task<IActionResult> Register([FromForm] RegisterViewModel vm)
     {
+        //TODO: Html.TextBoxFor(x => x.Message)
         if (!ModelState.IsValid)
         {
             return View(vm);
@@ -57,12 +59,26 @@ public class AuthController : Controller
         var user = new IdentityUser(vm.Email);
         var result = await _userManager.CreateAsync(user, vm.Password);
 
-        if(result.Succeeded)
+        if (result.Succeeded)
         {
             await _signInManager
                 .PasswordSignInAsync(vm.Email, vm.Password, isPersistent: false, lockoutOnFailure: false);
 
             return Redirect(vm.ReturnUrl!);
+        }
+
+        if (result.Errors.Any())
+        {
+            if (result.Errors.Any(e => e.Code == "DuplicateUserName"))
+            {
+                ModelState.AddModelError("ConfirmPassword", "User with this email exists");
+            }
+            else
+            {
+                ModelState.AddModelError(
+                "ConfirmPassword", "Password must have at least 5 characters and include digit, uppercase, lowercase"
+                );
+            }
         }
 
         return View(vm);
