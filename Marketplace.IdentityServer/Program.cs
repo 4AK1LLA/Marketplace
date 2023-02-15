@@ -41,8 +41,8 @@ using (var scope = app.Services.CreateScope())
     var userManager = scope.ServiceProvider
         .GetService<UserManager<IdentityUser>>();
 
-    var user = new IdentityUser("admin@marketplace.com") { Email = "admin@marketplace.com" };
-    userManager!.CreateAsync(user, "password").Wait();
+    var user = new IdentityUser("test@marketplace.com");
+    var result = await userManager!.CreateAsync(user, "Pa$$w0rd");
 }
 
 app.UseStaticFiles();

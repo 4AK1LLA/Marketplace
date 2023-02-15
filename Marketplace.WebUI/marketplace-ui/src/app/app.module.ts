@@ -27,6 +27,7 @@ import { AuthModule } from 'angular-auth-oidc-client';
     AuthModule.forRoot(
       {
         config: {
+          configId: 'identity_server',
           authority: 'https://localhost:7028',
           redirectUrl: window.location.origin,
           postLogoutRedirectUri: window.location.origin,

@@ -11,7 +11,8 @@
 
                         <div class="mb-3">
                             <label class="mb-2 text-muted">Email</label>
-                            <input asp-for="Email" class="form-control" required autofocus>
+                            <input asp-for="Email" class="form-control" autofocus required>
+                            <span asp-validation-for="Email"></span>
                         </div>
 
                         <div class="mb-3">
@@ -19,6 +20,7 @@
                                 <label class="text-muted">Password</label>
                             </div>
                             <input asp-for="Password" class="form-control" required>
+                            <span asp-validation-for="Password"></span>
                         </div>
 
                         <div class="mb-3">
@@ -26,6 +28,7 @@
                                 <label class="text-muted">Confirm password</label>
                             </div>
                             <input asp-for="ConfirmPassword" class="form-control" required>
+                            <span asp-validation-for="ConfirmPassword"></span>
                         </div>
 
                         <p class="form-text text-muted mb-3">

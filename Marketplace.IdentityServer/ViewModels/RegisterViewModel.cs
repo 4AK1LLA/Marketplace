@@ -15,6 +15,7 @@ public class RegisterViewModel
     [Required]
     [DataType(DataType.Password)]
     [Compare("Password")]
+    [Display(Name = "Confirm password")]
     public string? ConfirmPassword { get; set; }
 
     public string? ReturnUrl { get; set; }
