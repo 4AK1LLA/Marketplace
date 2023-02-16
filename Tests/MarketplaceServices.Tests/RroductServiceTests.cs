@@ -108,17 +108,21 @@ namespace Marketplace.Services.Tests
         }
 
         [Fact]
-        public void GetProductsByCategoryAndPage_ReturnNull_WhenPageIsNotValid()
+        public void GetProductsByCategoryAndPage_ReturnLastPage_WhenPageIsNotValid()
         {
-            var page = 100;
+            int page = 100;
+            int lastPage = 3;
 
             _productRepository
                 .Setup(pr => pr.CountByCategoryName("CategoryName"))
-                .Returns(16);
+                .Returns(40);
+            _productRepository
+                .Setup(pr => pr.GetByCategoryNameIncludingTagValuesAndPhotos("CategoryName", lastPage))
+                .Returns(new List<Product> { new Product { Category = new Category() } });
 
             var products = _productService.GetProductsByCategoryAndPage("CategoryName", page);
 
-            products.Should().BeNull();
+            products.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
