@@ -50,7 +50,6 @@ public class AuthController : Controller
     [HttpPost]
     public async Task<IActionResult> Register([FromForm] RegisterViewModel vm)
     {
-        //TODO: Html.TextBoxFor(x => x.Message)
         if (!ModelState.IsValid)
         {
             return View(vm);

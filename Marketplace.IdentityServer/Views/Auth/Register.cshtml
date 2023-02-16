@@ -11,7 +11,7 @@
 
                         <div class="mb-3">
                             <label class="mb-2 text-muted">Email</label>
-                            <input asp-for="Email" class="form-control" autofocus required>
+                            @Html.TextBoxFor(vm => vm.Email, new { autofocus = true, required = true, @class = "form-control", type = "email" })
                             <span asp-validation-for="Email"></span>
                         </div>
 
@@ -19,7 +19,7 @@
                             <div class="mb-2 w-100">
                                 <label class="text-muted">Password</label>
                             </div>
-                            <input asp-for="Password" class="form-control" required>
+                            @Html.TextBoxFor(vm => vm.Password, new { required = true, @class = "form-control", type = "password" })
                             <span asp-validation-for="Password"></span>
                         </div>
 
@@ -27,7 +27,7 @@
                             <div class="mb-2 w-100">
                                 <label class="text-muted">Confirm password</label>
                             </div>
-                            <input asp-for="ConfirmPassword" class="form-control" required>
+                            @Html.TextBoxFor(vm => vm.ConfirmPassword, new { required = true, @class = "form-control", type = "password" })
                             <span asp-validation-for="ConfirmPassword"></span>
                         </div>
 
