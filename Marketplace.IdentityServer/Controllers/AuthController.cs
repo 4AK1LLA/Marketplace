@@ -1,4 +1,5 @@
-﻿using Marketplace.IdentityServer.ViewModels;
+﻿using Marketplace.IdentityServer.Interfaces;
+using Marketplace.IdentityServer.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,13 +7,19 @@ namespace Marketplace.IdentityServer.Controllers;
 
 public class AuthController : Controller
 {
-    private SignInManager<IdentityUser> _signInManager;
-    private UserManager<IdentityUser> _userManager;
+    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly UserManager<IdentityUser> _userManager;
+    private readonly IEmailAddressValidator _emailAddressValidator;
 
-    public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+    public AuthController(
+        SignInManager<IdentityUser> signInManager, 
+        UserManager<IdentityUser> userManager, 
+        IEmailAddressValidator emailAddressValidator
+        )
     {
         _signInManager = signInManager;
         _userManager = userManager;
+        _emailAddressValidator = emailAddressValidator;
     }
 
     [HttpGet]
@@ -55,6 +62,11 @@ public class AuthController : Controller
             return View(vm);
         }
 
+        if (!_emailAddressValidator.IsValid(vm.Email!))
+        {
+            ModelState.AddModelError("Email", "Email does not match required pattern");
+        }
+
         var user = new IdentityUser(vm.Email);
         var result = await _userManager.CreateAsync(user, vm.Password);
 
@@ -70,12 +82,12 @@ public class AuthController : Controller
         {
             if (result.Errors.Any(e => e.Code == "DuplicateUserName"))
             {
-                ModelState.AddModelError("ConfirmPassword", "User with this email exists");
+                ModelState.AddModelError("Email", "User with this email exists");
             }
             else
             {
                 ModelState.AddModelError(
-                "ConfirmPassword", "Password must have at least 5 characters and include digit, uppercase, lowercase"
+                "Password", "Password must have at least 5 characters and include digit, uppercase, lowercase"
                 );
             }
         }

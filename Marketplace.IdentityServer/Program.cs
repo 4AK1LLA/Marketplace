@@ -1,11 +1,14 @@
 using Marketplace.IdentityServer;
 using Marketplace.IdentityServer.Data;
+using Marketplace.IdentityServer.Interfaces;
+using Marketplace.IdentityServer.Validation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IEmailAddressValidator, EmailAddressValidator>();
 
 builder.Services.AddDbContext<IdentityContext>(opt => 
 {
