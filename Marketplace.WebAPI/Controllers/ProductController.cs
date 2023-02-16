@@ -23,6 +23,7 @@ public class ProductController : Controller
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<IEnumerable<ProductDto>> Get([FromRoute] string categoryRoute, [FromQuery] int pageNumber)
     {
         if (String.IsNullOrEmpty(categoryRoute))
@@ -33,6 +34,12 @@ public class ProductController : Controller
         var categoryName = categoryRoute.ToCategoryName();
 
         var products = _service.GetProductsByCategoryAndPage(categoryName, pageNumber);
+
+
+        if (products is null)
+        {
+            return NotFound();
+        }
 
         return (products.Count() == 0) ?
             NoContent() :
