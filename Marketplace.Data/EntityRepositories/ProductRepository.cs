@@ -19,7 +19,7 @@ public class ProductRepository : Repository<Product>, IProductRepository
     public IEnumerable<Product> GetByCategoryNameIncludingTagValuesAndPhotos(string name, int page) =>
         GetAll()
         .AsQueryable()
-        .Where(pr => pr.Category!.Name == name)
+        .Where(pr => EF.Functions.Like(pr.Category!.Name!, $"%{name}%"))
         .OrderBy(pr => pr.Id)
         .Skip((page - 1) * 16)
         .Take(16)

@@ -28,7 +28,7 @@ public class ProductController : Controller
 
         var products = _service.GetProductsByCategoryAndPage(categoryName, pageNumber);
 
-        return (products is null || products.Count() == 0) ?
+        return (products.Count() == 0) ?
             NoContent() :
             Ok(_mapper.Map<IEnumerable<ProductDto>>(products));
     }

@@ -16,17 +16,22 @@ public class ProductService : IProductService
             ? GetProductsCountByCategory(categoryName) / maxProductsPerPage
             : GetProductsCountByCategory(categoryName) / maxProductsPerPage + 1;
 
+        if (lastPage == 0)
+        {
+            return Enumerable.Empty<Product>();
+        }
+
         if (pageNumber <= 0)
         {
-            return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, 1);
+            return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, 1).ToList();
         }
 
         if (pageNumber > lastPage)
         {
-            return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, lastPage);
+            return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, lastPage).ToList();
         }
 
-        return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, pageNumber);
+        return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, pageNumber).ToList();
     }
 
     public int GetProductsCountByCategory(string categoryName) => 
