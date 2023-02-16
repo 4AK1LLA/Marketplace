@@ -22,8 +22,14 @@ public class ProductController : Controller
     [HttpGet("Get/{categoryRoute}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<IEnumerable<ProductDto>> Get([FromRoute] string categoryRoute, [FromQuery] int pageNumber)
     {
+        if (String.IsNullOrEmpty(categoryRoute))
+        {
+            return BadRequest("Malformed request syntax");
+        }
+
         var categoryName = categoryRoute.ToCategoryName();
 
         var products = _service.GetProductsByCategoryAndPage(categoryName, pageNumber);
@@ -35,11 +41,15 @@ public class ProductController : Controller
 
     [HttpGet("GetCount/{categoryRoute}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<int> GetCount([FromRoute] string categoryRoute)
     {
-        //Mapping route to name
-        var str = categoryRoute.Replace('-', ' ');
-        var categoryName = char.ToUpper(str[0]) + str.Substring(1);
+        if (String.IsNullOrEmpty(categoryRoute))
+        {
+            return BadRequest("Malformed request syntax");
+        }
+
+        var categoryName = categoryRoute.ToCategoryName();
 
         var count = _service.GetProductsCountByCategory(categoryName);
 

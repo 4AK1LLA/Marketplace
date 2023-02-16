@@ -2,9 +2,5 @@
 
 public static class StringExtensions
 {
-    public static string ToCategoryName(this string categoryRoute)
-    {
-        var categoryName = categoryRoute.Replace('-', ' ');
-        return categoryName;
-    }
+    public static string ToCategoryName(this string categoryRoute) => categoryRoute.Replace('-', ' ');
 }
