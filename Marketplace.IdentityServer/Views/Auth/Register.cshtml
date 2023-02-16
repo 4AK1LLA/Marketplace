@@ -1,0 +1,55 @@
+﻿@model RegisterViewModel
+
+<div class="container h-100">
+    <div class="row justify-content-sm-center h-100">
+        <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
+                    <form asp-controller="Auth" asp-action="Register" method="post">
+                        <input type="hidden" asp-for="ReturnUrl" />
+
+                        <div class="mb-3">
+                            <label class="mb-2 text-muted">Email</label>
+                            @Html.TextBoxFor(vm => vm.Email, new { autofocus = true, required = true, @class = "form-control", type = "email" })
+                            <span asp-validation-for="Email"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="mb-2 w-100">
+                                <label class="text-muted">Password</label>
+                            </div>
+                            @Html.TextBoxFor(vm => vm.Password, new { required = true, @class = "form-control", type = "password" })
+                            <span asp-validation-for="Password"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="mb-2 w-100">
+                                <label class="text-muted">Confirm password</label>
+                            </div>
+                            @Html.TextBoxFor(vm => vm.ConfirmPassword, new { required = true, @class = "form-control", type = "password" })
+                            <span asp-validation-for="ConfirmPassword"></span>
+                        </div>
+
+                        <p class="form-text text-muted mb-3">
+                            By registering you agree with our terms and condition.
+                        </p>
+
+                        <div class="align-items-center d-flex">
+                            <button type="submit" class="btn btn-primary ms-auto">Register</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer py-3 border-0">
+                    <div class="text-center">
+                        Already have an account? 
+                        <a asp-controller="Auth" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">Login</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5 text-muted">
+                &copy; Copyright 2023 &mdash; Marketplace.com
+            </div>
+        </div>
+    </div>
+</div>

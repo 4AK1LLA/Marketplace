@@ -9,6 +9,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductsComponent } from './components/products/products.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AuthModule } from 'angular-auth-oidc-client';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,22 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule.forRoot(
+      {
+        config: {
+          configId: 'identity_server',
+          authority: 'https://localhost:7028',
+          redirectUrl: window.location.origin,
+          postLogoutRedirectUri: window.location.origin,
+          clientId: 'angular_ui',
+          scope: 'openid',
+          responseType: 'code',
+          silentRenew: false,
+          useRefreshToken: false,
+        }
+      }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
