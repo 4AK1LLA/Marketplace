@@ -12,12 +12,26 @@ public class ProductService : IProductService
 
     public IEnumerable<Product> GetProductsByCategoryAndPage(string categoryName, int pageNumber)
     {
-        if (pageNumber <= 0 || (pageNumber - 1) > (GetProductsCountByCategory(categoryName) / maxProductsPerPage))
+        var lastPage = (GetProductsCountByCategory(categoryName) % maxProductsPerPage == 0)
+            ? GetProductsCountByCategory(categoryName) / maxProductsPerPage
+            : GetProductsCountByCategory(categoryName) / maxProductsPerPage + 1;
+
+        if (lastPage == 0)
         {
-            return null!;
+            return Enumerable.Empty<Product>();
         }
 
-        return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, pageNumber);
+        if (pageNumber <= 0)
+        {
+            return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, 1).ToList();
+        }
+
+        if (pageNumber > lastPage)
+        {
+            return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, lastPage).ToList();
+        }
+
+        return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, pageNumber).ToList();
     }
 
     public int GetProductsCountByCategory(string categoryName) => 

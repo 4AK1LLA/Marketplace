@@ -114,17 +114,15 @@ namespace MarketplaceWebAPI.Tests
         }
 
         [Fact]
-        public void Get_ReturnNoContent_WhenProductsAreNullAndPageIsNotValid()
+        public void Get_ReturnNotFound_WhenProductsAreNull()
         {
-            var page = 100;
-
             _productService
-                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", page))
+                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", 1))
                 .Returns((IEnumerable<Product>)null!);
 
-            var products = _productController.Get("CategoryName", page);
+            var products = _productController.Get("CategoryName", 1);
 
-            (products.Result as StatusCodeResult)!.StatusCode.Should().Be(StatusCodes.Status204NoContent);
+            (products.Result as StatusCodeResult)!.StatusCode.Should().Be(StatusCodes.Status404NotFound);
         }
     }
 }
