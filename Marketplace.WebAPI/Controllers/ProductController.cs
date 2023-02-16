@@ -1,6 +1,7 @@
 using AutoMapper;
 using Marketplace.Core.Interfaces;
 using Marketplace.WebAPI.DTO;
+using Marketplace.WebAPI.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marketplace.WebAPI.Controllers;
@@ -23,9 +24,7 @@ public class ProductController : Controller
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public ActionResult<IEnumerable<ProductDto>> Get([FromRoute] string categoryRoute, [FromQuery] int pageNumber)
     {
-        //Mapping route to name
-        var str = categoryRoute.Replace('-', ' ');
-        var categoryName = char.ToUpper(str[0]) + str.Substring(1);
+        var categoryName = categoryRoute.ToCategoryName();
 
         var products = _service.GetProductsByCategoryAndPage(categoryName, pageNumber);
 
