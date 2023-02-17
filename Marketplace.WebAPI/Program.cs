@@ -18,6 +18,12 @@ builder.Services.AddMyDbContext();
 builder.Services.AddAutoMapper();
 builder.Services.AddMyCors(builder.Configuration, MyAllowSpecificOrigins);
 
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", opt => {
+        opt.Authority = "https://localhost:7028/";
+        opt.Audience = "Marketplace.WebAPI";
+    });
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -37,6 +43,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
