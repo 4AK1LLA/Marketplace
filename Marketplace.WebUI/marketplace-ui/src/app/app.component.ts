@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MainCategoryDto } from './dto/main-category.dto';
-import { MainCategoriesService } from './services/main-categories-service/main-categories.service';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { combineLatest } from 'rxjs';
+import { UserService } from './services/user-service/user.service';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +15,9 @@ export class AppComponent {
   isAuthenticated: boolean = false;
 
   constructor(
-    private service: MainCategoriesService,
+    private userService: UserService,
     private oidcSecurityService: OidcSecurityService
   ) {
-
-    this.initMainCategories();
 
     //identity_cookie is IS cookie that used for telling IS authentication was proceeded earlier
     //OidcSecurityService stores auth data in session storage (when closing site it disappears)
@@ -31,21 +29,8 @@ export class AppComponent {
     });
   }
 
-  initMainCategories = () =>
-    this.service
-      .getAll()
-      .subscribe(data => this.mainCategories = data);
-
   login() {
     this.oidcSecurityService.authorize();
-  }
-
-  access() {
-    this.oidcSecurityService.getAccessToken().subscribe(token => console.log(token));
-  }
-
-  id() {
-    this.oidcSecurityService.getIdToken().subscribe(id => console.log(id));
   }
 
   createUser() {
@@ -57,5 +42,7 @@ export class AppComponent {
     params$.subscribe(params => {
       console.log(`email : ${params.user.userData.name} \ntoken : ${params.accessToken}`)
     });
+
+    this.userService.createUser().subscribe(response => console.log(response));
   }
 }

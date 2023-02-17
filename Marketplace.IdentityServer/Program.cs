@@ -34,6 +34,7 @@ builder.Services.AddIdentityServer()
     .AddInMemoryIdentityResources(Config.GetIdentityResources())
     .AddInMemoryApiResources(Config.GetApiResources())
     .AddInMemoryClients(Config.GetClients())
+    .AddInMemoryApiScopes(Config.GetApiScopes())
     .AddDeveloperSigningCredential();
 
 var app = builder.Build();

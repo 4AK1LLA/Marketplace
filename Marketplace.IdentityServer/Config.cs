@@ -4,6 +4,12 @@ namespace Marketplace.IdentityServer;
 
 public static class Config
 {
+    public static IEnumerable<ApiScope> GetApiScopes() =>
+        new List<ApiScope>
+        {
+            new ApiScope("Marketplace.WebAPI")
+        };
+
     public static IEnumerable<IdentityResource> GetIdentityResources() =>
         new List<IdentityResource>
         {
@@ -33,7 +39,7 @@ public static class Config
                 ClientId = "angular_ui",
                 AllowedGrantTypes = GrantTypes.Code,
                 AllowedScopes = { "profile", "openid", "Marketplace.WebAPI" },
-                AllowAccessTokensViaBrowser = true, 
+                AllowAccessTokensViaBrowser = true,
                 RequireClientSecret = false,
                 RequirePkce = true,
                 RequireConsent = false,
