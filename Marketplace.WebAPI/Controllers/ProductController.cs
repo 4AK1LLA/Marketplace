@@ -2,10 +2,12 @@ using AutoMapper;
 using Marketplace.Core.Interfaces;
 using Marketplace.WebAPI.DTO;
 using Marketplace.WebAPI.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marketplace.WebAPI.Controllers;
 
+[AllowAnonymous]
 [ApiController]
 [Route("api/[controller]")]
 public class ProductController : Controller

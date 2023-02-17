@@ -26,6 +26,7 @@ export class AppComponent {
     this.oidcSecurityService.checkAuth().subscribe(authResponse => {
       this.isAuthenticated = authResponse.isAuthenticated;
       console.warn(authResponse);
+      console.log(authResponse.accessToken)
     });
   }
 
