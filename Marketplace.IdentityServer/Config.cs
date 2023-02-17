@@ -7,7 +7,8 @@ public static class Config
     public static IEnumerable<IdentityResource> GetIdentityResources() =>
         new List<IdentityResource>
         {
-            new IdentityResources.OpenId()
+            new IdentityResources.OpenId(),
+            new IdentityResources.Profile()
         };
 
 
@@ -31,14 +32,15 @@ public static class Config
             {
                 ClientId = "angular_ui",
                 AllowedGrantTypes = GrantTypes.Code,
-                AllowedScopes = { "openid", "Marketplace.WebAPI" },
+                AllowedScopes = { "profile", "openid", "Marketplace.WebAPI" },
                 AllowAccessTokensViaBrowser = true, 
                 RequireClientSecret = false,
                 RequirePkce = true,
                 RequireConsent = false,
                 RedirectUris = { "http://localhost:4200" },
                 PostLogoutRedirectUris = { "http://localhost:4200" },
-                AllowedCorsOrigins = { "http://localhost:4200" }
+                AllowedCorsOrigins = { "http://localhost:4200" },
+                AlwaysIncludeUserClaimsInIdToken = true,
             }
         };
 }

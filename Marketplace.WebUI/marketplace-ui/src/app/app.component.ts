@@ -35,4 +35,12 @@ export class AppComponent {
   login() {
     this.oidcSecurityService.authorize();
   }
+
+  access() {
+    this.oidcSecurityService.getAccessToken().subscribe(token => console.log(token));
+  }
+
+  id() {
+    this.oidcSecurityService.getIdToken().subscribe(id => console.log(id));
+  }
 }
