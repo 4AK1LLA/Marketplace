@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MainCategoryDto } from './dto/main-category.dto';
 import { MainCategoriesService } from './services/main-categories-service/main-categories.service';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 export class AppComponent {
 
   mainCategories: MainCategoryDto[] = [];
+  isAuthenticated: boolean = false;
 
   constructor(
     private service: MainCategoriesService,
@@ -23,8 +25,10 @@ export class AppComponent {
     //OidcSecurityService stores auth data in session storage (when closing site it disappears)
 
     //The method checkAuth() is needed to process the redirect from your Security Token Service and set the correct states. This method must be used to ensure the correct functioning of the library. (from docs)
-    this.oidcSecurityService.checkAuth().subscribe(authResponse =>
-      console.warn(authResponse));
+    this.oidcSecurityService.checkAuth().subscribe(authResponse => {
+      this.isAuthenticated = authResponse.isAuthenticated;
+      console.warn(authResponse);
+    });
   }
 
   initMainCategories = () =>
@@ -42,5 +46,16 @@ export class AppComponent {
 
   id() {
     this.oidcSecurityService.getIdToken().subscribe(id => console.log(id));
+  }
+
+  createUser() {
+    let params$ = combineLatest({
+      user: this.oidcSecurityService.userData$,
+      accessToken: this.oidcSecurityService.getAccessToken()
+    });
+
+    params$.subscribe(params => {
+      console.log(`email : ${params.user.userData.name} \ntoken : ${params.accessToken}`)
+    });
   }
 }
