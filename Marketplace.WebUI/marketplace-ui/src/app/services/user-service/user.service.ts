@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 
@@ -10,5 +10,14 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  createUser = () => this.http.post(`${environment.baseApiUrl}/User/emailusername`, null);
+  createUser(email: string, token: string) { 
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token
+      }),
+      responseType: 'text' as const
+    }
+    
+    return this.http.post(`${environment.baseApiUrl}/AppUser`, { email }, httpOptions);
+  }
 }

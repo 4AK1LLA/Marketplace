@@ -41,9 +41,12 @@ export class AppComponent {
     });
 
     params$.subscribe(params => {
-      console.log(`email : ${params.user.userData.name} \ntoken : ${params.accessToken}`)
+      let email = params.user.userData.name;
+      let token = params.accessToken;
+            
+      this.userService
+        .createUser(email, token)
+        .subscribe(response => console.log(response));
     });
-
-    this.userService.createUser().subscribe(response => console.log(response));
   }
 }
