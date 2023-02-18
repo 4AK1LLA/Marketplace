@@ -3,6 +3,7 @@ using Marketplace.Core.Interfaces;
 using Marketplace.Data;
 using Marketplace.Data.Options;
 using Marketplace.Services;
+using Marketplace.WebAPI.Filters;
 using Marketplace.WebAPI.Mapping;
 using Marketplace.WebAPI.Options;
 using Microsoft.OpenApi.Models;
@@ -77,7 +78,7 @@ public static class ServiceExtensions
         {
             opt.SwaggerDoc("v1", new OpenApiInfo { Title = "Marketplace WebAPI", Version = "v1" });
             opt.AddSecurityDefinition("Bearer", securityScheme);
-            opt.AddSecurityRequirement(securityRequirement);
+            opt.OperationFilter<AuthResponsesOperationFilter>();
         });
 
         return services;
