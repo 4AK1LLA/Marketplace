@@ -1,5 +1,8 @@
-<app-navbar></app-navbar>
+<app-navbar [userContext]="userContext" (loginEvent)="login()" (logoutEvent)="logout()">
+</app-navbar>
 <app-sidebar></app-sidebar>
-<button (click)="login()">Login</button>
+
+<button *ngIf="userContext.isAuthenticated" (click)="createUser()">CreateUser</button>
+
 <router-outlet></router-outlet>
 <app-footer></app-footer>

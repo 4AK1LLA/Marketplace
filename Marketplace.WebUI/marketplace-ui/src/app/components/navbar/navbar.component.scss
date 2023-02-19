@@ -39,7 +39,7 @@
     font-weight: bold;
 }
 
-.nav-link:hover {
+.nav-link:hover, .your-profile:hover {
     color: $white-color;
 }
 
@@ -64,4 +64,15 @@
 
 .dropdown-item:hover {
     background-color: $grey-color;
+}
+
+.your-profile {
+    display: flex;
+    align-items: center;
+    color: $secondary-color;
+    text-decoration: none;
+
+    span {
+        margin-left: .5rem;
+    }
 }

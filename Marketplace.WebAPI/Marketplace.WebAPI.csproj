@@ -8,16 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.14" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Marketplace.Data\Marketplace.Data.csproj" />
     <ProjectReference Include="..\Marketplace.Services\Marketplace.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DTO\Parameters\" />
   </ItemGroup>
 
 </Project>

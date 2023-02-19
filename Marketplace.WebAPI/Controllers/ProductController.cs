@@ -2,10 +2,12 @@ using AutoMapper;
 using Marketplace.Core.Interfaces;
 using Marketplace.WebAPI.DTO;
 using Marketplace.WebAPI.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marketplace.WebAPI.Controllers;
 
+[AllowAnonymous]
 [ApiController]
 [Route("api/[controller]")]
 public class ProductController : Controller
@@ -26,7 +28,7 @@ public class ProductController : Controller
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<IEnumerable<ProductDto>> Get([FromRoute] string categoryRoute, [FromQuery] int pageNumber)
     {
-        if (String.IsNullOrEmpty(categoryRoute))
+        if (string.IsNullOrEmpty(categoryRoute))
         {
             return BadRequest("Malformed request syntax");
         }
@@ -51,7 +53,7 @@ public class ProductController : Controller
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<int> GetCount([FromRoute] string categoryRoute)
     {
-        if (String.IsNullOrEmpty(categoryRoute))
+        if (string.IsNullOrEmpty(categoryRoute))
         {
             return BadRequest("Malformed request syntax");
         }

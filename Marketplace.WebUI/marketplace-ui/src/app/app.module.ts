@@ -32,7 +32,7 @@ import { AuthModule } from 'angular-auth-oidc-client';
           redirectUrl: window.location.origin,
           postLogoutRedirectUri: window.location.origin,
           clientId: 'angular_ui',
-          scope: 'openid',
+          scope: 'openid profile Marketplace.WebAPI',
           responseType: 'code',
           silentRenew: false,
           useRefreshToken: false,

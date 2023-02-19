@@ -27,6 +27,7 @@ builder.Services.ConfigureApplicationCookie(opt =>
 {
     opt.Cookie.Name = "identity_cookie";
     opt.LoginPath = "/Auth/Login";
+    opt.LogoutPath = "/Auth/Logout";
 });
 
 builder.Services.AddIdentityServer()
@@ -34,6 +35,7 @@ builder.Services.AddIdentityServer()
     .AddInMemoryIdentityResources(Config.GetIdentityResources())
     .AddInMemoryApiResources(Config.GetApiResources())
     .AddInMemoryClients(Config.GetClients())
+    .AddInMemoryApiScopes(Config.GetApiScopes())
     .AddDeveloperSigningCredential();
 
 var app = builder.Build();

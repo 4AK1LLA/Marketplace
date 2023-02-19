@@ -10,7 +10,7 @@
                 <div class="dropdown">
                     <ng-container *ngFor="let l of locales">
                         <a *ngIf="l.code===currentLocale" class="language-switcher dropdown-toggle"
-                            id="dropdownMenuLink" data-bs-toggle="dropdown" (click)="onClick()">
+                            id="dropdownMenuLink" data-bs-toggle="dropdown" (click)="hrefChanges()">
                             <span [class]="'selected '+l.class+' me-1'"></span>
                         </a>
                     </ng-container>
@@ -37,12 +37,32 @@
                     <span i18n>Favourites</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link d-flex" href="#">
-                    <i class='bx bx-user bx-sm nav-icon'></i>
-                    <span i18n>Your profile</span>
-                </a>
-            </li>
+
+            <ng-container *ngIf="!userContext.isAuthenticated; else authenticated">
+                <li class="nav-item">
+                    <a class="nav-link d-flex" (click)="onProfileClick()">
+                        <i class='bx bx-user bx-sm nav-icon'></i>
+                        <span i18n>Your profile</span>
+                    </a>
+                </li>
+            </ng-container>
+
+            <ng-template #authenticated>
+                <li class="nav-item dropdown">
+                    <a class="your-profile dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class='bx bx-user bx-sm nav-icon'></i>
+                        <span i18n>Your profile</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><h6 class="dropdown-header">Welcome,<br>{{userContext.name}}</h6></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Your sale ads</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" (click)="onLogoutClick()">Log out</a></li>
+                    </ul>
+                </li>
+            </ng-template>
             <li class="nav-item">
                 <button i18n class="btn">Sell product</button>
             </li>

@@ -5,18 +5,15 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Services.ConfigureOptions(builder.Configuration);
-builder.Services.AddUnitOfWork();
-builder.Services.AddMyServices();
-builder.Services.AddMyDbContext();
-builder.Services.AddAutoMapper();
+builder.Services.AddJwtAuthentication();
 builder.Services.AddMyCors(builder.Configuration, MyAllowSpecificOrigins);
+builder.Services.AddControllers();
+builder.Services.AddSwagger();
+builder.Services.AddAutoMapper();
+builder.Services.AddMyServices();
+builder.Services.AddUnitOfWork();
+builder.Services.AddMyDbContext();
 
 var app = builder.Build();
 
@@ -27,7 +24,6 @@ using (var scope = app.Services.CreateScope())
     seeder.Seed();
 }
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -37,6 +33,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
