@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserContext } from 'src/app/contexts/user.context';
 
@@ -10,6 +10,7 @@ import { UserContext } from 'src/app/contexts/user.context';
 export class NavbarComponent implements OnInit {
 
   @Input() userContext!: UserContext;
+  @Output() logoutEvent = new EventEmitter;
 
   currentLocale: string = 'en-US';
   locales = [
@@ -23,7 +24,9 @@ export class NavbarComponent implements OnInit {
     this.currentLocale = !($localize.locale === undefined) ? $localize.locale : this.currentLocale;
   }
 
-  onClick() {
+  logout = () => this.logoutEvent.emit();
+
+  hrefChanges() {
     let url = this.router.url;
     this.locales.forEach(l => url.replace('/' + l.code, ''));
     this.locales.forEach(l => l.href = '/' + l.code + url);

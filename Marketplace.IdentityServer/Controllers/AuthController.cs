@@ -1,4 +1,5 @@
-﻿using Marketplace.IdentityServer.Interfaces;
+﻿using IdentityServer4.Services;
+using Marketplace.IdentityServer.Interfaces;
 using Marketplace.IdentityServer.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,16 +11,19 @@ public class AuthController : Controller
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IEmailAddressValidator _emailAddressValidator;
+    private readonly IIdentityServerInteractionService _interactionService;
 
     public AuthController(
         SignInManager<IdentityUser> signInManager, 
         UserManager<IdentityUser> userManager, 
-        IEmailAddressValidator emailAddressValidator
+        IEmailAddressValidator emailAddressValidator,
+        IIdentityServerInteractionService interactionService
         )
     {
         _signInManager = signInManager;
         _userManager = userManager;
         _emailAddressValidator = emailAddressValidator;
+        _interactionService = interactionService;
     }
 
     [HttpGet]
@@ -93,5 +97,15 @@ public class AuthController : Controller
         }
 
         return View(vm);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Logout(string logoutId)
+    {
+        await _signInManager.SignOutAsync();
+
+        var logoutRequest = await _interactionService.GetLogoutContextAsync(logoutId);
+
+        return Redirect(logoutRequest.PostLogoutRedirectUri);
     }
 }

@@ -28,7 +28,7 @@ public class ProductController : Controller
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<IEnumerable<ProductDto>> Get([FromRoute] string categoryRoute, [FromQuery] int pageNumber)
     {
-        if (String.IsNullOrEmpty(categoryRoute))
+        if (string.IsNullOrEmpty(categoryRoute))
         {
             return BadRequest("Malformed request syntax");
         }
@@ -53,7 +53,7 @@ public class ProductController : Controller
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<int> GetCount([FromRoute] string categoryRoute)
     {
-        if (String.IsNullOrEmpty(categoryRoute))
+        if (string.IsNullOrEmpty(categoryRoute))
         {
             return BadRequest("Malformed request syntax");
         }

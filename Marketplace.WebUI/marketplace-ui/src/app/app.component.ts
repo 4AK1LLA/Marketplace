@@ -36,6 +36,8 @@ export class AppComponent {
     this.oidcSecurityService.authorize();
   }
 
+  logout = () => this.oidcSecurityService.logoffAndRevokeTokens().subscribe();
+
   createUser() {
     let params$ = combineLatest({
       user: this.oidcSecurityService.userData$,

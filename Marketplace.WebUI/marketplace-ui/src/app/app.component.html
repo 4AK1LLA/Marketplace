@@ -1,4 +1,5 @@
-<app-navbar [userContext]="userContext"></app-navbar>
+<app-navbar [userContext]="userContext" (logoutEvent)="logout()">
+</app-navbar>
 <app-sidebar></app-sidebar>
 
 <button (click)="login()">Login</button>
