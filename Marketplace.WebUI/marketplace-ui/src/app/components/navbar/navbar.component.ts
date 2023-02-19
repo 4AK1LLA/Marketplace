@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  //authContext!: AuthContext; //(isAuth, Email)
+
   currentLocale: string = 'en-US';
   locales = [
     { code: 'en-US', label: 'English', class: 'fi fi-us', href: '/en-US/' },

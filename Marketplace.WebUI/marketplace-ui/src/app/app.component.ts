@@ -3,6 +3,7 @@ import { MainCategoryDto } from './dto/main-category.dto';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { combineLatest } from 'rxjs';
 import { UserService } from './services/user-service/user.service';
+import { UserContext } from './contexts/user.context';
 
 @Component({
   selector: 'app-root',
@@ -12,21 +13,23 @@ import { UserService } from './services/user-service/user.service';
 export class AppComponent {
 
   mainCategories: MainCategoryDto[] = [];
-  isAuthenticated: boolean = false;
+  userContext: UserContext;
 
   constructor(
     private userService: UserService,
     private oidcSecurityService: OidcSecurityService
   ) {
+    this.userContext = new UserContext;
 
     //identity_cookie is IS cookie that used for telling IS authentication was proceeded earlier
     //OidcSecurityService stores auth data in session storage (when closing site it disappears)
 
     //The method checkAuth() is needed to process the redirect from your Security Token Service and set the correct states. This method must be used to ensure the correct functioning of the library. (from docs)
     this.oidcSecurityService.checkAuth().subscribe(authResponse => {
-      this.isAuthenticated = authResponse.isAuthenticated;
       console.warn(authResponse);
-      console.log(authResponse.accessToken)
+      this.userContext.isAuthenticated = authResponse.isAuthenticated;
+      this.userContext.email = (authResponse.userData != null) ? authResponse.userData.name : null;
+      console.log(`isAuth ${this.userContext.isAuthenticated}, email ${this.userContext.email}`)
     });
   }
 
