@@ -40,7 +40,7 @@
 
             <ng-container *ngIf="!userContext.isAuthenticated; else authenticated">
                 <li class="nav-item">
-                    <a class="nav-link d-flex" href="#">
+                    <a class="nav-link d-flex" (click)="onProfileClick()">
                         <i class='bx bx-user bx-sm nav-icon'></i>
                         <span i18n>Your profile</span>
                     </a>
@@ -59,7 +59,7 @@
                         <li><a class="dropdown-item" href="#">Your sale ads</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" (click)="logout()">Log out</a></li>
+                        <li><a class="dropdown-item" (click)="onLogoutClick()">Log out</a></li>
                     </ul>
                 </li>
             </ng-template>

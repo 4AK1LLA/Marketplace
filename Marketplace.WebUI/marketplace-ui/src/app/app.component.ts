@@ -32,10 +32,7 @@ export class AppComponent {
     });
   }
 
-  login() {
-    this.oidcSecurityService.authorize();
-  }
-
+  login = () => this.oidcSecurityService.authorize();
   logout = () => this.oidcSecurityService.logoffAndRevokeTokens().subscribe();
 
   createUser() {

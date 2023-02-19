@@ -10,8 +10,8 @@ import { UserContext } from 'src/app/contexts/user.context';
 export class NavbarComponent implements OnInit {
 
   @Input() userContext!: UserContext;
+  @Output() loginEvent = new EventEmitter;
   @Output() logoutEvent = new EventEmitter;
-
   currentLocale: string = 'en-US';
   locales = [
     { code: 'en-US', label: 'English', class: 'fi fi-us', href: '/en-US/' },
@@ -24,7 +24,8 @@ export class NavbarComponent implements OnInit {
     this.currentLocale = !($localize.locale === undefined) ? $localize.locale : this.currentLocale;
   }
 
-  logout = () => this.logoutEvent.emit();
+  onProfileClick = () => this.loginEvent.emit();
+  onLogoutClick = () => this.logoutEvent.emit();
 
   hrefChanges() {
     let url = this.router.url;
