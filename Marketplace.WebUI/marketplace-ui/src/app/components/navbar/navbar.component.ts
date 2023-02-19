@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserContext } from 'src/app/contexts/user.context';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  //authContext!: AuthContext; //(isAuth, Email)
+  @Input() userContext!: UserContext;
 
   currentLocale: string = 'en-US';
   locales = [
@@ -16,8 +17,7 @@ export class NavbarComponent implements OnInit {
     { code: 'uk-UA', label: 'Українська', class: 'fi fi-ua', href: '/uk-UA/' }
   ];
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.currentLocale = !($localize.locale === undefined) ? $localize.locale : this.currentLocale;

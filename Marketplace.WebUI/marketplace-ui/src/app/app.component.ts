@@ -28,8 +28,7 @@ export class AppComponent {
     this.oidcSecurityService.checkAuth().subscribe(authResponse => {
       console.warn(authResponse);
       this.userContext.isAuthenticated = authResponse.isAuthenticated;
-      this.userContext.email = (authResponse.userData != null) ? authResponse.userData.name : null;
-      console.log(`isAuth ${this.userContext.isAuthenticated}, email ${this.userContext.email}`)
+      this.userContext.name = (authResponse.userData != null) ? authResponse.userData.name : null;
     });
   }
 
