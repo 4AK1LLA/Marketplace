@@ -44,7 +44,7 @@ export class AppComponent {
     params$.subscribe(params => {
       let email = params.user.userData.name;
       let token = params.accessToken;
-            
+      
       this.userService
         .createUser(email, token)
         .subscribe(response => console.log(response));
