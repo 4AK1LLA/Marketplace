@@ -4,7 +4,7 @@
     <div class="row justify-content-sm-center h-100">
         <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
             <div class="card shadow-lg">
-                <div class="card-body p-5">
+                <div class="card-body pb-4 p-5">
                     <h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
                     <form asp-controller="Auth" asp-action="Register" method="post">
                         <input type="hidden" asp-for="ReturnUrl" />
@@ -36,9 +36,18 @@
                         </p>
 
                         <div class="align-items-center d-flex">
-                            <button type="submit" class="btn btn-primary ms-auto">Register</button>
+                            <button type="submit" class="btn btn-primary ms-auto mt-2 mb-3">Register</button>
                         </div>
                     </form>
+
+                    <div class="separator">or</div>
+
+                    <a href="#" class="btn btn-reverse mt-3 d-flex align-items-center justify-content-center">
+                        <img class="login-img" src="~/images/facebook.png" />Register with Facebook
+                    </a>
+                    <a href="#" class="btn btn-reverse mt-3 d-flex align-items-center justify-content-center">
+                        <img class="login-img" src="~/images/google.webp" />Register  with Google
+                    </a>
                 </div>
                 <div class="card-footer py-3 border-0">
                     <div class="text-center">
