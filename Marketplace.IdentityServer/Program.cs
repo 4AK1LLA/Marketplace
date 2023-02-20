@@ -38,6 +38,13 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiScopes(Config.GetApiScopes())
     .AddDeveloperSigningCredential();
 
+builder.Services.AddAuthentication()
+    .AddFacebook(opt =>
+    {
+        opt.AppId = builder.Configuration["ExternalProviders:Facebook:AppId"];
+        opt.AppSecret = builder.Configuration["ExternalProviders:Facebook:AppSecret"];
+    });
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
