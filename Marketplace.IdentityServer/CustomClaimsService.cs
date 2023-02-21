@@ -9,8 +9,8 @@ namespace Marketplace.IdentityServer
         public Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
             var claims = new List<Claim>();
-            var userName = context.Subject.FindFirst("name");
-            var displayName = context.Subject.FindFirst("display_name");
+            Claim? userName = context.Subject.FindFirst("name");
+            Claim? displayName = context.Subject.FindFirst("display_name");
 
             claims.Add(userName!);
             if (displayName is not null)

@@ -122,23 +122,40 @@ public class AuthController : Controller
             return RedirectToAction(nameof(Login), "Auth", new { returnUrl });
         }
 
-        var name = info.Principal.FindFirst(ClaimTypes.Name)!.Value;
-        var identifier = info.Principal.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        var user = new IdentityUser();
+        string fullName = string.Empty;
 
-        var user = new IdentityUser(name.ToLower().Replace(" ", "_") + identifier);
+        if (info.LoginProvider == "Facebook")
+        {
+            fullName = info.Principal.FindFirst(ClaimTypes.Name)!.Value;
+            var identifier = info.Principal.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+
+            user.UserName = "facebook-" + fullName.ToLower().Replace(" ", "_") + identifier;
+        }
+
+        if (info.LoginProvider == "Google")
+        {
+            fullName = info.Principal.FindFirst(ClaimTypes.Name)!.Value;
+            var identifier = info.Principal.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+
+            user.UserName = "google-" + fullName.ToLower().Replace(" ", "_") + identifier;
+        }
 
         var result = await _userManager.CreateAsync(user);
 
-        if (result.Succeeded)
+        if (!result.Succeeded)
         {
-            await _userManager.AddClaimAsync(user, new Claim("display_name", name));
-
-            await _signInManager.SignInAsync(user, isPersistent: false);
-
-            return Redirect(returnUrl);
+            return RedirectToAction(nameof(Login), "Auth", new { returnUrl });
         }
 
-        return View();
+        if (!string.IsNullOrEmpty(fullName))
+        {
+            await _userManager.AddClaimAsync(user, new Claim("display_name", fullName));
+        }
+
+        await _signInManager.SignInAsync(user, isPersistent: false);
+
+        return Redirect(returnUrl);
     }
 
     [HttpGet]

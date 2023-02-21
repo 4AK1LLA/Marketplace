@@ -44,6 +44,11 @@ builder.Services.AddAuthentication()
     {
         opt.AppId = builder.Configuration["ExternalProviders:Facebook:AppId"];
         opt.AppSecret = builder.Configuration["ExternalProviders:Facebook:AppSecret"];
+    })
+    .AddGoogle(opt =>
+    {
+        opt.ClientId = builder.Configuration["ExternalProviders:Google:ClientId"];
+        opt.ClientSecret = builder.Configuration["ExternalProviders:Google:ClientSecret"];
     });
 
 var app = builder.Build();
