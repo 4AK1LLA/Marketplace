@@ -36,7 +36,8 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiResources(Config.GetApiResources())
     .AddInMemoryClients(Config.GetClients())
     .AddInMemoryApiScopes(Config.GetApiScopes())
-    .AddDeveloperSigningCredential();
+    .AddDeveloperSigningCredential()
+    .AddProfileService<CustomClaimsService>();
 
 builder.Services.AddAuthentication()
     .AddFacebook(opt =>
