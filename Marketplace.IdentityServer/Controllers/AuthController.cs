@@ -3,6 +3,7 @@ using Marketplace.IdentityServer.Interfaces;
 using Marketplace.IdentityServer.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Marketplace.IdentityServer.Controllers;
 
@@ -97,6 +98,45 @@ public class AuthController : Controller
         }
 
         return View(vm);
+    }
+
+    public IActionResult ExternalLogin(string provider, string returnUrl)
+    {
+        if (string.IsNullOrEmpty(provider))
+        {
+            return RedirectToAction(nameof(Login), "Auth", new { returnUrl });
+        }
+
+        var redirectUri = Url.Action(nameof(ExternalLoginCallback), "Auth", new { returnUrl });
+        var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUri);
+
+        return Challenge(properties, provider);
+    }
+
+    public async Task<IActionResult> ExternalLoginCallback(string returnUrl)
+    {
+        var info = await _signInManager.GetExternalLoginInfoAsync();
+
+        if (info is null)
+        {
+            return RedirectToAction(nameof(Login), "Auth", new { returnUrl });
+        }
+
+        var name = info.Principal.FindFirst(ClaimTypes.Name)!.Value.ToLower().Replace(" ", "_");
+        var identifier = info.Principal.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+
+        var user = new IdentityUser(name + identifier);
+
+        var result = await _userManager.CreateAsync(user);
+
+        if (result.Succeeded)
+        {
+            await _signInManager.SignInAsync(user, isPersistent: false);
+
+            return Redirect(returnUrl);
+        }
+
+        return View();
     }
 
     [HttpGet]
