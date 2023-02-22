@@ -38,12 +38,12 @@
                     <div class="separator">or</div>
 
                     <form asp-controller="Auth" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                        <button name="provider" type="submit" value="Facebook" 
-                        class="btn btn-reverse mt-3 d-flex align-items-center justify-content-center">
+                        <button name="provider" type="submit" value="Facebook"
+                                class="btn btn-reverse mt-3 d-flex align-items-center justify-content-center">
                             <img class="login-img" src="~/images/facebook.png" />Login with Facebook
                         </button>
                         <button name="provider" type="submit" value="Google"
-                        class="btn btn-reverse mt-3 d-flex align-items-center justify-content-center">
+                                class="btn btn-reverse mt-3 d-flex align-items-center justify-content-center">
                             <img class="login-img" src="~/images/google.webp" />Login  with Google
                         </button>
                     </form>
