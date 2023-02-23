@@ -3,6 +3,7 @@ using Marketplace.IdentityServer.Interfaces;
 using Marketplace.IdentityServer.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Marketplace.IdentityServer.Controllers;
 
@@ -97,6 +98,76 @@ public class AuthController : Controller
         }
 
         return View(vm);
+    }
+
+    public IActionResult ExternalLogin(string provider, string returnUrl)
+    {
+        if (string.IsNullOrEmpty(provider))
+        {
+            return RedirectToAction(nameof(Login), "Auth", new { returnUrl });
+        }
+
+        var redirectUri = Url.Action(nameof(ExternalLoginCallback), "Auth", new { returnUrl });
+        var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUri);
+
+        return Challenge(properties, provider);
+    }
+
+    public async Task<IActionResult> ExternalLoginCallback(string returnUrl)
+    {
+        var info = await _signInManager.GetExternalLoginInfoAsync();
+
+        if (info is null)
+        {
+            return RedirectToAction(nameof(Login), "Auth", new { returnUrl });
+        }
+
+        var identifier = info.Principal.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        var userName = string.Empty;
+
+        if (info.LoginProvider == "Facebook")
+        {
+            userName = "facebook-" + identifier;
+        }
+
+        if (info.LoginProvider == "Google")
+        {
+            userName = "google-" + identifier;
+        }
+
+        if (string.IsNullOrEmpty(userName))
+        {
+            return RedirectToAction(nameof(Login), "Auth", new { returnUrl });
+        }
+
+        var foundUser = await _userManager.FindByNameAsync(userName);
+
+        if (foundUser is not null)
+        {
+            await _signInManager.SignInAsync(foundUser, isPersistent: false);
+
+            return Redirect(returnUrl);
+        }
+
+        var user = new IdentityUser(userName);
+
+        var result = await _userManager.CreateAsync(user);
+
+        if (!result.Succeeded)
+        {
+            return RedirectToAction(nameof(Login), "Auth", new { returnUrl });
+        }
+
+        var fullName = info.Principal.FindFirst(ClaimTypes.Name)!.Value;
+
+        if (!string.IsNullOrEmpty(fullName))
+        {
+            await _userManager.AddClaimAsync(user, new Claim("display_name", fullName));
+        }
+
+        await _signInManager.SignInAsync(user, isPersistent: false);
+
+        return Redirect(returnUrl);
     }
 
     [HttpGet]

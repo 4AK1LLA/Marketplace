@@ -36,7 +36,20 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiResources(Config.GetApiResources())
     .AddInMemoryClients(Config.GetClients())
     .AddInMemoryApiScopes(Config.GetApiScopes())
-    .AddDeveloperSigningCredential();
+    .AddDeveloperSigningCredential()
+    .AddProfileService<CustomClaimsService>();
+
+builder.Services.AddAuthentication()
+    .AddFacebook(opt =>
+    {
+        opt.AppId = builder.Configuration["ExternalProviders:Facebook:AppId"];
+        opt.AppSecret = builder.Configuration["ExternalProviders:Facebook:AppSecret"];
+    })
+    .AddGoogle(opt =>
+    {
+        opt.ClientId = builder.Configuration["ExternalProviders:Google:ClientId"];
+        opt.ClientSecret = builder.Configuration["ExternalProviders:Google:ClientSecret"];
+    });
 
 var app = builder.Build();
 

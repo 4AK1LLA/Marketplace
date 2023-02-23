@@ -46,7 +46,6 @@ public static class Config
                 RedirectUris = { "http://localhost:4200" },
                 PostLogoutRedirectUris = { "http://localhost:4200" },
                 AllowedCorsOrigins = { "http://localhost:4200" },
-                AlwaysIncludeUserClaimsInIdToken = true,
             }
         };
 }
