@@ -27,6 +27,16 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .Include(pr => pr.TagValues)!
         .ThenInclude(tv => tv.Tag);
 
+    public Product GetIncludingTagValuesAndPhotos(int id)
+    {
+        var product = Get(id);
+
+        Entry(product!).Collection(pr => pr.Photos!).Load();
+        Entry(product!).Collection(pr => pr.TagValues!).Query().Include(tv => tv.Tag).Load();
+
+        return product!;
+    }
+
     public int CountByCategoryName(string name) =>
         GetAll()
         .AsQueryable()

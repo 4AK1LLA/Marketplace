@@ -47,10 +47,12 @@ public class ProductController : Controller
             Ok(_mapper.Map<IEnumerable<ProductDto>>(products));
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{productId}")]
     public ActionResult<DetailProductDto> GetById([FromRoute] int productId)
     {
         var product = _service.GetProductById(productId);
+
+        var dto = _mapper.Map<DetailProductDto>(product);
 
         return (product is null) ?
             NotFound() :
