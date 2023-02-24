@@ -28,15 +28,13 @@ import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
       {
         config: {
           configId: 'identity_server',
+          clientId: 'angular_ui',
           authority: 'https://localhost:7028',
           redirectUrl: window.location.origin,
           postLogoutRedirectUri: window.location.origin,
-          silentRenewUrl: window.location.origin,
-          unauthorizedRoute: window.location.origin,
-          clientId: 'angular_ui',
           scope: 'openid profile Marketplace.WebAPI',
           responseType: 'code',
-          silentRenew: true,
+          silentRenew: false,
           useRefreshToken: false,
           logLevel: LogLevel.Debug
         }

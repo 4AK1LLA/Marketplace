@@ -1,63 +1,37 @@
-import { Component } from '@angular/core';
-import { MainCategoryDto } from './dto/main-category.dto';
-import { EventTypes, OidcSecurityService, PublicEventsService } from 'angular-auth-oidc-client';
-import { combineLatest, filter, take } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+//import { MainCategoryDto } from './dto/main-category.dto';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { combineLatest } from 'rxjs';
 import { UserService } from './services/user-service/user.service';
-import { UserContext } from './contexts/user.context';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  mainCategories: MainCategoryDto[] = [];
-  userContext: UserContext;
+  identityCookie: string = 'identity_cookie';
+  //mainCategories: MainCategoryDto[] = [];
   isAuthenticated: boolean = false;
 
   constructor(
     private userService: UserService,
-    private oidcSecurityService: OidcSecurityService,
-    private eventService: PublicEventsService
-  ) {
-    this.checkSessionAndTryAuth();
-    this.userContext = new UserContext;
+    private oidcSecurityService: OidcSecurityService
+  ) { }
 
-    this.oidcSecurityService.checkAuth().subscribe(authResponse => {
-      console.warn(authResponse);
+  public ngOnInit(): void {
+    this.oidcSecurityService.checkAuth().subscribe(localAuth => {
+      this.authorizeIfCookieExist(this.identityCookie, localAuth.isAuthenticated);
+      this.isAuthenticated = localAuth.isAuthenticated;
+      console.log(localAuth.userData)
     });
-
-    console.log('isAuthenticated', this.isAuthenticated);
   }
 
-  checkSessionAndTryAuth(): void {
-    let eventService$ = this.eventService
-      .registerForEvents()
-      .pipe(filter((notification) =>
-        notification.type === EventTypes.CheckingAuthFinishedWithError ||
-        notification.type === EventTypes.CheckingAuthFinished ||
-        notification.type === EventTypes.NewAuthenticationResult
-      ), take(1));
+  public onLogin = (): void => this.oidcSecurityService.authorize();
+  public onLogout = () => this.oidcSecurityService.logoffAndRevokeTokens().subscribe();
 
-    eventService$
-      .subscribe(value => {
-        if (value.type === EventTypes.CheckingAuthFinishedWithError) {
-          this.isAuthenticated = false;
-        }
-        if (value.type === EventTypes.NewAuthenticationResult) {
-          this.isAuthenticated = true;
-        }
-        if (value.type === EventTypes.CheckingAuthFinished) {
-          this.oidcSecurityService.authorize(undefined, { customParams: { prompt: 'none', 'response-type': 'none', 'scope': 'openid' } });
-        }
-      });
-  }
-
-  login = () => this.oidcSecurityService.authorize();
-  logout = () => this.oidcSecurityService.logoffAndRevokeTokens().subscribe();
-
-  createUser() {
+  public onCreateUser(): void {
     let params$ = combineLatest({
       user: this.oidcSecurityService.userData$,
       accessToken: this.oidcSecurityService.getAccessToken()
@@ -71,5 +45,13 @@ export class AppComponent {
         .createUser(email, token)
         .subscribe(response => console.log(response));
     });
+  }
+
+  private authorizeIfCookieExist(cookie: string, isAuth: boolean): void {
+    document.cookie = cookie + '=0';
+
+    if (!isAuth && document.cookie.indexOf(cookie) === -1) { 
+      this.oidcSecurityService.authorize();
+    }
   }
 }
