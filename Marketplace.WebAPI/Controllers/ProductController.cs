@@ -48,15 +48,15 @@ public class ProductController : Controller
     }
 
     [HttpGet("{productId}")]
-    public ActionResult<DetailProductDto> GetById([FromRoute] int productId)
+    public ActionResult<ProductDetailsDto> GetById([FromRoute] int productId)
     {
         var product = _service.GetProductById(productId);
 
-        var dto = _mapper.Map<DetailProductDto>(product);
+        var dto = _mapper.Map<ProductDetailsDto>(product);
 
         return (product is null) ?
             NotFound() :
-            Ok(_mapper.Map<DetailProductDto>(product));
+            Ok(_mapper.Map<ProductDetailsDto>(product));
     }
 
     [HttpGet("GetCount/{categoryRoute}")]

@@ -42,7 +42,7 @@ public class MappingProfile : Profile
                 opt => opt.MapFrom(src => (src.Photos!.Count != 0) ? src.Photos!.Where(ph => ph.IsMain == true).First().URL : null)
             );
 
-        CreateMap<Product, DetailProductDto>()
+        CreateMap<Product, ProductDetailsDto>()
             .ForMember(
                 dest => dest.PublicationDate,
                 opt => opt.MapFrom(src => src.PublicationDate.ToString("m"))

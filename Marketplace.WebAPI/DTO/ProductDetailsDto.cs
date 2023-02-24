@@ -1,6 +1,6 @@
 ﻿namespace Marketplace.WebAPI.DTO;
 
-public class DetailProductDto
+public class ProductDetailsDto
 {
     public int Id { get; set; }
 
