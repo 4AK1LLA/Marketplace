@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   }
 
   private authorizeIfCookieExist(cookie: string, isAuth: boolean): void {
-    document.cookie = cookie + '=0';
+    document.cookie = cookie + '=0;path=/;';
 
     if (!isAuth && document.cookie.indexOf(cookie) === -1) { 
       this.oidcSecurityService.authorize();
