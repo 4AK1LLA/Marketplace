@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MainCategoryDto } from './dto/main-category.dto';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { combineLatest } from 'rxjs';
+import { EventTypes, OidcSecurityService, PublicEventsService } from 'angular-auth-oidc-client';
+import { combineLatest, filter, take } from 'rxjs';
 import { UserService } from './services/user-service/user.service';
 import { UserContext } from './contexts/user.context';
 
@@ -14,22 +14,44 @@ export class AppComponent {
 
   mainCategories: MainCategoryDto[] = [];
   userContext: UserContext;
+  isAuthenticated: boolean = false;
 
   constructor(
     private userService: UserService,
-    private oidcSecurityService: OidcSecurityService
+    private oidcSecurityService: OidcSecurityService,
+    private eventService: PublicEventsService
   ) {
+    this.checkSessionAndTryAuth();
     this.userContext = new UserContext;
 
-    //identity_cookie is IS cookie that used for telling IS authentication was proceeded earlier
-    //OidcSecurityService stores auth data in session storage (when closing site it disappears)
-
-    //The method checkAuth() is needed to process the redirect from your Security Token Service and set the correct states. This method must be used to ensure the correct functioning of the library. (from docs)
     this.oidcSecurityService.checkAuth().subscribe(authResponse => {
       console.warn(authResponse);
-      this.userContext.isAuthenticated = authResponse.isAuthenticated;
-      this.userContext.name = (authResponse.userData != null) ? authResponse.userData.name : null;
     });
+
+    console.log('isAuthenticated', this.isAuthenticated);
+  }
+
+  checkSessionAndTryAuth(): void {
+    let eventService$ = this.eventService
+      .registerForEvents()
+      .pipe(filter((notification) =>
+        notification.type === EventTypes.CheckingAuthFinishedWithError ||
+        notification.type === EventTypes.CheckingAuthFinished ||
+        notification.type === EventTypes.NewAuthenticationResult
+      ), take(1));
+
+    eventService$
+      .subscribe(value => {
+        if (value.type === EventTypes.CheckingAuthFinishedWithError) {
+          this.isAuthenticated = false;
+        }
+        if (value.type === EventTypes.NewAuthenticationResult) {
+          this.isAuthenticated = true;
+        }
+        if (value.type === EventTypes.CheckingAuthFinished) {
+          this.oidcSecurityService.authorize(undefined, { customParams: { prompt: 'none', 'response-type': 'none', 'scope': 'openid' } });
+        }
+      });
   }
 
   login = () => this.oidcSecurityService.authorize();
@@ -44,7 +66,7 @@ export class AppComponent {
     params$.subscribe(params => {
       let email = params.user.userData.name;
       let token = params.accessToken;
-      
+
       this.userService
         .createUser(email, token)
         .subscribe(response => console.log(response));
