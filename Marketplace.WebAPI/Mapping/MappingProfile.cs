@@ -42,11 +42,19 @@ public class MappingProfile : Profile
                 opt => opt.MapFrom(src => (src.Photos!.Count != 0) ? src.Photos!.Where(ph => ph.IsMain == true).First().URL : null)
             );
 
+        CreateMap<Product, DetailProductDto>()
+            .ForMember(
+                dest => dest.PublicationDate,
+                opt => opt.MapFrom(src => src.PublicationDate.ToString("m"))
+            );
+
         //Mapping tagvalues
         CreateMap<TagValue, TagValueDto>()
             .ForMember(
                 dest => dest.Name,
                 opt => opt.MapFrom(src => src.Tag!.Name)
             );
+
+        CreateMap<Photo, PhotoDto>();
     }
 }
