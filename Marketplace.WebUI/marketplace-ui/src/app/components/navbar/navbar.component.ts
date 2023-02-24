@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserContext } from 'src/app/contexts/user.context';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +8,7 @@ import { UserContext } from 'src/app/contexts/user.context';
 })
 export class NavbarComponent implements OnInit {
 
-  @Input() userContext!: UserContext;
+  @Input() isAuthenticated: boolean = false;
   @Output() loginEvent = new EventEmitter;
   @Output() logoutEvent = new EventEmitter;
   currentLocale: string = 'en-US';
@@ -20,14 +19,14 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.currentLocale = !($localize.locale === undefined) ? $localize.locale : this.currentLocale;
   }
 
-  onProfileClick = () => this.loginEvent.emit();
-  onLogoutClick = () => this.logoutEvent.emit();
+  public onProfileClick = () => this.loginEvent.emit();
+  public onLogoutClick = () => this.logoutEvent.emit();
 
-  hrefChanges() {
+  public hrefChanges() {
     let url = this.router.url;
     this.locales.forEach(l => url.replace('/' + l.code, ''));
     this.locales.forEach(l => l.href = '/' + l.code + url);
