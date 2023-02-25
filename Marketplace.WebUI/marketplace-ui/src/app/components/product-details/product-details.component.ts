@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductDetailsDto } from 'src/app/dto/product-details.dto';
 
 @Component({
   selector: 'app-product-details',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  constructor() { }
+  productDetailDto!: ProductDetailsDto;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      let productId = Number(params['productId']);
+
+      if (Number.isNaN(productId)) {
+        //wrong param
+      }
+
+    });
   }
 
 }

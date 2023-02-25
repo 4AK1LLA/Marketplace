@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     this.oidcSecurityService.checkAuth().subscribe(localAuth => {
       this.authorizeIfCookieExist(this.identityCookie, localAuth.isAuthenticated);
       this.isAuthenticated = localAuth.isAuthenticated;
-      console.log(localAuth.userData)
+      //console.log(localAuth.userData)
     });
   }
 
