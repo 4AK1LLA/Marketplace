@@ -55,7 +55,7 @@ public class ProductController : Controller
         var dto = _mapper.Map<ProductDetailsDto>(product);
 
         return (product is null) ?
-            NotFound() :
+            NoContent() :
             Ok(_mapper.Map<ProductDetailsDto>(product));
     }
 

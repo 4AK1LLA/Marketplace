@@ -11,7 +11,7 @@
         <div class="found">This product does not exist :(</div>
     </ng-template>
 
-    <ng-container *ngIf="product!==undefined; else notfound">
+    <ng-container *ngIf="product!==undefined&&product!==null; else notfound">
         <div class="row gx-5">
             <div class="col-8">
                 <div class="p-4 col-white">

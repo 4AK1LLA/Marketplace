@@ -31,6 +31,11 @@ public class ProductRepository : Repository<Product>, IProductRepository
     {
         var product = Get(id);
 
+        if (product is null)
+        {
+            return product!;
+        }
+
         Entry(product!).Collection(pr => pr.Photos!).Load();
         Entry(product!).Collection(pr => pr.TagValues!).Query().Include(tv => tv.Tag).Load();
 
