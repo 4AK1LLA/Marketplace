@@ -10,16 +10,20 @@ import { ProductsService } from 'src/app/services/products-service/products.serv
 })
 export class ProductDetailsComponent implements OnInit {
 
-  product!: ProductDetailsDto;
+  public product?: ProductDetailsDto;
 
-  constructor(private route: ActivatedRoute, private service: ProductsService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private service: ProductsService
+  ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.route.params.subscribe(params => {
       let productId = Number(params['productId']);
 
-      if (Number.isNaN(productId)) {
-        //wrong param
+      if (isNaN(productId)) {
+        this.product = undefined;
+        return;
       }
 
       this.service.getProductDetails(productId).subscribe(response => { this.product = response; console.log(response) });
