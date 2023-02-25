@@ -27,7 +27,9 @@ export class ProductDetailsComponent implements OnInit {
       }
 
       this.service.getProductDetails(productId)
-        .subscribe(response => this.product = response);
+        .subscribe(response => {
+          this.product = response;
+        });
     });
   }
 

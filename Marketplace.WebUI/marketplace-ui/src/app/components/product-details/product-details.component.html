@@ -17,73 +17,19 @@
                 <div class="p-4 col-white">
                     <div id="carouselId" class="carousel carousel-dark slide">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselId" data-bs-slide-to="0"
-                                class="active"></button>
-                            <button type="button" data-bs-target="#carouselId" data-bs-slide-to="1"></button>
-                            <button type="button" data-bs-target="#carouselId" data-bs-slide-to="2"></button>
-                            <button type="button" data-bs-target="#carouselId" data-bs-slide-to="3"></button>
-                            <button type="button" data-bs-target="#carouselId" data-bs-slide-to="4"></button>
-                            <button type="button" data-bs-target="#carouselId" data-bs-slide-to="5"></button>
-                            <button type="button" data-bs-target="#carouselId" data-bs-slide-to="6"></button>
-                            <button type="button" data-bs-target="#carouselId" data-bs-slide-to="7"></button>
-                            <button type="button" data-bs-target="#carouselId" data-bs-slide-to="8"></button>
+                            <button *ngFor="let ph of product.photos; let i = index" type="button"
+                                data-bs-target="#carouselId" [attr.data-bs-slide-to]="i"
+                                [class]="(ph.isMain===true)?'active':''"></button>
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
+                            <div *ngFor="let ph of product.photos"
+                                [class]="(ph.isMain===true)?'carousel-item active':'carousel-item'">
                                 <div class="crsl-div d-flex justify-content-center align-items-center">
-                                    <img src="https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265319/products/2/2_1_j6bz9l.webp"
-                                        class="h-100 w-auto">
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="crsl-div d-flex justify-content-center align-items-center">
-                                    <img src="https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265319/products/2/2_3_szamup.webp"
-                                        class="h-100 w-auto">
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="crsl-div d-flex justify-content-center align-items-center">
-                                    <img src="https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265319/products/2/2_4_sqh7ta.webp"
-                                        class="h-100 w-auto">
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="crsl-div d-flex justify-content-center align-items-center">
-                                    <img src="https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265319/products/2/2_5_hcdai5.webp"
-                                        class="h-100 w-auto">
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="crsl-div d-flex justify-content-center align-items-center">
-                                    <img src="https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265319/products/2/2_2_uxhy56.webp"
-                                        class="h-100 w-auto">
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="crsl-div d-flex justify-content-center align-items-center">
-                                    <img src="https://scontent.fiev15-1.fna.fbcdn.net/v/t39.30808-6/319998570_1515072868993685_2235287507806037771_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=iGcVGgBMou4AX-2ALWY&_nc_ht=scontent.fiev15-1.fna&oh=00_AfAMupSWxAtlqT86L-1aXzcmvABQG-cpAEmgfb3XbO3zeg&oe=63FDC751"
-                                        class="h-100 w-auto">
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="crsl-div d-flex justify-content-center align-items-center">
-                                    <img src="https://lh3.googleusercontent.com/hwau7OVWx96XaME5KpRuJ0I_MscrerK6SbRH1UwYHYaxIDQQtn7RZK02LDSfBzCreidFgDsJeXyqDct6EZiH6vsV=w640-h400-e365-rj-sc0x00ffffff"
-                                        class="h-100 w-auto">
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="crsl-div d-flex justify-content-center align-items-center">
-                                    <img src="https://static.boredpanda.com/blog/wp-content/uploads/2017/04/JAY_0572-2-2-58f798a00c4da__880.jpg"
-                                        class="h-100 w-auto">
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="crsl-div d-flex justify-content-center align-items-center">
-                                    <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*1BUIofZgqVuR6nj8LbrRtQ.jpeg"
-                                        class="h-100 w-auto">
+                                    <img [src]="ph.url" class="h-100 w-auto">
                                 </div>
                             </div>
                         </div>
+
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
@@ -131,7 +77,8 @@
                         <div class="lead mb-3">LOCATION</div>
                         <div class="d-flex align-items-center">
                             <i class="bi bi-geo-alt-fill me-2"></i>
-                            <div><strong>Kyiv,</strong><br>Kyiv region</div>
+                            <div><strong>{{ product.location.split(',')[0] }},</strong><br>
+                                {{ product.location.split(',')[1] }}</div>
                         </div>
                     </div>
                 </div>
@@ -140,11 +87,12 @@
         <div class="main p-4 col-white">
             <p class="text-muted mb-2"><small>Posted today at 1:31 PM</small></p>
             <div class="d-flex justify-content-between mb-4">
-                <h4 class="mr-auto">Sale of a 1-room apartment in the Atlant residential complex on 10/3 Dokivska Street
-                    ergre gregregre grefre gfreg regre</h4>
+                <h4 class="mr-auto">{{ product.title }}</h4>
                 <a class="ml-auto"><i class='bx bx-heart bx-md bx-tada-hover'></i></a>
             </div>
+
             <h4 class="mb-4"><strong>200 000 &#8372;</strong></h4>
+
             <div class="tags">
                 <span style="display: inline-block;" class="tag py-2 px-3 me-3 mb-3">Business</span>
                 <span style="display: inline-block;" class="tag py-2 px-3 me-3 mb-3">Floor: 17</span>
@@ -157,20 +105,10 @@
                 <span style="display: inline-block;" class="tag py-2 px-3 me-3 mb-3">One more tag: value</span>
             </div>
             <div class="lead mb-3 mt-2">DESCRIPTION</div>
-            <p class="mb-5">
-                We offer to your attention a chic one-room apartment in Kotsyubinsky on Dokivska Street 10 in the cozy
-                residential complex Atlant. A good modern renovation was done several years ago using quality materials.
-                All
-                the necessary furniture and appliances for a comfortable stay will remain for the new owners.
-                Undoubtedly, a
-                great advantag p-2e is the beautiful infrastructure - a forest, children's and sports grounds, various
-                shops, guarded parking, public transport stops. This is a great offer for a quiet peaceful life 10
-                minutes
-                from the metro!
-            </p>
+            <p class="mb-5">{{ product.description }}</p>
             <hr>
             <div class="d-flex justify-content-between align-items-center">
-                <p class="text-muted"><small>ID: 1234</small></p>
+                <p class="text-muted"><small>ID: {{ product.id }}</small></p>
                 <a class="report-btn"><i class="bi bi-flag-fill bx-xs me-1"></i>Report</a>
             </div>
         </div>
