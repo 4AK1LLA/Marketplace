@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductDetailsDto } from 'src/app/dto/product-details.dto';
+import { ProductsService } from 'src/app/services/products-service/products.service';
 
 @Component({
   selector: 'app-product-details',
@@ -9,9 +10,9 @@ import { ProductDetailsDto } from 'src/app/dto/product-details.dto';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  productDetailDto!: ProductDetailsDto;
+  product!: ProductDetailsDto;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private service: ProductsService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -21,6 +22,7 @@ export class ProductDetailsComponent implements OnInit {
         //wrong param
       }
 
+      this.service.getProductDetails(productId).subscribe(response => { this.product = response; console.log(response) });
     });
   }
 
