@@ -1,5 +1,9 @@
 @import 'src/styles/variables.scss';
 
+h4, p {
+    margin-bottom: 0;
+}
+
 .container {
     margin-top: 8rem;
 }
@@ -9,5 +13,58 @@
 }
 
 .crsl-div {
-    height: 500px;
+    height: 550px;
+}
+
+.profile-img {
+    height: 50px;
+}
+
+.btn {
+    color: $white-color;
+    background-color: $main-color;
+    border: 2px solid $main-color;
+}
+
+.btn:hover {
+    color: $main-color;
+    background-color: $white-color;
+}
+
+.profile-link {
+    text-decoration: none;
+    border: 2px solid $white-color;
+    border-radius: 1rem;
+}
+
+.profile-link:hover {
+    background-color: $grey-profile-color;
+}
+
+.right-bar {
+    gap: 48px;
+}
+
+.bi {
+    font-size: x-large;
+}
+
+.main {
+    margin-top: 48px;
+}
+
+.tag {
+    border: 1px solid;
+    border-radius: .3rem;
+}
+
+.report-btn {
+    color: $danger-color;
+    text-decoration: none;
+}
+
+.alert {
+    a {
+        color: var(--bs-primary-text);
+    }
 }
