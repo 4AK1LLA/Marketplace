@@ -1,4 +1,5 @@
-﻿using Marketplace.WebAPI.DTO;
+﻿using Marketplace.Core.Interfaces.Services;
+using Marketplace.WebAPI.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,18 @@ namespace Marketplace.WebAPI.Controllers;
 [Route("api/[controller]")]
 public class UserController : Controller
 {
+    private readonly IUserService _service;
+
+    public UserController(IUserService service)
+    {
+        _service = service;
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public ActionResult<string> Create()
+    public IActionResult Create()
     {
         var claimUser = HttpContext.User.Identity;
 
