@@ -10,5 +10,5 @@ public class CreateUserDto
 
     public string? Email { get; set; }
 
-    public string? ProfilePhotoUrl { get; set; }
+    public string? ProfilePictureUrl { get; set; }
 }

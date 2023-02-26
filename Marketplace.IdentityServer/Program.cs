@@ -2,6 +2,7 @@ using Marketplace.IdentityServer;
 using Marketplace.IdentityServer.Data;
 using Marketplace.IdentityServer.Interfaces;
 using Marketplace.IdentityServer.Validation;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -49,6 +50,7 @@ builder.Services.AddAuthentication()
     {
         opt.ClientId = builder.Configuration["ExternalProviders:Google:ClientId"];
         opt.ClientSecret = builder.Configuration["ExternalProviders:Google:ClientSecret"];
+        opt.ClaimActions.MapJsonKey("image", "picture");
     });
 
 var app = builder.Build();

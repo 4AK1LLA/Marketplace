@@ -165,6 +165,13 @@ public class AuthController : Controller
             await _userManager.AddClaimAsync(user, new Claim("display_name", fullName));
         }
 
+        var profilePictureClaim = info.Principal.FindFirst("image");
+
+        if (profilePictureClaim is not null)
+        {
+            await _userManager.AddClaimAsync(user, new Claim("profile_picture", profilePictureClaim.Value));
+        }
+
         await _signInManager.SignInAsync(user, isPersistent: false);
 
         return Redirect(returnUrl);

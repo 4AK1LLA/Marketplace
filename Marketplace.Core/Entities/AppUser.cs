@@ -14,7 +14,7 @@ public class AppUser
 
     public string? PhoneNumber { get; set; }
 
-    public string? ProfilePhotoUrl { get; set; }
+    public string? ProfilePictureUrl { get; set; }
 
     public ICollection<Product>? Products { get; set; }
 
