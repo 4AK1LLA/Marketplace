@@ -1,4 +1,4 @@
-﻿using Marketplace.Core.Interfaces.Services;
+﻿using Marketplace.Core.Interfaces;
 using Marketplace.WebAPI.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +29,11 @@ public class UserController : Controller
         {
             return BadRequest("Missing claim principal");
         }
+
+        var dto = new CreateUserDto
+        {
+            //StsIdentifier = 
+        };
 
         return Ok("User created");
     }

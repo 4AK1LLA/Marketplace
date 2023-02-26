@@ -20,6 +20,7 @@ public static class ServiceExtensions
         services.AddScoped<ISeeder, Seeder>();
         services.AddScoped<IMainCategoryService, MainCategoryService>();
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IUserService, UserService>();
 
         return services;
     }

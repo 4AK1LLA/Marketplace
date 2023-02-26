@@ -10,7 +10,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(email: string, token: string) { 
+  createUser(token: string) { 
     let httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token
@@ -18,6 +18,6 @@ export class UserService {
       responseType: 'text' as const
     }
     
-    return this.http.post(`${environment.baseApiUrl}/User`, { email }, httpOptions);
+    return this.http.post(`${environment.baseApiUrl}/User`, httpOptions);
   }
 }
