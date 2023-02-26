@@ -12,8 +12,15 @@ public class UserController : Controller
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public ActionResult<string> Create([FromBody] CreateUserDto dto)
+    public ActionResult<string> Create()
     {
-        return Ok("User created with email " + dto.Email);
+        var claimUser = HttpContext.User.Identity;
+
+        if (claimUser is null)
+        {
+            return BadRequest("Missing claim principal");
+        }
+
+        return Ok("User created");
     }
 }
