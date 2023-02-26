@@ -7,11 +7,11 @@
         </ol>
     </nav>
 
-    <ng-template #notfound>
+    <ng-template #notFound>
         <div class="found">This product does not exist :(</div>
     </ng-template>
 
-    <ng-container *ngIf="product!==undefined&&product!==null; else notfound">
+    <ng-container *ngIf="isFound; else notFound">
         <div class="row gx-5">
             <div class="col-8">
                 <div class="p-4 col-white">
@@ -91,18 +91,13 @@
                 <a class="ml-auto"><i class='bx bx-heart bx-md bx-tada-hover'></i></a>
             </div>
 
-            <h4 class="mb-4"><strong>200 000 &#8372;</strong></h4>
+            <h4 class="mb-4"><strong>{{ priceOrSalary }} &#8372;</strong></h4>
 
             <div class="tags">
-                <span style="display: inline-block;" class="tag py-2 px-3 me-3 mb-3">Business</span>
-                <span style="display: inline-block;" class="tag py-2 px-3 me-3 mb-3">Floor: 17</span>
-                <span style="display: inline-block;" class="tag py-2 px-3 me-3 mb-3">Number of floors: 21</span>
-                <span style="display: inline-block;" class="tag py-2 px-3 me-3 mb-3">Total area: 43 m<sup>2</sup></span>
-                <span style="display: inline-block;" class="tag py-2 px-3 me-3 mb-3">Kitchen area: 11
-                    m<sup>2</sup></span>
-                <span style="display: inline-block;" class="tag py-2 px-3 me-3 mb-3">Number of rooms: 1</span>
-                <span style="display: inline-block;" class="tag py-2 px-3 me-3 mb-3">Another tag: value</span>
-                <span style="display: inline-block;" class="tag py-2 px-3 me-3 mb-3">One more tag: value</span>
+                <span *ngFor="let tg of product.tagValues" style="display: inline-block;"
+                    class="tag py-2 px-3 me-3 mb-3"
+                    [innerHTML]="(tg.name == tg.value) ? tg.name : (tg.name + ': ' + tg.value)">
+                </span>
             </div>
             <div class="lead mb-3 mt-2">DESCRIPTION</div>
             <p class="mb-5">{{ product.description }}</p>
