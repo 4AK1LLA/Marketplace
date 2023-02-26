@@ -57,5 +57,7 @@ public class MappingProfile : Profile
             );
 
         CreateMap<Photo, PhotoDto>();
+
+        CreateMap<CreateUserDto, AppUser>();
     }
 }

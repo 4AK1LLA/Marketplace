@@ -14,8 +14,7 @@ export class UserService {
     let httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token
-      }),
-      responseType: 'text' as const
+      })
     }
     
     return this.http.post(`${environment.baseApiUrl}/User`, null, httpOptions);

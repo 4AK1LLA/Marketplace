@@ -9,5 +9,13 @@ public class UserService : IUserService
 
     public UserService(IUnitOfWork uow) => _uow = uow;
 
-    public void AddUser(AppUser user) => _uow.AppUserRepository.Add(user);
+    public void AddUser(AppUser user)
+    {
+        _uow.AppUserRepository.Add(user);
+
+        _uow.Save();
+    }
+
+    public AppUser GetUserByIdentifier(string identifier) => 
+        _uow.AppUserRepository.Find(us => us.StsIdentifier == identifier).FirstOrDefault()!;
 }
