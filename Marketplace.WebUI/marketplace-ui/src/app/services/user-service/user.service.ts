@@ -18,6 +18,6 @@ export class UserService {
       responseType: 'text' as const
     }
     
-    return this.http.post(`${environment.baseApiUrl}/User`, httpOptions);
+    return this.http.post(`${environment.baseApiUrl}/User`, null, httpOptions);
   }
 }
