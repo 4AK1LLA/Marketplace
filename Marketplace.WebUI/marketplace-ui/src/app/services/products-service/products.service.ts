@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { ProductDto } from '../../dto/product.dto';
+import { ProductDetailsDto } from 'src/app/dto/product-details.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +18,7 @@ export class ProductsService {
 
   getProductsCountByCategory = (route: string): Observable<number> =>
     this.http.get<number>(`${environment.baseApiUrl}/Product/GetCount/${route}`);
+
+  getProductDetails = (id: number): Observable<ProductDetailsDto> =>
+    this.http.get<ProductDetailsDto>(`${environment.baseApiUrl}/Product/${id}`);
 }

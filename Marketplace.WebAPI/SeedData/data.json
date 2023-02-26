@@ -17,10 +17,194 @@
     ]
   },
   {
-    "Name": "Realty",
+    "Name": "Realty2",
     "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/key-solid-96_hftmhp.png",
     "SubCategories": [
-      { "Name": "Apartments" },
+      {
+        "Name": "Apartments2",
+        "Products": [
+          {
+            "Title": "One-room smart apartment in a new building!",
+            "Description": "One-room smart apartment in a new building! The apartment is fully equipped with new furniture and appliances! There are many cafes and shops within walking distance, and a supermarket is nearby! Excellent transport interchange! Developed infrastructure! View at any convenient time for you!",
+            "Location": "Khmelnytskyi, Khmelnytskyi region",
+            "Photos": [
+              {
+                "IsMain": true,
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265265/products/1/1_1_tyzcmc.webp"
+              },
+              {
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265265/products/1/1_2_fghuxu.webp"
+              },
+              {
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265265/products/1/1_3_cmqnvs.webp"
+              },
+              {
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265298/products/1/1_4_mcdd8n.webp"
+              }
+            ],
+            "TagValues": [
+              {
+                "Value": "Business",
+                "Tag": { "Name": "Business" }
+              },
+              {
+                "Value": "8000",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "Housing fund",
+                "Tag": { "Name": "Type of building" }
+              },
+              {
+                "Value": "2",
+                "Tag": { "Name": "Floor" }
+              },
+              {
+                "Value": "4",
+                "Tag": { "Name": "Number of floors" }
+              },
+              {
+                "Value": "35",
+                "Tag": { "Name": "Total area" }
+              },
+              {
+                "Value": "12",
+                "Tag": { "Name": "Kitchen area" }
+              },
+              {
+                "Value": "Brick",
+                "Tag": { "Name": "Type of walls" }
+              },
+              {
+                "Value": "1",
+                "Tag": { "Name": "Number of rooms" }
+              },
+              {
+                "Value": "Eurorenovation",
+                "Tag": { "Name": "Renovation" }
+              }
+            ]
+          },
+          {
+            "Title": "Sale of a 1-room apartment in the Atlant residential complex on 10/3 Dokivska Street",
+            "Description": "We offer to your attention a chic one-room apartment in Kotsyubinsky on Dokivska Street 10 in the cozy residential complex Atlant. A good modern renovation was done several years ago using quality materials. All the necessary furniture and appliances for a comfortable stay will remain for the new owners. Undoubtedly, a great advantage is the beautiful infrastructure - a forest, children's and sports grounds, various shops, guarded parking, public transport stops. This is a great offer for a quiet peaceful life 10 minutes from the metro! ID: 67700",
+            "Location": "Kotsyubynske, Kyiv region",
+            "Photos": [
+              {
+                "IsMain": true,
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265319/products/2/2_1_j6bz9l.webp"
+              },
+              {
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265319/products/2/2_2_uxhy56.webp"
+              },
+              {
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265319/products/2/2_3_szamup.webp"
+              },
+              {
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265319/products/2/2_4_sqh7ta.webp"
+              },
+              {
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265319/products/2/2_5_hcdai5.webp"
+              }
+            ],
+            "TagValues": [
+              {
+                "Value": "Business",
+                "Tag": { "Name": "Business" }
+              },
+              {
+                "Value": "47 000",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "17",
+                "Tag": { "Name": "Floor" }
+              },
+              {
+                "Value": "21",
+                "Tag": { "Name": "Number of floors" }
+              },
+              {
+                "Value": "43",
+                "Tag": { "Name": "Total area" }
+              },
+              {
+                "Value": "11",
+                "Tag": { "Name": "Kitchen area" }
+              },
+              {
+                "Value": "1",
+                "Tag": { "Name": "Number of rooms" }
+              }
+            ]
+          },
+          {
+            "Title": "I will sell a warm and cozy 2-room apartment on 8 Marta Street",
+            "Description": "I will sell a 2-room apartment 2/5 with an area of 42 sq.m., located on st. March 8, not a corner, warm and cozy apartment, walk-through rooms, but ready for your redevelopment, an adjacent bathroom. All Windows Are Plastic, Glazed Balcony. Metal front door, bars on the windows. The interpanel seams are insulated on the outside. Water meters, gas meters and a heating meter installed in the house will save on utility bills. There are new interior doors, a new gas stove and a boler (if this is not relevant for you, we are ready to change it to mutually beneficial conditions). Condition of the apartment: under its perfect renovation, which fulfills your requests for the quality of your life (go for it). Convenient place in the city for living, proximity (bus station, railway station, central market and the city center in general and all possible options for convenience and comfort and relaxation (school, kindergarten, supermarkets, public transport, etc.) Documents are in order. There are no prescribed, and most importantly, no debts and problems. Ready for a quick deal. Come, see, offer your price option. Each offer will be considered individually. I will be happy to answer all your questions! Record for viewing AN SVETOCH your realtor Natalia.",
+            "Location": "Kamianske, Dnipropetrovsk region",
+            "Photos": [
+              {
+                "IsMain": true,
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265337/products/3/3_1_aadbbk.webp"
+              },
+              {
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265337/products/3/3_2_gjcd2o.webp"
+              },
+              {
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265337/products/3/3_3_sulujr.webp"
+              },
+              {
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265337/products/3/3_4_eg8ts2.webp"
+              },
+              {
+                "URL": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1677265337/products/3/3_5_ywjv0v.webp"
+              }
+            ],
+            "TagValues": [
+              {
+                "Value": "Business",
+                "Tag": { "Name": "Business" }
+              },
+              {
+                "Value": "11 000",
+                "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "Khrushchevka",
+                "Tag": { "Name": "Type of building" }
+              },
+              {
+                "Value": "Panel",
+                "Tag": { "Name": "Type of walls" }
+              },
+              {
+                "Value": "2",
+                "Tag": { "Name": "Floor" }
+              },
+              {
+                "Value": "5",
+                "Tag": { "Name": "Number of floors" }
+              },
+              {
+                "Value": "42",
+                "Tag": { "Name": "Total area" }
+              },
+              {
+                "Value": "6",
+                "Tag": { "Name": "Kitchen area" }
+              },
+              {
+                "Value": "2",
+                "Tag": { "Name": "Number of rooms" }
+              },
+              {
+                "Value": "Balcony, loggia, Bath, Bars on the windows",
+                "Tag": { "Name": "Comfort" }
+              }
+            ]
+          }
+        ]
+      },
       { "Name": "Houses" },
       { "Name": "Garages" }
     ]

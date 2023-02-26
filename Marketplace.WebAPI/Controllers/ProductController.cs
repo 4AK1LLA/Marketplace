@@ -37,7 +37,6 @@ public class ProductController : Controller
 
         var products = _service.GetProductsByCategoryAndPage(categoryName, pageNumber);
 
-
         if (products is null)
         {
             return NotFound();
@@ -46,6 +45,18 @@ public class ProductController : Controller
         return (products.Count() == 0) ?
             NoContent() :
             Ok(_mapper.Map<IEnumerable<ProductDto>>(products));
+    }
+
+    [HttpGet("{productId}")]
+    public ActionResult<ProductDetailsDto> GetById([FromRoute] int productId)
+    {
+        var product = _service.GetProductById(productId);
+
+        var dto = _mapper.Map<ProductDetailsDto>(product);
+
+        return (product is null) ?
+            NoContent() :
+            Ok(_mapper.Map<ProductDetailsDto>(product));
     }
 
     [HttpGet("GetCount/{categoryRoute}")]

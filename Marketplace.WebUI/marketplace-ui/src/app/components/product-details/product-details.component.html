@@ -1,0 +1,111 @@
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">MainCategory</a></li>
+            <li class="breadcrumb-item"><a href="#">Category</a></li>
+        </ol>
+    </nav>
+
+    <ng-template #notFound>
+        <div class="found">This product does not exist :(</div>
+    </ng-template>
+
+    <ng-container *ngIf="isFound; else notFound">
+        <div class="row gx-5">
+            <div class="col-8">
+                <div class="p-4 col-white">
+                    <div id="carouselId" class="carousel carousel-dark slide">
+                        <div class="carousel-indicators">
+                            <button *ngFor="let ph of product.photos; let i = index" type="button"
+                                data-bs-target="#carouselId" [attr.data-bs-slide-to]="i"
+                                [class]="(ph.isMain===true)?'active':''"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div *ngFor="let ph of product.photos"
+                                [class]="(ph.isMain===true)?'carousel-item active':'carousel-item'">
+                                <div class="crsl-div d-flex justify-content-center align-items-center">
+                                    <img [src]="ph.url" class="h-100 w-auto">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselId"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="right-bar d-flex flex-column">
+                    <div class="p-4 col-white">
+                        <div class="lead mb-3">USER</div>
+                        <a class="profile-link d-flex align-items-center mb-3 py-2 px-1">
+                            <img class="profile-img rounded-circle me-3" src="assets/img/user-profile.jpg" />
+                            <div>
+                                <div>Ruslan Tretyakov</div>
+                                <div class="text-muted"><small>Last seen 2:00 PM</small></div>
+                            </div>
+                        </a>
+                        <div class="contact mb-2">
+                            <p class="mb-1">Contact</p>
+                            <div class="d-flex mb-1"><i class='bx bxs-phone bx-sm me-2'></i><span>+ 380 99
+                                    7210101</span>
+                            </div>
+                            <div class="d-flex"><i
+                                    class='bx bxs-envelope bx-sm me-2'></i><span>test@marketplace.com</span>
+                            </div>
+                        </div>
+                        <div class="alert alert-primary d-flex align-items-center mb-3">
+                            <i class='bx bx-error bx-sm me-2'></i>
+                            <div>
+                                <a href="">Sign in</a> to text this seller
+                            </div>
+                        </div>
+                        <div class="text-center"><button class="btn w-100">Text message</button></div>
+                        <div class=""></div>
+                    </div>
+
+                    <div class="p-4 col-white">
+                        <div class="lead mb-3">LOCATION</div>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-geo-alt-fill me-2"></i>
+                            <div><strong>{{ product.location.split(',')[0] }},</strong><br>
+                                {{ product.location.split(',')[1] }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main p-4 col-white">
+            <p class="text-muted mb-2"><small>Posted on {{ product.publicationDate }}</small></p>
+            <div class="d-flex justify-content-between mb-4">
+                <h4 class="mr-auto">{{ product.title }}</h4>
+                <a class="ml-auto"><i class='bx bx-heart bx-md bx-tada-hover'></i></a>
+            </div>
+
+            <h4 class="mb-4"><strong>{{ priceOrSalary }} &#8372;</strong></h4>
+
+            <div class="tags">
+                <span *ngFor="let tg of product.tagValues" style="display: inline-block;"
+                    class="tag py-2 px-3 me-3 mb-3"
+                    [innerHTML]="(tg.name == tg.value) ? tg.name : (tg.name + ': ' + tg.value)">
+                </span>
+            </div>
+            <div class="lead mb-3 mt-2">DESCRIPTION</div>
+            <p class="mb-5">{{ product.description }}</p>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <p class="text-muted"><small>ID: {{ product.id }}</small></p>
+                <a class="report-btn"><i class="bi bi-flag-fill bx-xs me-1"></i>Report</a>
+            </div>
+        </div>
+    </ng-container>
+</div>

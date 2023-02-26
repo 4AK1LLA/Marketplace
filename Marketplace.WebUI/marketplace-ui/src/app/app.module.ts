@@ -10,6 +10,7 @@ import { AppRoutingModule } from './modules/app-routing.module';
 import { ProductsComponent } from './components/products/products.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthConfigModule } from './modules/auth-config.module';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AuthConfigModule } from './modules/auth-config.module';
     MainCategoriesComponent,
     SidebarComponent,
     ProductsComponent,
-    FooterComponent
+    FooterComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

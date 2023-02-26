@@ -35,7 +35,7 @@
                         <div class="price">{{ pr.price }} &#8372;</div>
                     </div>
                     <div class="text-center my-2">
-                        <a i18n href="#" class="btn">see details</a>
+                        <a i18n [routerLink]="['/product', pr.id]" class="btn">see details</a>
                     </div>
                 </div>
             </div>

@@ -34,6 +34,9 @@ public class ProductService : IProductService
         return _uow.ProductRepository.GetByCategoryNameIncludingTagValuesAndPhotos(categoryName, pageNumber).ToList();
     }
 
+    public Product GetProductById(int productId) => 
+        _uow.ProductRepository.GetIncludingTagValuesAndPhotos(productId);
+
     public int GetProductsCountByCategory(string categoryName) => 
         _uow.ProductRepository.CountByCategoryName(categoryName);
 }
