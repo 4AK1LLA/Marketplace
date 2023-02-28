@@ -9,7 +9,7 @@ import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
             authority: 'https://localhost:7028',
             redirectUrl: window.location.origin,
             postLogoutRedirectUri: window.location.origin,
-            scope: 'openid profile Marketplace.WebAPI',
+            scope: 'openid profile email Marketplace.WebAPI details',
             responseType: 'code',
             silentRenew: false,
             useRefreshToken: false,

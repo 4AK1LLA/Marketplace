@@ -5,6 +5,7 @@ using Marketplace.IdentityServer.Validation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,8 +38,8 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiResources(Config.GetApiResources())
     .AddInMemoryClients(Config.GetClients())
     .AddInMemoryApiScopes(Config.GetApiScopes())
-    .AddDeveloperSigningCredential()
-    .AddProfileService<CustomClaimsService>();
+    .AddDeveloperSigningCredential();
+    //.AddProfileService<CustomClaimsService>();
 
 builder.Services.AddAuthentication()
     .AddFacebook(opt =>
@@ -60,8 +61,9 @@ using (var scope = app.Services.CreateScope())
     var userManager = scope.ServiceProvider
         .GetService<UserManager<IdentityUser>>();
 
-    var user = new IdentityUser("test@marketplace.com");
+    var user = new IdentityUser("test@marketplace.com") { Email = "123@test.com" };
     var result = await userManager!.CreateAsync(user, "Pa$$w0rd");
+    await userManager!.AddClaimAsync(user, new Claim("display_name", "Mega ADMIN"));
 }
 
 app.UseStaticFiles();
