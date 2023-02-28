@@ -19,10 +19,9 @@ public static class Config
             new IdentityResource
             {
                 Name = "details",
-                UserClaims = { "display_name" }
+                UserClaims = { "display_name", "profile_picture" }
             }
         };
-
 
     public static IEnumerable<ApiResource> GetApiResources() =>
         new List<ApiResource>

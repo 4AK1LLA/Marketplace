@@ -58,11 +58,12 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
+    var email = "test@marketplace.com";
     var userManager = scope.ServiceProvider
         .GetService<UserManager<IdentityUser>>();
 
-    var user = new IdentityUser("test@marketplace.com") { Email = "123@test.com" };
-    var result = await userManager!.CreateAsync(user, "Pa$$w0rd");
+    var user = new IdentityUser(email) { Email = email };
+    await userManager!.CreateAsync(user, "Pa$$w0rd");
     await userManager!.AddClaimAsync(user, new Claim("display_name", "Mega ADMIN"));
 }
 

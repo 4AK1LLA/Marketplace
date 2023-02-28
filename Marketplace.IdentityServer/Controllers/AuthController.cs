@@ -76,10 +76,13 @@ public class AuthController : Controller
         {
             Email = vm.Email
         };
+
         var result = await _userManager.CreateAsync(user, vm.Password);
 
         if (result.Succeeded)
         {
+            await _userManager.AddClaimAsync(user, new Claim("display_name", vm.Email!));
+
             await _signInManager
                 .PasswordSignInAsync(vm.Email, vm.Password, isPersistent: false, lockoutOnFailure: false);
 
