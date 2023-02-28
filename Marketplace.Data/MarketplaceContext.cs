@@ -23,9 +23,12 @@ public class MarketplaceContext : DbContext
 
     public DbSet<MainCategory>? MainCategories { get; set; }
 
+    public DbSet<AppUser>? AppUsers { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlServer(_options.Value.DefaultConnection);
+        //options.UseSqlServer(_options.Value.DefaultConnection);
+        options.UseInMemoryDatabase("InMemory");
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -69,5 +72,15 @@ public class MarketplaceContext : DbContext
             .Entity<MainCategory>()
             .HasMany(mc => mc.SubCategories)
             .WithOne(ct => ct.MainCategory);
+
+        builder
+            .Entity<AppUser>()
+            .HasMany(us => us.Products)
+            .WithOne(pr => pr.AppUser);
+
+        builder
+            .Entity<Product>()
+            .HasOne(pr => pr.AppUser)
+            .WithMany(us => us.Products);
     }
 }

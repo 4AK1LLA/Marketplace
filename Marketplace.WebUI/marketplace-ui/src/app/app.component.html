@@ -1,8 +1,8 @@
-<app-navbar [isAuthenticated]="isAuthenticated" (loginEvent)="onLogin()" (logoutEvent)="onLogout()">
+<app-navbar [isAuthenticated]="isAuthenticated" [displayName]="user.displayName" (loginEvent)="onLogin()"
+    (logoutEvent)="onLogout()">
 </app-navbar>
 <app-sidebar></app-sidebar>
 
-<!-- <button *ngIf="isAuthenticated" (click)="onCreateUser()">CreateUser</button> -->
 <router-outlet></router-outlet>
 
 <app-footer></app-footer>

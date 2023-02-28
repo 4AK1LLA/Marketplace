@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
+import { UserDto } from 'src/app/dto/user.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +11,14 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(email: string, token: string) { 
+  getOrCreateUser(accessToken: string, idToken: string) {
     let httpOptions = {
       headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token
-      }),
-      responseType: 'text' as const
+        Authorization: 'Bearer ' + accessToken,
+        idToken
+      })
     }
-    
-    return this.http.post(`${environment.baseApiUrl}/User`, { email }, httpOptions);
+
+    return this.http.get<UserDto>(`${environment.baseApiUrl}/User`, httpOptions);
   }
 }

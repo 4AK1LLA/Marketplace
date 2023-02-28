@@ -19,6 +19,7 @@ public class UnitOfWork : IUnitOfWork
         TagRepository = new Repository<Tag>(context);
         TagValueRepository = new Repository<TagValue>(context);
         MainCategoryRepository = new MainCategoryRepository(context);
+        AppUserRepository = new Repository<AppUser>(context);
     }
 
     public IProductRepository ProductRepository { get; private set; }
@@ -32,6 +33,8 @@ public class UnitOfWork : IUnitOfWork
     public IRepository<TagValue> TagValueRepository { get; private set; }
 
     public IMainCategoryRepository MainCategoryRepository { get; private set; }
+
+    public IRepository<AppUser> AppUserRepository { get; private set; }
 
     public bool Save() => _context.SaveChanges() > 0;
 }

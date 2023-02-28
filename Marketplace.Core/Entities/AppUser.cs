@@ -1,7 +1,9 @@
-﻿namespace Marketplace.WebAPI.DTO;
+﻿namespace Marketplace.Core.Entities;
 
-public class CreateUserDto
+public class AppUser
 {
+    public int Id { get; set; }
+
     public string? StsIdentifier { get; set; }
 
     public string? UserName { get; set; }
@@ -10,5 +12,11 @@ public class CreateUserDto
 
     public string? Email { get; set; }
 
+    public string? PhoneNumber { get; set; }
+
     public string? ProfilePictureUrl { get; set; }
+
+    public ICollection<Product>? Products { get; set; }
+
+    //TODO: add roles
 }

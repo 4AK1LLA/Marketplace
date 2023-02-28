@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  @Input() displayName!: string;
   @Input() isAuthenticated: boolean = false;
   @Output() loginEvent = new EventEmitter;
   @Output() logoutEvent = new EventEmitter;

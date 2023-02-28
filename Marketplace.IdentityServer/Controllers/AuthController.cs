@@ -72,11 +72,17 @@ public class AuthController : Controller
             ModelState.AddModelError("Email", "Email does not match required pattern");
         }
 
-        var user = new IdentityUser(vm.Email);
+        var user = new IdentityUser(vm.Email)
+        {
+            Email = vm.Email
+        };
+
         var result = await _userManager.CreateAsync(user, vm.Password);
 
         if (result.Succeeded)
         {
+            await _userManager.AddClaimAsync(user, new Claim("display_name", vm.Email!));
+
             await _signInManager
                 .PasswordSignInAsync(vm.Email, vm.Password, isPersistent: false, lockoutOnFailure: false);
 
@@ -122,7 +128,7 @@ public class AuthController : Controller
             return RedirectToAction(nameof(Login), "Auth", new { returnUrl });
         }
 
-        var identifier = info.Principal.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        var identifier = info.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
         var userName = string.Empty;
 
         if (info.LoginProvider == "Facebook")
@@ -151,6 +157,13 @@ public class AuthController : Controller
 
         var user = new IdentityUser(userName);
 
+        var emailClaim = info.Principal.FindFirst(ClaimTypes.Email);
+
+        if (emailClaim is not null)
+        {
+            user.Email = emailClaim.Value;
+        }
+
         var result = await _userManager.CreateAsync(user);
 
         if (!result.Succeeded)
@@ -158,11 +171,18 @@ public class AuthController : Controller
             return RedirectToAction(nameof(Login), "Auth", new { returnUrl });
         }
 
-        var fullName = info.Principal.FindFirst(ClaimTypes.Name)!.Value;
+        var fullName = info.Principal.FindFirstValue(ClaimTypes.Name);
 
         if (!string.IsNullOrEmpty(fullName))
         {
             await _userManager.AddClaimAsync(user, new Claim("display_name", fullName));
+        }
+
+        var profilePictureClaim = info.Principal.FindFirst("image");
+
+        if (profilePictureClaim is not null)
+        {
+            await _userManager.AddClaimAsync(user, new Claim("profile_picture", profilePictureClaim.Value));
         }
 
         await _signInManager.SignInAsync(user, isPersistent: false);
@@ -175,8 +195,8 @@ public class AuthController : Controller
     {
         await _signInManager.SignOutAsync();
 
-        var logoutRequest = await _interactionService.GetLogoutContextAsync(logoutId);
+        var logoutContext = await _interactionService.GetLogoutContextAsync(logoutId);
 
-        return Redirect(logoutRequest.PostLogoutRedirectUri);
+        return Redirect(logoutContext.PostLogoutRedirectUri);
     }
 }

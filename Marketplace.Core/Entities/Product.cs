@@ -14,9 +14,9 @@ public class Product
 
     public Category? Category { get; set; }
 
+    public AppUser? AppUser { get; set; }
+
     public ICollection<TagValue>? TagValues { get; set; }
 
     public ICollection<Photo>? Photos { get; set; }
-
-    //TODO: add identity user property for seller
 }

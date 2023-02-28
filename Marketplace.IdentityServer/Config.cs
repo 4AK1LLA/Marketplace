@@ -14,9 +14,14 @@ public static class Config
         new List<IdentityResource>
         {
             new IdentityResources.OpenId(),
-            new IdentityResources.Profile()
+            new IdentityResources.Profile(),
+            new IdentityResources.Email(),
+            new IdentityResource
+            {
+                Name = "details",
+                UserClaims = { "display_name", "profile_picture" }
+            }
         };
-
 
     public static IEnumerable<ApiResource> GetApiResources() =>
         new List<ApiResource>
@@ -38,7 +43,7 @@ public static class Config
             {
                 ClientId = "angular_ui",
                 AllowedGrantTypes = GrantTypes.Code,
-                AllowedScopes = { "profile", "openid", "Marketplace.WebAPI" },
+                AllowedScopes = { "profile", "openid", "Marketplace.WebAPI", "email", "details" },
                 AllowAccessTokensViaBrowser = true,
                 RequireClientSecret = false,
                 RequirePkce = true,
@@ -46,6 +51,7 @@ public static class Config
                 RedirectUris = { "http://localhost:4200" },
                 PostLogoutRedirectUris = { "http://localhost:4200" },
                 AllowedCorsOrigins = { "http://localhost:4200" },
+                AlwaysIncludeUserClaimsInIdToken = true,
             }
         };
 }
