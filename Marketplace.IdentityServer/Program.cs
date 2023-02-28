@@ -14,7 +14,7 @@ builder.Services.AddSingleton<IEmailAddressValidator, EmailAddressValidator>();
 
 builder.Services.AddDbContext<IdentityContext>(opt => 
 {
-    opt.UseInMemoryDatabase("Memory");
+    opt.UseInMemoryDatabase("InMemoryIdentity");
 });
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>

@@ -27,7 +27,8 @@ public class MarketplaceContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlServer(_options.Value.DefaultConnection);
+        //options.UseSqlServer(_options.Value.DefaultConnection);
+        options.UseInMemoryDatabase("InMemory");
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
