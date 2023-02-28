@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { MainCategoryDto } from './dto/main-category.dto';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { combineLatest } from 'rxjs';
+import { UserDto } from './dto/user.dto';
 import { UserService } from './services/user-service/user.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit {
   identityCookie: string = 'identity_cookie';
   //mainCategories: MainCategoryDto[] = [];
   isAuthenticated: boolean = false;
+  user: UserDto = new UserDto;
 
   constructor(
     private userService: UserService,
@@ -24,26 +26,35 @@ export class AppComponent implements OnInit {
     this.oidcSecurityService.checkAuth().subscribe(localAuth => {
       this.authorizeIfCookieExist(this.identityCookie, localAuth.isAuthenticated);
       this.isAuthenticated = localAuth.isAuthenticated;
-      console.log(localAuth)
+
+      if (this.isAuthenticated) {
+        this.initUser();
+      }
     });
   }
 
   public onLogin = (): void => this.oidcSecurityService.authorize();
   public onLogout = () => this.oidcSecurityService.logoffAndRevokeTokens().subscribe();
 
-  public onCreateUser(): void {
-    let tokens$ = combineLatest({ 
-      idToken: this.oidcSecurityService.getIdToken(), 
-      accessToken: this.oidcSecurityService.getAccessToken() 
+  private initUser(): void {
+    let tokens$ = combineLatest({
+      idToken: this.oidcSecurityService.getIdToken(),
+      accessToken: this.oidcSecurityService.getAccessToken()
     });
 
-    tokens$.subscribe(tokens => this.userService.createUser(tokens.accessToken, tokens.idToken).subscribe(response => console.log(response)));
+    tokens$.subscribe(tokens => {
+      this.userService
+        .getOrCreateUser(tokens.accessToken, tokens.idToken)
+        .subscribe(response => {
+          this.user = response;
+        });
+    });
   }
 
   private authorizeIfCookieExist(cookie: string, isAuth: boolean): void {
     document.cookie = cookie + '=0;path=/;';
 
-    if (!isAuth && document.cookie.indexOf(cookie) === -1) { 
+    if (!isAuth && document.cookie.indexOf(cookie) === -1) {
       this.oidcSecurityService.authorize();
     }
   }

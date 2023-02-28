@@ -22,12 +22,11 @@ public class UserController : Controller
         _mapper = mapper;
     }
 
-    [HttpPost]
+    [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public IActionResult Create([FromHeader] string idToken)
+    public ActionResult<GetUserDto> GetOrCreate([FromHeader] string idToken)
     {
         var handler = new JwtSecurityTokenHandler();
 
@@ -39,10 +38,11 @@ public class UserController : Controller
         var claims = handler.ReadJwtToken(idToken).Claims;
 
         var userName = claims.FirstOrDefault(c => c.Type == "name")!.Value;
+        var foundUser = _service.GetUserByName(userName);
 
-        if (_service.GetUserByName(userName) is not null)
+        if (foundUser is not null)
         {
-            return Ok();
+            return Ok(_mapper.Map<GetUserDto>(foundUser));
         }
 
         var identifier = claims.FirstOrDefault(c => c.Type == "sub")!.Value;
@@ -72,6 +72,6 @@ public class UserController : Controller
 
         _service.AddUser(_mapper.Map<AppUser>(dto));
 
-        return Ok(dto);
+        return Ok(_mapper.Map<GetUserDto>(dto));
     }
 }
