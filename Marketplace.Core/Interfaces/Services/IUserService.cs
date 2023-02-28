@@ -6,5 +6,5 @@ public interface IUserService
 {
     void AddUser(AppUser user);
 
-    AppUser GetUserByIdentifier(string identifier);
+    AppUser GetUserByName(string userName);
 }

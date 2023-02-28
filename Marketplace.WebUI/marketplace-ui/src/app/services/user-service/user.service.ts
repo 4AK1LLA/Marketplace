@@ -10,13 +10,14 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(token: string) { 
+  createUser(accessToken: string, idToken: string) {
     let httpOptions = {
       headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token
+        Authorization: 'Bearer ' + accessToken,
+        idToken
       })
     }
-    
+
     return this.http.post(`${environment.baseApiUrl}/User`, null, httpOptions);
   }
 }

@@ -16,6 +16,6 @@ public class UserService : IUserService
         _uow.Save();
     }
 
-    public AppUser GetUserByIdentifier(string identifier) => 
-        _uow.AppUserRepository.Find(us => us.StsIdentifier == identifier).FirstOrDefault()!;
+    public AppUser GetUserByName(string userName) => 
+        _uow.AppUserRepository.Find(us => us.UserName == userName).FirstOrDefault()!;
 }

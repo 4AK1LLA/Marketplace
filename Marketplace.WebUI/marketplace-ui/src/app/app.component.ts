@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import { MainCategoryDto } from './dto/main-category.dto';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { combineLatest } from 'rxjs';
 import { UserService } from './services/user-service/user.service';
 
 @Component({
@@ -31,9 +32,12 @@ export class AppComponent implements OnInit {
   public onLogout = () => this.oidcSecurityService.logoffAndRevokeTokens().subscribe();
 
   public onCreateUser(): void {
-    this.oidcSecurityService.getAccessToken().subscribe(token => {
-      this.userService.createUser(token).subscribe(response => console.log(response));
+    let tokens$ = combineLatest({ 
+      idToken: this.oidcSecurityService.getIdToken(), 
+      accessToken: this.oidcSecurityService.getAccessToken() 
     });
+
+    tokens$.subscribe(tokens => this.userService.createUser(tokens.accessToken, tokens.idToken).subscribe(response => console.log(response)));
   }
 
   private authorizeIfCookieExist(cookie: string, isAuth: boolean): void {
