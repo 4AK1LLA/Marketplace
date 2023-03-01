@@ -11,6 +11,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthConfigModule } from './modules/auth-config.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { PostAdComponent } from './components/post-ad/post-ad.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     SidebarComponent,
     ProductsComponent,
     FooterComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    PostAdComponent
   ],
   imports: [
     BrowserModule,
