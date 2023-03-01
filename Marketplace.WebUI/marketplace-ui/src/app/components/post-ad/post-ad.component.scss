@@ -1,0 +1,29 @@
+@import 'src/styles/variables.scss';
+
+.container {
+    margin-top: 8rem;
+}
+
+.block {
+    background-color: $white-color;
+    border-radius: .3rem;
+}
+
+.form-control, .form-select:disabled {
+    background-color: $grey-color;
+}
+
+.btn-choose {
+    color: $main-color;
+    border-color: $main-color;
+    background-color: $secondary-color;
+}
+
+.btn-choose:hover {
+    color: $white-color;
+    background-color: $main-color;
+}
+
+.modal-btn {
+    height: 50px;
+}

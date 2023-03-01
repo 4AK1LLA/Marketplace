@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostAdComponent implements OnInit {
 
+  category!: string;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onCategoryClick(category: string) {
+    this.category = category;
+  }
 }
