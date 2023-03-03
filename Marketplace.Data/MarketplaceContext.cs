@@ -1,6 +1,7 @@
 ﻿using Marketplace.Core.Entities;
 using Marketplace.Data.Options;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Options;
 
 namespace Marketplace.Data;
@@ -27,8 +28,8 @@ public class MarketplaceContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        //options.UseSqlServer(_options.Value.DefaultConnection);
-        options.UseInMemoryDatabase("InMemory");
+        options.UseSqlServer(_options.Value.DefaultConnection);
+        //options.UseInMemoryDatabase("InMemory");
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -83,6 +84,10 @@ public class MarketplaceContext : DbContext
             .HasOne(pr => pr.AppUser)
             .WithMany(us => us.Products);
 
-        builder.Entity<Tag>().OwnsMany(tg => tg.PossibleValues);
+        builder.Entity<Tag>().OwnsMany(
+            tg => tg.PossibleValues, ownedNavigationBuilder =>
+            {
+                ownedNavigationBuilder.ToJson();
+            });
     }
 }

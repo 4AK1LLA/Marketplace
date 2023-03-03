@@ -1,0 +1,20 @@
+﻿[
+  {
+    "Name": "Distance to nearest city",
+    "Type": "dropdown",
+    "PossibleValues": [
+      { "Value": "In the city" },
+      { "Value": "Up to 5 km" },
+      { "Value": "Up to 10 km" },
+      { "Value": "Up to 20 km" },
+      { "Value": "Up to 50 km" },
+      { "Value": "Up to 100 km" }
+    ]
+  },
+  {
+    "Name": "Land area",
+    "IsRequired": true,
+    "Type": "input",
+    "Remark": "number acres"
+  }
+]
