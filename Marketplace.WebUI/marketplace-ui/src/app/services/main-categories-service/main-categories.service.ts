@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { MainCategoryDto } from '../../dto/main-category.dto';
+import { MainCategoryDto, MainCategoryPostDto } from '../../dto/main-category.dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainCategoriesService {
 
+  private baseRequestUrl: string = `${environment.baseApiUrl}/MainCategory`;
+
   constructor(private http: HttpClient) { }
 
-  getAll = (): Observable<MainCategoryDto[]> => this.http.get<MainCategoryDto[]>(`${environment.baseApiUrl}/MainCategory`);
+  getAll = () => this.http.get<MainCategoryDto[]>(this.baseRequestUrl);
+
+  getAllForPosting = () => this.http.get<MainCategoryPostDto[]>(this.baseRequestUrl + '?posting=true');
   
 }

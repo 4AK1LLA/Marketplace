@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryDto, MainCategoryPostDto } from 'src/app/dto/main-category.dto';
 import { TagDto } from 'src/app/dto/tag.dto';
+import { MainCategoriesService } from 'src/app/services/main-categories-service/main-categories.service';
 
 @Component({
   selector: 'app-post-ad',
@@ -8,12 +10,16 @@ import { TagDto } from 'src/app/dto/tag.dto';
 })
 export class PostAdComponent implements OnInit {
 
-  category: string = 'Houses for rent';
+  mainCategories: MainCategoryPostDto[] = [];
+
+  category!: CategoryDto;
   tags: TagDto[] = [];
 
-  constructor() { }
+  constructor(private mainCategoriesService: MainCategoriesService) { }
 
   ngOnInit(): void {
+    this.mainCategoriesService.getAllForPosting().subscribe(mcList => this.mainCategories = mcList);
+
     this.tags = [
       new TagDto(23, 'Price', true, 'input', null, 'price'),
       new TagDto(24, 'Currency', true, 'dropdown', ['uah', 'eur', 'usd'], 'price'),
@@ -48,7 +54,5 @@ export class PostAdComponent implements OnInit {
     ];
   }
 
-  onCategoryClick(category: string) {
-    this.category = category;
-  }
+  onCategoryClick = (category: CategoryDto) => this.category = category;
 }

@@ -23,9 +23,16 @@ public class MainCategoryController : Controller
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public ActionResult<IEnumerable<MainCategoryDto>> GetMainCategories()
+    public ActionResult<IEnumerable<object>> GetMainCategories([FromQuery] bool? posting)
     {
         var mainCategories = _service.GetAllMainCategories();
+
+        if (posting is not null && posting is true)
+        {
+            return (mainCategories is null || mainCategories.Count() == 0) ?
+            NoContent() :
+            Ok(_mapper.Map<IEnumerable<MainCategoryPostDto>>(mainCategories));
+        }
 
         return (mainCategories is null || mainCategories.Count() == 0) ? 
             NoContent() : 

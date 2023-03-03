@@ -10,26 +10,18 @@
 }
 
 .form-control,
-.form-select:disabled,
 .dropdown-btn {
     background-color: $grey-color;
 }
 
-.btn-choose,
-.form-select {
-    color: $main-color;
+.btn-modal {
+    height: 50px;
     background-color: $secondary-color;
     border: none;
-    border-radius: 0;
 }
 
-.btn-choose:hover {
-    color: $white-color;
-    background-color: $main-color;
-}
-
-.modal-btn {
-    height: 50px;
+.btn-modal:hover, .btn-modal:focus {
+    background-color: $secondary-color-darker;
 }
 
 .dropdown-btn,
@@ -40,6 +32,20 @@
 .input-group {
     border-radius: var(--bs-border-radius);
     overflow: hidden;
+
+    .btn {
+        background-color: $secondary-color;
+        border: none;
+        border-radius: 0;
+    }
+
+    .btn:hover {
+        background-color: $secondary-color-darker;
+    }
+
+    .form-control {
+        border: none;
+    }
 }
 
 input:focus,
