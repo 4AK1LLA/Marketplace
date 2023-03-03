@@ -9,14 +9,18 @@
     border-radius: .3rem;
 }
 
-.form-control, .form-select:disabled {
+.form-control,
+.form-select:disabled,
+.dropdown-btn {
     background-color: $grey-color;
 }
 
-.btn-choose {
+.btn-choose,
+.form-select {
     color: $main-color;
-    border-color: $main-color;
     background-color: $secondary-color;
+    border: none;
+    border-radius: 0;
 }
 
 .btn-choose:hover {
@@ -26,4 +30,54 @@
 
 .modal-btn {
     height: 50px;
+}
+
+.dropdown-btn,
+.input-group {
+    border: var(--bs-border-width) solid var(--bs-border-color);
+}
+
+.input-group {
+    border-radius: var(--bs-border-radius);
+    overflow: hidden;
+}
+
+input:focus,
+.form-control:focus {
+    box-shadow: none;
+    border-color: $main-color;
+}
+
+.form-check-input:checked {
+    background-color: $main-color;
+    border-color: $main-color;
+}
+
+.form-check-input:focus:not(:checked) {
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+}
+
+.list-group-item {
+    background-color: $grey-color;
+}
+
+.list-group-item:hover {
+    background-color: $white-color;
+}
+
+div,
+button,
+input {
+    color: $main-color;
+}
+
+.btn-submit {
+    background-color: $main-color;
+    color: $white-color;
+    border: 2px solid $main-color;
+}
+
+.btn-submit:hover {
+    background-color: $white-color;
+    color: $main-color;
 }

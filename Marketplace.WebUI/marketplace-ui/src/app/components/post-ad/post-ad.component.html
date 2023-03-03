@@ -1,26 +1,107 @@
 <div class="container">
     <h2 class="mb-4"><strong>Ad creating</strong></h2>
-    <div class="block py-4 px-5 mb-1">
-        <div class="lead mb-3">Describe your product</div>
-        <div class="row">
+
+    <!-- Basic info -->
+    <div class="block p-5 mb-4">
+        <div class="lead mb-4">Basic information</div>
+        <div class="row gx-5">
             <div class="col-8">
-                <label class="form-label">Enter title*</label>
-                <input class="form-control" placeholder="For example, iPhone 11 with a guarantee">
+                <div class="mb-4">
+                    <label class="form-label">Enter title*</label>
+                    <input class="form-control" placeholder="For example, iPhone 11 with a guarantee">
+                </div>
+                <div>
+                    <label class="form-label">Description*</label>
+                    <textarea class="form-control" rows="3"
+                        placeholder="Think about what details you would like to know from the ad and add them to the description"></textarea>
+                </div>
             </div>
             <div class="col-4">
-                <label class="form-label">Choose category*</label>
-                <div class="input-group">
-                    <button class="btn btn-choose" data-bs-toggle="modal" data-bs-target="#modal">Category</button>
-                    <select class="form-select" disabled>
-                        <option selected>{{ (category === undefined) ? 'Choose...' : category }}</option>
-                    </select>
+                <div class="mb-4">
+                    <label class="form-label">Choose category*</label>
+                    <div class="input-group">
+                        <button class="btn btn-choose" data-bs-toggle="modal" data-bs-target="#modal">Category</button>
+                        <select class="form-select" disabled>
+                            <option selected>{{ (category === undefined) ? 'Choose...' : category }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Location*</label>
+                    <input class="form-control" placeholder="City and region">
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Photo -->
+    <div class="block p-5 mb-4">
+        <div class="lead mb-4">Photo</div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">...</label>
+            <input class="form-control" type="file" id="formFile">
+        </div>
+    </div>
+
+    <!-- Details (tags) -->
+    <div class="block p-5 mb-4">
+        <div class="lead mb-4">Details</div>
+        <div class="row gx-5">
+            <div *ngFor="let tag of tags" class="col-6 mb-4">
+
+                <div *ngIf="tag.type==='dropdown'&&tag.possibleValues" class="dropdown">
+                    <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
+                    <button
+                        class="form-control dropdown-btn dropdown-toggle w-50 d-flex align-items-center justify-content-between"
+                        data-bs-toggle="dropdown"> {{
+                        tag.possibleValues[0]
+                        }}</button>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let val of tag.possibleValues"><a class="dropdown-item">{{ val }}</a></li>
+                    </ul>
+                </div>
+
+                <div *ngIf="tag.type==='checkbox'&&tag.possibleValues">
+                    <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
+                    <div class="row w-75">
+                        <div *ngFor="let val of tag.possibleValues" class="col-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox">
+                                <label class="form-check-label">
+                                    {{ val }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="tag.type==='input'">
+                    <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
+                    <input class="form-control w-50">
+                </div>
+
+                <div *ngIf="tag.type==='switch'" class="form-check form-switch">
+                    <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
+                    <input class="form-check-input" type="checkbox" role="switch">
+                </div>
+
+                <div *ngIf="tag.type==='pills'&&tag.possibleValues&&tag.possibleValues.length===2">
+                    <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
+                    <div class="list-group w-50">
+                        <button *ngFor="let val of tag.possibleValues" class="list-group-item list-group-item-action">{{ val }}</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="block p-5 mb-4 d-flex justify-content-end">
+        <button class="btn btn-submit px-5 fw-bold">Publish</button>
+    </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal for category -->
 <div class="modal fade" id="modal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
