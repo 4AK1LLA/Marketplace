@@ -17,11 +17,11 @@
     ]
   },
   {
-    "Name": "Realty2",
+    "Name": "Realty",
     "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/key-solid-96_hftmhp.png",
     "SubCategories": [
       {
-        "Name": "Apartments2",
+        "Name": "Apartments",
         "Products": [
           {
             "Title": "One-room smart apartment in a new building!",
@@ -228,7 +228,7 @@
     ]
   },
   {
-    "Name": "Job1",
+    "Name": "Job",
     "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/briefcase-solid-96_fhc7se.png",
     "SubCategories": [
       {
@@ -313,7 +313,7 @@
     ]
   },
   {
-    "Name": "House and garden1",
+    "Name": "House and garden",
     "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/building-house-solid-96_ucduvn.png",
     "SubCategories": [
       {
@@ -451,7 +451,7 @@
     ]
   },
   {
-    "Name": "Electronics1",
+    "Name": "Electronics",
     "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674239930/main-categories/tv-solid-96_1_pifkzw.png",
     "SubCategories": [
       {
@@ -659,7 +659,7 @@
     ]
   },
   {
-    "Name": "For free1",
+    "Name": "For free",
     "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/purchase-tag-solid-96_e0pi0g.png",
     "SubCategories": [
       {

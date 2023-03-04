@@ -34,7 +34,7 @@ public class Seeder : ISeeder
         mainCategories.Add(CreateMainCategoryForPaging("MC for paging with 40 products", "categoryyy1", 40));
         mainCategories.Add(CreateMainCategoryForPaging("MC for paging with 128 products", "categoryyy2", 128));
 
-        _uow.MainCategoryRepository.AddRange(mainCategories);
+        #region SEEDING_TAGS
 
         string tagsJson;
 
@@ -45,7 +45,17 @@ public class Seeder : ISeeder
 
         IEnumerable<Tag> tags = JsonSerializer.Deserialize<List<Tag>>(tagsJson)!;
 
-        _uow.TagRepository.AddRange(tags);
+        MainCategory mcRealty = mainCategories.First(mc => mc.Name == "Realty");
+
+        mcRealty.SubCategories!.Add(new Category
+        {
+            Name = "Houses for rent",
+            Tags = tags.ToList()
+        });
+
+        #endregion
+
+        _uow.MainCategoryRepository.AddRange(mainCategories);
 
         _uow.Save();
 
