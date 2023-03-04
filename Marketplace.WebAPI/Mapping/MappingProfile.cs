@@ -64,5 +64,7 @@ public class MappingProfile : Profile
 
         CreateMap<MainCategory, MainCategoryPostDto>();
         CreateMap<Category, CategoryPostDto>();
+
+        CreateMap<Tag, TagDto>();
     }
 }

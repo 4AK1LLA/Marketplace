@@ -21,8 +21,17 @@ public class TagController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<TagDto>> Get()
+    public ActionResult<IEnumerable<TagDto>> Get([FromQuery] int? categoryId)
     {
-        return Ok();
+        if (!categoryId.HasValue) 
+        {
+            return NoContent();
+        }
+
+        var tags = _service.GetTagsByCategoryId(categoryId.Value);
+
+        return (tags is null || !tags.Any()) ?
+            NoContent() :
+            Ok(_mapper.Map<IEnumerable<TagDto>>(tags));
     }
 }

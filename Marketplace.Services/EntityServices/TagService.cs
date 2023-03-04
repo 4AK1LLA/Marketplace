@@ -9,5 +9,13 @@ public class TagService : ITagService
 
     public TagService(IUnitOfWork uow) => _uow = uow;
 
-    public IEnumerable<Tag> GetTagsByCategoryId(int categoryId) => _uow.TagRepository.GetByCategoryId(categoryId);
+    public IEnumerable<Tag> GetTagsByCategoryId(int categoryId) 
+    { 
+        if (categoryId <= 0)
+        {
+            return _uow.TagRepository.GetByCategoryId(1);
+        }
+
+        return _uow.TagRepository.GetByCategoryId(categoryId);
+    }
 }
