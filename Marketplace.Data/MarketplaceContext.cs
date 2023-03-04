@@ -1,7 +1,6 @@
 ﻿using Marketplace.Core.Entities;
 using Marketplace.Data.Options;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Options;
 
 namespace Marketplace.Data;
