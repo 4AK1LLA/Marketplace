@@ -12,7 +12,7 @@ import { TagService } from 'src/app/services/tag-service/tag.service';
 })
 export class PostAdComponent implements OnInit {
 
-  form: FormGroup = new FormGroup([]);
+  form: FormGroup = new FormGroup({});
 
   mainCategories: MainCategoryPostDto[] = [];
   category!: CategoryDto;
@@ -23,14 +23,42 @@ export class PostAdComponent implements OnInit {
     private tagService: TagService) { }
 
   ngOnInit(): void {
+    this.initFormGroup();
     this.mainCategoriesService.getAllForPosting().subscribe(mcList => this.mainCategories = mcList);
   }
 
   private initTags() {
     this.tagService.getTagsByCategory(this.category.id).subscribe(tagList => {
-      tagList.forEach(tag => tag.displayValue = '');
-      this.tags = tagList;
-      this.form = this.toFormGroup(this.tags);
+      if (tagList) {
+        tagList.forEach(tag => tag.displayValue = '');
+      }
+
+      this.tags = (tagList) ? tagList : [];
+      this.initFormGroup();
+    });
+  }
+
+  private initFormGroup() {
+    let basicInfoControls = [
+      { name: 'title', value: '' },
+      { name: 'categoryId', value: (this.category) ? this.category.id : -1 },
+      { name: 'description', value: '' },
+      { name: 'location', value: '' }
+    ];
+
+    basicInfoControls.forEach(control => {
+      this.form.addControl(control.name, new FormControl(control.value, Validators.required));
+    });
+
+    this.tags.forEach(tag => {
+      let value = (tag.type === 'checkbox') ? [] : (tag.type === 'switch') ? false : '';
+      let control = new FormControl(value);
+
+      if (tag.isRequired) {
+        control.addValidators(Validators.required);
+      }
+
+      this.form.addControl(tag.id.toString(), control);
     });
   }
 
@@ -68,6 +96,7 @@ export class PostAdComponent implements OnInit {
   }
 
   public onCategoryClick(category: CategoryDto) {
+    this.form = new FormGroup({});
     this.category = category;
 
     this.initTags();
@@ -75,21 +104,5 @@ export class PostAdComponent implements OnInit {
 
   public onSubmit() {
     console.log(JSON.stringify(this.form.getRawValue()));
-  }
-
-  private toFormGroup(tags: TagDto[]) {
-    let controls: FormControl[] = [];
-
-    tags!.forEach(tag => {
-      let value = (tag.type === 'checkbox') ? [] : (tag.type === 'switch') ? false : '';
-
-      controls[tag.id] = new FormControl(value);
-
-      if (tag.isRequired) {
-        controls[tag.id].addValidators(Validators.required);
-      }
-    });
-
-    return new FormGroup(controls);
   }
 }
