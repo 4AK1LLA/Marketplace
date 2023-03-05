@@ -26,7 +26,7 @@ export class PostAdComponent implements OnInit {
 
   private initTags() {
     this.tagService.getTagsByCategory(this.category.id).subscribe(tagList => {
-      tagList.forEach(tag => tag.value='');
+      tagList.forEach(tag => tag.displayValue = '');
       this.tags = tagList;
       this.form = this.toFormGroup(this.tags);
     });
@@ -35,13 +35,28 @@ export class PostAdComponent implements OnInit {
   public onDropdownClick(value: string, tagId: number) {
     //Displaying
     let i = this.tags.findIndex(tag => tag.id === tagId);
-    this.tags[i].value = value;
+    this.tags[i].displayValue = value;
 
     //Form value
     this.form.get(tagId.toString())?.setValue(value);
   }
 
-  public onCategoryClick(category: CategoryDto) { 
+  public onCheckBoxChange(target: any, value: string, tagId: number) {
+    let current = this.form.get(tagId.toString())?.value as string[];
+
+    if (!target.checked) {
+      let i = current.indexOf(value);
+      current.splice(i, 1);
+    }
+
+    if (target.checked) {
+      current.push(value);
+    }
+
+    this.form.get(tagId.toString())?.setValue(current);
+  }
+
+  public onCategoryClick(category: CategoryDto) {
     this.category = category;
 
     this.initTags();
@@ -55,10 +70,8 @@ export class PostAdComponent implements OnInit {
     let group: any = {};
 
     tags!.forEach(tag => {
-      if (tag.type==='dropdown') {
-        group[tag.id] = tag.isRequired ? new FormControl('', Validators.required)
-        : new FormControl('');
-      }
+      group[tag.id] = tag.isRequired ? new FormControl((tag.type === 'checkbox') ? [] : '', Validators.required)
+        : new FormControl((tag.type === 'checkbox') ? [] : '');
     });
 
     return new FormGroup(group);

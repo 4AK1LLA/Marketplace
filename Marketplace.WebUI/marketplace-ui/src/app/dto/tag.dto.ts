@@ -5,5 +5,5 @@ export class TagDto {
     type!: string;
     remark?: string | null;
     possibleValues?: { value: string }[] | null;
-    value!: string;
+    displayValue!: string;
 }
