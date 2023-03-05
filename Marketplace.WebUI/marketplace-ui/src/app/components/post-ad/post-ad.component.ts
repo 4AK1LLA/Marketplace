@@ -12,13 +12,15 @@ import { TagService } from 'src/app/services/tag-service/tag.service';
 })
 export class PostAdComponent implements OnInit {
 
-  form: FormGroup = new FormGroup({});
+  form: FormGroup = new FormGroup([]);
 
   mainCategories: MainCategoryPostDto[] = [];
   category!: CategoryDto;
   tags: TagDto[] = [];
 
-  constructor(private mainCategoriesService: MainCategoriesService, private tagService: TagService) { }
+  constructor(
+    private mainCategoriesService: MainCategoriesService, 
+    private tagService: TagService) { }
 
   ngOnInit(): void {
     this.mainCategoriesService.getAllForPosting().subscribe(mcList => this.mainCategories = mcList);
@@ -56,6 +58,15 @@ export class PostAdComponent implements OnInit {
     this.form.get(tagId.toString())?.setValue(current);
   }
 
+  public onPillsOptionClick(value: string, tagId: number) {
+    //Displaying
+    let i = this.tags.findIndex(tag => tag.id === tagId);
+    this.tags[i].displayValue = value;
+
+    //Form value
+    this.form.get(tagId.toString())?.setValue(value);
+  }
+
   public onCategoryClick(category: CategoryDto) {
     this.category = category;
 
@@ -66,14 +77,19 @@ export class PostAdComponent implements OnInit {
     console.log(JSON.stringify(this.form.getRawValue()));
   }
 
-  private toFormGroup(tags: TagDto[] | null) {
-    let group: any = {};
+  private toFormGroup(tags: TagDto[]) {
+    let controls: FormControl[] = [];
 
     tags!.forEach(tag => {
-      group[tag.id] = tag.isRequired ? new FormControl((tag.type === 'checkbox') ? [] : '', Validators.required)
-        : new FormControl((tag.type === 'checkbox') ? [] : '');
+      let value = (tag.type === 'checkbox') ? [] : (tag.type === 'switch') ? false : '';
+
+      controls[tag.id] = new FormControl(value);
+
+      if (tag.isRequired) {
+        controls[tag.id].addValidators(Validators.required);
+      }
     });
 
-    return new FormGroup(group);
+    return new FormGroup(controls);
   }
 }

@@ -21,7 +21,8 @@
                     <div class="mb-4">
                         <label class="form-label">Choose category*</label>
                         <div class="input-group">
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal">Category</button>
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#modal">Category</button>
                             <input type="text" class="form-control" disabled
                                 [value]="(category) ? category.name : 'Choose...'">
                         </div>
@@ -56,10 +57,12 @@
                             <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
                             <button
                                 class="form-control dropdown-btn dropdown-toggle w-50 d-flex align-items-center justify-content-between"
-                                data-bs-toggle="dropdown">{{ (tag.displayValue.length!==0) ? tag.displayValue : 'Choose' }}</button>
+                                data-bs-toggle="dropdown">{{ (tag.displayValue.length!==0) ? tag.displayValue : 'Choose'
+                                }}</button>
                             <ul class="dropdown-menu">
                                 <li *ngFor="let pv of tag.possibleValues">
-                                    <a class="dropdown-item" (click)="onDropdownClick(pv.value, tag.id)">{{ pv.value }}</a>
+                                    <a class="dropdown-item" (click)="onDropdownClick(pv.value, tag.id)">{{ pv.value
+                                        }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -69,7 +72,8 @@
                             <div class="row w-75">
                                 <div *ngFor="let pv of tag.possibleValues" class="col-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" (change)="onCheckBoxChange($event.currentTarget, pv.value, tag.id)">
+                                        <input class="form-check-input" type="checkbox"
+                                            (change)="onCheckBoxChange($event.currentTarget, pv.value, tag.id)">
                                         <label class="form-check-label">
                                             {{ pv.value }}
                                         </label>
@@ -78,24 +82,25 @@
                             </div>
                         </div>
 
-                        <!-- <div *ngSwitchCase="'input'">
+                        <div *ngSwitchCase="'input'">
                             <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
-                            <input class="form-control w-50">
+                            <input class="form-control w-50" [formControlName]="tag.id">
                         </div>
 
                         <div *ngSwitchCase="'switch'" class="form-check form-switch">
                             <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
-                            <input class="form-check-input" type="checkbox" role="switch">
+                            <input class="form-check-input" type="checkbox" role="switch" [formControlName]="tag.id">
                         </div>
 
                         <div *ngSwitchCase="'pills'">
                             <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
                             <div class="list-group w-50">
-                                <button *ngFor="let pv of tag.possibleValues"
-                                    class="list-group-item list-group-item-action">{{
+                                <button (click)="onPillsOptionClick(pv.value, tag.id)" type="button"
+                                    *ngFor="let pv of tag.possibleValues"
+                                    [class]="(pv.value===tag.displayValue)?'list-group-item list-group-item-action current':'list-group-item list-group-item-action'">{{
                                     pv.value }}</button>
                             </div>
-                        </div> -->
+                        </div>
 
                     </div>
 

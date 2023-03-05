@@ -91,3 +91,13 @@ input {
 .dropdown-item:active {
     background-color: $main-color;
 }
+
+.list-group-item.current {
+    background-color: $main-color;
+    border-color: $main-color;
+    color: $white-color;
+}
+
+.list-group-item.current:hover {
+    color: $white-color;
+}
