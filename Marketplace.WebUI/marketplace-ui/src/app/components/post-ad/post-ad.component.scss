@@ -87,3 +87,7 @@ input {
     background-color: $white-color;
     color: $main-color;
 }
+
+.dropdown-item:active {
+    background-color: $main-color;
+}

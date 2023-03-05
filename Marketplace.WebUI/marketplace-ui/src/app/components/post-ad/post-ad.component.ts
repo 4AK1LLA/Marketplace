@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoryDto, MainCategoryPostDto } from 'src/app/dto/main-category.dto';
 import { TagDto } from 'src/app/dto/tag.dto';
 import { MainCategoriesService } from 'src/app/services/main-categories-service/main-categories.service';
@@ -11,8 +12,9 @@ import { TagService } from 'src/app/services/tag-service/tag.service';
 })
 export class PostAdComponent implements OnInit {
 
-  mainCategories: MainCategoryPostDto[] = [];
+  form: FormGroup = new FormGroup({});
 
+  mainCategories: MainCategoryPostDto[] = [];
   category!: CategoryDto;
   tags: TagDto[] = [];
 
@@ -22,9 +24,43 @@ export class PostAdComponent implements OnInit {
     this.mainCategoriesService.getAllForPosting().subscribe(mcList => this.mainCategories = mcList);
   }
 
-  onCategoryClick(category: CategoryDto) { 
+  private initTags() {
+    this.tagService.getTagsByCategory(this.category.id).subscribe(tagList => {
+      tagList.forEach(tag => tag.value='');
+      this.tags = tagList;
+      this.form = this.toFormGroup(this.tags);
+    });
+  }
+
+  public onDropdownClick(value: string, tagId: number) {
+    //Displaying
+    let i = this.tags.findIndex(tag => tag.id === tagId);
+    this.tags[i].value = value;
+
+    //Form value
+    this.form.get(tagId.toString())?.setValue(value);
+  }
+
+  public onCategoryClick(category: CategoryDto) { 
     this.category = category;
 
-    this.tagService.getTagsByCategory(this.category.id).subscribe(tagList => this.tags = tagList);
+    this.initTags();
+  }
+
+  public onSubmit() {
+    console.log(JSON.stringify(this.form.getRawValue()));
+  }
+
+  private toFormGroup(tags: TagDto[] | null) {
+    let group: any = {};
+
+    tags!.forEach(tag => {
+      if (tag.type==='dropdown') {
+        group[tag.id] = tag.isRequired ? new FormControl('', Validators.required)
+        : new FormControl('');
+      }
+    });
+
+    return new FormGroup(group);
   }
 }

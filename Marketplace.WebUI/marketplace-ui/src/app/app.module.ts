@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AuthConfigModule } from './modules/auth-config.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { PostAdComponent } from './components/post-ad/post-ad.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PostAdComponent } from './components/post-ad/post-ad.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    AuthConfigModule
+    AuthConfigModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
