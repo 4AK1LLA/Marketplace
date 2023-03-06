@@ -9,16 +9,15 @@
                 <div class="col-8">
                     <div class="mb-4">
                         <label class="form-label">Title*</label>
-                        <input id="title"
-                            [class]="(form.controls['title'].invalid && form.controls['title'].touched) ? 'form-control is-invalid' : 'form-control'"
-                            placeholder="For example, iPhone 11 with a guarantee"
-                            formControlName="title">
+                        <input id="idtitle" class="form-control"
+                            [class.is-invalid]="(form.controls['title'].invalid && form.controls['title'].touched)"
+                            placeholder="For example, iPhone 11 with a guarantee" formControlName="title">
                         <div class="invalid-feedback">Please provide title.</div>
                     </div>
                     <div>
                         <label class="form-label">Description*</label>
-                        <textarea id="description"
-                            [class]="(form.controls['description'].invalid && form.controls['description'].touched) ? 'form-control is-invalid' : 'form-control'"
+                        <textarea id="iddescription" class="form-control"
+                            [class.is-invalid]="(form.controls['description'].invalid && form.controls['description'].touched)"
                             rows="3" formControlName="description"
                             placeholder="Think about what details you would like to know from the ad and add them to the description"></textarea>
                         <div class="invalid-feedback">Please provide description.</div>
@@ -27,9 +26,11 @@
                 <div class="col-4">
                     <div class="mb-4">
                         <label class="form-label">Category*</label>
-                        <div [class]="(form.controls['categoryId'].invalid && form.controls['categoryId'].touched) ? 'input-group is-invalid' : 'input-group'" id="categoryId">
-                            <button type="button" class="btn" data-bs-toggle="modal" (click)="onDropdownButtonClick('categoryId')"
-                                data-bs-target="#modal">Choose</button>
+                        <div class="input-group"
+                            [class.is-invalid]="(form.controls['categoryId'].invalid && form.controls['categoryId'].touched)"
+                            id="idcategoryId">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                (click)="onChooseButtonClick('categoryId')" data-bs-target="#modal">Choose</button>
                             <input type="text" class="form-control" disabled
                                 [value]="(category) ? category.name : 'Not chosen...'">
                         </div>
@@ -37,11 +38,10 @@
                     </div>
                     <div>
                         <label class="form-label">Location*</label>
-                        <input id="location"
-                            [class]="(form.controls['location'].invalid && form.controls['location'].touched) ? 'form-control is-invalid' : 'form-control'"
-                            class="form-control" placeholder="City and region"
-                            formControlName="location">
-                        <div class="invalid-feedback">Please choose location.</div>
+                        <input id="idlocation" class="form-control"
+                            [class.is-invalid]="(form.controls['location'].invalid && form.controls['location'].touched)"
+                            placeholder="City and region" formControlName="location">
+                        <div class="invalid-feedback">Please provide location.</div>
                     </div>
                 </div>
             </div>
@@ -67,10 +67,12 @@
 
                         <div *ngSwitchCase="'dropdown'" class="dropdown">
                             <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
-                            <button
+                            <button [id]="'id'+tag.id"
+                                [class.is-invalid]="form.controls[tag.id].invalid && form.controls[tag.id].touched"
                                 class="form-control dropdown-btn dropdown-toggle w-50 d-flex align-items-center justify-content-between"
                                 data-bs-toggle="dropdown">{{ (tag.displayValue.length!==0) ? tag.displayValue : 'Choose'
                                 }}</button>
+                            <div class="invalid-feedback">Please select an option from the dropdown.</div>
                             <ul class="dropdown-menu">
                                 <li *ngFor="let pv of tag.possibleValues">
                                     <a class="dropdown-item" (click)="onDropdownClick(pv.value, tag.id)">{{ pv.value
@@ -81,7 +83,7 @@
 
                         <div *ngSwitchCase="'checkbox'">
                             <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
-                            <div class="row w-75">
+                            <div class="row w-75" [id]="'id'+tag.id">
                                 <div *ngFor="let pv of tag.possibleValues" class="col-6">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox"
@@ -96,22 +98,27 @@
 
                         <div *ngSwitchCase="'input'">
                             <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
-                            <input class="form-control w-50" [formControlName]="tag.id">
+                            <input [type]="(tag.remark&&tag.remark.includes('number'))?'number':'text'" class="form-control w-50" [formControlName]="tag.id" [id]="'id'+tag.id"
+                                [class.is-invalid]="form.controls[tag.id].invalid && form.controls[tag.id].touched">
+                            <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
 
                         <div *ngSwitchCase="'switch'" class="form-check form-switch">
-                            <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
-                            <input class="form-check-input" type="checkbox" role="switch" [formControlName]="tag.id">
+                            <label class="form-label">{{ tag.name }}</label>
+                            <input class="form-check-input" type="checkbox" role="switch" [formControlName]="tag.id"
+                                [id]="'id'+tag.id">
                         </div>
 
                         <div *ngSwitchCase="'pills'">
                             <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
-                            <div class="list-group w-50">
+                            <div class="list-group w-50" [id]="'id'+tag.id"
+                                [class.is-invalid]="form.controls[tag.id].invalid && form.controls[tag.id].touched">
                                 <button (click)="onPillsOptionClick(pv.value, tag.id)" type="button"
                                     *ngFor="let pv of tag.possibleValues"
                                     [class]="(pv.value===tag.displayValue)?'list-group-item list-group-item-action current':'list-group-item list-group-item-action'">{{
                                     pv.value }}</button>
                             </div>
+                            <div class="invalid-feedback">Please choose one option.</div>
                         </div>
 
                     </div>

@@ -18,7 +18,7 @@ export class PostAdComponent implements OnInit {
   tags!: TagDto[];
 
   constructor(
-    private mainCategoriesService: MainCategoriesService, 
+    private mainCategoriesService: MainCategoriesService,
     private tagService: TagService) { }
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class PostAdComponent implements OnInit {
     if (!this.tags) {
       return;
     }
-    
+
     this.tags.forEach(tag => {
       let value = (tag.type === 'checkbox') ? [] : (tag.type === 'switch') ? false : '';
       let control = new FormControl(value);
@@ -105,19 +105,21 @@ export class PostAdComponent implements OnInit {
     this.initTagsThenFormGroup();
   }
 
-  public onDropdownButtonClick(ctrlId: string) {
-    this.form.get(ctrlId)?.markAsTouched();
+  public onChooseButtonClick(ctrlId: any) {
+    this.form.get(ctrlId.toString())?.markAsTouched();
   }
 
   public onSubmit() {
-    if (!this.form.valid) {
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
       for (let ctrlId in this.form.controls) {
-        if (!this.form.get(ctrlId)?.valid) {
-          let element = document.querySelector(`#${ctrlId}`);
+        if (this.form.get(ctrlId)?.invalid) {
+          let element = document.querySelector(`#id${ctrlId}`);
           element?.classList.add('is-invalid');
         }
       }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     console.log(this.form.valid);
