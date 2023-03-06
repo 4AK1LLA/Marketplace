@@ -27,6 +27,8 @@ export class AppComponent implements OnInit {
       this.authorizeIfCookieExist(this.identityCookie, localAuth.isAuthenticated);
       this.isAuthenticated = localAuth.isAuthenticated;
 
+      console.log(localAuth.accessToken)
+
       if (this.isAuthenticated) {
         this.initUser();
       }

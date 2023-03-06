@@ -1,13 +1,14 @@
 using AutoMapper;
+using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
 using Marketplace.WebAPI.DTO;
 using Marketplace.WebAPI.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Marketplace.WebAPI.Controllers;
 
-[AllowAnonymous]
 [ApiController]
 [Route("api/[controller]")]
 public class ProductController : Controller
@@ -21,7 +22,7 @@ public class ProductController : Controller
         _mapper = mapper;
     }
 
-    [HttpGet("Get/{categoryRoute}")]
+    [HttpGet("Get/{categoryRoute}"), AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -47,7 +48,7 @@ public class ProductController : Controller
             Ok(_mapper.Map<IEnumerable<ProductDto>>(products));
     }
 
-    [HttpGet("{productId}")]
+    [HttpGet("{productId}"), AllowAnonymous]
     public ActionResult<ProductDetailsDto> GetById([FromRoute] int productId)
     {
         var product = _service.GetProductById(productId);
@@ -59,7 +60,7 @@ public class ProductController : Controller
             Ok(_mapper.Map<ProductDetailsDto>(product));
     }
 
-    [HttpGet("GetCount/{categoryRoute}")]
+    [HttpGet("GetCount/{categoryRoute}"), AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<int> GetCount([FromRoute] string categoryRoute)
@@ -76,5 +77,39 @@ public class ProductController : Controller
         return Ok(count);
     }
 
-    //TODO: create product endpoint
+    [HttpPost, Authorize]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public IActionResult Create([FromBody] CreateProductDto productDto)
+    {
+        string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(userStsId))
+        {
+            return Unauthorized();
+        }
+
+        if (productDto.TagValues is null)
+        {
+            return BadRequest("Missing tag values");
+        }
+
+        var product = new Product
+        {
+            Title = productDto.Title,
+            Description = productDto.Description,
+            Location = productDto.Location
+        };
+
+        var tagIdsAndValues = new Dictionary<int, string>();
+
+        foreach (var tv in productDto.TagValues)
+        {
+            tagIdsAndValues.Add(tv.TagId, tv.Value!);
+        }
+
+        //_service.CreateProductWithTagValues(product, tagIdsAndValues, productDto.categoryId, userId);
+
+        return Ok();
+    }
 }
