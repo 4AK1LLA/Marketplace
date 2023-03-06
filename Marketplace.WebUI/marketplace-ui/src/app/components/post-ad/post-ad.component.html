@@ -8,28 +8,40 @@
             <div class="row gx-5">
                 <div class="col-8">
                     <div class="mb-4">
-                        <label class="form-label">Enter title*</label>
-                        <input class="form-control" placeholder="For example, iPhone 11 with a guarantee" formControlName="title">
+                        <label class="form-label">Title*</label>
+                        <input id="title"
+                            [class]="(form.controls['title'].invalid && form.controls['title'].touched) ? 'form-control is-invalid' : 'form-control'"
+                            placeholder="For example, iPhone 11 with a guarantee"
+                            formControlName="title">
+                        <div class="invalid-feedback">Please provide title.</div>
                     </div>
                     <div>
                         <label class="form-label">Description*</label>
-                        <textarea class="form-control" rows="3" formControlName="description"
+                        <textarea id="description"
+                            [class]="(form.controls['description'].invalid && form.controls['description'].touched) ? 'form-control is-invalid' : 'form-control'"
+                            rows="3" formControlName="description"
                             placeholder="Think about what details you would like to know from the ad and add them to the description"></textarea>
+                        <div class="invalid-feedback">Please provide description.</div>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="mb-4">
-                        <label class="form-label">Choose category*</label>
-                        <div class="input-group">
-                            <button type="button" class="btn" data-bs-toggle="modal"
-                                data-bs-target="#modal">Category</button>
+                        <label class="form-label">Category*</label>
+                        <div [class]="(form.controls['categoryId'].invalid && form.controls['categoryId'].touched) ? 'input-group is-invalid' : 'input-group'" id="categoryId">
+                            <button type="button" class="btn" data-bs-toggle="modal" (click)="onDropdownButtonClick('categoryId')"
+                                data-bs-target="#modal">Choose</button>
                             <input type="text" class="form-control" disabled
-                                [value]="(category) ? category.name : 'Choose...'">
+                                [value]="(category) ? category.name : 'Not chosen...'">
                         </div>
+                        <div class="invalid-feedback">Please choose category.</div>
                     </div>
-                    <div class="mb-3">
+                    <div>
                         <label class="form-label">Location*</label>
-                        <input class="form-control" placeholder="City and region" formControlName="location">
+                        <input id="location"
+                            [class]="(form.controls['location'].invalid && form.controls['location'].touched) ? 'form-control is-invalid' : 'form-control'"
+                            class="form-control" placeholder="City and region"
+                            formControlName="location">
+                        <div class="invalid-feedback">Please choose location.</div>
                     </div>
                 </div>
             </div>

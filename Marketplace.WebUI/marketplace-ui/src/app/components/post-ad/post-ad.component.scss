@@ -101,3 +101,12 @@ input {
 .list-group-item.current:hover {
     color: $white-color;
 }
+
+.invalid-feedback {
+    color: var(--bs-danger-text);
+}
+
+.form-control.is-invalid,
+.input-group.is-invalid {
+    border-color: var(--bs-danger);
+}

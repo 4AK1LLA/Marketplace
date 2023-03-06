@@ -31,7 +31,7 @@ export class PostAdComponent implements OnInit {
 
     let basicInfoControls = [
       { name: 'title', value: '' },
-      { name: 'categoryId', value: (this.category) ? this.category.id : 0 },
+      { name: 'categoryId', value: (this.category) ? this.category.id : '' },
       { name: 'description', value: '' },
       { name: 'location', value: '' }
     ];
@@ -60,11 +60,10 @@ export class PostAdComponent implements OnInit {
     this.tagService.getTagsByCategory(this.category.id).subscribe(tagList => {
       this.tags = tagList;
 
-      if (!this.tags) {
-        return;
+      if (this.tags) {
+        this.tags.forEach(tag => tag.displayValue = '');
       }
 
-      this.tags.forEach(tag => tag.displayValue = '');
       this.initFormGroup();
     });
   }
@@ -106,7 +105,22 @@ export class PostAdComponent implements OnInit {
     this.initTagsThenFormGroup();
   }
 
+  public onDropdownButtonClick(ctrlId: string) {
+    this.form.get(ctrlId)?.markAsTouched();
+  }
+
   public onSubmit() {
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      for (let ctrlId in this.form.controls) {
+        if (!this.form.get(ctrlId)?.valid) {
+          let element = document.querySelector(`#${ctrlId}`);
+          element?.classList.add('is-invalid');
+        }
+      }
+    }
+
+    console.log(this.form.valid);
     console.log(JSON.stringify(this.form.getRawValue()));
   }
 }
