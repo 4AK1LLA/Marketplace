@@ -78,6 +78,7 @@ public class ProductController : Controller
     }
 
     [HttpPost, Authorize]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public IActionResult Create([FromBody] CreateProductDto productDto)
@@ -108,7 +109,12 @@ public class ProductController : Controller
             tagIdsAndValues.Add(tv.TagId, tv.Value!);
         }
 
-        //_service.CreateProductWithTagValues(product, tagIdsAndValues, productDto.categoryId, userId);
+        var success = _service.CreateProductWithTagValues(product, tagIdsAndValues, productDto.CategoryId, userStsId);
+
+        if (!success)
+        {
+            return BadRequest("Error while adding product to DB");
+        }
 
         return Ok();
     }
