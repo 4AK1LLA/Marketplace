@@ -12,11 +12,10 @@ import { TagService } from 'src/app/services/tag-service/tag.service';
 })
 export class PostAdComponent implements OnInit {
 
-  form: FormGroup = new FormGroup({});
-
   mainCategories: MainCategoryPostDto[] = [];
+  form!: FormGroup;
   category!: CategoryDto;
-  tags: TagDto[] = [];
+  tags!: TagDto[];
 
   constructor(
     private mainCategoriesService: MainCategoriesService, 
@@ -27,21 +26,12 @@ export class PostAdComponent implements OnInit {
     this.mainCategoriesService.getAllForPosting().subscribe(mcList => this.mainCategories = mcList);
   }
 
-  private initTags() {
-    this.tagService.getTagsByCategory(this.category.id).subscribe(tagList => {
-      if (tagList) {
-        tagList.forEach(tag => tag.displayValue = '');
-      }
-
-      this.tags = (tagList) ? tagList : [];
-      this.initFormGroup();
-    });
-  }
-
   private initFormGroup() {
+    this.form = new FormGroup({});
+
     let basicInfoControls = [
       { name: 'title', value: '' },
-      { name: 'categoryId', value: (this.category) ? this.category.id : -1 },
+      { name: 'categoryId', value: (this.category) ? this.category.id : 0 },
       { name: 'description', value: '' },
       { name: 'location', value: '' }
     ];
@@ -50,6 +40,10 @@ export class PostAdComponent implements OnInit {
       this.form.addControl(control.name, new FormControl(control.value, Validators.required));
     });
 
+    if (!this.tags) {
+      return;
+    }
+    
     this.tags.forEach(tag => {
       let value = (tag.type === 'checkbox') ? [] : (tag.type === 'switch') ? false : '';
       let control = new FormControl(value);
@@ -62,12 +56,23 @@ export class PostAdComponent implements OnInit {
     });
   }
 
+  private initTagsThenFormGroup() {
+    this.tagService.getTagsByCategory(this.category.id).subscribe(tagList => {
+      this.tags = tagList;
+
+      if (!this.tags) {
+        return;
+      }
+
+      this.tags.forEach(tag => tag.displayValue = '');
+      this.initFormGroup();
+    });
+  }
+
   public onDropdownClick(value: string, tagId: number) {
-    //Displaying
     let i = this.tags.findIndex(tag => tag.id === tagId);
     this.tags[i].displayValue = value;
 
-    //Form value
     this.form.get(tagId.toString())?.setValue(value);
   }
 
@@ -96,10 +101,9 @@ export class PostAdComponent implements OnInit {
   }
 
   public onCategoryClick(category: CategoryDto) {
-    this.form = new FormGroup({});
     this.category = category;
 
-    this.initTags();
+    this.initTagsThenFormGroup();
   }
 
   public onSubmit() {
