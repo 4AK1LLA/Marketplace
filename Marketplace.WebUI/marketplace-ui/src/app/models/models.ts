@@ -9,3 +9,9 @@ export interface TagValue {
     tagId: number;
     value: string;
 }
+
+export interface ToastInfo {
+    header: string;
+    body: string;
+    delay?: number;
+}
