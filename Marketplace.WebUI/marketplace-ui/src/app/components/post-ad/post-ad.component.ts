@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoryDto, MainCategoryPostDto } from 'src/app/dto/main-category.dto';
 import { TagDto } from 'src/app/dto/tag.dto';
+import { BasicInfo, TagValue } from 'src/app/models/models';
 import { MainCategoriesService } from 'src/app/services/main-categories-service/main-categories.service';
+import { ProductsService } from 'src/app/services/products-service/products.service';
 import { TagService } from 'src/app/services/tag-service/tag.service';
 
 @Component({
@@ -19,7 +21,8 @@ export class PostAdComponent implements OnInit {
 
   constructor(
     private mainCategoriesService: MainCategoriesService,
-    private tagService: TagService) { }
+    private tagService: TagService,
+    private productService: ProductsService) { }
 
   ngOnInit(): void {
     this.initFormGroup();
@@ -91,11 +94,9 @@ export class PostAdComponent implements OnInit {
   }
 
   public onPillsOptionClick(value: string, tagId: number) {
-    //Displaying
     let i = this.tags.findIndex(tag => tag.id === tagId);
     this.tags[i].displayValue = value;
 
-    //Form value
     this.form.get(tagId.toString())?.setValue(value);
   }
 
@@ -111,18 +112,52 @@ export class PostAdComponent implements OnInit {
 
   public onSubmit() {
     if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      for (let ctrlId in this.form.controls) {
-        if (this.form.get(ctrlId)?.invalid) {
-          let element = document.querySelector(`#id${ctrlId}`);
-          element?.classList.add('is-invalid');
-        }
-      }
+      this.markAllInvalidAndScrollOnTop();
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
 
-    console.log(this.form.valid);
-    console.log(JSON.stringify(this.form.getRawValue()));
+    let payload = this.form.getRawValue();
+    this.sendToApi(payload);
+  }
+
+  private sendToApi(payload: any) {
+    let basicInfo: BasicInfo = {
+      title: payload['title'],
+      description: payload['description'],
+      location: payload['location'],
+      categoryId: payload['categoryId']
+    };
+
+    let tagValues: TagValue[] = [];
+
+    for (let prop in payload) {
+      if (!['title', 'description', 'location', 'categoryId'].includes(prop) && payload[prop].length > 0) {
+
+        if (typeof payload[prop] !== 'string') {
+          let arr = payload[prop] as string[];
+          payload[prop] = '';
+          arr.forEach(val => payload[prop] += (arr.indexOf(val) === arr.length - 1) ? val : `${val}|`);
+        }
+
+        tagValues.push({
+          tagId: Number(prop),
+          value: payload[prop]
+        });
+      }
+    }
+
+    //this.productService.postProduct(basicInfo, tagValues);
+  }
+
+  private markAllInvalidAndScrollOnTop() {
+    this.form.markAllAsTouched();
+    for (let ctrlId in this.form.controls) {
+      if (this.form.get(ctrlId)?.invalid) {
+        let element = document.querySelector(`#id${ctrlId}`);
+        element?.classList.add('is-invalid');
+      }
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
