@@ -21,6 +21,7 @@ public static class ServiceExtensions
         services.AddScoped<IMainCategoryService, MainCategoryService>();
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<ITagService, TagService>();
 
         return services;
     }

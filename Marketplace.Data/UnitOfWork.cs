@@ -16,7 +16,7 @@ public class UnitOfWork : IUnitOfWork
         ProductRepository = new ProductRepository(context);
         CategoryRepository = new CategoryRepository(context);
         PhotoRepository = new Repository<Photo>(context);
-        TagRepository = new Repository<Tag>(context);
+        TagRepository = new TagRepository(context);
         TagValueRepository = new Repository<TagValue>(context);
         MainCategoryRepository = new MainCategoryRepository(context);
         AppUserRepository = new Repository<AppUser>(context);
@@ -28,7 +28,7 @@ public class UnitOfWork : IUnitOfWork
 
     public IRepository<Photo> PhotoRepository { get; private set; }
 
-    public IRepository<Tag> TagRepository { get; private set; }
+    public ITagRepository TagRepository { get; private set; }
 
     public IRepository<TagValue> TagValueRepository { get; private set; }
 

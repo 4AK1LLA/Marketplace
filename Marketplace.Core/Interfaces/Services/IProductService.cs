@@ -9,4 +9,6 @@ public interface IProductService
     Product GetProductById(int productId);
 
     int GetProductsCountByCategory(string categoryName);
+
+    bool CreateProductWithTagValues(Product product, IDictionary<int, string> tagIdsAndValues, int categoryId, string userStsId);
 }

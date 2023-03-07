@@ -10,7 +10,7 @@ public interface IUnitOfWork
 
     IRepository<Photo> PhotoRepository { get; }
 
-    IRepository<Tag> TagRepository { get; }
+    ITagRepository TagRepository { get; }
 
     IRepository<TagValue> TagValueRepository { get; }
 

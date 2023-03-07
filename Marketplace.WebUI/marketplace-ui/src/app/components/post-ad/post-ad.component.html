@@ -1,0 +1,164 @@
+<div class="container">
+    <h2 class="mb-4"><strong>Ad creating</strong></h2>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <!-- Basic info -->
+        <div class="block p-5 mb-4">
+            <div class="lead mb-4">Basic information</div>
+            <div class="row gx-5">
+                <div class="col-8">
+                    <div class="mb-4">
+                        <label class="form-label">Title*</label>
+                        <input id="idtitle" class="form-control"
+                            [class.is-invalid]="(form.controls['title'].invalid && form.controls['title'].touched)"
+                            placeholder="For example, iPhone 11 with a guarantee" formControlName="title">
+                        <div class="invalid-feedback">Please provide title.</div>
+                    </div>
+                    <div>
+                        <label class="form-label">Description*</label>
+                        <textarea id="iddescription" class="form-control"
+                            [class.is-invalid]="(form.controls['description'].invalid && form.controls['description'].touched)"
+                            rows="3" formControlName="description"
+                            placeholder="Think about what details you would like to know from the ad and add them to the description"></textarea>
+                        <div class="invalid-feedback">Please provide description.</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="mb-4">
+                        <label class="form-label">Category*</label>
+                        <div class="input-group"
+                            [class.is-invalid]="(form.controls['categoryId'].invalid && form.controls['categoryId'].touched)"
+                            id="idcategoryId">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                (click)="onChooseButtonClick('categoryId')" data-bs-target="#modal">Choose</button>
+                            <input type="text" class="form-control" disabled
+                                [value]="(category) ? category.name : 'Not chosen...'">
+                        </div>
+                        <div class="invalid-feedback">Please choose category.</div>
+                    </div>
+                    <div>
+                        <label class="form-label">Location*</label>
+                        <input id="idlocation" class="form-control"
+                            [class.is-invalid]="(form.controls['location'].invalid && form.controls['location'].touched)"
+                            placeholder="City and region" formControlName="location">
+                        <div class="invalid-feedback">Please provide location.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photo -->
+        <div class="block p-5 mb-4">
+            <div class="lead mb-4">Photo</div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">...</label>
+                <input class="form-control" type="file" id="formFile">
+            </div>
+        </div>
+
+        <!-- Details (tags) -->
+        <div *ngIf="tags" class="block p-5 mb-4">
+            <div class="lead mb-4">Details</div>
+            <div class="row gx-5">
+                <div *ngFor="let tag of tags" class="col-6 mb-4">
+
+                    <!-- Switch on tag type -->
+                    <div [ngSwitch]="tag.type">
+
+                        <div *ngSwitchCase="'dropdown'" class="dropdown">
+                            <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
+                            <button [id]="'id'+tag.id"
+                                [class.is-invalid]="form.controls[tag.id].invalid && form.controls[tag.id].touched"
+                                class="form-control dropdown-btn dropdown-toggle w-50 d-flex align-items-center justify-content-between"
+                                data-bs-toggle="dropdown">{{ (tag.displayValue.length!==0) ? tag.displayValue : 'Choose'
+                                }}</button>
+                            <div class="invalid-feedback">Please select an option from the dropdown.</div>
+                            <ul class="dropdown-menu">
+                                <li *ngFor="let pv of tag.possibleValues">
+                                    <a class="dropdown-item" (click)="onDropdownClick(pv.value, tag.id)">{{ pv.value
+                                        }}</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div *ngSwitchCase="'checkbox'">
+                            <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
+                            <div class="row w-75" [id]="'id'+tag.id">
+                                <div *ngFor="let pv of tag.possibleValues" class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                            (change)="onCheckBoxChange($event.currentTarget, pv.value, tag.id)">
+                                        <label class="form-check-label">
+                                            {{ pv.value }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngSwitchCase="'input'">
+                            <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
+                            <input [type]="(tag.remark&&tag.remark.includes('number'))?'number':'text'" class="form-control w-50" [formControlName]="tag.id" [id]="'id'+tag.id"
+                                [class.is-invalid]="form.controls[tag.id].invalid && form.controls[tag.id].touched">
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+
+                        <div *ngSwitchCase="'switch'" class="form-check form-switch">
+                            <label class="form-label">{{ tag.name }}</label>
+                            <input class="form-check-input" type="checkbox" role="switch" [formControlName]="tag.id"
+                                [id]="'id'+tag.id">
+                        </div>
+
+                        <div *ngSwitchCase="'pills'">
+                            <label class="form-label">{{ (tag.isRequired) ? tag.name+'*' : tag.name }}</label>
+                            <div class="list-group w-50" [id]="'id'+tag.id"
+                                [class.is-invalid]="form.controls[tag.id].invalid && form.controls[tag.id].touched">
+                                <button (click)="onPillsOptionClick(pv.value, tag.id)" type="button"
+                                    *ngFor="let pv of tag.possibleValues"
+                                    [class]="(pv.value===tag.displayValue)?'list-group-item list-group-item-action current':'list-group-item list-group-item-action'">{{
+                                    pv.value }}</button>
+                            </div>
+                            <div class="invalid-feedback">Please choose one option.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block p-5 mb-4 d-flex justify-content-end">
+            <button type="submit" class="btn btn-submit px-5 fw-bold">Publish</button>
+        </div>
+    </form>
+</div>
+
+<!-- Modal for category -->
+<div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Choose category</h1>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <div class="row g-3">
+                        <div *ngFor="let mc of mainCategories" class="col-4">
+                            <div class="dropdown-center">
+                                <button class="btn btn-modal w-100 d-flex align-items-center justify-content-center"
+                                    data-bs-toggle="dropdown">
+                                    <img [src]="mc.photoUrl" class="h-75 me-1">
+                                    <div>{{ mc.name }}</div>
+                                </button>
+                                <ul class="dropdown-menu w-100">
+                                    <li *ngFor="let sub of mc.subCategories"><a class="dropdown-item"
+                                            (click)="onCategoryClick(sub)" data-bs-dismiss="modal">{{ sub.name
+                                            }}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

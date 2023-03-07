@@ -82,5 +82,11 @@ public class MarketplaceContext : DbContext
             .Entity<Product>()
             .HasOne(pr => pr.AppUser)
             .WithMany(us => us.Products);
+
+        builder.Entity<Tag>().OwnsMany(
+            tg => tg.PossibleValues, ownedNavigationBuilder =>
+            {
+                ownedNavigationBuilder.ToJson();
+            });
     }
 }

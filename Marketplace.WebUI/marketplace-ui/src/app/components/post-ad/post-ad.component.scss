@@ -1,0 +1,112 @@
+@import 'src/styles/variables.scss';
+
+.container {
+    margin-top: 8rem;
+}
+
+.block {
+    background-color: $white-color;
+    border-radius: .3rem;
+}
+
+.form-control,
+.dropdown-btn {
+    background-color: $grey-color;
+}
+
+.btn-modal {
+    height: 50px;
+    background-color: $secondary-color;
+    border: none;
+}
+
+.btn-modal:hover, .btn-modal:focus {
+    background-color: $secondary-color-darker;
+}
+
+.dropdown-btn,
+.input-group {
+    border: var(--bs-border-width) solid var(--bs-border-color);
+}
+
+.input-group {
+    border-radius: var(--bs-border-radius);
+    overflow: hidden;
+
+    .btn {
+        background-color: $secondary-color;
+        border: none;
+        border-radius: 0;
+    }
+
+    .btn:hover {
+        background-color: $secondary-color-darker;
+    }
+
+    .form-control {
+        border: none;
+    }
+}
+
+input:focus,
+.form-control:focus {
+    box-shadow: none;
+    border-color: $main-color;
+}
+
+.form-check-input:checked {
+    background-color: $main-color;
+    border-color: $main-color;
+}
+
+.form-check-input:focus:not(:checked) {
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+}
+
+.list-group-item {
+    background-color: $grey-color;
+}
+
+.list-group-item:hover {
+    background-color: $white-color;
+}
+
+div,
+button,
+input {
+    color: $main-color;
+}
+
+.btn-submit {
+    background-color: $main-color;
+    color: $white-color;
+    border: 2px solid $main-color;
+}
+
+.btn-submit:hover {
+    background-color: $white-color;
+    color: $main-color;
+}
+
+.dropdown-item:active {
+    background-color: $main-color;
+}
+
+.list-group-item.current {
+    background-color: $main-color;
+    border-color: $main-color;
+    color: $white-color;
+}
+
+.list-group-item.current:hover {
+    color: $white-color;
+}
+
+.invalid-feedback {
+    color: var(--bs-danger-text);
+}
+
+.form-control.is-invalid,
+.input-group.is-invalid {
+    border-color: var(--bs-danger);
+}

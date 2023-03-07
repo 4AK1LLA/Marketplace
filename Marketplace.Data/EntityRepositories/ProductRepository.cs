@@ -45,7 +45,7 @@ public class ProductRepository : Repository<Product>, IProductRepository
     public int CountByCategoryName(string name) =>
         GetAll()
         .AsQueryable()
-        .Where(pr => pr.Category!.Name == name)
+        .Where(pr => EF.Functions.Like(pr.Category!.Name!, $"%{name}%"))
         .Count();
 
 }

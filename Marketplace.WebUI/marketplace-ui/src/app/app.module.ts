@@ -11,6 +11,11 @@ import { ProductsComponent } from './components/products/products.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthConfigModule } from './modules/auth-config.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { PostAdComponent } from './components/post-ad/post-ad.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastsComponent } from './components/toasts/toasts.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +25,18 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     SidebarComponent,
     ProductsComponent,
     FooterComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    PostAdComponent,
+    UnauthorizedComponent,
+    ToastsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    AuthConfigModule
+    AuthConfigModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
