@@ -13,6 +13,7 @@ import { AuthConfigModule } from './modules/auth-config.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { PostAdComponent } from './components/post-ad/post-ad.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductsComponent,
     FooterComponent,
     ProductDetailsComponent,
-    PostAdComponent
+    PostAdComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
