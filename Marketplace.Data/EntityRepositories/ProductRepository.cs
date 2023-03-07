@@ -27,20 +27,13 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .Include(pr => pr.TagValues)!
         .ThenInclude(tv => tv.Tag);
 
-    public Product GetIncludingTagValuesAndPhotos(int id)
-    {
-        var product = Get(id);
-
-        if (product is null)
-        {
-            return product!;
-        }
-
-        Entry(product!).Collection(pr => pr.Photos!).Load();
-        Entry(product!).Collection(pr => pr.TagValues!).Query().Include(tv => tv.Tag).Load();
-
-        return product!;
-    }
+    public Product GetIncludingTagValuesAndPhotos(int id) =>
+        GetAll()
+        .AsQueryable()
+        .Include(pr => pr.Photos)
+        .Include(pr => pr.TagValues)!
+        .ThenInclude(tv => tv.Tag)
+        .FirstOrDefault(pr => pr.Id == id)!;
 
     public int CountByCategoryName(string name) =>
         GetAll()

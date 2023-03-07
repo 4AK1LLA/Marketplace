@@ -53,8 +53,6 @@ public class ProductController : Controller
     {
         var product = _service.GetProductById(productId);
 
-        var dto = _mapper.Map<ProductDetailsDto>(product);
-
         return (product is null) ?
             NoContent() :
             Ok(_mapper.Map<ProductDetailsDto>(product));
