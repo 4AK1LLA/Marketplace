@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AppToastService } from 'src/app/services/toast-service/toast.service';
+import { ToastService } from 'src/app/services/toast-service/toast.service';
 
 @Component({
   selector: 'app-toasts',
   template: `
   <ngb-toast
-    *ngFor="let toast of toastService.toasts"
+    *ngFor="let toast of toastService.toasts" class="bg-info text-light"
     [header]="toast.header" [autohide]="true" [delay]="toast.delay || 8000"
     (hiddden)="toastService.remove(toast)"
   >{{toast.body}}</ngb-toast>
@@ -14,7 +14,7 @@ import { AppToastService } from 'src/app/services/toast-service/toast.service';
 })
 export class ToastsComponent implements OnInit {
 
-  constructor(public toastService: AppToastService) {}
+  constructor(public toastService: ToastService) {}
 
   ngOnInit(): void {
   }

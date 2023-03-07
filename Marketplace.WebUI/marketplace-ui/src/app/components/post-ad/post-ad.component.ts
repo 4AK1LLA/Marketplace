@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { CategoryDto, MainCategoryPostDto } from 'src/app/dto/main-category.dto';
 import { TagDto } from 'src/app/dto/tag.dto';
@@ -7,6 +8,7 @@ import { BasicInfo, TagValue } from 'src/app/models/models';
 import { MainCategoriesService } from 'src/app/services/main-categories-service/main-categories.service';
 import { ProductsService } from 'src/app/services/products-service/products.service';
 import { TagService } from 'src/app/services/tag-service/tag.service';
+import { ToastService } from 'src/app/services/toast-service/toast.service';
 
 @Component({
   selector: 'app-post-ad',
@@ -24,7 +26,9 @@ export class PostAdComponent implements OnInit {
     private mainCategoriesService: MainCategoriesService,
     private tagService: TagService,
     private productService: ProductsService,
-    private oidcSecurityService: OidcSecurityService) { }
+    private oidcSecurityService: OidcSecurityService,
+    private toastService: ToastService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.initFormGroup();
@@ -153,7 +157,10 @@ export class PostAdComponent implements OnInit {
       }
     }
 
-    this.productService.postProduct(accessToken, basicInfo, tagValues).subscribe(a=>console.log(a));
+    this.productService.postProduct(accessToken, basicInfo, tagValues).subscribe(_ => {
+      this.toastService.show('Notification', 'Your ad has been successfully published');
+      this.router.navigate(['/']);
+    });
   }
 
   private markAllInvalidAndScrollOnTop() {

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { ToastInfo } from "src/app/models/models";
 
 @Injectable({ providedIn: 'root' })
-export class AppToastService {
+export class ToastService {
   toasts: ToastInfo[] = [];
 
   show(header: string, body: string) {
