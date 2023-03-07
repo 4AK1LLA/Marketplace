@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { CategoryDto, MainCategoryPostDto } from 'src/app/dto/main-category.dto';
 import { TagDto } from 'src/app/dto/tag.dto';
 import { BasicInfo, TagValue } from 'src/app/models/models';
@@ -22,7 +23,8 @@ export class PostAdComponent implements OnInit {
   constructor(
     private mainCategoriesService: MainCategoriesService,
     private tagService: TagService,
-    private productService: ProductsService) { }
+    private productService: ProductsService,
+    private oidcSecurityService: OidcSecurityService) { }
 
   ngOnInit(): void {
     this.initFormGroup();
@@ -117,11 +119,15 @@ export class PostAdComponent implements OnInit {
       return;
     }
 
-    let payload = this.form.getRawValue();
-    this.sendToApi(payload);
+    this.oidcSecurityService.getAccessToken().subscribe(accessToken => {
+      if (accessToken) {
+        let payload = this.form.getRawValue();
+        this.sendToApi(accessToken, payload);
+      }
+    });
   }
 
-  private sendToApi(payload: any) {
+  private sendToApi(accessToken: string, payload: any) {
     let basicInfo: BasicInfo = {
       title: payload['title'],
       description: payload['description'],
@@ -147,7 +153,7 @@ export class PostAdComponent implements OnInit {
       }
     }
 
-    //this.productService.postProduct(basicInfo, tagValues);
+    this.productService.postProduct(accessToken, basicInfo, tagValues).subscribe(a=>console.log(a));
   }
 
   private markAllInvalidAndScrollOnTop() {
