@@ -11,4 +11,6 @@ public interface IProductRepository : IRepository<Product>
     Product GetIncludingTagValuesAndPhotos(int id);
 
     int CountByCategoryName(string name);
+
+    Product GetIncludingUsersThatLiked(int id);
 }

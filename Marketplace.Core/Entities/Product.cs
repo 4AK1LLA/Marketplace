@@ -20,5 +20,5 @@ public class Product
 
     public ICollection<Photo>? Photos { get; set; }
 
-    public ICollection<AppUser>? UsersThatLiked { get; set; }
+    public ICollection<AppUser> UsersThatLiked { get; set; } = new List<AppUser>();
 }

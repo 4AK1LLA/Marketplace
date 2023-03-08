@@ -11,4 +11,6 @@ public interface IProductService
     int GetProductsCountByCategory(string categoryName);
 
     bool CreateProductWithTagValues(Product product, IDictionary<int, string> tagIdsAndValues, int categoryId, string userStsId);
+
+    bool LikeProduct(int productId, string userStsId);
 }

@@ -41,4 +41,10 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .Where(pr => EF.Functions.Like(pr.Category!.Name!, $"%{name}%"))
         .Count();
 
+    public Product GetIncludingUsersThatLiked(int id) =>
+        GetAll()
+        .AsQueryable()
+        .Include(pr => pr.UsersThatLiked)
+        .FirstOrDefault(pr => pr.Id == id)!;
+
 }

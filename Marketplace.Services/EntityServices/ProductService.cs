@@ -96,4 +96,32 @@ public class ProductService : IProductService
 
         return true;
     }
+
+    public bool LikeProduct(int productId, string userStsId)
+    {
+        AppUser user = _uow.AppUserRepository.Find(user => user.StsIdentifier == userStsId).FirstOrDefault()!;
+
+        if (user is null)
+        {
+            return false;
+        }
+
+        Product product = _uow.ProductRepository.GetIncludingUsersThatLiked(productId);
+
+        if (product is null)
+        {
+            return false;
+        }
+
+        bool disliked = product.UsersThatLiked.Remove(user);
+
+        if (!disliked)
+        {
+            product.UsersThatLiked.Add(user);
+        }
+
+        _uow.ProductRepository.Update(product);
+
+        return _uow.Save();
+    }
 }
