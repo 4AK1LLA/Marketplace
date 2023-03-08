@@ -28,6 +28,9 @@
                     <div class="label-top" *ngIf="pr.condition">{{ pr.condition }}</div>
                 </div>
                 <div class="card-body">
+                    <div class="label-like rounded-circle d-flex justify-content-center align-items-center">
+                        <a><i class='bx bx-heart bx-sm bx-tada-hover'></i></a>
+                    </div>
                     <h5 class="card-title">{{ pr.title }}</h5>
                     <div class="d-flex justify-content-between">
                         <div class="date-location">{{ pr.publicationDate }}<br>{{ pr.location }}</div>

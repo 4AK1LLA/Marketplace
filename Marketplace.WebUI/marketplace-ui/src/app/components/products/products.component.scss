@@ -11,6 +11,7 @@
 }
 
 .card-top {
+    position: relative;
     height: 250px;
     overflow: hidden;
     display: flex;
@@ -18,6 +19,7 @@
 }
 
 .card-body {
+    position: relative;
     height: 200px;
 }
 
@@ -73,7 +75,7 @@
 
 .card:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
 }
 
 .label-top {
@@ -86,7 +88,18 @@
     font-size: .7rem;
     font-weight: 600;
     border-radius: 3px;
-    text-transform: uppercase
+    text-transform: uppercase;
+}
+
+.label-like {
+    position: absolute;
+    background-color: $white-color;
+    color: $main-color;
+    right: 8px;
+    top: -20px;
+    height: 35px;
+    width: 35px;
+    z-index: 1;
 }
 
 .btn {
