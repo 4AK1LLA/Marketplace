@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Marketplace.Core.Interfaces;
+﻿using Marketplace.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -12,12 +11,15 @@ public class LikeController : ControllerBase
 {
     private readonly IProductService _service;
 
-    public LikeController(IProductService service, IMapper mapper)
+    public LikeController(IProductService service)
     {
         _service = service;
     }
 
-    [HttpPost("{productId}"), Authorize]
+    [HttpPut("{productId}"), Authorize]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public IActionResult Like([FromRoute] int productId)
     {
         string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
