@@ -57,8 +57,10 @@ public class UserController : Controller
             ProfilePictureUrl = principal.FindFirstValue(AppClaimTypes.profile_picture.ToString())
         };
 
-        _service.AddUser(_mapper.Map<AppUser>(dto));
+        AppUser user = _mapper.Map<AppUser>(dto);
 
-        return Ok(_mapper.Map<GetUserDto>(dto));
+        var success = _service.AddUser(user);
+
+        return (success) ? Ok(_mapper.Map<GetUserDto>(user)) : BadRequest("Error while creating user");
     }
 }

@@ -4,7 +4,7 @@ namespace Marketplace.Core.Interfaces;
 
 public interface IUserService
 {
-    void AddUser(AppUser user);
+    bool AddUser(AppUser user);
 
     AppUser GetUserByName(string userName);
 }
