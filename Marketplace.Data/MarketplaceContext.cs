@@ -94,5 +94,15 @@ public class MarketplaceContext : DbContext
             {
                 ownedNavigationBuilder.ToJson();
             });
+
+        builder
+            .Entity<AppUser>()
+            .HasMany(us => us.LikedProducts)
+            .WithMany(pr => pr.UsersThatLiked);
+
+        builder
+            .Entity<Product>()
+            .HasMany(pr => pr.UsersThatLiked)
+            .WithMany(us => us.LikedProducts);
     }
 }

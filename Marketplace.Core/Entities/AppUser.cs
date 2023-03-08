@@ -18,5 +18,7 @@ public class AppUser
 
     public ICollection<Product>? Products { get; set; }
 
+    public ICollection<Product>? LikedProducts { get; set; }
+
     //TODO: add roles
 }
