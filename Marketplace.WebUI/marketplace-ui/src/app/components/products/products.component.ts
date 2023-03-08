@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { combineLatest, debounceTime } from 'rxjs';
 import { ProductDto } from 'src/app/dto/product.dto';
 import { PaginationService } from 'src/app/services/pagination-service/pagination.service';
@@ -24,6 +25,7 @@ export class ProductsComponent implements OnInit {
     private productsService: ProductsService,
     private route: ActivatedRoute,
     private paginationService: PaginationService,
+    private oidcSecurityService: OidcSecurityService
   ) { }
 
   ngOnInit(): void { //now Im using routerLink (removed hrefs) wich doesnt require page reloading, so this hook and observable subscription are executing during whole component lifetime
@@ -36,6 +38,12 @@ export class ProductsComponent implements OnInit {
       this.page = (isNaN(context.qparams['page'])) ? 1 : Number(context.qparams['page']);
 
       this.initProductsAndCount();
+    });
+  }
+
+  public onLikeClick(productId: number) {
+    this.oidcSecurityService.getAccessToken().subscribe(accessToken => {
+      this.productsService.likeProduct(accessToken, productId).subscribe(a => console.log(a));
     });
   }
 

@@ -42,7 +42,7 @@ export class ProductsService {
 
     let httpOptions = this.getHttpOptions(accessToken);
 
-    this.http.put(`${environment.baseApiUrl}/Like/${id}`, null, httpOptions);
+    return this.http.put(`${environment.baseApiUrl}/Like/${id}`, null, httpOptions);
   }
 
   private getHttpOptions(accessToken: string) {
