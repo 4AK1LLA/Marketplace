@@ -100,7 +100,7 @@ public static class ServiceExtensions
 
     public static IServiceCollection ConfigureOptions(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<DbConnectionOptions>(configuration.GetSection(DbConnectionOptions.Position));
+        services.Configure<AppDbOptions>(configuration.GetSection(AppDbOptions.Position));
 
         return services;
     }
