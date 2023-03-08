@@ -7,9 +7,9 @@ namespace Marketplace.Data;
 
 public class MarketplaceContext : DbContext
 {
-    private readonly IOptions<DbConnectionOptions> _options;
+    private readonly IOptions<AppDbOptions> _options;
 
-    public MarketplaceContext(IOptions<DbConnectionOptions> options) { _options = options; }
+    public MarketplaceContext(IOptions<AppDbOptions> options) { _options = options; }
 
     public DbSet<Product>? Products { get; set; }
 
@@ -27,8 +27,14 @@ public class MarketplaceContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        //options.UseSqlServer(_options.Value.DefaultConnection);
-        options.UseInMemoryDatabase("InMemory");
+        if (_options.Value.UseInMemoryDb)
+        {
+            options.UseInMemoryDatabase(_options.Value.InMemoryDbName!);
+        }
+        else
+        {
+            options.UseSqlServer(_options.Value.ConnectionStrings!["DefaultConnection"]);
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

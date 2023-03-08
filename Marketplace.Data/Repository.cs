@@ -1,5 +1,4 @@
 ﻿using Marketplace.Core.Interfaces;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq.Expressions;
 
 namespace Marketplace.Data;
@@ -26,6 +25,4 @@ public class Repository<T> : IRepository<T> where T : class
     public void Remove(T entity) => _context.Set<T>().Remove(entity);
 
     public int Count() => _context.Set<T>().Count();
-
-    public EntityEntry<T> Entry(T entity) => _context.Entry(entity);
 }

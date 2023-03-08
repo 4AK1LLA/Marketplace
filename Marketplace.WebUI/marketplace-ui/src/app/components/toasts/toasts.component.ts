@@ -5,7 +5,7 @@ import { ToastService } from 'src/app/services/toast-service/toast.service';
   selector: 'app-toasts',
   template: `
   <ngb-toast
-    *ngFor="let toast of toastService.toasts" class="bg-info text-light"
+    *ngFor="let toast of toastService.toasts" class="bg-info"
     [header]="toast.header" [autohide]="true" [delay]="toast.delay || 8000"
     (hiddden)="toastService.remove(toast)"
   >{{toast.body}}</ngb-toast>
