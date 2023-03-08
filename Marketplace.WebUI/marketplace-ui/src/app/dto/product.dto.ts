@@ -8,4 +8,6 @@ export class ProductDto {
 
     condition?: string;
     price?: string;
+
+    liked?: boolean;
 }

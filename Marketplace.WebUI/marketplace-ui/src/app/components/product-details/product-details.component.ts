@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { ProductDetailsDto } from 'src/app/dto/product-details.dto';
 import { ProductsService } from 'src/app/services/products-service/products.service';
 
@@ -16,7 +17,9 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: ProductsService
+    private service: ProductsService,
+    private oidcSecurityService: OidcSecurityService,
+    private productsService: ProductsService
   ) { }
 
   public ngOnInit(): void {
@@ -39,6 +42,14 @@ export class ProductDetailsComponent implements OnInit {
           this.initTagValuesAndPrice();
           this.isFound = true;
         });
+    });
+  }
+
+  public onLikeClick() {
+    this.oidcSecurityService.getAccessToken().subscribe(accessToken => {
+      this.productsService.likeProduct(accessToken, this.product.id).subscribe(isLiked => {
+        this.product.liked = isLiked;
+      });
     });
   }
 

@@ -29,7 +29,7 @@
                 </div>
                 <div class="card-body">
                     <div class="label-like rounded-circle d-flex justify-content-center align-items-center">
-                        <a (click)="onLikeClick(pr.id)"><i class='bx bx-heart bx-sm bx-tada-hover'></i></a>
+                        <a (click)="onLikeClick(pr.id)"><i class='bx bx-sm' [class]="(pr.liked)?'bxs-heart liked':'bx-heart bx-tada-hover'"></i></a>
                     </div>
                     <h5 class="card-title">{{ pr.title }}</h5>
                     <div class="d-flex justify-content-between">

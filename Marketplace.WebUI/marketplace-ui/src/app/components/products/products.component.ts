@@ -43,7 +43,9 @@ export class ProductsComponent implements OnInit {
 
   public onLikeClick(productId: number) {
     this.oidcSecurityService.getAccessToken().subscribe(accessToken => {
-      this.productsService.likeProduct(accessToken, productId).subscribe(a => console.log(a));
+      this.productsService.likeProduct(accessToken, productId).subscribe(isLiked => {
+        this.products.find(pr => pr.id === productId)!.liked = isLiked;
+      });
     });
   }
 
