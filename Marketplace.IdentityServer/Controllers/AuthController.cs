@@ -1,6 +1,7 @@
 ﻿using IdentityServer4.Services;
 using Marketplace.IdentityServer.Interfaces;
 using Marketplace.IdentityServer.ViewModels;
+using Marketplace.Shared.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -81,7 +82,7 @@ public class AuthController : Controller
 
         if (result.Succeeded)
         {
-            await _userManager.AddClaimAsync(user, new Claim("display_name", vm.Email!));
+            await _userManager.AddClaimAsync(user, new Claim(AppClaimTypes.name.ToString(), vm.Email!));
 
             await _signInManager
                 .PasswordSignInAsync(vm.Email, vm.Password, isPersistent: false, lockoutOnFailure: false);
@@ -175,14 +176,14 @@ public class AuthController : Controller
 
         if (!string.IsNullOrEmpty(fullName))
         {
-            await _userManager.AddClaimAsync(user, new Claim("display_name", fullName));
+            await _userManager.AddClaimAsync(user, new Claim(AppClaimTypes.display_name.ToString(), fullName));
         }
 
         var profilePictureClaim = info.Principal.FindFirst("image");
 
         if (profilePictureClaim is not null)
         {
-            await _userManager.AddClaimAsync(user, new Claim("profile_picture", profilePictureClaim.Value));
+            await _userManager.AddClaimAsync(user, new Claim(AppClaimTypes.profile_picture.ToString(), profilePictureClaim.Value));
         }
 
         await _signInManager.SignInAsync(user, isPersistent: false);
