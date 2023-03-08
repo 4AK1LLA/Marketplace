@@ -1,4 +1,5 @@
 ﻿using Marketplace.Core.Entities;
+using Marketplace.Shared.Generic;
 
 namespace Marketplace.Core.Interfaces;
 
@@ -12,5 +13,5 @@ public interface IProductService
 
     bool CreateProductWithTagValues(Product product, IDictionary<int, string> tagIdsAndValues, int categoryId, string userStsId);
 
-    bool LikeProduct(int productId, string userStsId);
+    Result<bool> LikeProduct(int productId, string userStsId);
 }

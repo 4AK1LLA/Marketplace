@@ -1,5 +1,6 @@
 ﻿using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
+using Marketplace.Shared.Generic;
 
 namespace Marketplace.Services;
 
@@ -97,31 +98,46 @@ public class ProductService : IProductService
         return true;
     }
 
-    public bool LikeProduct(int productId, string userStsId)
+    public Result<bool> LikeProduct(int productId, string userStsId)
     {
+        var resultIsLiked = new Result<bool>();
+
         AppUser user = _uow.AppUserRepository.Find(user => user.StsIdentifier == userStsId).FirstOrDefault()!;
 
         if (user is null)
         {
-            return false;
+            resultIsLiked.ErrorMessage = "User not found";
+
+            return resultIsLiked;
         }
 
         Product product = _uow.ProductRepository.GetIncludingUsersThatLiked(productId);
 
         if (product is null)
         {
-            return false;
+            resultIsLiked.ErrorMessage = "Product not found";
+
+            return resultIsLiked;
         }
 
-        bool disliked = product.UsersThatLiked.Remove(user);
+        bool removed = product.UsersThatLiked.Remove(user);
 
-        if (!disliked)
+        resultIsLiked.Value = false;
+
+        if (!removed)
         {
             product.UsersThatLiked.Add(user);
+
+            resultIsLiked.Value = true;
         }
 
         _uow.ProductRepository.Update(product);
 
-        return _uow.Save();
+        if (!_uow.Save())
+        {
+            resultIsLiked.ErrorMessage = "Error while updating like data in DB";
+        }
+
+        return resultIsLiked;
     }
 }

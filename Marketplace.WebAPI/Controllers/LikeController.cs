@@ -1,4 +1,5 @@
 ﻿using Marketplace.Core.Interfaces;
+using Marketplace.Shared.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -29,8 +30,8 @@ public class LikeController : ControllerBase
             return Unauthorized();
         }
 
-        bool success = _service.LikeProduct(productId, userStsId);
+        Result<bool> response = _service.LikeProduct(productId, userStsId);
 
-        return (success) ? Ok() : BadRequest("Error while like/dislike");
+        return (string.IsNullOrEmpty(response.ErrorMessage)) ? Ok(response.Value) : BadRequest(response.ErrorMessage);
     }
 }
