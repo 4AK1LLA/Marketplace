@@ -42,5 +42,5 @@ public class ProductRepository : Repository<Product>, IProductRepository
     public IEnumerable<Product> GetLiked(string userStsId) =>
         GetAll()
         .AsQueryable()
-        .Include(pr => pr.UsersThatLiked.Where(us => us.StsIdentifier == userStsId));
+        .Where(pr => pr.UsersThatLiked.Any(us => us.StsIdentifier == userStsId));
 }

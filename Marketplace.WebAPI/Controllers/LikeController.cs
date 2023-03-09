@@ -55,7 +55,7 @@ public class LikeController : ControllerBase
         var likedProducts = _service.GetLikedProducts(userStsId);
 
         return (likedProducts is not null && likedProducts.Any()) 
-            ? Ok(_mapper.Map<ProductDto>(likedProducts)) 
+            ? Ok(_mapper.Map<IEnumerable<ProductDto>>(likedProducts)) 
             : NoContent();
     }
 }
