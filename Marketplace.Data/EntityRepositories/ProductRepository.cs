@@ -47,4 +47,9 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .Include(pr => pr.UsersThatLiked)
         .FirstOrDefault(pr => pr.Id == id)!;
 
+    public IEnumerable<Product> IncludeUsersThatLiked(IEnumerable<Product> products) =>
+        GetAll()
+        .AsQueryable()
+        .Include(pr => pr.UsersThatLiked)
+        .Where(pr => products.Contains(pr));
 }

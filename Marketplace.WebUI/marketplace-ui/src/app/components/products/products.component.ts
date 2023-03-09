@@ -21,6 +21,8 @@ export class ProductsComponent implements OnInit {
   pagesCount!: number;
   paginationArray: any[] = [];
 
+  accessToken$ = this.oidcSecurityService.getAccessToken();
+
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute,
@@ -32,8 +34,6 @@ export class ProductsComponent implements OnInit {
     let route$ = combineLatest({ qparams: this.route.queryParams, params: this.route.params }).pipe(debounceTime(0)); //debounceTime(0) solves issue when combineLatest emitts two values when navigating
 
     route$.subscribe(context => {
-      console.warn('Subscription');
-
       this.routeValue = (context.params['categoryRoute']) ? context.params['categoryRoute']! : context.params['mainCategoryRoute']!;
       this.page = (isNaN(context.qparams['page'])) ? 1 : Number(context.qparams['page']);
 
@@ -42,7 +42,7 @@ export class ProductsComponent implements OnInit {
   }
 
   public onLikeClick(productId: number) {
-    this.oidcSecurityService.getAccessToken().subscribe(accessToken => {
+    this.accessToken$.subscribe(accessToken => {
       this.productsService.likeProduct(accessToken, productId).subscribe(isLiked => {
         this.products.find(pr => pr.id === productId)!.liked = isLiked;
       });
@@ -64,13 +64,31 @@ export class ProductsComponent implements OnInit {
   }
 
   private initProductsAndCount(): void {
-    this.productsService
-      .getProductsByCategoryAndPage(this.routeValue, this.page)
-      .subscribe(data => {
-        this.products = data;
-        console.warn('page: ' + this.page + ' | route: ' + this.routeValue + ' | products: ' + JSON.stringify(this.products));
-        this.initProperties();
-      });
+    this.accessToken$.subscribe(accessToken => {
+      if (accessToken) {
+        this.productsService
+        .getProductsByCategoryAndPageWithLikes(accessToken, this.routeValue, this.page)
+        .subscribe(data => {
+          this.products = data.dtos || data;
+          if (data.likedProductIds) {
+            console.log(this.products)
+            data.likedProductIds.forEach(id => {
+              console.log(id)
+              this.products.find(pr => pr.id === id)!.liked = true;
+            });
+          }
+          this.initProperties();
+        });
+      }
+      else {
+        this.productsService
+        .getProductsByCategoryAndPage(this.routeValue, this.page)
+        .subscribe(data => {
+          this.products = data;
+          this.initProperties();
+        });
+      }
+    });
 
     this.productsService
       .getProductsCountByCategory(this.routeValue)

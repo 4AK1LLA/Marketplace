@@ -140,4 +140,28 @@ public class ProductService : IProductService
 
         return resultIsLiked;
     }
+
+    public IEnumerable<int> GetLikedProductIds(IEnumerable<Product> products, string userStsId)
+    {
+        AppUser user = _uow.AppUserRepository.GetByStsIdIncludingLikedProducts(userStsId);
+
+        if (user is null)
+        {
+            return null!;
+        }
+
+        IEnumerable<Product> productsWithLikes = _uow.ProductRepository.IncludeUsersThatLiked(products);
+
+        var ids = new List<int>();
+
+        foreach (var pr in productsWithLikes)
+        {
+            if (pr.UsersThatLiked.Contains(user))
+            {
+                ids.Add(pr.Id);
+            }
+        }
+
+        return ids;
+    }
 }

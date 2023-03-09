@@ -14,4 +14,6 @@ public interface IProductService
     bool CreateProductWithTagValues(Product product, IDictionary<int, string> tagIdsAndValues, int categoryId, string userStsId);
 
     Result<bool> LikeProduct(int productId, string userStsId);
+
+    IEnumerable<int> GetLikedProductIds(IEnumerable<Product> products, string userStsId);
 }

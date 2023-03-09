@@ -13,4 +13,6 @@ public interface IProductRepository : IRepository<Product>
     int CountByCategoryName(string name);
 
     Product GetIncludingUsersThatLiked(int id);
+
+    IEnumerable<Product> IncludeUsersThatLiked(IEnumerable<Product> products);
 }

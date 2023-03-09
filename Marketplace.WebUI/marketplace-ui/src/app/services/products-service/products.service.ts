@@ -17,6 +17,12 @@ export class ProductsService {
   public getProductsByCategoryAndPage = (route: string, page: number): Observable<ProductDto[]> =>
     this.http.get<ProductDto[]>(`${environment.baseApiUrl}/Product/Get/${route}`, { params: { pageNumber: page } });
 
+  public getProductsByCategoryAndPageWithLikes(accessToken: string, route: string, page: number) {
+    let httpOtions = this.getHttpOptions(accessToken, page);
+
+    return this.http.get<{ dtos: ProductDto[], likedProductIds: number[] }>(`${environment.baseApiUrl}/Product/Get/${route}`, httpOtions);
+  }
+
   public getProductsCountByCategory = (route: string): Observable<number> =>
     this.http.get<number>(`${environment.baseApiUrl}/Product/GetCount/${route}`);
 
@@ -45,7 +51,11 @@ export class ProductsService {
     return this.http.put<boolean>(`${environment.baseApiUrl}/Like/${id}`, null, httpOptions);
   }
 
-  private getHttpOptions(accessToken: string) {
+  private getHttpOptions(accessToken: string, page?: number) {
+    if (page) {
+      return { headers: new HttpHeaders({ Authorization: 'Bearer ' + accessToken }),  params: { pageNumber: page } }
+    }
+
     return { headers: new HttpHeaders({ Authorization: 'Bearer ' + accessToken }) }
   }
 }
