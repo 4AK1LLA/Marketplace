@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsComponent } from './components/toasts/toasts.component';
+import { FavouritesComponent } from './components/favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ToastsComponent } from './components/toasts/toasts.component';
     ProductDetailsComponent,
     PostAdComponent,
     UnauthorizedComponent,
-    ToastsComponent
+    ToastsComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,
