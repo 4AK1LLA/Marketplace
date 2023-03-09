@@ -1,5 +1,7 @@
-﻿using Marketplace.Core.Interfaces;
+﻿using AutoMapper;
+using Marketplace.Core.Interfaces;
 using Marketplace.Shared.Generic;
+using Marketplace.WebAPI.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -11,10 +13,12 @@ namespace Marketplace.WebAPI.Controllers;
 public class LikeController : ControllerBase
 {
     private readonly IProductService _service;
+    private readonly IMapper _mapper;
 
-    public LikeController(IProductService service)
+    public LikeController(IProductService service, IMapper mapper)
     {
         _service = service;
+        _mapper = mapper;
     }
 
     [HttpPut("{productId}"), Authorize]
@@ -51,7 +55,7 @@ public class LikeController : ControllerBase
         var likedProducts = _service.GetLikedProducts(userStsId);
 
         return (likedProducts is not null && likedProducts.Any()) 
-            ? Ok(likedProducts) 
+            ? Ok(_mapper.Map<ProductDto>(likedProducts)) 
             : NoContent();
     }
 }
