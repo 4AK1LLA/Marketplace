@@ -1,7 +1,42 @@
 <div class="container">
-    <div *ngIf="!likedProducts" class="fav-title">You haven't added ads to your favorites yet</div>
+    <div *ngIf="!likedProducts; else found" class="fav-title">You haven't added ads to your favourites yet</div>
 
-    <div *ngIf="likedProducts">
-        <div *ngFor="let pr of likedProducts" class="">{{ pr.title }}</div>
-    </div>
+    <ng-template #found>
+
+        <div class="fav-title">Ad favourites</div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <div class="nav-link active">Your favourites (2)</div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link remove">Remove all favourites</a>
+            </li>
+        </ul>
+        <div *ngIf="likedProducts" class="p-5 border-rounded">
+            <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+                <div class="col" *ngFor="let pr of likedProducts">
+                    <div class="card shadow-sm">
+                        <div class="card-top">
+                            <img [src]="(pr.mainPhotoUrl)?pr.mainPhotoUrl:'https://ireland.apollo.olxcdn.com/v1/files/k1nng0ftn4453-UA/image;s=1000x700'"
+                                class="card-img-top">
+                        </div>
+                        <div class="card-body">
+                            <div class="label-like rounded-circle d-flex justify-content-center align-items-center">
+                                <a><i class='bx bx-sm'
+                                        [class]="(pr.liked)?'bxs-heart liked':'bx-heart bx-tada-hover'"></i></a>
+                            </div>
+                            <h5 class="card-title">{{ pr.title }}</h5>
+                            <div class="d-flex justify-content-between">
+                                <div class="date-location">{{ pr.publicationDate }}<br>{{ pr.location }}</div>
+                                <div class="price">1000 &#8372;</div>
+                            </div>
+                            <div class="text-center my-2">
+                                <a i18n [routerLink]="['/product', pr.id]" class="btn">see details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
 </div>

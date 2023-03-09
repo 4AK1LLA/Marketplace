@@ -10,7 +10,7 @@ import { ProductsService } from 'src/app/services/products-service/products.serv
 })
 export class FavouritesComponent implements OnInit {
 
-  likedProducts: ProductDto[] = [];
+  likedProducts!: ProductDto[];
 
   accessToken$ = this.oidcSecurityService.getAccessToken();
 
@@ -28,6 +28,7 @@ export class FavouritesComponent implements OnInit {
       this.productsService
         .getLikedProducts(accessToken)
         .subscribe(likedProducts => {
+          console.log(likedProducts)
           this.likedProducts = likedProducts;
           this.activateLikes();
         });
