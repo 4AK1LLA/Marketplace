@@ -8,14 +8,6 @@ public class ProductRepository : Repository<Product>, IProductRepository
 {
     public ProductRepository(MarketplaceContext context) : base(context) { }
 
-    public Product GetIncludingCategoryAndTagValues(int id) =>
-        GetAll()
-        .AsQueryable()
-        .Where(pr => pr.Id == id)
-        .Include(pr => pr.Category)
-        .Include(pr => pr.TagValues)
-        .First();
-
     public IEnumerable<Product> GetByCategoryNameIncludingTagValuesAndPhotos(string name, int page) =>
         GetAll()
         .AsQueryable()
@@ -46,10 +38,4 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .AsQueryable()
         .Include(pr => pr.UsersThatLiked)
         .FirstOrDefault(pr => pr.Id == id)!;
-
-    public IEnumerable<Product> IncludeUsersThatLiked(IEnumerable<Product> products) =>
-        GetAll()
-        .AsQueryable()
-        .Include(pr => pr.UsersThatLiked)
-        .Where(pr => products.Contains(pr));
 }

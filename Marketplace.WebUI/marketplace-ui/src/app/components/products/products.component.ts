@@ -69,7 +69,7 @@ export class ProductsComponent implements OnInit {
         this.productsService
         .getProductsByCategoryAndPageWithLikes(accessToken, this.routeValue, this.page)
         .subscribe(data => {
-          this.products = data.dtos || data;
+          this.products = (data) ? (data.dtos || data) : data;
           if (data.likedProductIds) {
             data.likedProductIds.forEach(id => {
               this.products.find(pr => pr.id === id)!.liked = true;

@@ -150,11 +150,9 @@ public class ProductService : IProductService
             return null!;
         }
 
-        IEnumerable<Product> productsWithLikes = _uow.ProductRepository.IncludeUsersThatLiked(products);
-
         var ids = new List<int>();
 
-        foreach (var pr in productsWithLikes)
+        foreach (var pr in products)
         {
             if (pr.UsersThatLiked.Contains(user))
             {
