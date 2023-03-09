@@ -89,7 +89,7 @@
             <div class="d-flex justify-content-between mb-4">
                 <h4 class="mr-auto">{{ product.title }}</h4>
                 <a class="ml-auto" (click)="onLikeClick()">
-                    <i class='bx bx-md' [class]="(product.liked)?'bxs-heart liked':'bx-heart bx-tada-hover'"></i>
+                    <i class='bx bx-md' [class]="(product.isLiked)?'bxs-heart liked':'bx-heart bx-tada-hover'"></i>
                 </a>
             </div>
 

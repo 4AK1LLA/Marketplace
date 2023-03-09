@@ -71,9 +71,7 @@ export class ProductsComponent implements OnInit {
         .subscribe(data => {
           this.products = data.dtos || data;
           if (data.likedProductIds) {
-            console.log(this.products)
             data.likedProductIds.forEach(id => {
-              console.log(id)
               this.products.find(pr => pr.id === id)!.liked = true;
             });
           }

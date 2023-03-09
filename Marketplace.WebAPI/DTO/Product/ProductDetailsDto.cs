@@ -15,4 +15,6 @@ public class ProductDetailsDto
     public ICollection<TagValueDto>? TagValues { get; set; }
 
     public ICollection<PhotoDto>? Photos { get; set; }
+
+    public bool? IsLiked { get; set; }
 }

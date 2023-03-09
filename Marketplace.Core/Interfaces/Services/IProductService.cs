@@ -16,4 +16,6 @@ public interface IProductService
     Result<bool> LikeProduct(int productId, string userStsId);
 
     IEnumerable<int> GetLikedProductIds(IEnumerable<Product> products, string userStsId);
+
+    bool IsProductLiked(Product product, string userStsId);
 }

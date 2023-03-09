@@ -26,8 +26,15 @@ export class ProductsService {
   public getProductsCountByCategory = (route: string): Observable<number> =>
     this.http.get<number>(`${environment.baseApiUrl}/Product/GetCount/${route}`);
 
-  public getProductDetails = (id: number): Observable<ProductDetailsDto> =>
-    this.http.get<ProductDetailsDto>(`${environment.baseApiUrl}/Product/${id}`);
+  public getProductDetails(id: number, accessToken?: string): Observable<ProductDetailsDto> {
+    if (accessToken) {
+      let httpOptions = this.getHttpOptions(accessToken);
+
+      return this.http.get<ProductDetailsDto>(`${environment.baseApiUrl}/Product/${id}`, httpOptions);
+    }
+
+    return this.http.get<ProductDetailsDto>(`${environment.baseApiUrl}/Product/${id}`);
+  }
 
   public postProduct(accessToken: string, basicInfo: BasicInfo, tagValues: TagValue[]) {
 

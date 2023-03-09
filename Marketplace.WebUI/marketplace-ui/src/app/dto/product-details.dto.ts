@@ -7,5 +7,5 @@ export class ProductDetailsDto {
     tagValues!: { value: string, name: string }[];
     photos!: { isMain: boolean, url: string }[];
 
-    liked?: boolean;
+    isLiked?: boolean;
 }

@@ -62,13 +62,31 @@ public class ProductController : Controller
     }
 
     [HttpGet("{productId}"), AllowAnonymous]
-    public ActionResult<ProductDetailsDto> GetById([FromRoute] int productId)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public IActionResult GetById([FromRoute] int productId)
     {
         var product = _service.GetProductById(productId);
 
-        return (product is null) ?
-            NoContent() :
-            Ok(_mapper.Map<ProductDetailsDto>(product));
+        if (product == null)
+        {
+            return NoContent();
+        }
+
+        var dto = _mapper.Map<ProductDetailsDto>(product);
+
+        string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(userStsId))
+        {
+            return Ok(dto);
+        }
+
+        bool isLiked = _service.IsProductLiked(product, userStsId);
+
+        dto.IsLiked = isLiked;
+
+        return Ok(dto);
     }
 
     [HttpGet("GetCount/{categoryRoute}"), AllowAnonymous]

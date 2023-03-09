@@ -15,6 +15,8 @@ export class ProductDetailsComponent implements OnInit {
   public priceOrSalary!: string;
   public isFound: boolean = false;
 
+  accessToken$ = this.oidcSecurityService.getAccessToken();
+
   constructor(
     private route: ActivatedRoute,
     private service: ProductsService,
@@ -31,9 +33,11 @@ export class ProductDetailsComponent implements OnInit {
         return;
       }
 
-      this.service.getProductDetails(productId)
+      this.accessToken$.subscribe(accessToken => {
+
+        this.service.getProductDetails(productId, accessToken)
         .subscribe(response => {
-          if (response === null) {
+          if (!response) {
             this.isFound = false;
             return;
           }
@@ -42,13 +46,15 @@ export class ProductDetailsComponent implements OnInit {
           this.initTagValuesAndPrice();
           this.isFound = true;
         });
+
+      });
     });
   }
 
   public onLikeClick() {
-    this.oidcSecurityService.getAccessToken().subscribe(accessToken => {
+    this.accessToken$.subscribe(accessToken => {
       this.productsService.likeProduct(accessToken, this.product.id).subscribe(isLiked => {
-        this.product.liked = isLiked;
+        this.product.isLiked = isLiked;
       });
     });
   }

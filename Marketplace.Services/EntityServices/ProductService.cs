@@ -164,4 +164,16 @@ public class ProductService : IProductService
 
         return ids;
     }
+
+    public bool IsProductLiked(Product product, string userStsId)
+    {
+        AppUser user = _uow.AppUserRepository.GetByStsIdIncludingLikedProducts(userStsId);
+
+        if (user is null)
+        {
+            return false;
+        }
+
+        return product.UsersThatLiked.Contains(user);
+    }
 }
