@@ -38,4 +38,9 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .AsQueryable()
         .Include(pr => pr.UsersThatLiked)
         .FirstOrDefault(pr => pr.Id == id)!;
+
+    public IEnumerable<Product> GetLiked(string userStsId) =>
+        GetAll()
+        .AsQueryable()
+        .Include(pr => pr.UsersThatLiked.Where(us => us.StsIdentifier == userStsId));
 }

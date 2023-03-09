@@ -18,4 +18,6 @@ public interface IProductService
     IEnumerable<int> GetLikedProductIds(IEnumerable<Product> products, string userStsId);
 
     bool IsProductLiked(Product product, string userStsId);
+
+    IEnumerable<Product> GetLikedProducts(string userStsId);
 }

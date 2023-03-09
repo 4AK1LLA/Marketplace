@@ -174,4 +174,7 @@ public class ProductService : IProductService
 
         return product.UsersThatLiked.Contains(user);
     }
+
+    public IEnumerable<Product> GetLikedProducts(string userStsId) => 
+        _uow.ProductRepository.GetLiked(userStsId);
 }

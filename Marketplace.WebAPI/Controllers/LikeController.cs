@@ -34,4 +34,24 @@ public class LikeController : ControllerBase
 
         return (string.IsNullOrEmpty(response.ErrorMessage)) ? Ok(response.Value) : BadRequest(response.ErrorMessage);
     }
+
+    [HttpGet, Authorize]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public IActionResult GetLikedProducts()
+    {
+        string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(userStsId))
+        {
+            return Unauthorized();
+        }
+
+        var likedProducts = _service.GetLikedProducts(userStsId);
+
+        return (likedProducts is not null && likedProducts.Any()) 
+            ? Ok(likedProducts) 
+            : NoContent();
+    }
 }
