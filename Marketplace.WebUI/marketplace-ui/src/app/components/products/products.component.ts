@@ -5,6 +5,7 @@ import { combineLatest, debounceTime } from 'rxjs';
 import { ProductDto } from 'src/app/dto/product.dto';
 import { PaginationService } from 'src/app/services/pagination-service/pagination.service';
 import { ProductsService } from 'src/app/services/products-service/products.service';
+import { ToastService } from 'src/app/services/toast-service/toast.service';
 
 @Component({
   selector: 'app-products',
@@ -27,7 +28,8 @@ export class ProductsComponent implements OnInit {
     private productsService: ProductsService,
     private route: ActivatedRoute,
     private paginationService: PaginationService,
-    private oidcSecurityService: OidcSecurityService
+    private oidcSecurityService: OidcSecurityService,
+    private toastService: ToastService
   ) { }
 
   ngOnInit(): void { //now Im using routerLink (removed hrefs) wich doesnt require page reloading, so this hook and observable subscription are executing during whole component lifetime
@@ -43,6 +45,10 @@ export class ProductsComponent implements OnInit {
 
   public onLikeClick(productId: number) {
     this.accessToken$.subscribe(accessToken => {
+      if (!accessToken) {
+        this.toastService.show('Notification', 'Sorry, you must be logged to save ads');
+        return;
+      }
       this.productsService.likeProduct(accessToken, productId).subscribe(isLiked => {
         this.products.find(pr => pr.id === productId)!.liked = isLiked;
       });

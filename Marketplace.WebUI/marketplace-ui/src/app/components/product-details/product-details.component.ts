@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { ProductDetailsDto } from 'src/app/dto/product-details.dto';
 import { ProductsService } from 'src/app/services/products-service/products.service';
+import { ToastService } from 'src/app/services/toast-service/toast.service';
 
 @Component({
   selector: 'app-product-details',
@@ -21,7 +22,8 @@ export class ProductDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private service: ProductsService,
     private oidcSecurityService: OidcSecurityService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private toastService: ToastService
   ) { }
 
   public ngOnInit(): void {
@@ -53,6 +55,10 @@ export class ProductDetailsComponent implements OnInit {
 
   public onLikeClick() {
     this.accessToken$.subscribe(accessToken => {
+      if (!accessToken) {
+        this.toastService.show('Notification', 'Sorry, you must be logged to save ads');
+        return;
+      }
       this.productsService.likeProduct(accessToken, this.product.id).subscribe(isLiked => {
         this.product.isLiked = isLiked;
       });
