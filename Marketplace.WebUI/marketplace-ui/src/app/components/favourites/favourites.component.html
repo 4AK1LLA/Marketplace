@@ -1,7 +1,7 @@
 <div class="container">
     <div *ngIf="!likedProducts" class="fav-title">You haven't added ads to your favorites yet</div>
 
-    <div *ngIf="likedProducts" class="">
-        likedProducts
+    <div *ngIf="likedProducts">
+        <div *ngFor="let pr of likedProducts" class="">{{ pr.title }}</div>
     </div>
 </div>

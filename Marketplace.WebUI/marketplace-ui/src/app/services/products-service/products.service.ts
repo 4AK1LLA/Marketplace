@@ -58,6 +58,12 @@ export class ProductsService {
     return this.http.put<boolean>(`${environment.baseApiUrl}/Like/${id}`, null, httpOptions);
   }
 
+  public getLikedProducts(accessToken: string) {
+    let httpOptions = this.getHttpOptions(accessToken);
+
+    return this.http.get<ProductDto[]>(`${environment.baseApiUrl}/Like`, httpOptions);
+  }
+
   private getHttpOptions(accessToken: string, page?: number) {
     if (page) {
       return { headers: new HttpHeaders({ Authorization: 'Bearer ' + accessToken }),  params: { pageNumber: page } }
