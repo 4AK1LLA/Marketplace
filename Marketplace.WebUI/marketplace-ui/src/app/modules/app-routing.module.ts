@@ -9,7 +9,7 @@ import { ProductsComponent } from '../components/products/products.component';
 import { UnauthorizedComponent } from '../components/unauthorized/unauthorized.component';
 
 const routes: Routes = [
-  { path: 'favourites', component: FavouritesComponent },
+  { path: 'favourites', component: FavouritesComponent, canActivate: [AuthorizationGuard] },
   { path: 'post-ad', component: PostAdComponent, canActivate: [AuthorizationGuard] },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'product/:productId', component: ProductDetailsComponent },

@@ -93,7 +93,7 @@
                 </a>
             </div>
 
-            <h4 class="mb-4"><strong>{{ priceOrSalary }} &#8372;</strong></h4>
+            <h4 class="mb-4"><strong [innerHTML]="product.priceInfo | price"></strong></h4>
 
             <div class="tags">
                 <span *ngFor="let tg of product.tagValues" style="display: inline-block;"

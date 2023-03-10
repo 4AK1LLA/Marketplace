@@ -42,6 +42,22 @@ public class MappingProfile : Profile
             .ForMember(
                 dest => dest.PublicationDate,
                 opt => opt.MapFrom(src => src.PublicationDate.ToString("ddd, d MMMM h:mm tt")) //Mon, 13 December 12:05 AM
+            )
+            .ForMember(
+                dest => dest.PriceInfo,
+                opt =>
+                {
+                    opt.SetMappingOrder(0);
+                    opt.MapFrom(src => GetPriceInfoIfExists(src));
+                }
+            )
+            .ForMember(
+                dest => dest.TagValues,
+                opt =>
+                {
+                    opt.SetMappingOrder(1);
+                    opt.MapFrom(src => RemovePriceInfoTags(src));
+                }
             );
 
         CreateMap<TagValue, TagValueDto>()
@@ -75,7 +91,7 @@ public class MappingProfile : Profile
             {
                 case "Price":
                 case "Salary":
-                    return $"{tv.Value} {src.TagValues.First(tv => tv.Tag!.Name == "Currency").Value}"; 
+                    return $"{tv.Value} {src.TagValues.First(tv => tv.Tag!.Name == "Currency").Value}";
                 case "Free":
                 case "Exchange":
                     return (tv.Value == "true") ? tv.Tag!.Name : null!;
@@ -97,5 +113,27 @@ public class MappingProfile : Profile
         var tv = src.TagValues.FirstOrDefault(tv => tv.Tag!.Name == "Condition");
 
         return (tv is not null) ? tv.Value! : null!;
+    }
+
+    private IEnumerable<TagValue> RemovePriceInfoTags(Product src)
+    {
+        if (!src.TagValues!.Any() || src.TagValues is null)
+        {
+            return null!;
+        }
+
+        var result = src.TagValues;
+
+        string[] arr = { "Price", "Salary", "Free", "Exchange", "Currency" };
+
+        foreach (var tv in src.TagValues)
+        {
+            if (arr.Contains(tv.Tag!.Name))
+            {
+                result.Remove(tv);
+            }
+        }
+
+        return result;
     }
 }

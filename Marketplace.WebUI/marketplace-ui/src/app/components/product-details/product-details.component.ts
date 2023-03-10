@@ -45,7 +45,7 @@ export class ProductDetailsComponent implements OnInit {
           }
 
           this.product = response;
-          this.initTagValuesAndPrice();
+          this.initTagValues();
           this.isFound = true;
         });
 
@@ -65,15 +65,10 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
-  private initTagValuesAndPrice(): void {
+  private initTagValues(): void {
     if (this.product !== null || this.product !== undefined) {
-      let priceTag = this.product.tagValues.find(tv => tv.name === 'Price' || tv.name === 'Salary')!;
-      let index = this.product.tagValues.indexOf(priceTag);
-      this.priceOrSalary = priceTag.value!;
-
-      this.product.tagValues.splice(index, 1);
-
       this.product?.tagValues.forEach(tv => {
+        //TODO: Remove from here
         if (tv.name.toLowerCase().includes('area')) {
           tv.value += ' m<sup>2</sup>';
         }

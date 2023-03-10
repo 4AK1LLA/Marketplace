@@ -3,10 +3,10 @@
 
     <ng-template #found>
 
-        <div class="fav-title">Ad favourites</div>
-        <ul class="nav nav-tabs">
+        <div class="fav-title mb-4">Ad favourites</div>
+        <ul class="nav nav-tabs" *ngIf="likedProducts">
             <li class="nav-item">
-                <div class="nav-link active">Your favourites (2)</div>
+                <div class="nav-link active">Your favourites ({{ likedProducts.length }})</div>
             </li>
             <li class="nav-item">
                 <a class="nav-link remove">Remove all favourites</a>
@@ -22,7 +22,7 @@
                         </div>
                         <div class="card-body">
                             <div class="label-like rounded-circle d-flex justify-content-center align-items-center">
-                                <a><i class='bx bx-sm'
+                                <a (click)="onLikeClick(pr.id)"><i class='bx bx-sm'
                                         [class]="(pr.liked)?'bxs-heart liked':'bx-heart bx-tada-hover'"></i></a>
                             </div>
                             <h5 class="card-title"><a [routerLink]="['/product', pr.id]">{{ pr.title }}</a></h5>

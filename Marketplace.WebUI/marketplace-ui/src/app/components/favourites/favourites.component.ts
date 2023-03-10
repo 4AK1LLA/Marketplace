@@ -35,6 +35,14 @@ export class FavouritesComponent implements OnInit {
     });
   }
 
+  public onLikeClick(productId: number) {
+    this.accessToken$.subscribe(accessToken => {
+      this.productsService.likeProduct(accessToken, productId).subscribe(isLiked => {
+        this.likedProducts.find(pr => pr.id === productId)!.liked = isLiked;
+      });
+    });
+  }
+
   private activateLikes() {
     if (!this.likedProducts) {
       return;
