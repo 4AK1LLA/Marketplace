@@ -7,7 +7,6 @@
 .fav-title {
     font-weight: bold;
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
 }
 
 .card-top {
@@ -20,7 +19,6 @@
 
 .card-body {
     position: relative;
-    height: 200px;
 }
 
 .card {
@@ -28,9 +26,6 @@
     overflow: hidden;
     width: 100%;
     background: #fff;
-    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
-    border: 0;
-    border-radius: 1rem;
 
     h2 {
         font-size: 1rem
@@ -48,7 +43,6 @@
 }
 
 .price {
-    min-height: 58px;
     text-align: right;
     width: 30%;
     font-size: 1rem;
@@ -73,11 +67,6 @@
     border-top-right-radius: 0;
 }
 
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
-}
-
 .label-like {
     position: absolute;
     background-color: $white-color;
@@ -86,23 +75,6 @@
     top: -20px;
     height: 35px;
     width: 35px;
-    z-index: 1;
-}
-
-.btn {
-    font-size: 1rem;
-    text-transform: uppercase;
-    padding: 5px 50px 5px 50px;
-    background-color: $main-color;
-    color: $secondary-color;
-    border: none;
-    border-radius: 10px;
-}
-
-.btn:hover {
-    background-color: $secondary-color;
-    color: $white-color;
-    box-shadow: -1px 6px 19px rgba(43, 255, 244, 0.41)
 }
 
 .liked, .remove:hover {

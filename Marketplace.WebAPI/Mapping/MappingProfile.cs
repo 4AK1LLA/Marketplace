@@ -68,6 +68,7 @@ public class MappingProfile : Profile
             return null!;
         }
 
+        //TODO: first try to get price, then free and exchange
         foreach (var tv in src.TagValues)
         {
             switch (tv.Tag!.Name)

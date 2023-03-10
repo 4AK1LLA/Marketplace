@@ -17,6 +17,7 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsComponent } from './components/toasts/toasts.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
+import { PricePipe } from './pipes/price.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FavouritesComponent } from './components/favourites/favourites.componen
     PostAdComponent,
     UnauthorizedComponent,
     ToastsComponent,
-    FavouritesComponent
+    FavouritesComponent,
+    PricePipe
   ],
   imports: [
     BrowserModule,
