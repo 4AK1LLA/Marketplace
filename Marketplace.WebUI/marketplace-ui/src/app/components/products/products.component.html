@@ -34,8 +34,7 @@
                     <h5 class="card-title">{{ pr.title }}</h5>
                     <div class="d-flex justify-content-between">
                         <div class="date-location">{{ pr.publicationDate }}<br>{{ pr.location }}</div>
-                        <!--TODO: Add pipe for displaying price or free sign-->
-                        <div class="price">{{ pr.price }} &#8372;</div>
+                        <div class="price">{{ pr.priceInfo }}</div>
                     </div>
                     <div class="text-center my-2">
                         <a i18n [routerLink]="['/product', pr.id]" class="btn">see details</a>

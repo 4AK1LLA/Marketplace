@@ -3,11 +3,9 @@ export class ProductDto {
     title!: string;
     publicationDate!: string;
     location!: string;
-    tagValues!: { value: string, name: string }[];
     mainPhotoUrl!: string;
-
     condition?: string;
-    price?: string;
+    priceInfo?: string;
 
     liked?: boolean;
 }

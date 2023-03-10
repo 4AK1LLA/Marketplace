@@ -14,13 +14,16 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  public getProductsByCategoryAndPage = (route: string, page: number): Observable<ProductDto[]> =>
-    this.http.get<ProductDto[]>(`${environment.baseApiUrl}/Product/Get/${route}`, { params: { pageNumber: page } });
+  public getProductsByCategoryAndPage(route: string, page: number, accessToken?: string)
+  : Observable<ProductDto[] | { dtos: ProductDto[], likedProductIds: number[] }> 
+  {
+    if (accessToken) {
+      let httpOtions = this.getHttpOptions(accessToken, page);
 
-  public getProductsByCategoryAndPageWithLikes(accessToken: string, route: string, page: number) {
-    let httpOtions = this.getHttpOptions(accessToken, page);
+      return this.http.get<{ dtos: ProductDto[], likedProductIds: number[] }>(`${environment.baseApiUrl}/Product/Get/${route}`, httpOtions);
+    }
 
-    return this.http.get<{ dtos: ProductDto[], likedProductIds: number[] }>(`${environment.baseApiUrl}/Product/Get/${route}`, httpOtions);
+    return this.http.get<ProductDto[]>(`${environment.baseApiUrl}/Product/Get/${route}`, { params: { pageNumber: page } });
   }
 
   public getProductsCountByCategory = (route: string): Observable<number> =>

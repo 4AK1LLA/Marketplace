@@ -55,43 +55,24 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  private initProperties(): void {
-    if (!this.products)
-      return;
-
-    this.products.forEach(pr => {
-      pr.tagValues.forEach(tv => {
-        if (tv.name === 'Condition')
-          pr.condition = tv.value;
-        if (tv.name === 'Price' || tv.name === 'Salary')
-          pr.price = tv.value;
-      })
-    });
-  }
-
   private initProductsAndCount(): void {
     this.accessToken$.subscribe(accessToken => {
-      if (accessToken) {
-        this.productsService
-        .getProductsByCategoryAndPageWithLikes(accessToken, this.routeValue, this.page)
-        .subscribe(data => {
-          this.products = (data) ? (data.dtos || data) : data;
-          if (data.likedProductIds) {
-            data.likedProductIds.forEach(id => {
-              this.products.find(pr => pr.id === id)!.liked = true;
-            });
+      this.productsService
+        .getProductsByCategoryAndPage(this.routeValue, this.page, accessToken).subscribe(data => {
+          if (accessToken) {
+            let response = data as { dtos: ProductDto[], likedProductIds: number[] };
+            this.products = (response) ? (response.dtos || response) : response;
+            if (response.likedProductIds) {
+              response.likedProductIds.forEach(id => {
+                this.products.find(pr => pr.id === id)!.liked = true;
+              });
+            }
+
+            return;
           }
-          this.initProperties();
+
+          this.products = data as ProductDto[];
         });
-      }
-      else {
-        this.productsService
-        .getProductsByCategoryAndPage(this.routeValue, this.page)
-        .subscribe(data => {
-          this.products = data;
-          this.initProperties();
-        });
-      }
     });
 
     this.productsService
