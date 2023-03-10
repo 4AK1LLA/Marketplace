@@ -74,12 +74,15 @@ public class Seeder : ISeeder
 
         foreach (var pr in products)
         {
-            pr.TagValues = new List<TagValue>();
-            pr.TagValues.Add(new TagValue
+            pr.TagValues = new List<TagValue>
             {
-                Tag = new Tag { Name = "Price" },
-                Value = random.Next(1000, 10000).ToString()
-            });
+                new TagValue
+                {
+                    Tag = new Tag { Name = "Price" },
+                    Value = random.Next(1000, 10000).ToString()
+                },
+                new TagValue { Tag = new Tag { Name = "Price" }, Value = "uah" }
+            };
             pr.Photos = new List<Photo> { new Photo { IsMain = true, URL = "https://picsum.photos/700/700" } };
         }
 

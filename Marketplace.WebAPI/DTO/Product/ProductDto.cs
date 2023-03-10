@@ -10,7 +10,9 @@ public class ProductDto
 
     public string? Location { get; set; }
 
-    public ICollection<TagValueDto>? TagValues { get; set; }
-
     public string? MainPhotoUrl { get; set; }
+
+    public string? PriceInfo { get; set; }
+
+    public string? Condition { get; set; }
 }
