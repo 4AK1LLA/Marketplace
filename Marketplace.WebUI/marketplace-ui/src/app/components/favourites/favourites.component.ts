@@ -28,7 +28,6 @@ export class FavouritesComponent implements OnInit {
       this.productsService
         .getLikedProducts(accessToken)
         .subscribe(likedProducts => {
-          console.log(likedProducts)
           this.likedProducts = likedProducts;
           this.activateLikes();
         });
@@ -41,6 +40,22 @@ export class FavouritesComponent implements OnInit {
         this.likedProducts.find(pr => pr.id === productId)!.liked = isLiked;
       });
     });
+  }
+
+  public onRemoveAllClick() {
+    let result = confirm("Want to delete?");
+
+    if (result) {
+      this.accessToken$.subscribe(accessToken => {
+        this.productsService.removeAllLikes(accessToken).subscribe(success => {
+          if (!success) {
+            return;
+          }
+          
+          this.likedProducts = [];
+        });
+      });
+    }
   }
 
   private activateLikes() {

@@ -67,6 +67,12 @@ export class ProductsService {
     return this.http.get<ProductDto[]>(`${environment.baseApiUrl}/Like`, httpOptions);
   }
 
+  public removeAllLikes(accessToken: string) {
+    let httpOptions = this.getHttpOptions(accessToken);
+
+    return this.http.delete(`${environment.baseApiUrl}/Like`, httpOptions);
+  }
+
   private getHttpOptions(accessToken: string, page?: number) {
     if (page) {
       return { headers: new HttpHeaders({ Authorization: 'Bearer ' + accessToken }),  params: { pageNumber: page } }

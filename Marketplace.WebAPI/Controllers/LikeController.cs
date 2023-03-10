@@ -12,12 +12,14 @@ namespace Marketplace.WebAPI.Controllers;
 [Route("api/[controller]")]
 public class LikeController : ControllerBase
 {
-    private readonly IProductService _service;
+    private readonly IProductService _productService;
+    private readonly IUserService _userService;
     private readonly IMapper _mapper;
 
-    public LikeController(IProductService service, IMapper mapper)
+    public LikeController(IProductService productService, IUserService userService, IMapper mapper)
     {
-        _service = service;
+        _productService = productService;
+        _userService = userService;
         _mapper = mapper;
     }
 
@@ -34,7 +36,7 @@ public class LikeController : ControllerBase
             return Unauthorized();
         }
 
-        Result<bool> response = _service.LikeProduct(productId, userStsId);
+        Result<bool> response = _productService.LikeProduct(productId, userStsId);
 
         return (string.IsNullOrEmpty(response.ErrorMessage)) ? Ok(response.Value) : BadRequest(response.ErrorMessage);
     }
@@ -52,10 +54,25 @@ public class LikeController : ControllerBase
             return Unauthorized();
         }
 
-        var likedProducts = _service.GetLikedProducts(userStsId);
+        var likedProducts = _productService.GetLikedProducts(userStsId);
 
         return (likedProducts is not null && likedProducts.Any()) 
             ? Ok(_mapper.Map<IEnumerable<ProductDto>>(likedProducts)) 
             : NoContent();
+    }
+
+    [HttpDelete, Authorize]
+    public IActionResult RemoveAllLikes()
+    {
+        string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(userStsId))
+        {
+            return Unauthorized();
+        }
+
+        bool success = _userService.RemoveAllLikes(userStsId);
+
+        return Ok(success);
     }
 }
