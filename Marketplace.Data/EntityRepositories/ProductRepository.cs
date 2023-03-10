@@ -6,15 +6,9 @@ namespace Marketplace.Data;
 
 public class ProductRepository : Repository<Product>, IProductRepository
 {
-    public ProductRepository(MarketplaceContext context) : base(context) { }
+    private readonly string[] significantTags = { "Price", "Salary", "Condition", "Free", "Exchange", "Currency" };
 
-    public Product GetIncludingCategoryAndTagValues(int id) =>
-        GetAll()
-        .AsQueryable()
-        .Where(pr => pr.Id == id)
-        .Include(pr => pr.Category)
-        .Include(pr => pr.TagValues)
-        .First();
+    public ProductRepository(MarketplaceContext context) : base(context) { }
 
     public IEnumerable<Product> GetByCategoryNameIncludingTagValuesAndPhotos(string name, int page) =>
         GetAll()
@@ -24,7 +18,7 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .Skip((page - 1) * 16)
         .Take(16)
         .Include(pr => pr.Photos)
-        .Include(pr => pr.TagValues)!
+        .Include(pr => pr.TagValues!.Where(tv => significantTags.Contains(tv.Tag!.Name)))
         .ThenInclude(tv => tv.Tag);
 
     public Product GetIncludingTagValuesAndPhotos(int id) =>
@@ -41,4 +35,17 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .Where(pr => EF.Functions.Like(pr.Category!.Name!, $"%{name}%"))
         .Count();
 
+    public Product GetIncludingUsersThatLiked(int id) =>
+        GetAll()
+        .AsQueryable()
+        .Include(pr => pr.UsersThatLiked)
+        .FirstOrDefault(pr => pr.Id == id)!;
+
+    public IEnumerable<Product> GetLiked(string userStsId) =>
+        GetAll()
+        .AsQueryable()
+        .Where(pr => pr.UsersThatLiked.Any(us => us.StsIdentifier == userStsId))
+        .Include(pr => pr.Photos)
+        .Include(pr => pr.TagValues!.Where(tv => significantTags.Contains(tv.Tag!.Name)))
+        .ThenInclude(tv => tv.Tag);
 }

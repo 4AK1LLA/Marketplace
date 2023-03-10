@@ -26,8 +26,7 @@ public class ProductController : Controller
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<IEnumerable<ProductDto>> Get([FromRoute] string categoryRoute, [FromQuery] int pageNumber)
+    public IActionResult Get([FromRoute] string categoryRoute, [FromQuery] int pageNumber)
     {
         if (string.IsNullOrEmpty(categoryRoute))
         {
@@ -38,24 +37,56 @@ public class ProductController : Controller
 
         var products = _service.GetProductsByCategoryAndPage(categoryName, pageNumber);
 
-        if (products is null)
+        if (products is null || !products.Any())
         {
-            return NotFound();
+            return NoContent();
         }
 
-        return (products.Count() == 0) ?
-            NoContent() :
-            Ok(_mapper.Map<IEnumerable<ProductDto>>(products));
+        string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        var dtos = _mapper.Map<IEnumerable<ProductDto>>(products);
+
+        if (string.IsNullOrEmpty(userStsId))
+        {
+            return Ok(dtos);
+        }
+
+        var likedProductIds = _service.GetLikedProductIds(products, userStsId);
+
+        if (likedProductIds == null)
+        {
+            return BadRequest("User does not exist");
+        }
+
+        return (likedProductIds.Any()) ? Ok(new { dtos, likedProductIds }) : Ok(dtos);
     }
 
     [HttpGet("{productId}"), AllowAnonymous]
-    public ActionResult<ProductDetailsDto> GetById([FromRoute] int productId)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public IActionResult GetById([FromRoute] int productId)
     {
         var product = _service.GetProductById(productId);
 
-        return (product is null) ?
-            NoContent() :
-            Ok(_mapper.Map<ProductDetailsDto>(product));
+        if (product == null)
+        {
+            return NoContent();
+        }
+
+        var dto = _mapper.Map<ProductDetailsDto>(product);
+
+        string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(userStsId))
+        {
+            return Ok(dto);
+        }
+
+        bool isLiked = _service.IsProductLiked(product, userStsId);
+
+        dto.IsLiked = isLiked;
+
+        return Ok(dto);
     }
 
     [HttpGet("GetCount/{categoryRoute}"), AllowAnonymous]

@@ -42,7 +42,7 @@ public static class ServiceExtensions
         {
             options.AddPolicy(
                 name: myAllowSpecificOrigins,
-                policy => policy.WithOrigins(origins).AllowAnyHeader());
+                policy => policy.WithOrigins(origins).AllowAnyHeader().AllowAnyMethod());
         });
 
         return services;

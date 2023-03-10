@@ -88,10 +88,12 @@
             <p class="text-muted mb-2"><small>Posted on {{ product.publicationDate }}</small></p>
             <div class="d-flex justify-content-between mb-4">
                 <h4 class="mr-auto">{{ product.title }}</h4>
-                <a class="ml-auto"><i class='bx bx-heart bx-md bx-tada-hover'></i></a>
+                <a class="ml-auto" (click)="onLikeClick()">
+                    <i class='bx bx-md' [class]="(product.isLiked)?'bxs-heart liked':'bx-heart bx-tada-hover'"></i>
+                </a>
             </div>
 
-            <h4 class="mb-4"><strong>{{ priceOrSalary }} &#8372;</strong></h4>
+            <h4 class="mb-4"><strong [innerHTML]="product.priceInfo | price"></strong></h4>
 
             <div class="tags">
                 <span *ngFor="let tg of product.tagValues" style="display: inline-block;"

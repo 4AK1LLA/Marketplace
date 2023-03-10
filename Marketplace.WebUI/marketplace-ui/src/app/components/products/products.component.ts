@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { combineLatest, debounceTime } from 'rxjs';
 import { ProductDto } from 'src/app/dto/product.dto';
 import { PaginationService } from 'src/app/services/pagination-service/pagination.service';
 import { ProductsService } from 'src/app/services/products-service/products.service';
+import { ToastService } from 'src/app/services/toast-service/toast.service';
 
 @Component({
   selector: 'app-products',
@@ -20,18 +22,20 @@ export class ProductsComponent implements OnInit {
   pagesCount!: number;
   paginationArray: any[] = [];
 
+  accessToken$ = this.oidcSecurityService.getAccessToken();
+
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute,
     private paginationService: PaginationService,
+    private oidcSecurityService: OidcSecurityService,
+    private toastService: ToastService
   ) { }
 
   ngOnInit(): void { //now Im using routerLink (removed hrefs) wich doesnt require page reloading, so this hook and observable subscription are executing during whole component lifetime
     let route$ = combineLatest({ qparams: this.route.queryParams, params: this.route.params }).pipe(debounceTime(0)); //debounceTime(0) solves issue when combineLatest emitts two values when navigating
 
     route$.subscribe(context => {
-      console.warn('Subscription');
-
       this.routeValue = (context.params['categoryRoute']) ? context.params['categoryRoute']! : context.params['mainCategoryRoute']!;
       this.page = (isNaN(context.qparams['page'])) ? 1 : Number(context.qparams['page']);
 
@@ -39,28 +43,37 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  private initProperties(): void {
-    if (!this.products)
-      return;
-
-    this.products.forEach(pr => {
-      pr.tagValues.forEach(tv => {
-        if (tv.name === 'Condition')
-          pr.condition = tv.value;
-        if (tv.name === 'Price' || tv.name === 'Salary')
-          pr.price = tv.value;
-      })
+  public onLikeClick(productId: number) {
+    this.accessToken$.subscribe(accessToken => {
+      if (!accessToken) {
+        this.toastService.show('Notification', 'Sorry, you must be logged to save ads');
+        return;
+      }
+      this.productsService.likeProduct(accessToken, productId).subscribe(isLiked => {
+        this.products.find(pr => pr.id === productId)!.liked = isLiked;
+      });
     });
   }
 
   private initProductsAndCount(): void {
-    this.productsService
-      .getProductsByCategoryAndPage(this.routeValue, this.page)
-      .subscribe(data => {
-        this.products = data;
-        console.warn('page: ' + this.page + ' | route: ' + this.routeValue + ' | products: ' + JSON.stringify(this.products));
-        this.initProperties();
-      });
+    this.accessToken$.subscribe(accessToken => {
+      this.productsService
+        .getProductsByCategoryAndPage(this.routeValue, this.page, accessToken).subscribe(data => {
+          if (accessToken) {
+            let response = data as { dtos: ProductDto[], likedProductIds: number[] };
+            this.products = (response) ? (response.dtos || response) : response;
+            if (response.likedProductIds) {
+              response.likedProductIds.forEach(id => {
+                this.products.find(pr => pr.id === id)!.liked = true;
+              });
+            }
+
+            return;
+          }
+
+          this.products = data as ProductDto[];
+        });
+    });
 
     this.productsService
       .getProductsCountByCategory(this.routeValue)

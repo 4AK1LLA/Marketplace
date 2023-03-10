@@ -19,4 +19,6 @@ public class Product
     public ICollection<TagValue>? TagValues { get; set; }
 
     public ICollection<Photo>? Photos { get; set; }
+
+    public ICollection<AppUser> UsersThatLiked { get; set; } = new List<AppUser>();
 }

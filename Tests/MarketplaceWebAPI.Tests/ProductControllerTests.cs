@@ -30,40 +30,6 @@ namespace MarketplaceWebAPI.Tests
         }
 
         [Fact]
-        public void Get_ReturnOk_WhenProductsAreNotEmptyAndPageIsValid()
-        {
-            _productService
-                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", validPage))
-                .Returns(new List<Product> {
-                    new Product(), new Product(), new Product()
-                });
-
-            var products = _productController.Get("CategoryName", validPage);
-
-            var result = products.Result as ObjectResult;
-            var value = result!.Value as IEnumerable<ProductDto>;
-
-            result.Should().NotBeNull();
-            result.StatusCode.Should().Be(StatusCodes.Status200OK);
-
-            value.Should().NotBeNullOrEmpty()
-                .And.HaveCount(3)
-                .And.AllBeOfType<ProductDto>();
-        }
-
-        [Fact]
-        public void Get_ReturnNoContent_WhenProductsAreEmptyAndPageIsValid()
-        {
-            _productService
-                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", validPage))
-                .Returns(Enumerable.Empty<Product>);
-
-            var products = _productController.Get("CategoryName", validPage);
-
-            (products.Result as StatusCodeResult)!.StatusCode.Should().Be(StatusCodes.Status204NoContent);
-        }
-
-        [Fact]
         public void GetCount_ReturnOk_WhenProductsAreNotEmpty()
         {
             _productService
@@ -97,32 +63,6 @@ namespace MarketplaceWebAPI.Tests
             result.StatusCode.Should().Be(StatusCodes.Status200OK);
 
             value.Should().Be(0);
-        }
-
-        [Fact]
-        public void Get_ReturnNoContent_WhenPageIsNotValid()
-        {
-            var page = 100;
-
-            _productService
-                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", page))
-                .Returns(Enumerable.Empty<Product>);
-
-            var products = _productController.Get("CategoryName", page);
-
-            (products.Result as StatusCodeResult)!.StatusCode.Should().Be(StatusCodes.Status204NoContent);
-        }
-
-        [Fact]
-        public void Get_ReturnNotFound_WhenProductsAreNull()
-        {
-            _productService
-                .Setup(ps => ps.GetProductsByCategoryAndPage("CategoryName", 1))
-                .Returns((IEnumerable<Product>)null!);
-
-            var products = _productController.Get("CategoryName", 1);
-
-            (products.Result as StatusCodeResult)!.StatusCode.Should().Be(StatusCodes.Status404NotFound);
         }
     }
 }

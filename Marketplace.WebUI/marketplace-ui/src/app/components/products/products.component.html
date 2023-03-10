@@ -28,11 +28,13 @@
                     <div class="label-top" *ngIf="pr.condition">{{ pr.condition }}</div>
                 </div>
                 <div class="card-body">
+                    <div class="label-like rounded-circle d-flex justify-content-center align-items-center">
+                        <a (click)="onLikeClick(pr.id)"><i class='bx bx-sm' [class]="(pr.liked)?'bxs-heart liked':'bx-heart bx-tada-hover'"></i></a>
+                    </div>
                     <h5 class="card-title">{{ pr.title }}</h5>
                     <div class="d-flex justify-content-between">
                         <div class="date-location">{{ pr.publicationDate }}<br>{{ pr.location }}</div>
-                        <!--TODO: Add pipe for displaying price or free sign-->
-                        <div class="price">{{ pr.price }} &#8372;</div>
+                        <div [innerHTML]="pr.priceInfo | price" class="price"></div>
                     </div>
                     <div class="text-center my-2">
                         <a i18n [routerLink]="['/product', pr.id]" class="btn">see details</a>

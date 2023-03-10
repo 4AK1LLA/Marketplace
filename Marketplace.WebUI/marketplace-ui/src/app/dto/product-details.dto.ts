@@ -6,4 +6,6 @@ export class ProductDetailsDto {
     location!: string;
     tagValues!: { value: string, name: string }[];
     photos!: { isMain: boolean, url: string }[];
+    priceInfo?: string;
+    isLiked?: boolean;
 }

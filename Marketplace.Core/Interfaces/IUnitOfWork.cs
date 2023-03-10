@@ -16,7 +16,7 @@ public interface IUnitOfWork
 
     IMainCategoryRepository MainCategoryRepository { get; }
 
-    IRepository<AppUser> AppUserRepository { get; }
+    IUserRepository AppUserRepository { get; }
 
     bool Save();
 }

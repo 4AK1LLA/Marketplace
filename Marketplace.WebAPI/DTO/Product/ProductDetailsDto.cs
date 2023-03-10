@@ -12,7 +12,11 @@ public class ProductDetailsDto
 
     public string? Location { get; set; }
 
+    public string? PriceInfo { get; set; }
+
     public ICollection<TagValueDto>? TagValues { get; set; }
 
     public ICollection<PhotoDto>? Photos { get; set; }
+
+    public bool? IsLiked { get; set; }
 }

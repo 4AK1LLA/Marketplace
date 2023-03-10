@@ -16,6 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsComponent } from './components/toasts/toasts.component';
+import { FavouritesComponent } from './components/favourites/favourites.component';
+import { PricePipe } from './pipes/price.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ToastsComponent } from './components/toasts/toasts.component';
     ProductDetailsComponent,
     PostAdComponent,
     UnauthorizedComponent,
-    ToastsComponent
+    ToastsComponent,
+    FavouritesComponent,
+    PricePipe
   ],
   imports: [
     BrowserModule,

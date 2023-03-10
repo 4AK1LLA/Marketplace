@@ -18,4 +18,18 @@ public class UserService : IUserService
 
     public AppUser GetUserByName(string userName) => 
         _uow.AppUserRepository.Find(us => us.UserName == userName).FirstOrDefault()!;
+
+    public bool RemoveAllLikes(string userStsId)
+    {
+        var user = _uow.AppUserRepository.GetByStsIdIncludingLikedProducts(userStsId);
+
+        if (user is null) 
+        {
+            return false;
+        }
+
+        user.LikedProducts = null;
+
+        return _uow.Save();
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
+using Marketplace.Shared.Generic;
 
 namespace Marketplace.Services;
 
@@ -96,4 +97,84 @@ public class ProductService : IProductService
 
         return true;
     }
+
+    public Result<bool> LikeProduct(int productId, string userStsId)
+    {
+        var resultIsLiked = new Result<bool>();
+
+        AppUser user = _uow.AppUserRepository.Find(user => user.StsIdentifier == userStsId).FirstOrDefault()!;
+
+        if (user is null)
+        {
+            resultIsLiked.ErrorMessage = "User not found";
+
+            return resultIsLiked;
+        }
+
+        Product product = _uow.ProductRepository.GetIncludingUsersThatLiked(productId);
+
+        if (product is null)
+        {
+            resultIsLiked.ErrorMessage = "Product not found";
+
+            return resultIsLiked;
+        }
+
+        bool removed = product.UsersThatLiked.Remove(user);
+
+        resultIsLiked.Value = false;
+
+        if (!removed)
+        {
+            product.UsersThatLiked.Add(user);
+
+            resultIsLiked.Value = true;
+        }
+
+        _uow.ProductRepository.Update(product);
+
+        if (!_uow.Save())
+        {
+            resultIsLiked.ErrorMessage = "Error while updating like data in DB";
+        }
+
+        return resultIsLiked;
+    }
+
+    public IEnumerable<int> GetLikedProductIds(IEnumerable<Product> products, string userStsId)
+    {
+        AppUser user = _uow.AppUserRepository.GetByStsIdIncludingLikedProducts(userStsId);
+
+        if (user is null)
+        {
+            return null!;
+        }
+
+        var ids = new List<int>();
+
+        foreach (var pr in products)
+        {
+            if (pr.UsersThatLiked.Contains(user))
+            {
+                ids.Add(pr.Id);
+            }
+        }
+
+        return ids;
+    }
+
+    public bool IsProductLiked(Product product, string userStsId)
+    {
+        AppUser user = _uow.AppUserRepository.GetByStsIdIncludingLikedProducts(userStsId);
+
+        if (user is null)
+        {
+            return false;
+        }
+
+        return product.UsersThatLiked.Contains(user);
+    }
+
+    public IEnumerable<Product> GetLikedProducts(string userStsId) => 
+        _uow.ProductRepository.GetLiked(userStsId);
 }

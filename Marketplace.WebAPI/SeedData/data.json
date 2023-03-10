@@ -52,6 +52,10 @@
                 "Tag": { "Name": "Price" }
               },
               {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
+              },
+              {
                 "Value": "Housing fund",
                 "Tag": { "Name": "Type of building" }
               },
@@ -113,8 +117,12 @@
                 "Tag": { "Name": "Business" }
               },
               {
-                "Value": "47 000",
+                "Value": "47000",
                 "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
               },
               {
                 "Value": "17",
@@ -166,8 +174,12 @@
                 "Tag": { "Name": "Business" }
               },
               {
-                "Value": "11 000",
+                "Value": "11000",
                 "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
               },
               {
                 "Value": "Khrushchevka",
@@ -240,8 +252,12 @@
             "Location": "Kamianske, Dnipropetrovsk region",
             "TagValues": [
               {
-                "Value": "8000-12000",
+                "Value": "12000",
                 "Tag": { "Name": "Salary" }
+              },
+              {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
               },
               {
                 "Value": "Full employment",
@@ -259,8 +275,12 @@
             "Location": "Khmelnytsky, Khmelnitsky region",
             "TagValues": [
               {
-                "Value": "7500-9000",
+                "Value": "9000",
                 "Tag": { "Name": "Salary" }
+              },
+              {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
               },
               {
                 "Value": "Part-time employment",
@@ -283,8 +303,12 @@
             "Location": "Lviv, Lviv region",
             "TagValues": [
               {
-                "Value": "12000-15000",
+                "Value": "15000",
                 "Tag": { "Name": "Salary" }
+              },
+              {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
               },
               {
                 "Value": "Flexible schedule",
@@ -329,6 +353,10 @@
                 "Tag": { "Name": "Price" }
               },
               {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
+              },
+              {
                 "Value": "Beds",
                 "Tag": { "Name": "Type" }
               },
@@ -348,6 +376,10 @@
                 "Tag": { "Name": "Price" }
               },
               {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
+              },
+              {
                 "Value": "Other living room furniture",
                 "Tag": { "Name": "Type" }
               },
@@ -365,6 +397,10 @@
               {
                 "Value": "4000",
                 "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
               },
               {
                 "Value": "New",
@@ -387,6 +423,10 @@
                 "Tag": { "Name": "Price" }
               },
               {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
+              },
+              {
                 "Value": "OLX Shipping",
                 "Tag": { "Name": "OLX Shipping" }
               }
@@ -402,6 +442,10 @@
                 "Tag": { "Name": "Price" }
               },
               {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
+              },
+              {
                 "Value": "OLX Shipping",
                 "Tag": { "Name": "OLX Shipping" }
               }
@@ -415,6 +459,10 @@
               {
                 "Value": "1000",
                 "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
               },
               {
                 "Value": "OLX Shipping",
@@ -435,6 +483,10 @@
               {
                 "Value": "806",
                 "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
               },
               {
                 "Value": "New",
@@ -467,6 +519,10 @@
                 "Tag": { "Name": "Price" }
               },
               {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
+              },
+              {
                 "Value": "Apple",
                 "Tag": { "Name": "Phone brand" }
               },
@@ -490,6 +546,10 @@
                 "Tag": { "Name": "Price" }
               },
               {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
+              },
+              {
                 "Value": "LG",
                 "Tag": { "Name": "Phone brand" }
               },
@@ -511,6 +571,10 @@
               {
                 "Value": "4300",
                 "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
               },
               {
                 "Value": "Apple",
@@ -541,6 +605,10 @@
                 "Tag": { "Name": "Price" }
               },
               {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
+              },
+              {
                 "Value": "New",
                 "Tag": { "Name": "Condition" }
               }
@@ -554,6 +622,10 @@
               {
                 "Value": "26000",
                 "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
               },
               {
                 "Value": "Used",
@@ -580,6 +652,10 @@
                 "Tag": { "Name": "Price" }
               },
               {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
+              },
+              {
                 "Value": "Liquid crystal",
                 "Tag": { "Name": "Type" }
               },
@@ -599,6 +675,10 @@
                 "Tag": { "Name": "Price" }
               },
               {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
+              },
+              {
                 "Value": "Sony",
                 "Tag": { "Name": "TV brand" }
               },
@@ -616,6 +696,10 @@
               {
                 "Value": "2300",
                 "Tag": { "Name": "Price" }
+              },
+              {
+                "Value": "uah",
+                "Tag": { "Name": "Currency" }
               },
               {
                 "Value": "LG",
@@ -671,8 +755,8 @@
             "Location": "Kozyatyn, Vinnytsia region",
             "TagValues": [
               {
-                "Value": "0",
-                "Tag": { "Name": "Price" }
+                "Value": "true",
+                "Tag": { "Name": "Free" }
               },
               {
                 "Value": "Cats",
@@ -686,8 +770,8 @@
             "Location": "Vinnytsia, Vinnytsia region",
             "TagValues": [
               {
-                "Value": "0",
-                "Tag": { "Name": "Price" }
+                "Value": "true",
+                "Tag": { "Name": "Free" }
               },
               {
                 "Value": "Women clothing",
