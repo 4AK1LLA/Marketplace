@@ -43,7 +43,7 @@ export class FavouritesComponent implements OnInit {
   }
 
   public onRemoveAllClick() {
-    let result = confirm("Want to delete?");
+    let result = confirm('Are you sure you want to remove all likes?');
 
     if (result) {
       this.accessToken$.subscribe(accessToken => {
@@ -51,7 +51,7 @@ export class FavouritesComponent implements OnInit {
           if (!success) {
             return;
           }
-          
+
           this.likedProducts = [];
         });
       });
