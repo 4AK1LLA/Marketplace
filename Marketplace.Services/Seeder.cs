@@ -10,14 +10,19 @@ public class Seeder : ISeeder
     private const string _mainFilePath = "SeedData/data.json";
     private const string _tagsFilePath = "SeedData/tags.json";
     private readonly IUnitOfWork _uow;
+    private readonly ISerializator _serializator;
 
-    public Seeder(IUnitOfWork uow)
+    public Seeder(IUnitOfWork uow, ISerializator serializator)
     {
         _uow = uow;
+        _serializator = serializator;
     }
 
     public bool Seed()
     {
+        var tags1 = _serializator.Deserialize<IEnumerable<Tag>>("SeedData/tags.json");
+
+
         if (_uow.MainCategoryRepository.Count() != 0 || _uow.ProductRepository.Count() != 0)
         {
             return false;

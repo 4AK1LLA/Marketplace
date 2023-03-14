@@ -13,6 +13,7 @@ builder.Services.AddSwagger();
 builder.Services.AddAutoMapper();
 builder.Services.AddMyServices();
 builder.Services.AddUnitOfWork();
+builder.Services.AddSerializator();
 builder.Services.AddMyDbContext();
 
 var app = builder.Build();
