@@ -1,36 +1,48 @@
 ﻿using Bogus;
 using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
+using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
 namespace Marketplace.Services;
 
 public class Seeder : ISeeder
 {
-    private const string _mainFilePath = "SeedData/data.json";
-    private const string _tagsFilePath = "SeedData/tags.json";
+    private const string section = "SeedFilePaths";
+
     private readonly IUnitOfWork _uow;
     private readonly ISerializator _serializator;
+    private readonly IConfiguration _configuration;
 
-    public Seeder(IUnitOfWork uow, ISerializator serializator)
+    public Seeder(IUnitOfWork uow, ISerializator serializator, IConfiguration configuration)
     {
         _uow = uow;
         _serializator = serializator;
+        _configuration = configuration;
     }
 
     public bool Seed()
     {
-        var tags1 = _serializator.Deserialize<IEnumerable<Tag>>("SeedData/tags.json");
-
-
         if (_uow.MainCategoryRepository.Count() != 0 || _uow.ProductRepository.Count() != 0)
         {
             return false;
         }
 
+        var filePaths =
+            _configuration
+            .GetRequiredSection(section)
+            .GetChildren()
+            .ToDictionary(section => section.Key, section => section.Value)!;
+
+        var tags = _serializator.Deserialize<IEnumerable<Tag>>(filePaths["Tags"]!);
+
+        _uow.TagRepository.AddRange(tags);
+
+
+
         string modelsJson;
 
-        using (StreamReader sr = new StreamReader(_mainFilePath))
+        using (StreamReader sr = new StreamReader(""))
         {
             modelsJson = sr.ReadToEnd();
         }
@@ -43,12 +55,12 @@ public class Seeder : ISeeder
 
         string tagsJson;
 
-        using (StreamReader sr = new StreamReader(_tagsFilePath))
+        using (StreamReader sr = new StreamReader(""))
         {
             tagsJson = sr.ReadToEnd();
         }
 
-        IEnumerable<Tag> tags = JsonSerializer.Deserialize<List<Tag>>(tagsJson)!;
+        IEnumerable<Tag> tags1 = JsonSerializer.Deserialize<List<Tag>>(tagsJson)!;
 
         MainCategory mcRealty = mainCategories.First(mc => mc.Name == "Realty");
 
