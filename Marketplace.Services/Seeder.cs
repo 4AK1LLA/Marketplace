@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
+using Marketplace.Services.SerializationModels;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
@@ -8,7 +9,7 @@ namespace Marketplace.Services;
 
 public class Seeder : ISeeder
 {
-    private const string section = "SeedFilePaths";
+    private const string sectionName = "SeedFilePaths";
 
     private readonly IUnitOfWork _uow;
     private readonly ISerializator _serializator;
@@ -30,13 +31,16 @@ public class Seeder : ISeeder
 
         var filePaths =
             _configuration
-            .GetRequiredSection(section)
+            .GetRequiredSection(sectionName)
             .GetChildren()
             .ToDictionary(section => section.Key, section => section.Value)!;
 
-        var tags = _serializator.Deserialize<IEnumerable<Tag>>(filePaths["Tags"]!);
+        var tagModels = _serializator.Deserialize<List<TagModel>>(filePaths["Tags"]!);
 
+        IEnumerable<Tag> tags = MapTags(tagModels);
+        
         _uow.TagRepository.AddRange(tags);
+
 
 
 
@@ -111,5 +115,26 @@ public class Seeder : ISeeder
                 new Category { Name = categoryName, Products = products }
             }
         };
+    }
+
+    private IEnumerable<Tag> MapTags(IEnumerable<TagModel> tagModels)
+    {
+        var tags = new List<Tag>();
+
+        foreach (var model in tagModels)
+        {
+            tags.Add(new Tag
+            {
+                Name = model.Name,
+                IsRequired = model.IsRequired,
+                Type = model.Type,
+                Remark = model.Remark,
+                PossibleValues = (model.PossibleValues is not null) 
+                    ? model.PossibleValues.Select(val => new PossibleValue { Value = val }).ToList() 
+                    : null
+            });
+        }
+
+        return tags;
     }
 }
