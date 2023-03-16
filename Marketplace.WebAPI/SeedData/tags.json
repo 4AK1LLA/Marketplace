@@ -7,6 +7,13 @@
     "Remark": "price"
   },
   {
+    "Identifier": "exchange-tag",
+    "Name": "Exchange",
+    "IsRequired": true,
+    "Type": "switch",
+    "Remark": "price"
+  },
+  {
     "Identifier": "currency-tag",
     "Name": "Currency",
     "IsRequired": true,
@@ -105,14 +112,7 @@
     "Identifier": "house-type-apartaments-tag",
     "Name": "House type",
     "Type": "dropdown",
-    "PossibleValues": [
-      { "Value": "The royal house" },
-      { "Value": "Stalinka" },
-      { "Value": "Khrushchevka" },
-      { "Value": "Czech Republic" },
-      { "Value": "Inn" },
-      { "Value": "Hostel" }
-    ]
+    "PossibleValues": [ "The royal house", "Stalinka", "Khrushchevka", "Czech Republic", "Inn", "Hostel" ]
   },
   {
     "Identifier": "residential-complex-name-tag",
@@ -239,5 +239,195 @@
     "Name": "Garage type",
     "Type": "dropdown",
     "PossibleValues": [ "Metal", "Brick", "Foam block", "Concrete" ]
+  },
+
+
+
+
+
+  {
+    "Identifier": "brand-car-tag",
+    "Name": "Brand",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Audi", "BMW", "Cadillac", "Chevrolet", "Citroen", "Daewoo", "Dodge", "Ferrari", "Ford", "Geely", "Honda", "Infiniti", "Jaguar", "Jeep", "Kia", "Lexus", "Mazda", "Mercedes-Benz", "Mitsubishi", "Nissan", "Opel", "Peugeot", "Porsche", "Renault", "Skoda", "Subaru", "Tesla", "Toyota", "Volkswagen", "Volvo", "ВАЗ", "Other" ]
+  },
+  {
+    "Identifier": "brand-truck-tag",
+    "Name": "Brand",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "DAF", "FAW", "Ford", "Freightliner", "Howo", "International", "Isuzu", "Iveco", "Kamaz", "Kenworth", "Mack", "MAN", "Mercedes-Benz", "Mitsubishi Fuso", "Nissan", "Peterbilt", "Renault", "Scania", "Tata", "Toyota", "Volvo", "Other" ]
+  },
+  {
+    "Identifier": "brand-bus-tag",
+    "Name": "Brand",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Bova", "Daf", "Daewoo", "Ford", "Hyundai", "Ikarus", "Isuzu", "Kia", "King Long", "MAN", "Mercedes-Benz", "Renault", "Scania", "Volvo", "БАЗ", "Богдан", "Other" ]
+  },
+  {
+    "Identifier": "brand-moto-tag",
+    "Name": "Brand",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "ABM", "Beta", "BMW", "Cobra", "Delta", "Discovery", "Ducati", "Honda", "Hornet", "Kawasaki", "Moto", "Guzzi", "Motoland", "Musstang", "Sparta", "Suzuki", "Victory", "Viper", "Yamaha", "Иж", "Мінськ", "Урал", "Other" ]
+  },
+  {
+    "Identifier": "type-of-vehicle-tag",
+    "Name": "Type of vehicle",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Used", "New", "Imported" ]
+  },
+  {
+    "Identifier": "sales-terms-vehicles-tag",
+    "Name": "Sales terms",
+    "Type": "checkbox",
+    "PossibleValues": [ "Regular sale", "Credit", "Leasing", "Installment payment", "Possible rent", "Possible exchange" ]
+  },
+  {
+    "Identifier": "model-car-tag",
+    "Name": "Model",
+    "IsRequired": true,
+    "Type": "input"
+  },
+  {
+    "Identifier": "customs-cleared-tag",
+    "Name": "Customs cleared",
+    "IsRequired": true,
+    "Type": "pills",
+    "PossibleValues": [ "Yes", "No" ]
+  },
+  {
+    "Identifier": "vin-number-tag",
+    "Name": "VIN number",
+    "Type": "input"
+  },
+  {
+    "Identifier": "registration-number-tag",
+    "Name": "Registration number",
+    "Type": "input"
+  },
+  {
+    "Identifier": "driven-from-tag",
+    "Name": "Driven from",
+    "Type": "dropdown",
+    "PossibleValues": [ "USA", "Germany", "France", "Italy", "Other country" ]
+  },
+  {
+    "Identifier": "manufacture-year-tag",
+    "Name": "Manufacture year",
+    "IsRequired": true,
+    "Type": "input"
+  },
+  {
+    "Identifier": "mileage-tag",
+    "Name": "Mileage",
+    "Type": "input"
+  },
+  {
+    "Identifier": "body-type-car-tag",
+    "Name": "Body type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Cabriolet", "Pickup truck", "Coupe", "Universal", "Hatchback", "Minivan", "SUV", "Sedan", "Limousine", "Other" ]
+  },
+  {
+    "Identifier": "body-type-truck-tag",
+    "Name": "Body type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Car carrier", "Tank truck", "Platform truck", "Vacuum truck", "Livestock transport", "Insulated body", "Timber truck", "Dump truck", "Logging truck", "Refrigerated body", "Van", "Chassis", "Tow truck", "Other" ]
+  },
+  {
+    "Identifier": "number-of-seats-tag",
+    "Name": "Number of seats",
+    "Type": "input"
+  },
+  {
+    "Identifier": "number-of-seats-bus-tag",
+    "Name": "Number of seats",
+    "IsRequired": true,
+    "Type": "input"
+  },
+  {
+    "Identifier": "color-tag",
+    "Name": "Color",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "White", "Black", "Blue", "Grey", "Silver", "Red", "Green", "Yellow", "Other" ]
+  },
+  {
+    "Identifier": "transmission-tag",
+    "Name": "Transmission",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Manual", "Automatic", "Tiptronic", "Variator" ]
+  },
+  {
+    "Identifier": "drive-type-tag",
+    "Name": "Drive type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "AWD", "FWD", "RWD" ]
+  },
+  {
+    "Identifier": "fuel-type-tag",
+    "Name": "Fuel type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Gasoline", "Diesel", "Gas", "Electric", "Hybrid", "Other" ]
+  },
+  {
+    "Identifier": "power-vehicles-tag",
+    "Name": "Power",
+    "Type": "input"
+  },
+  {
+    "Identifier": "engine-capacity-liters-tag",
+    "Name": "Engine capacity",
+    "Type": "input"
+  },
+  {
+    "Identifier": "engine-capacity-sm-tag",
+    "Name": "Engine capacity",
+    "Type": "input"
+  },
+  {
+    "Identifier": "fuel-consumption-tag",
+    "Name": "Fuel consumption",
+    "Type": "input"
+  },
+  {
+    "Identifier": "condition-vehicles-tag",
+    "Name": "Technical condition",
+    "Type": "checkbox",
+    "PossibleValues": [ "On the move", "Needs body repair", "Needs chassis repair", "Needs engine repair", "Not beaten", "Not painted", "After the accident", "Garage storage", "Not on the move", "First owner" ]
+  },
+  {
+    "Identifier": "comfort-vehicles-tag",
+    "Name": "Comfort",
+    "Type": "checkbox",
+    "PossibleValues": [ "Heated glass", "Electric windows", "Heated steering wheel", "Air conditioner", "Power steering", "Parktronic", "Seat heating", "On-board computer", "Glass tinting", "Light sensor", "Seat memory", "Push-button start", "Climate control", "Panoramic roof", "Cruise control", "Sunroof" ]
+  },
+  {
+    "Identifier": "payload-capacity-tag",
+    "Name": "Payload capacity",
+    "Type": "input"
+  },
+  {
+    "Identifier": "bus-type-tag",
+    "Name": "Bus type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Bus", "City bus", "Tourist / Intercity bus", "Minibus (10-22 passengers)", "Suburban bus", "Other" ]
+  },
+  {
+    "Identifier": "moto-type-tag",
+    "Name": "Motorcycle type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Off-road", "Custom", "Classic", "Cross", "Cruiser", "Sportbike", "Supermoto", "Trial", "Trike", "Tricycle", "Chopper", "Pitbike", "Other" ]
   }
 ]

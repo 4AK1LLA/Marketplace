@@ -1,9 +1,7 @@
-﻿using Bogus;
-using Marketplace.Core.Entities;
+﻿using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
 using Marketplace.Services.SerializationModels;
 using Microsoft.Extensions.Configuration;
-using System.Text.Json;
 
 namespace Marketplace.Services;
 
@@ -36,87 +34,26 @@ public class Seeder : ISeeder
             .ToDictionary(section => section.Key, section => section.Value)!;
 
         var tagModels = _serializator.Deserialize<List<TagModel>>(filePaths["Tags"]!);
+        var mcModels = _serializator.Deserialize<List<MainCategoryModel>>(filePaths["Categories"]!);
 
         IEnumerable<Tag> tags = MapTags(tagModels);
-        
-        //_uow.TagRepository.AddRange(tags);
+        IEnumerable<MainCategory> mainCategories = MapMainCategories(mcModels, tags);
 
-        //_uow.MainCategoryRepository.Add(mc);
+        _uow.TagRepository.AddRange(tags);
 
-
-
-
-        //string modelsJson;
-
-        //using (StreamReader sr = new StreamReader(""))
-        //{
-        //    modelsJson = sr.ReadToEnd();
-        //}
-
-        //List<MainCategory> mainCategories = JsonSerializer.Deserialize<List<MainCategory>>(modelsJson)!;
-        //mainCategories.Add(CreateMainCategoryForPaging("MC for paging with 40 products", "categoryyy1", 40));
-        //mainCategories.Add(CreateMainCategoryForPaging("MC for paging with 128 products", "categoryyy2", 128));
-
-        //#region SEEDING_TAGS
-
-        //string tagsJson;
-
-        //using (StreamReader sr = new StreamReader(""))
-        //{
-        //    tagsJson = sr.ReadToEnd();
-        //}
-
-        //IEnumerable<Tag> tags1 = JsonSerializer.Deserialize<List<Tag>>(tagsJson)!;
-
-        //MainCategory mcRealty = mainCategories.First(mc => mc.Name == "Realty");
-
-        //mcRealty.SubCategories!.Add(new Category
-        //{
-        //    Name = "Houses for rent",
-        //    Tags = tags.ToList()
-        //});
-
-        //#endregion
-
-        //_uow.MainCategoryRepository.AddRange(mainCategories);
+        try
+        {
+            _uow.MainCategoryRepository.AddRange(mainCategories);
+        }
+        catch
+        {
+            //TODO: Log that there is error, most likely caused by tag ids difference in seed data
+            return false;
+        }
 
         _uow.Save();
 
         return true;
-    }
-
-    private MainCategory CreateMainCategoryForPaging(string name, string categoryName, int amountOfProducts)
-    {
-        Random random = new Random();
-        var productsForPaging = new Faker<Product>()
-            .RuleFor(pr => pr.Title, f => f.Lorem.Sentence(6))
-            .RuleFor(pr => pr.PublicationDate, f => f.Date.Future())
-            .RuleFor(pr => pr.Location, f => f.Address.City());
-
-        var products = productsForPaging.Generate(amountOfProducts);
-
-        foreach (var pr in products)
-        {
-            pr.TagValues = new List<TagValue>
-            {
-                new TagValue
-                {
-                    Tag = new Tag { Name = "Price" },
-                    Value = random.Next(1000, 10000).ToString()
-                },
-                new TagValue { Tag = new Tag { Name = "Currency" }, Value = "uah" }
-            };
-            pr.Photos = new List<Photo> { new Photo { IsMain = true, URL = "https://picsum.photos/700/700" } };
-        }
-
-        return new MainCategory
-        {
-            Name = name,
-            SubCategories = new List<Category>
-            {
-                new Category { Name = categoryName, Products = products }
-            }
-        };
     }
 
     private IEnumerable<Tag> MapTags(IEnumerable<TagModel> tagModels)
@@ -132,12 +69,35 @@ public class Seeder : ISeeder
                 IsRequired = model.IsRequired,
                 Type = model.Type,
                 Remark = model.Remark,
-                PossibleValues = (model.PossibleValues is not null) 
-                    ? model.PossibleValues.Select(val => new PossibleValue { Value = val }).ToList() 
+                PossibleValues = (model.PossibleValues is not null)
+                    ? model.PossibleValues.Select(val => new PossibleValue { Value = val }).ToList()
                     : null
             });
         }
 
         return tags;
+    }
+
+    private IEnumerable<MainCategory> MapMainCategories(IEnumerable<MainCategoryModel> mcModels, IEnumerable<Tag> tags)
+    {
+        var mainCategories = new List<MainCategory>();
+
+        foreach (var mcModel in mcModels)
+        {
+            mainCategories.Add(new MainCategory
+            {
+                Name = mcModel.Name,
+                PhotoUrl = mcModel.PhotoUrl,
+                SubCategories = mcModel.SubCategories!
+                    .Select(ctModel => new Category
+                    {
+                        Name = ctModel.Name,
+                        Tags = ctModel.TagIds!
+                            .Select(tagId => tags.FirstOrDefault(tag => tag.Identifier == tagId)).ToList()!
+                    }).ToList()
+            });
+        }
+
+        return mainCategories;
     }
 }

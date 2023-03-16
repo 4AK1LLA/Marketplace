@@ -1,7 +1,7 @@
 [
   {
     "Name": "Real estate",
-    "PhotoUrl": "",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/key-solid-96_hftmhp.png",
     "SubCategories": [
       {
         "Name": "Sale of apartments",
@@ -31,23 +31,23 @@
   },
   {
     "Name": "Vehicles",
-    "PhotoUrl": "",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/car-solid-96_tzqygl.png",
     "SubCategories": [
       {
         "Name": "Cars",
-        "TagIds": [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ]
+        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-car-tag", "model-car-tag", "type-of-vehicle-tag", "sales-terms-vehicles-tag", "customs-cleared-tag", "vin-number-tag", "registration-number-tag", "driven-from-tag", "manufacture-year-tag", "mileage-tag", "body-type-car-tag", "number-of-seats-tag", "color-tag", "transmission-tag", "drive-type-tag", "fuel-type-tag", "power-vehicles-tag", "engine-capacity-liters-tag", "fuel-consumption-tag", "condition-vehicles-tag", "comfort-vehicles-tag" ]
       },
       {
         "Name": "Trucks",
-        "TagIds": [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ]
+        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-truck-tag", "type-of-vehicle-tag", "transmission-tag", "sales-terms-vehicles-tag", "customs-cleared-tag", "vin-number-tag", "payload-capacity-tag", "manufacture-year-tag", "mileage-tag", "fuel-type-tag", "drive-type-tag", "power-vehicles-tag", "comfort-vehicles-tag", "engine-capacity-sm-tag", "condition-vehicles-tag", "body-type-truck-tag" ]
       },
       {
         "Name": "Buses",
-        "TagIds": [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ]
+        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-bus-tag", "type-of-vehicle-tag", "sales-terms-vehicles-tag", "vin-number-tag", "manufacture-year-tag", "bus-type-tag", "engine-capacity-sm-tag", "power-vehicles-tag", "number-of-seats-bus-tag", "mileage-tag", "customs-cleared-tag", "drive-type-tag", "transmission-tag", "fuel-type-tag", "condition-vehicles-tag", "comfort-vehicles-tag" ]
       },
       {
         "Name": "Motorcycles",
-        "TagIds": [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ]
+        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-moto-tag", "mileage-tag", "moto-type-tag", "type-of-vehicle-tag", "manufacture-year-tag", "engine-capacity-sm-tag", "vin-number-tag", "transmission-tag", "customs-cleared-tag", "sales-terms-vehicles-tag", "condition-vehicles-tag" ]
       }
     ]
   }
