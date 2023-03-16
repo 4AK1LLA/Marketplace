@@ -1,0 +1,54 @@
+[
+  {
+    "Name": "Real estate",
+    "PhotoUrl": "",
+    "SubCategories": [
+      {
+        "Name": "Sale of apartments",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "object-type-tag", "additional-real-estate-tag", "house-type-apartaments-tag", "residential-complex-name-tag", "floor-tag", "number-of-floors-tag", "total-area-tag", "kitchen-area-tag", "wall-type-tag", "housing-class-tag", "number-of-rooms-tag", "bathroom-tag", "heating-tag", "renovation-tag", "furnishings-tag", "appliances-tag", "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag", "landscape-nearby-tag" ]
+      },
+      {
+        "Name": "Rent of apartments",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "payment-per-tag", "private-business-tag", "additional-real-estate-tag", "house-type-apartaments-tag", "floor-tag", "number-of-floors-tag", "total-area-tag", "kitchen-area-tag", "wall-type-tag", "number-of-rooms-tag", "bathroom-tag", "heating-tag", "renovation-tag", "furnishings-tag", "appliances-tag", "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag", "landscape-nearby-tag", "additionally-rent-tag" ]
+      },
+      {
+        "Name": "Sale of houses",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "additional-real-estate-tag", "distance-nearest-city-tag", "number-of-floors-tag", "total-area-tag", "number-of-rooms-tag", "land-area-tag", "house-type-tag", "сadastral-number-tag", "year-of-construction-tag", "wall-type-tag", "ext-wall-insulation-tag", "bathroom-tag", "heating-tag", "renovation-tag", "furnishings-tag", "appliances-tag", "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag", "landscape-nearby-tag" ]
+      },
+      {
+        "Name": "Rent of houses",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "payment-per-tag", "private-business-tag", "additional-real-estate-tag", "distance-nearest-city-tag", "number-of-floors-tag", "total-area-tag", "number-of-rooms-tag", "land-area-tag", "house-type-tag", "year-of-construction-tag", "wall-type-tag", "ext-wall-insulation-tag", "bathroom-tag", "heating-tag", "renovation-tag", "furnishings-tag", "appliances-tag", "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag", "landscape-nearby-tag", "additionally-rent-tag" ]
+      },
+      {
+        "Name": "Sale of land",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "additional-real-estate-tag", "distance-nearest-city-tag", "property-type-land-tag", "сadastral-number-tag", "land-area-tag", "communications-tag", "buildings-site-tag", "infrastructure-nearby-tag", "landscape-nearby-tag" ]
+      },
+      {
+        "Name": "Sale of garages, parking places",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "additional-real-estate-tag", "property-type-garages-tag", "garage-type-tag", "total-area-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag" ]
+      }
+    ]
+  },
+  {
+    "Name": "Vehicles",
+    "PhotoUrl": "",
+    "SubCategories": [
+      {
+        "Name": "Cars",
+        "TagIds": [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ]
+      },
+      {
+        "Name": "Trucks",
+        "TagIds": [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ]
+      },
+      {
+        "Name": "Buses",
+        "TagIds": [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ]
+      },
+      {
+        "Name": "Motorcycles",
+        "TagIds": [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ]
+      }
+    ]
+  }
+]

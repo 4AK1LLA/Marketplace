@@ -39,44 +39,46 @@ public class Seeder : ISeeder
 
         IEnumerable<Tag> tags = MapTags(tagModels);
         
-        _uow.TagRepository.AddRange(tags);
+        //_uow.TagRepository.AddRange(tags);
+
+        //_uow.MainCategoryRepository.Add(mc);
 
 
 
 
-        string modelsJson;
+        //string modelsJson;
 
-        using (StreamReader sr = new StreamReader(""))
-        {
-            modelsJson = sr.ReadToEnd();
-        }
+        //using (StreamReader sr = new StreamReader(""))
+        //{
+        //    modelsJson = sr.ReadToEnd();
+        //}
 
-        List<MainCategory> mainCategories = JsonSerializer.Deserialize<List<MainCategory>>(modelsJson)!;
-        mainCategories.Add(CreateMainCategoryForPaging("MC for paging with 40 products", "categoryyy1", 40));
-        mainCategories.Add(CreateMainCategoryForPaging("MC for paging with 128 products", "categoryyy2", 128));
+        //List<MainCategory> mainCategories = JsonSerializer.Deserialize<List<MainCategory>>(modelsJson)!;
+        //mainCategories.Add(CreateMainCategoryForPaging("MC for paging with 40 products", "categoryyy1", 40));
+        //mainCategories.Add(CreateMainCategoryForPaging("MC for paging with 128 products", "categoryyy2", 128));
 
-        #region SEEDING_TAGS
+        //#region SEEDING_TAGS
 
-        string tagsJson;
+        //string tagsJson;
 
-        using (StreamReader sr = new StreamReader(""))
-        {
-            tagsJson = sr.ReadToEnd();
-        }
+        //using (StreamReader sr = new StreamReader(""))
+        //{
+        //    tagsJson = sr.ReadToEnd();
+        //}
 
-        IEnumerable<Tag> tags1 = JsonSerializer.Deserialize<List<Tag>>(tagsJson)!;
+        //IEnumerable<Tag> tags1 = JsonSerializer.Deserialize<List<Tag>>(tagsJson)!;
 
-        MainCategory mcRealty = mainCategories.First(mc => mc.Name == "Realty");
+        //MainCategory mcRealty = mainCategories.First(mc => mc.Name == "Realty");
 
-        mcRealty.SubCategories!.Add(new Category
-        {
-            Name = "Houses for rent",
-            Tags = tags.ToList()
-        });
+        //mcRealty.SubCategories!.Add(new Category
+        //{
+        //    Name = "Houses for rent",
+        //    Tags = tags.ToList()
+        //});
 
-        #endregion
+        //#endregion
 
-        _uow.MainCategoryRepository.AddRange(mainCategories);
+        //_uow.MainCategoryRepository.AddRange(mainCategories);
 
         _uow.Save();
 
@@ -125,6 +127,7 @@ public class Seeder : ISeeder
         {
             tags.Add(new Tag
             {
+                Identifier = model.Identifier,
                 Name = model.Name,
                 IsRequired = model.IsRequired,
                 Type = model.Type,

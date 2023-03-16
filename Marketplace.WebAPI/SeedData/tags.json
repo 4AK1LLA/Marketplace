@@ -37,10 +37,17 @@
     "PossibleValues": [ "Private person", "Business" ]
   },
   {
+    "Identifier": "object-type-tag",
+    "Name": "Object type",
+    "IsRequired": true,
+    "Type": "pills",
+    "PossibleValues": [ "Secondary market", "New construction" ]
+  },
+  {
     "Identifier": "additional-real-estate-tag",
     "Name": "Additional information",
     "Type": "checkbox",
-    "PossibleValues": [ "No commission", "Ready to cooperate with realtors", "For shared rental" ]
+    "PossibleValues": [ "No commission", "Ready to cooperate with realtors" ]
   },
   {
     "Identifier": "distance-nearest-city-tag",
@@ -56,11 +63,22 @@
     "Remark": "number"
   },
   {
+    "Identifier": "floor-tag",
+    "Name": "Floor",
+    "IsRequired": true,
+    "Type": "input"
+  },
+  {
     "Identifier": "total-area-tag",
     "Name": "Total area",
     "IsRequired": true,
     "Type": "input",
     "Remark": "number m2"
+  },
+  {
+    "Identifier": "kitchen-area-tag",
+    "Name": "Kitchen area",
+    "Type": "input"
   },
   {
     "Identifier": "number-of-rooms-tag",
@@ -84,6 +102,29 @@
     "PossibleValues": [ "House", "Club house", "Cottage", "Townhouse", "Country house" ]
   },
   {
+    "Identifier": "house-type-apartaments-tag",
+    "Name": "House type",
+    "Type": "dropdown",
+    "PossibleValues": [
+      { "Value": "The royal house" },
+      { "Value": "Stalinka" },
+      { "Value": "Khrushchevka" },
+      { "Value": "Czech Republic" },
+      { "Value": "Inn" },
+      { "Value": "Hostel" }
+    ]
+  },
+  {
+    "Identifier": "residential-complex-name-tag",
+    "Name": "Residential complex name",
+    "Type": "input"
+  },
+  {
+    "Identifier": "сadastral-number-tag",
+    "Name": "Cadastral number",
+    "Type": "input"
+  },
+  {
     "Identifier": "year-of-construction-tag",
     "Name": "Year of construction",
     "Type": "input",
@@ -93,7 +134,13 @@
     "Identifier": "wall-type-tag",
     "Name": "Wall type",
     "Type": "dropdown",
-    "PossibleValues": [ "Brick", "Panel", "Monolit", "Wood", "Other" ]
+    "PossibleValues": [ "Brick", "Panel", "Monolit", "Wood" ]
+  },
+  {
+    "Identifier": "housing-class-tag",
+    "Name": "Housing class",
+    "Type": "dropdown",
+    "PossibleValues": [ "Economy", "Comfort", "Business", "Elite" ]
   },
   {
     "Identifier": "ext-wall-insulation-tag",
@@ -132,13 +179,13 @@
     "PossibleValues": [ "Fridge", "Electric kettle", "Coffee machine", "Dishwasher", "Hair dryer", "Washing machine", "Stove", "Drying machine", "Hob", "Iron", "Oven", "Vacuum cleaner", "Microwave", "Multicooker", "Without appliances" ]
   },
   {
-    "Identifier": "multimedia-tag",
+    "Identifier": "multimedia-real-estate-tag",
     "Name": "Multimedia",
     "Type": "checkbox",
     "PossibleValues": [ "Wi-Fi", "TV", "Internet", "Without multimedia" ]
   },
   {
-    "Identifier": "comfort-tag",
+    "Identifier": "comfort-real-estate-tag",
     "Name": "Comfort",
     "Type": "checkbox",
     "PossibleValues": [ "Air conditioning", "Electric gates", "Floor heating", "Guest house", "Bathtub", "Gazebo/Grill", "Shower cabin", "Balcony", "Gym", "Terrace", "Sauna/Bathhouse", "Fireplace", "Swimming pool", "Garden", "Alarm system", "Basement", "Fencing", "Garage" ]
@@ -163,8 +210,34 @@
   },
   {
     "Identifier": "additionally-rent-tag",
-    "Name": "Additionally (Rent)",
+    "Name": "Additionally",
     "Type": "checkbox",
     "PossibleValues": [ "Only girls", "Only boys", "Only families", "Allowed students", "Allowed foreigners", "Allowed with kids", "With hosts", "Smoking allowed", "Animals allowed" ]
+  },
+  {
+    "Identifier": "property-type-land-tag",
+    "Name": "Property type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Agricultural land", "Land for public buildings", "Land for health purposes", "Recreational land", "Land of the forest fund", "Land of the water fund", "Other" ]
+  },
+  {
+    "Identifier": "property-type-garages-tag",
+    "Name": "Property type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Garage", "Place in parking lot", "Parking space", "Technical room", "Other" ]
+  },
+  {
+    "Identifier": "buildings-site-tag",
+    "Name": "Buildings on the site",
+    "Type": "checkbox",
+    "PossibleValues": [ "House", "Toilet", "Foundation", "Cellar", "Car", "Fence", "Barn" ]
+  },
+  {
+    "Identifier": "garage-type-tag",
+    "Name": "Garage type",
+    "Type": "dropdown",
+    "PossibleValues": [ "Metal", "Brick", "Foam block", "Concrete" ]
   }
 ]
