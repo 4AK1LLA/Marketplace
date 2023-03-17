@@ -31,7 +31,7 @@ public class Seeder : ISeeder
             _configuration
             .GetRequiredSection(sectionName)
             .GetChildren()
-            .ToDictionary(section => section.Key, section => section.Value)!;
+            .ToDictionary(section => section.Key, section => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, section.Value!));
 
         var tagModels = _serializator.Deserialize<List<TagModel>>(filePaths["Tags"]!);
         var mcModels = _serializator.Deserialize<List<MainCategoryModel>>(filePaths["Categories"]!);
