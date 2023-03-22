@@ -39,7 +39,7 @@ export class ProductsService {
     return this.http.get<ProductDetailsDto>(`${environment.baseApiUrl}/Product/${id}`);
   }
 
-  public postProduct(accessToken: string, basicInfo: BasicInfo, tagValues: TagValue[]) {
+  public postProduct(accessToken: string, basicInfo: BasicInfo, tagValues: { [id: number]: string }) {
 
     let httpOptions = this.getHttpOptions(accessToken);
 

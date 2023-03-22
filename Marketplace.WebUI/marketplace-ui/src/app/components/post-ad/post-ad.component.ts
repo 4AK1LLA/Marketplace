@@ -139,7 +139,7 @@ export class PostAdComponent implements OnInit {
       categoryId: payload['categoryId']
     };
 
-    let tagValues: TagValue[] = [];
+    let tagValues: { [id: number]: string } = {};
 
     for (let prop in payload) {
       if (!['title', 'description', 'location', 'categoryId'].includes(prop) && payload[prop].length > 0) {
@@ -150,10 +150,7 @@ export class PostAdComponent implements OnInit {
           arr.forEach(val => payload[prop] += (arr.indexOf(val) === arr.length - 1) ? val : `${val}|`);
         }
 
-        tagValues.push({
-          tagId: Number(prop),
-          value: payload[prop]
-        });
+        tagValues[Number(prop)] = payload[prop];
       }
     }
 

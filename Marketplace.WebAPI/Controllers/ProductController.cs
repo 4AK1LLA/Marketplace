@@ -131,14 +131,7 @@ public class ProductController : Controller
             Location = productDto.Location
         };
 
-        var tagIdsAndValues = new Dictionary<int, string>();
-
-        foreach (var tv in productDto.TagValues)
-        {
-            tagIdsAndValues.Add(tv.TagId, tv.Value!);
-        }
-
-        var success = _service.CreateProductWithTagValues(product, tagIdsAndValues, productDto.CategoryId, userStsId);
+        var success = _service.CreateProductWithTagValues(product, productDto.TagValues, productDto.CategoryId, userStsId);
 
         if (!success)
         {
