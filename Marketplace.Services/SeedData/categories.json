@@ -1,31 +1,87 @@
 [
   {
+    "Name": "Help",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/donate-heart-solid-96_n70lpq.png",
+    "SubCategories": [
+      {
+        "Name": "Need help",
+        "TagIds": [ "free-tag", "private-business-tag", "kind-of-help-tag" ]
+      },
+      {
+        "Name": "Offer help",
+        "TagIds": [ "free-tag", "private-business-tag", "kind-of-help-tag" ]
+      }
+    ]
+  },
+  {
+    "Name": "For kids",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/baby-carriage-solid-96_nbpuhk.png",
+    "SubCategories": [
+      {
+        "Name": "Clothing for kids",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "clothing-size-kids-tag" ]
+      },
+      {
+        "Name": "Shoes for kids",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "shoe-size-kids-tag" ]
+      },
+      {
+        "Name": "Toys",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag" ]
+      },
+      {
+        "Name": "Feeding",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag" ]
+      },
+      {
+        "Name": "School supplies",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag" ]
+      },
+      {
+        "Name": "Furniture for kids",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag" ]
+      }
+    ]
+  },
+  {
     "Name": "Real estate",
     "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/key-solid-96_hftmhp.png",
     "SubCategories": [
       {
         "Name": "Sale of apartments",
-        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "object-type-tag", "additional-real-estate-tag", "house-type-apartaments-tag", "residential-complex-name-tag", "floor-tag", "number-of-floors-tag", "total-area-tag", "kitchen-area-tag", "wall-type-tag", "housing-class-tag", "number-of-rooms-tag", "bathroom-tag", "heating-tag", "renovation-tag", "furnishings-tag", "appliances-tag", "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag", "landscape-nearby-tag" ]
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "object-type-tag", "additional-real-estate-tag", "house-type-apartaments-tag", 
+        "residential-complex-name-tag", "floor-tag", "number-of-floors-tag", "total-area-tag", "kitchen-area-tag", "wall-type-tag", "housing-class-tag", "number-of-rooms-tag", 
+        "bathroom-tag", "heating-tag", "renovation-tag", "furnishings-tag", "appliances-tag", "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", 
+        "infrastructure-nearby-tag", "landscape-nearby-tag" ]
       },
       {
         "Name": "Rent of apartments",
-        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "payment-per-tag", "private-business-tag", "additional-real-estate-tag", "house-type-apartaments-tag", "floor-tag", "number-of-floors-tag", "total-area-tag", "kitchen-area-tag", "wall-type-tag", "number-of-rooms-tag", "bathroom-tag", "heating-tag", "renovation-tag", "furnishings-tag", "appliances-tag", "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag", "landscape-nearby-tag", "additionally-rent-tag" ]
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "payment-per-tag", "private-business-tag", "additional-real-estate-tag", "house-type-apartaments-tag", "floor-tag", 
+        "number-of-floors-tag", "total-area-tag", "kitchen-area-tag", "wall-type-tag", "number-of-rooms-tag", "bathroom-tag", "heating-tag", "renovation-tag", "furnishings-tag", "appliances-tag", 
+        "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag", "landscape-nearby-tag", "additionally-rent-tag" ]
       },
       {
         "Name": "Sale of houses",
-        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "additional-real-estate-tag", "distance-nearest-city-tag", "number-of-floors-tag", "total-area-tag", "number-of-rooms-tag", "land-area-tag", "house-type-tag", "сadastral-number-tag", "year-of-construction-tag", "wall-type-tag", "ext-wall-insulation-tag", "bathroom-tag", "heating-tag", "renovation-tag", "furnishings-tag", "appliances-tag", "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag", "landscape-nearby-tag" ]
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "additional-real-estate-tag", "distance-nearest-city-tag", "number-of-floors-tag", "total-area-tag", 
+        "number-of-rooms-tag", "land-area-tag", "house-type-tag", "сadastral-number-tag", "year-of-construction-tag", "wall-type-tag", "ext-wall-insulation-tag", "bathroom-tag", "heating-tag", 
+        "renovation-tag", "furnishings-tag", "appliances-tag", "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag", "landscape-nearby-tag" ]
       },
       {
         "Name": "Rent of houses",
-        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "payment-per-tag", "private-business-tag", "additional-real-estate-tag", "distance-nearest-city-tag", "number-of-floors-tag", "total-area-tag", "number-of-rooms-tag", "land-area-tag", "house-type-tag", "year-of-construction-tag", "wall-type-tag", "ext-wall-insulation-tag", "bathroom-tag", "heating-tag", "renovation-tag", "furnishings-tag", "appliances-tag", "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag", "landscape-nearby-tag", "additionally-rent-tag" ]
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "payment-per-tag", "private-business-tag", "additional-real-estate-tag", "distance-nearest-city-tag", "number-of-floors-tag", 
+        "total-area-tag", "number-of-rooms-tag", "land-area-tag", "house-type-tag", "year-of-construction-tag", "wall-type-tag", "ext-wall-insulation-tag", "bathroom-tag", "heating-tag", 
+        "renovation-tag", "furnishings-tag", "appliances-tag", "multimedia-real-estate-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag", "landscape-nearby-tag", 
+        "additionally-rent-tag" ]
       },
       {
         "Name": "Sale of land",
-        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "additional-real-estate-tag", "distance-nearest-city-tag", "property-type-land-tag", "сadastral-number-tag", "land-area-tag", "communications-tag", "buildings-site-tag", "infrastructure-nearby-tag", "landscape-nearby-tag" ]
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "additional-real-estate-tag", "distance-nearest-city-tag", "property-type-land-tag", 
+        "сadastral-number-tag", "land-area-tag", "communications-tag", "buildings-site-tag", "infrastructure-nearby-tag", "landscape-nearby-tag" ]
       },
       {
-        "Name": "Sale of garages, parking places",
-        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "additional-real-estate-tag", "property-type-garages-tag", "garage-type-tag", "total-area-tag", "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag" ]
+        "Name": "Sale of garages & parking places",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "additional-real-estate-tag", "property-type-garages-tag", "garage-type-tag", "total-area-tag", 
+        "comfort-real-estate-tag", "communications-tag", "infrastructure-nearby-tag" ]
       }
     ]
   },
@@ -35,19 +91,207 @@
     "SubCategories": [
       {
         "Name": "Cars",
-        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-car-tag", "model-car-tag", "type-of-vehicle-tag", "sales-terms-vehicles-tag", "customs-cleared-tag", "vin-number-tag", "registration-number-tag", "driven-from-tag", "manufacture-year-tag", "mileage-tag", "body-type-car-tag", "number-of-seats-tag", "color-tag", "transmission-tag", "drive-type-tag", "fuel-type-tag", "power-vehicles-tag", "engine-capacity-liters-tag", "fuel-consumption-tag", "condition-vehicles-tag", "comfort-vehicles-tag" ]
+        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-car-tag", "model-car-tag", "type-of-vehicle-tag", "sales-terms-vehicles-tag", 
+        "customs-cleared-tag", "vin-number-tag", "registration-number-tag", "driven-from-tag", "manufacture-year-tag", "mileage-tag", "body-type-car-tag", "number-of-seats-tag", "color-tag", 
+        "transmission-tag", "drive-type-tag", "fuel-type-tag", "power-vehicles-tag", "engine-capacity-liters-tag", "fuel-consumption-tag", "condition-vehicles-tag", "comfort-vehicles-tag" ]
       },
       {
         "Name": "Trucks",
-        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-truck-tag", "type-of-vehicle-tag", "transmission-tag", "sales-terms-vehicles-tag", "customs-cleared-tag", "vin-number-tag", "payload-capacity-tag", "manufacture-year-tag", "mileage-tag", "fuel-type-tag", "drive-type-tag", "power-vehicles-tag", "comfort-vehicles-tag", "engine-capacity-sm-tag", "condition-vehicles-tag", "body-type-truck-tag" ]
+        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-truck-tag", "type-of-vehicle-tag", "transmission-tag", "sales-terms-vehicles-tag", 
+        "customs-cleared-tag", "vin-number-tag", "payload-capacity-tag", "manufacture-year-tag", "mileage-tag", "fuel-type-tag", "drive-type-tag", "power-vehicles-tag", "comfort-vehicles-tag", 
+        "engine-capacity-sm-tag", "condition-vehicles-tag", "body-type-truck-tag" ]
       },
       {
         "Name": "Buses",
-        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-bus-tag", "type-of-vehicle-tag", "sales-terms-vehicles-tag", "vin-number-tag", "manufacture-year-tag", "bus-type-tag", "engine-capacity-sm-tag", "power-vehicles-tag", "number-of-seats-bus-tag", "mileage-tag", "customs-cleared-tag", "drive-type-tag", "transmission-tag", "fuel-type-tag", "condition-vehicles-tag", "comfort-vehicles-tag" ]
+        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-bus-tag", "type-of-vehicle-tag", "sales-terms-vehicles-tag", "vin-number-tag", 
+        "manufacture-year-tag", "bus-type-tag", "engine-capacity-sm-tag", "power-vehicles-tag", "number-of-seats-bus-tag", "mileage-tag", "customs-cleared-tag", "drive-type-tag", "transmission-tag", 
+        "fuel-type-tag", "condition-vehicles-tag", "comfort-vehicles-tag" ]
       },
       {
         "Name": "Motorcycles",
-        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-moto-tag", "mileage-tag", "moto-type-tag", "type-of-vehicle-tag", "manufacture-year-tag", "engine-capacity-sm-tag", "vin-number-tag", "transmission-tag", "customs-cleared-tag", "sales-terms-vehicles-tag", "condition-vehicles-tag" ]
+        "TagIds": [ "price-tag", "currency-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "brand-moto-tag", "mileage-tag", "moto-type-tag", "type-of-vehicle-tag", 
+        "manufacture-year-tag", "engine-capacity-sm-tag", "vin-number-tag", "transmission-tag", "customs-cleared-tag", "sales-terms-vehicles-tag", "condition-vehicles-tag" ]
+      }
+    ]
+  },
+  {
+    "Name": "Spare parts",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242955/main-categories/wrench-solid-96_btyqrm.png",
+    "SubCategories": [
+      {
+        "Name": "Tires",
+        "TagIds": [ "price-tag", "currency-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "seasonality-tag", "profile-width-tag", 
+        "profile-height-tag", "diameter-tag", "purpose-tire-tag", "quantity-tire-tag", "brand-tire-tag", "speed-index-tag", "characteristics-tire-tag", "manufacture-year-tire-tag" ]
+      },
+      {
+        "Name": "Audio systems",
+        "TagIds": [ "price-tag", "currency-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "brand-audio-system-tag", "transmission-source-tag", 
+        "panel-audio-system-tag", "speakers-output-power-tag", "display-audio-system-tag", "phone-support-tag", "mounting-size-tag", "screen-type-tag" ]
+      },
+      {
+        "Name": "Lubricants",
+        "TagIds": [ "price-tag", "currency-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "lubricant-type-tag", "brand-lubricant-tag", 
+        "viscosity-lubricant-tag", "capacity-lubricant-tag", "lubricant-base-type-tag" ]
+      },
+      {
+        "Name": "Engine parts",
+        "TagIds": [ "price-tag", "currency-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "spare-type-tag", "original-or-analog-tag", "spare-code-tag", 
+        "suitable-for-cars-tag", "engine-type-tag" ]
+      }
+    ]
+  },
+  {
+    "Name": "Job",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/briefcase-solid-96_fhc7se.png",
+    "SubCategories": [
+      {
+        "Name": "Retail",
+        "TagIds": [ "salary-tag", "currency-tag", "payment-salary-tag", "contract-salary-tag", "work-experience-tag", "suitable-for-candidates-tag", "employment-type-tag", "work-schedule-tag", 
+        "additionally-job-tag" ]
+      },
+      {
+        "Name": "Construction",
+        "TagIds": [ "salary-tag", "currency-tag", "payment-salary-tag", "contract-salary-tag", "work-experience-tag", "suitable-for-candidates-tag", "employment-type-tag", "work-schedule-tag", 
+        "additionally-job-tag" ]
+      },
+      {
+        "Name": "Call centers",
+        "TagIds": [ "salary-tag", "currency-tag", "payment-salary-tag", "contract-salary-tag", "work-experience-tag", "suitable-for-candidates-tag", "employment-type-tag", "work-schedule-tag", 
+        "additionally-job-tag" ]
+      },
+      {
+        "Name": "Security",
+        "TagIds": [ "salary-tag", "currency-tag", "payment-salary-tag", "contract-salary-tag", "work-experience-tag", "suitable-for-candidates-tag", "employment-type-tag", "work-schedule-tag", 
+        "additionally-job-tag" ]
+      },
+      {
+        "Name": "Education",
+        "TagIds": [ "salary-tag", "currency-tag", "payment-salary-tag", "contract-salary-tag", "work-experience-tag", "suitable-for-candidates-tag", "employment-type-tag", "work-schedule-tag", 
+        "additionally-job-tag" ]
+      },
+      {
+        "Name": "IT",
+        "TagIds": [ "salary-tag", "currency-tag", "payment-salary-tag", "contract-salary-tag", "work-experience-tag", "suitable-for-candidates-tag", "employment-type-tag", "work-schedule-tag", 
+        "additionally-job-tag" ]
+      }
+    ]
+  },
+  {
+    "Name": "Animals",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/cat-solid-96_i35w4q.png",
+    "SubCategories": [
+      {
+        "Name": "Dogs",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "breed-dog-tag" ]
+      },
+      {
+        "Name": "Cats",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag", "breed-cat-tag" ]
+      },
+      {
+        "Name": "Birds",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag" ]
+      },
+      {
+        "Name": "Rodents",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag" ]
+      },
+      {
+        "Name": "Farm animals",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag" ]
+      },
+      {
+        "Name": "Pet products",
+        "TagIds": [ "price-tag", "currency-tag", "contract-price-tag", "private-business-tag" ]
+      }
+    ]
+  },
+  {
+    "Name": "House and garden",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/building-house-solid-96_ucduvn.png",
+    "SubCategories": [
+      {
+        "Name": "Furniture",
+        "TagIds": [ "price-tag", "currency-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "furniture-type-tag", "additionally-furniture-tag" ]
+      },
+      {
+        "Name": "Garden",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag" ]
+      },
+      {
+        "Name": "Lighting",
+        "TagIds": [ "price-tag", "currency-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "lighting-type-tag", "lamp-type-tag", "light-color-tag", 
+        "number-of-lamps-tag", "features-lamp-tag" ]
+      },
+      {
+        "Name": "Construction and renovation",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "subcategory-construction-tag" ]
+      },
+      {
+        "Name": "Tools",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag" ]
+      },
+      {
+        "Name": "Generators",
+        "TagIds": [ "price-tag", "currency-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "fuel-type-generator-tag", "rated-power-tag", 
+        "starter-type-tag", "number-of-phases-tag", "engine-type-generator-tag", "presence-of-wheels-tag" ]
+      }
+    ]
+  },
+  {
+    "Name": "Electronics",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674239930/main-categories/tv-solid-96_1_pifkzw.png",
+    "SubCategories": [
+      {
+        "Name": "Mobile phones and smartphones",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "brand-phone-tag", "os-phone-tag", "display-diagonal-tag" ]
+      },
+      {
+        "Name": "Phone cases",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag" ]
+      },
+      {
+        "Name": "Powerbanks",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "brand-powerbank-tag", "battery-capacity-tag", "power-powerbank-tag", 
+        "interfaces-powerbank-tag" ]
+      },
+      {
+        "Name": "PCs",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag" ]
+      },
+      {
+        "Name": "PC components",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "component-type-tag" ]
+      },
+      {
+        "Name": "TV",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "tv-type-tag", "display-diagonal-tag" ]
+      },
+      {
+        "Name": "Laptops",
+        "TagIds": [ "price-grn-tag", "free-tag", "exchange-tag", "contract-price-tag", "private-business-tag", "condition-tag", "display-diagonal-tag" ]
+      }
+    ]
+  },
+  {
+    "Name": "Services",
+    "PhotoUrl": "https://res.cloudinary.com/dfs6whqzs/image/upload/v1674242819/main-categories/dollar-circle-solid-96_trmr52.png",
+    "SubCategories": [
+      {
+        "Name": "Construction, renovation and cleaning",
+        "TagIds": [ "private-business-tag", "service-type-construction-tag" ]
+      },
+      {
+        "Name": "Transportation and transport services",
+        "TagIds": [ "private-business-tag", "service-type-transportation-tag" ]
+      },
+      {
+        "Name": "Health and beauty",
+        "TagIds": [ "private-business-tag", "service-type-health-tag" ]
+      },
+      {
+        "Name": "Repair and maintenance of equipment",
+        "TagIds": [ "private-business-tag", "service-type-equipment-tag" ]
       }
     ]
   }

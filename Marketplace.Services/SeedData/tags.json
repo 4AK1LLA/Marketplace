@@ -7,8 +7,28 @@
     "Remark": "price"
   },
   {
+    "Identifier": "price-grn-tag",
+    "Name": "Price",
+    "IsRequired": true,
+    "Type": "input",
+    "Remark": "price"
+  },
+  {
+    "Identifier": "salary-tag",
+    "Name": "Salary",
+    "IsRequired": true,
+    "Type": "input"
+  },
+  {
     "Identifier": "exchange-tag",
     "Name": "Exchange",
+    "IsRequired": true,
+    "Type": "switch",
+    "Remark": "price"
+  },
+  {
+    "Identifier": "free-tag",
+    "Name": "Free",
     "IsRequired": true,
     "Type": "switch",
     "Remark": "price"
@@ -30,8 +50,23 @@
     "PossibleValues": [ "Hour", "Night", "Week", "Month" ]
   },
   {
+    "Identifier": "payment-salary-tag",
+    "Name": "Payment",
+    "IsRequired": true,
+    "Type": "pills",
+    "Remark": "price",
+    "PossibleValues": [ "Per month", "Per hour" ]
+  },
+  {
     "Identifier": "contract-price-tag",
     "Name": "Contract price",
+    "IsRequired": true,
+    "Type": "switch",
+    "Remark": "price"
+  },
+  {
+    "Identifier": "contract-salary-tag",
+    "Name": "Contract salary",
     "IsRequired": true,
     "Type": "switch",
     "Remark": "price"
@@ -42,6 +77,13 @@
     "IsRequired": true,
     "Type": "pills",
     "PossibleValues": [ "Private person", "Business" ]
+  },
+  {
+    "Identifier": "condition-tag",
+    "Name": "Condition",
+    "IsRequired": true,
+    "Type": "pills",
+    "PossibleValues": [ "New", "Used" ]
   },
   {
     "Identifier": "object-type-tag",
@@ -240,11 +282,6 @@
     "Type": "dropdown",
     "PossibleValues": [ "Metal", "Brick", "Foam block", "Concrete" ]
   },
-
-
-
-
-
   {
     "Identifier": "brand-car-tag",
     "Name": "Brand",
@@ -429,5 +466,422 @@
     "IsRequired": true,
     "Type": "dropdown",
     "PossibleValues": [ "Off-road", "Custom", "Classic", "Cross", "Cruiser", "Sportbike", "Supermoto", "Trial", "Trike", "Tricycle", "Chopper", "Pitbike", "Other" ]
+  },
+  {
+    "Identifier": "kind-of-help-tag",
+    "Name": "Kind of help",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Medicines and hygiene products", "Housing", "Transportation", "For children", "Clothing and footwear", "For animals", "Medical assistance", "Food and supplies", "Other" ]
+  },
+  {
+    "Identifier": "clothing-size-kids-tag",
+    "Name": "Clothing size",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "2T", "3T", "4T", "Other" ]
+  },
+  {
+    "Identifier": "shoe-size-kids-tag",
+    "Name": "Shoe size",
+    "Type": "input"
+  },
+  {
+    "Identifier": "seasonality-tag",
+    "Name": "Seasonality",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Summer", "Winter", "All-season" ]
+  },
+  {
+    "Identifier": "profile-width-tag",
+    "Name": "Profile width",
+    "Type": "input"
+  },
+  {
+    "Identifier": "profile-height-tag",
+    "Name": "Profile height",
+    "Type": "input"
+  },
+  {
+    "Identifier": "diameter-tag",
+    "Name": "Diameter",
+    "IsRequired": true,
+    "Type": "input"
+  },
+  {
+    "Identifier": "purpose-tire-tag",
+    "Name": "Purpose",
+    "IsRequired": true,
+    "Type": "pills",
+    "PossibleValues": [ "Cars", "Trucks" ]
+  },
+  {
+    "Identifier": "quantity-tire-tag",
+    "Name": "Quantity",
+    "Type": "dropdown",
+    "PossibleValues": [ "1 single tire", "1 spare tire", "Pair", "Set of 4 tires" ]
+  },
+  {
+    "Identifier": "brand-tire-tag",
+    "Name": "Brand",
+    "Type": "dropdown",
+    "PossibleValues": [ "Achilles", "Apollo", "Continental", "Dayton", "Dunlop", "Imperial", "Marshal", "Michelin", "Pirelli", "Roadstone", "Toyo", "Yokohama", "Zeetex" ]
+  },
+  {
+    "Identifier": "speed-index-tag",
+    "Name": "Speed index",
+    "Type": "dropdown",
+    "PossibleValues": [ "A1 (5 km/h)", "A2 (10 km/h)", "A3 (15 km/h)", "A4 (20 km/h)", "A5 (25 km/h)", "A6 (30 km/h)", "A7 (35 km/h)", "A8 (40 km/h)", "B (50 km/h)", "C (60 km/h)", "D (65 km/h)", "E (70 km/h)", "F (80 km/h)", "G (90 km/h)", "H (210 km/h)", "J (100 km/h)", "K (110 km/h)", "L (120 km/h)", "M (130 km/h)", "N (140 km/h)", "P (150 km/h)", "Q (160 km/h)", "R (170 km/h)", "S (180 km/h)", "T (190 km/h)", "U (200 km/h)", "V", "W (270 km/h)", "Y (300 km/h)", "Z (240+ km/h)", "ZR (240+ km/h)" ]
+  },
+  {
+    "Identifier": "characteristics-tire-tag",
+    "Name": "Characteristics",
+    "Type": "dropdown",
+    "PossibleValues": [ "Studded", "Ready for studs", "Off-road 4x4", "Slicks", "Semi-slicks", "Tubeless", "With inner tube", "Retreaded" ]
+  },
+  {
+    "Identifier": "manufacture-year-tire-tag",
+    "Name": "Manufacture year",
+    "Type": "input"
+  },
+  {
+    "Identifier": "brand-audio-system-tag",
+    "Name": "Brand",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Alpine", "Pioneer", "Blaupunkt", "Clarion", "Sony", "Cyclon", "Incar", "JVC", "Kenwood", "LG", "Mystery", "Philips", "Prology", "SHUTTLE", "Swat", "Other" ]
+  },
+  {
+    "Identifier": "transmission-source-tag",
+    "Name": "Data transmission source",
+    "Type": "checkbox",
+    "PossibleValues": [ "USB", "AUX", "Bluetooth", "microSD", "SD", "DVD", "CD" ]
+  },
+  {
+    "Identifier": "panel-audio-system-tag",
+    "Name": "Panel",
+    "Type": "dropdown",
+    "PossibleValues": [ "Fixed", "Removable", "Pull-out" ]
+  },
+  {
+    "Identifier": "speakers-output-power-tag",
+    "Name": "Speakers output power",
+    "Type": "dropdown",
+    "PossibleValues": [ "4x50", "4x45", "4x40", "4x55", "4x30", "4x35", "2x25", "4x25", "4x100", "4x60" ]
+  },
+  {
+    "Identifier": "display-audio-system-tag",
+    "Name": "Display",
+    "Type": "input"
+  },
+  {
+    "Identifier": "phone-support-tag",
+    "Name": "Phone support",
+    "Type": "checkbox",
+    "PossibleValues": [ "Apple", "Android" ]
+  },
+  {
+    "Identifier": "mounting-size-tag",
+    "Name": "Mounting size",
+    "Type": "pills",
+    "PossibleValues": [ "1 DIN", "2 DIN" ]
+  },
+  {
+    "Identifier": "screen-type-tag",
+    "Name": "Screen type",
+    "Type": "checkbox",
+    "PossibleValues": [ "IPS", "OLED", "TFT", "Monochrome", "Touchscreen", "Color" ]
+  },
+  {
+    "Identifier": "lubricant-type-tag",
+    "Name": "Lubricant type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Engine oils", "Transmission oils", "Hydraulic oils", "Lubricants for motorcycles", "Other" ]
+  },
+  {
+    "Identifier": "brand-lubricant-tag",
+    "Name": "Brand",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Addinol", "Agrinol", "Aral", "BMW", "Bosch", "Castrol", "Chrysler", "Divinol", "Elf", "Ford", "Kroon-Oil", "Lexus", "Liqui", "Mercedes-Benz", "Mitsubishi", "Motul", "Neste", "S-Oil", "Shell", "Total", "Toyota", "ZIC", "Other" ]
+  },
+  {
+    "Identifier": "viscosity-lubricant-tag",
+    "Name": "Viscosity according to SAE",
+    "Type": "dropdown",
+    "PossibleValues": [ "0W-20", "0W-30", "0W-40", "10W-30", "10W-40", "10W-50", "10W-60", "15W-30", "15W-40", "15W-50", "15W-60", "20W-40", "20W-50", "20W-60", "5W-20", "5W-30", "5W-40", "5W-50", "5W-60" ]
+  },
+  {
+    "Identifier": "capacity-lubricant-tag",
+    "Name": "Capacity",
+    "Type": "input"
+  },
+  {
+    "Identifier": "lubricant-base-type-tag",
+    "Name": "Lubricant base type",
+    "Type": "dropdown",
+    "PossibleValues": [ "Hydrocracked", "Mineral", "Semi-synthetic", "Detergent", "Synthetic" ]
+  },
+  {
+    "Identifier": "spare-type-tag",
+    "Name": "Spare type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Cylinder block and its parts", "Gas distribution mechanism", "Engines in assembly", "Engine casings and covers", "Crank and connecting rod mechanism", "Flywheels and their components", "Engine cushions", "Engine bearings", "Piston group", "Gaskets and gasket kits", "Rollers and tensioners", "Automobile radiators", "Oil seals and sealing rings", "Engine lubrication system", "Turbines, turbochargers", "Engine pulleys and keys", "Other" ]
+  },
+  {
+    "Identifier": "original-or-analog-tag",
+    "Name": "Original or analog",
+    "Type": "pills",
+    "PossibleValues": [ "Original", "Analog" ]
+  },
+  {
+    "Identifier": "spare-code-tag",
+    "Name": "Spare code",
+    "Type": "input"
+  },
+  {
+    "Identifier": "suitable-for-cars-tag",
+    "Name": "Suitable for cars",
+    "Type": "checkbox",
+    "PossibleValues": [ "Universal", "Audi", "Bentley", "BMW", "Buick", "Cadillac", "Chery", "Chevrolet", "Chrysler", "Citroen", "Daewoo", "Dodge", "Ford", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Lexus", "Maybach", "Mazda", "Mercedes-Benz", "Mitsubishi", "Nissan", "Opel", "Peugeot", "Porsche", "Renault", "Skoda", "Subaru", "Toyota", "Volkswagen", "Volvo", "ВАЗ", "ГАЗ", "ЗАЗ", "КАМАЗ" ]
+  },
+  {
+    "Identifier": "engine-type-tag",
+    "Name": "Engine type",
+    "Type": "dropdown",
+    "PossibleValues": [ "Gasoline", "Diesel", "Gas", "Electro" ]
+  },
+  {
+    "Identifier": "work-experience-tag",
+    "Name": "Work experience",
+    "Type": "checkbox",
+    "PossibleValues": [ "Without experience", "From 1 to 3 years", "From 3 to 6 years", "More than 6 years" ]
+  },
+  {
+    "Identifier": "suitable-for-candidates-tag",
+    "Name": "Suitable for candidates",
+    "Type": "checkbox",
+    "PossibleValues": [ "Older than 48 years", "Younger than 18 years", "Students", "With a disability", "In the decree", "Retirement age" ]
+  },
+  {
+    "Identifier": "employment-type-tag",
+    "Name": "Employment type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Full employment", "Seasonal / temporary work", "Part-time employment", "Internship", "Side job", "Remote work" ]
+  },
+  {
+    "Identifier": "work-schedule-tag",
+    "Name": "Work schedule",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Full-time", "Part time", "Watch method", "Shift schedule", "Flexible schedule" ]
+  },
+  {
+    "Identifier": "additionally-job-tag",
+    "Name": "Additionally",
+    "Type": "checkbox",
+    "PossibleValues": [ "With accommodation" ]
+  },
+  {
+    "Identifier": "breed-dog-tag",
+    "Name": "Breed",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Akita", "American bulldog", "English bulldog", "Boxer", "Dalmatian", "Corgi", "Pug", "German Shepherd", "Papillon", "Pekingese", "Pit bull terrier", "Poodle", "Rottweiler", "Saint Bernard", "Siberian husky", "Spaniel", "Dachshund", "That terrier", "French bulldog", "Miniature Pinscher", "Chow Chow", "Chihuahua", "Sharpei", "Sheltie", "Spitz", "Other" ]
+  },
+  {
+    "Identifier": "breed-cat-tag",
+    "Name": "Breed",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Abyssinian", "American curl", "Bengali", "British Shorthair", "Devon rex", "Don Sphinx", "Cornish rex", "Kurile bobtail", "Munchkin", "Maine Coon", "Persian", "Peterbold", "Scotish straight", "Scottish fold", "Somali", "Exotic shorthair", "Other" ]
+  },
+  {
+    "Identifier": "furniture-type-tag",
+    "Name": "Furniture type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Upholstered furniture", "Wardrobes / Wall units", "Tables / Chairs", "Chests of drawers / Cabinets", "Mattresses", "Beds", "Sofa sets", "Other" ]
+  },
+  {
+    "Identifier": "additionally-furniture-tag",
+    "Name": "Additionally",
+    "Type": "checkbox",
+    "PossibleValues": [ "Entryway furniture", "Kitchen furniture", "Bathroom furniture", "Office furniture", "Custom-made furniture" ]
+  },
+  {
+    "Identifier": "lighting-type-tag",
+    "Name": "Lighting type",
+    "Type": "dropdown",
+    "PossibleValues": [ "Lamps/fixtures", "Chandeliers", "Garlands", "Light bulbs", "Spotlights", "Candles", "Portable lamps", "Floor lamps", "Nightlights", "Street lighting", "LED strip light", "Gas lamps", "Backlighting" ]
+  },
+  {
+    "Identifier": "lamp-type-tag",
+    "Name": "Lamp type",
+    "Type": "dropdown",
+    "PossibleValues": [ "LED module", "Halogen", "Energy-saving", "Fluorescent", "Incandescent", "Without lamp" ]
+  },
+  {
+    "Identifier": "light-color-tag",
+    "Name": "Light color",
+    "Type": "dropdown",
+    "PossibleValues": [ "Neutral", "Warm", "Cool", "RGB (multicolored)" ]
+  },
+  {
+    "Identifier": "number-of-lamps-tag",
+    "Name": "Number of lamps (lampshades)",
+    "Type": "input"
+  },
+  {
+    "Identifier": "features-lamp-tag",
+    "Name": "Features",
+    "Type": "checkbox",
+    "PossibleValues": [ "Battery-powered", "With Bluetooth", "Touch-sensitive", "With USB charging", "Flexible base", "Waterproof", "With motion sensor", "With remote control", "With dimmer switch", "Smart" ]
+  },
+  {
+    "Identifier": "subcategory-construction-tag",
+    "Name": "Subcategory",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Ventilation", "Plumbing", "Heating", "Electrical", "Lumber / Timber", "Finishing and facing materials", "Windows / doors / glass / mirrors", "Paint and varnish materials", 
+    "Metal products / reinforcement", "Fasteners", "Bricks / concrete / foam blocks", "Other" ]
+  },
+  {
+    "Identifier": "fuel-type-generator-tag",
+    "Name": "Fuel type",
+    "Type": "dropdown",
+    "PossibleValues": [ "Gasoline", "Gasoline/natural gas", "Natural gas", "Diesel" ]
+  },
+  {
+    "Identifier": "rated-power-tag",
+    "Name": "Rated power",
+    "Type": "input"
+  },
+  {
+    "Identifier": "starter-type-tag",
+    "Name": "Starter type",
+    "Type": "dropdown",
+    "PossibleValues": [ "Manual", "Electric", "Automatic" ]
+  },
+  {
+    "Identifier": "number-of-phases-tag",
+    "Name": "Number of phases",
+    "Type": "dropdown",
+    "PossibleValues": [ "1 phase (220 V)", "3 phases (220 V + 380 V)", "3 phases (380 V)" ]
+  },
+  {
+    "Identifier": "engine-type-generator-tag",
+    "Name": "Engine type",
+    "Type": "pills",
+    "PossibleValues": [ "2-stroke", "4-stroke" ]
+  },
+  {
+    "Identifier": "presence-of-wheels-tag",
+    "Name": "Presence of wheels for transportation",
+    "Type": "pills",
+    "PossibleValues": [ "Yes", "No" ]
+  },
+  {
+    "Identifier": "brand-phone-tag",
+    "Name": "Brand",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Acer", "Apple", "ASUS", "BenQ-Siemens", "Fly", "Siemens", "GIGABYTE", "Google", "HP", "HTC", "Huawei", "Lenovo", "LG", "Meizu", "Motorola", "Nokia", "Panasonic", "Philips", "Samsung", "Sony", "Xiaomi", "Microsoft", "Other" ]
+  },
+  {
+    "Identifier": "brand-powerbank-tag",
+    "Name": "Brand",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Baseus", "Hoco", "Promate", "Xiaomi", "2E", "Anker", "Ttec", "Samsung", "Other" ]
+  },
+  {
+    "Identifier": "brand-tv-tag",
+    "Name": "Brand",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Acer", "BenQ", "Digital", "LG", "Electric", "Panasonic", "Philips", "Samsung", "Saturn", "Sony", "Toshiba", "Other" ]
+  },
+  {
+    "Identifier": "brand-laptop-tag",
+    "Name": "Brand",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Acer", "Apple", "Asus", "BenQ", "Dell", "HP", "Lenovo", "LG", "MSI", "Bell", "Panasonic", "Samsung", "Sony", "Razer", "Xiaomi", "Other" ]
+  },
+  {
+    "Identifier": "os-phone-tag",
+    "Name": "Operating system",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Android", "iOS", "Windows Phone", "Other" ]
+  },
+  {
+    "Identifier": "display-diagonal-tag",
+    "Name": "Display diagonal",
+    "IsRequired": true,
+    "Type": "input"
+  },
+  {
+    "Identifier": "battery-capacity-tag",
+    "Name": "Battery capacity",
+    "Type": "input"
+  },
+  {
+    "Identifier": "power-powerbank-tag",
+    "Name": "Power",
+    "Type": "input"
+  },
+  {
+    "Identifier": "interfaces-powerbank-tag",
+    "Name": "Interfaces",
+    "Type": "checkbox",
+    "PossibleValues": [ "Lightning", "Micro-USB", "USB Type A", "USB Type C" ]
+  },
+  {
+    "Identifier": "component-type-tag",
+    "Name": "Component type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Memory modules", "Graphics cards", "Sound cards", "Motherboards", "Optical drives", "Hard drives", "Computer cases", "Processors", "Power supplies", "Other" ]
+  },
+  {
+    "Identifier": "tv-type-tag",
+    "Name": "TV type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Liquid crystal", "Plasma", "Other" ]
+  },
+  {
+    "Identifier": "service-type-construction-tag",
+    "Name": "Service type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Construction services", "Design / architecture", "Finishing / renovation", "Windows / doors / balconies", "Plumbing / communications", "Household renovation / cleaning", "Ventilation / air conditioning", "Electricity", "Ready-made structures", "Other" ]
+  },
+  {
+    "Identifier": "service-type-transportation-tag",
+    "Name": "Service type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Car rental", "Bus and minibus rental", "Truck rental", "Motorcycle rental", "Special equipment rental", "Freight transportation", "Passenger transportation", "Other" ]
+  },
+  {
+    "Identifier": "service-type-health-tag",
+    "Name": "Service type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Haircuts / hair extensions", "Manicure / nail extensions", "Makeup / cosmetology / eyelash extensions", "Medicine", "Massage", "Psychologist services" ]
+  },
+  {
+    "Identifier": "service-type-equipment-tag",
+    "Name": "Service type",
+    "IsRequired": true,
+    "Type": "dropdown",
+    "PossibleValues": [ "Phones and smartphones", "Computers", "Household appliances", "Photo and video equipment", "TV and video equipment", "Audio equipment", "Climate control equipment", "Gaming consoles", "Other" ]
   }
 ]
