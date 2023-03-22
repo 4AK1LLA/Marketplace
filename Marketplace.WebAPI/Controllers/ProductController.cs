@@ -119,19 +119,14 @@ public class ProductController : Controller
             return Unauthorized();
         }
 
-        if (productDto.TagValues is null)
+        if (productDto.TagValuesDictionary is null)
         {
             return BadRequest("Missing tag values");
         }
 
-        var product = new Product
-        {
-            Title = productDto.Title,
-            Description = productDto.Description,
-            Location = productDto.Location
-        };
+        var product = _mapper.Map<Product>(productDto);
 
-        var success = _service.CreateProductWithTagValues(product, productDto.TagValues, productDto.CategoryId, userStsId);
+        var success = _service.CreateProductWithTagValues(product, productDto.TagValuesDictionary, productDto.CategoryId, userStsId);
 
         if (!success)
         {

@@ -75,6 +75,8 @@ public class MappingProfile : Profile
         CreateMap<Category, CategoryPostDto>();
 
         CreateMap<Tag, TagDto>();
+
+        CreateMap<CreateProductDto, Product>();
     }
 
     private string GetPriceInfoIfExists(Product src)

@@ -48,7 +48,7 @@ export class ProductsService {
       description: basicInfo.description,
       location: basicInfo.location,
       categoryId: basicInfo.categoryId,
-      tagValues
+      tagValuesDictionary: tagValues
     }
 
     return this.http.post(`${environment.baseApiUrl}/Product`, body, httpOptions);

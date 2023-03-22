@@ -10,5 +10,5 @@ public class CreateProductDto
 
     public int CategoryId { get; set; }
 
-    public IDictionary<int, string>? TagValues { get; set; }
+    public IDictionary<int, string>? TagValuesDictionary { get; set; }
 }
