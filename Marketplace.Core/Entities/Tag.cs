@@ -4,6 +4,8 @@ public class Tag
 {
     public int Id { get; set; }
 
+    public string? Identifier { get; set; }
+
     public string? Name { get; set; }
 
     public bool IsRequired { get; set; }

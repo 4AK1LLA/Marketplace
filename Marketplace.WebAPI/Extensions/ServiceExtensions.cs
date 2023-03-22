@@ -2,6 +2,7 @@
 using Marketplace.Core.Interfaces;
 using Marketplace.Data;
 using Marketplace.Data.Options;
+using Marketplace.Data.Serialization;
 using Marketplace.Services;
 using Marketplace.WebAPI.Filters;
 using Marketplace.WebAPI.Mapping;
@@ -14,6 +15,9 @@ public static class ServiceExtensions
 {
     public static IServiceCollection AddUnitOfWork(this IServiceCollection services) =>
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+    public static IServiceCollection AddSerializator(this IServiceCollection services) =>
+        services.AddScoped<ISerializator, Serializator>();
 
     public static IServiceCollection AddMyServices(this IServiceCollection services)
     {
