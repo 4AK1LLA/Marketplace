@@ -142,15 +142,15 @@ export class PostAdComponent implements OnInit {
     dto.tagValuesDictionary = {};
 
     for (let prop in payload) {
-      if (!['title', 'description', 'location', 'categoryId'].includes(prop) && payload[prop].length > 0) {
+      if (!['title', 'description', 'location', 'categoryId'].includes(prop)) {
 
-        if (typeof payload[prop] !== 'string') {
+        if (typeof payload[prop] === 'object' && payload[prop].length > 0) {
           let arr = payload[prop] as string[];
           payload[prop] = '';
-          arr.forEach(val => payload[prop] += (arr.indexOf(val) === arr.length - 1) ? val : `${val}|`);
+          arr.forEach(val => payload[prop] += (arr.indexOf(val) === arr.length - 1) ? val : `${val}, `);
         }
 
-        dto.tagValuesDictionary[Number(prop)] = payload[prop];
+        dto.tagValuesDictionary[Number(prop)] = payload[prop].toString();
       }
     }
 
