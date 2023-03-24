@@ -17,7 +17,7 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .Skip((page - 1) * 16)
         .Take(16)
         .Include(pr => pr.Photos)
-        .Include(pr => pr.TagValues!.Where(tv => AppConstants.significantTagIds.Contains(tv.Tag!.Identifier)))
+        .Include(pr => pr.TagValues!.Where(tv => AppConstants.SignificantTagIds.Contains(tv.Tag!.Identifier)))
         .ThenInclude(tv => tv.Tag);
 
     public Product GetIncludingTagValuesAndPhotos(int id) =>
@@ -45,6 +45,6 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .AsQueryable()
         .Where(pr => pr.UsersThatLiked.Any(us => us.StsIdentifier == userStsId))
         .Include(pr => pr.Photos)
-        .Include(pr => pr.TagValues!.Where(tv => AppConstants.significantTagIds.Contains(tv.Tag!.Identifier)))
+        .Include(pr => pr.TagValues!.Where(tv => AppConstants.SignificantTagIds.Contains(tv.Tag!.Identifier)))
         .ThenInclude(tv => tv.Tag);
 }

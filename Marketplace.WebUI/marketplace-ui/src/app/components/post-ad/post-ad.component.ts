@@ -150,7 +150,13 @@ export class PostAdComponent implements OnInit {
           arr.forEach(val => payload[prop] += (arr.indexOf(val) === arr.length - 1) ? val : `${val}, `);
         }
 
-        dto.tagValuesDictionary[Number(prop)] = payload[prop].toString();
+        if (typeof payload[prop] === 'boolean') {
+          payload[prop] = payload[prop].toString();
+        }
+
+        if (payload[prop].length > 0) {
+          dto.tagValuesDictionary[Number(prop)] = payload[prop];
+        }
       }
     }
 

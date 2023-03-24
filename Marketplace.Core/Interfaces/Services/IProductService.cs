@@ -20,4 +20,8 @@ public interface IProductService
     bool IsProductLiked(Product product, string userStsId);
 
     IEnumerable<Product> GetLikedProducts(string userStsId);
+
+    string GetPriceInfoIfExists(Product product, bool removeTags = false);
+
+    string GetConditionIfExists(Product product);
 }

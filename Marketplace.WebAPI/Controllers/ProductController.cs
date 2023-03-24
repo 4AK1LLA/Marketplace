@@ -42,9 +42,16 @@ public class ProductController : Controller
             return NoContent();
         }
 
-        string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
         var dtos = _mapper.Map<IEnumerable<ProductDto>>(products);
+
+        foreach (var pr in products)
+        {
+            var dto = dtos.First(d => d.Id == pr.Id);
+            dto.PriceInfo = _service.GetPriceInfoIfExists(pr);
+            dto.Condition = _service.GetConditionIfExists(pr);
+        }
+
+        string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         if (string.IsNullOrEmpty(userStsId))
         {
@@ -73,7 +80,11 @@ public class ProductController : Controller
             return NoContent();
         }
 
+        string priceInfo = _service.GetPriceInfoIfExists(product, removeTags: true);
+
         var dto = _mapper.Map<ProductDetailsDto>(product);
+
+        dto.PriceInfo = priceInfo;
 
         string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
