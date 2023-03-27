@@ -42,9 +42,16 @@ public class ProductController : Controller
             return NoContent();
         }
 
-        string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
         var dtos = _mapper.Map<IEnumerable<ProductDto>>(products);
+
+        foreach (var pr in products)
+        {
+            var dto = dtos.First(d => d.Id == pr.Id);
+            dto.PriceInfo = _service.GetPriceInfoIfExists(pr);
+            dto.Condition = _service.GetConditionIfExists(pr);
+        }
+
+        string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         if (string.IsNullOrEmpty(userStsId))
         {
@@ -73,7 +80,11 @@ public class ProductController : Controller
             return NoContent();
         }
 
+        string priceInfo = _service.GetPriceInfoIfExists(product, removeTags: true);
+
         var dto = _mapper.Map<ProductDetailsDto>(product);
+
+        dto.PriceInfo = priceInfo;
 
         string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -119,26 +130,14 @@ public class ProductController : Controller
             return Unauthorized();
         }
 
-        if (productDto.TagValues is null)
+        if (productDto.TagValuesDictionary is null)
         {
             return BadRequest("Missing tag values");
         }
 
-        var product = new Product
-        {
-            Title = productDto.Title,
-            Description = productDto.Description,
-            Location = productDto.Location
-        };
+        var product = _mapper.Map<Product>(productDto);
 
-        var tagIdsAndValues = new Dictionary<int, string>();
-
-        foreach (var tv in productDto.TagValues)
-        {
-            tagIdsAndValues.Add(tv.TagId, tv.Value!);
-        }
-
-        var success = _service.CreateProductWithTagValues(product, tagIdsAndValues, productDto.CategoryId, userStsId);
+        var success = _service.CreateProductWithTagValues(product, productDto.TagValuesDictionary, productDto.CategoryId, userStsId);
 
         if (!success)
         {

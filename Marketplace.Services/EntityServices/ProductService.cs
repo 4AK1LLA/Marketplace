@@ -1,5 +1,6 @@
 ﻿using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
+using Marketplace.Shared.Constants;
 using Marketplace.Shared.Generic;
 
 namespace Marketplace.Services;
@@ -177,4 +178,61 @@ public class ProductService : IProductService
 
     public IEnumerable<Product> GetLikedProducts(string userStsId) => 
         _uow.ProductRepository.GetLiked(userStsId);
+
+    public string GetPriceInfoIfExists(Product product, bool removeTags = false)
+    {
+        var priceInfo = string.Empty;
+
+        if (!product.TagValues!.Any() || product.TagValues is null)
+        {
+            return priceInfo;
+        }
+
+        //TODO: first try to get price, then free and exchange
+        foreach (var tv in product.TagValues)
+        {
+            switch (tv.Tag!.Identifier)
+            {
+                case "price-tag":
+                case "salary-tag":
+                    priceInfo = $"{tv.Value} {product.TagValues.First(tv => tv.Tag!.Identifier == "currency-tag").Value}"; break;
+                case "price-grn-tag":
+                    priceInfo = $"{tv.Value} uah"; break;
+                case "free-tag":
+                case "exchange-tag":
+                    priceInfo = (tv.Value == "true") ? tv.Tag.Name! : string.Empty; continue;
+                default:
+                    continue;
+            }
+
+            break;
+        }
+
+        if (!removeTags)
+        {
+            return priceInfo;
+        }
+
+        foreach (var tv in product.TagValues!)
+        {
+            if (AppConstants.PriceTagIds.Contains(tv.Tag!.Identifier))
+            {
+                product.TagValues.Remove(tv);
+            }
+        }
+
+        return priceInfo;
+    }
+
+    public string GetConditionIfExists(Product product)
+    {
+        if (!product.TagValues!.Any() || product.TagValues is null)
+        {
+            return string.Empty;
+        }
+
+        var tv = product.TagValues.FirstOrDefault(tv => tv.Tag!.Identifier == "condition-tag");
+
+        return (tv is not null) ? tv.Value! : string.Empty;
+    }
 }

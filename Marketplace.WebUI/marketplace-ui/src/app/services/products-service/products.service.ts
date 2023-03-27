@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProductDto } from '../../dto/product.dto';
 import { ProductDetailsDto } from 'src/app/dto/product-details.dto';
-import { BasicInfo, TagValue } from 'src/app/models/models';
+import { CreateProductDto } from 'src/app/dto/create-product.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -39,19 +39,11 @@ export class ProductsService {
     return this.http.get<ProductDetailsDto>(`${environment.baseApiUrl}/Product/${id}`);
   }
 
-  public postProduct(accessToken: string, basicInfo: BasicInfo, tagValues: TagValue[]) {
+  public postProduct(accessToken: string, dto: CreateProductDto) {
 
     let httpOptions = this.getHttpOptions(accessToken);
 
-    let body = {
-      title: basicInfo.title,
-      description: basicInfo.description,
-      location: basicInfo.location,
-      categoryId: basicInfo.categoryId,
-      tagValues
-    }
-
-    return this.http.post(`${environment.baseApiUrl}/Product`, body, httpOptions);
+    return this.http.post(`${environment.baseApiUrl}/Product`, dto, httpOptions);
   }
 
   public likeProduct(accessToken: string, id: number) {

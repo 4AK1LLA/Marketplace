@@ -1,13 +1,12 @@
 ﻿using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
+using Marketplace.Shared.Constants;
 using Microsoft.EntityFrameworkCore;
 
 namespace Marketplace.Data;
 
 public class ProductRepository : Repository<Product>, IProductRepository
 {
-    private readonly string[] significantTags = { "Price", "Salary", "Condition", "Free", "Exchange", "Currency" };
-
     public ProductRepository(MarketplaceContext context) : base(context) { }
 
     public IEnumerable<Product> GetByCategoryNameIncludingTagValuesAndPhotos(string name, int page) =>
@@ -18,7 +17,7 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .Skip((page - 1) * 16)
         .Take(16)
         .Include(pr => pr.Photos)
-        .Include(pr => pr.TagValues!.Where(tv => significantTags.Contains(tv.Tag!.Name)))
+        .Include(pr => pr.TagValues!.Where(tv => AppConstants.SignificantTagIds.Contains(tv.Tag!.Identifier)))
         .ThenInclude(tv => tv.Tag);
 
     public Product GetIncludingTagValuesAndPhotos(int id) =>
@@ -46,6 +45,6 @@ public class ProductRepository : Repository<Product>, IProductRepository
         .AsQueryable()
         .Where(pr => pr.UsersThatLiked.Any(us => us.StsIdentifier == userStsId))
         .Include(pr => pr.Photos)
-        .Include(pr => pr.TagValues!.Where(tv => significantTags.Contains(tv.Tag!.Name)))
+        .Include(pr => pr.TagValues!.Where(tv => AppConstants.SignificantTagIds.Contains(tv.Tag!.Identifier)))
         .ThenInclude(tv => tv.Tag);
 }

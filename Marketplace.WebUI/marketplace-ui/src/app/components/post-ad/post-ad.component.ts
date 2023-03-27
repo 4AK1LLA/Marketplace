@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { CreateProductDto } from 'src/app/dto/create-product.dto';
 import { CategoryDto, MainCategoryPostDto } from 'src/app/dto/main-category.dto';
 import { TagDto } from 'src/app/dto/tag.dto';
-import { BasicInfo, TagValue } from 'src/app/models/models';
 import { MainCategoriesService } from 'src/app/services/main-categories-service/main-categories.service';
 import { ProductsService } from 'src/app/services/products-service/products.service';
 import { TagService } from 'src/app/services/tag-service/tag.service';
@@ -132,32 +132,35 @@ export class PostAdComponent implements OnInit {
   }
 
   private sendToApi(accessToken: string, payload: any) {
-    let basicInfo: BasicInfo = {
+    let dto: CreateProductDto = {
       title: payload['title'],
       description: payload['description'],
       location: payload['location'],
       categoryId: payload['categoryId']
     };
 
-    let tagValues: TagValue[] = [];
+    dto.tagValuesDictionary = {};
 
     for (let prop in payload) {
-      if (!['title', 'description', 'location', 'categoryId'].includes(prop) && payload[prop].length > 0) {
+      if (!['title', 'description', 'location', 'categoryId'].includes(prop)) {
 
-        if (typeof payload[prop] !== 'string') {
+        if (typeof payload[prop] === 'object' && payload[prop].length > 0) {
           let arr = payload[prop] as string[];
           payload[prop] = '';
-          arr.forEach(val => payload[prop] += (arr.indexOf(val) === arr.length - 1) ? val : `${val}|`);
+          arr.forEach(val => payload[prop] += (arr.indexOf(val) === arr.length - 1) ? val : `${val}, `);
         }
 
-        tagValues.push({
-          tagId: Number(prop),
-          value: payload[prop]
-        });
+        if (typeof payload[prop] === 'boolean') {
+          payload[prop] = payload[prop].toString();
+        }
+
+        if (payload[prop].length > 0) {
+          dto.tagValuesDictionary[Number(prop)] = payload[prop];
+        }
       }
     }
 
-    this.productService.postProduct(accessToken, basicInfo, tagValues).subscribe(_ => {
+    this.productService.postProduct(accessToken, dto).subscribe(_ => {
       this.toastService.show('Notification', 'Your ad has been successfully published');
       this.router.navigate(['/']);
     });
