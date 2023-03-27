@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Data", "Marketp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Services", "Marketplace.Services\Marketplace.Services.csproj", "{4328560D-D76B-474B-8081-2DE9F500E77B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Infrastructure", "Marketplace.Infrastructure\Marketplace.Infrastructure.csproj", "{89432215-227A-4898-8730-A222FC7BA843}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Shared", "Marketplace.Shared\Marketplace.Shared.csproj", "{65EE9FCA-B191-4BE4-ACFC-2111988B08BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.WebAPI", "Marketplace.WebAPI\Marketplace.WebAPI.csproj", "{D9733668-F12E-450B-9ACA-59DF7AC9B2B8}"
@@ -19,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketplaceServices.Tests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketplaceWebAPI.Tests", "Tests\MarketplaceWebAPI.Tests\MarketplaceWebAPI.Tests.csproj", "{848CC88E-52D3-4E7E-A3E8-6D09584885B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.IdentityServer", "Marketplace.IdentityServer\Marketplace.IdentityServer.csproj", "{900C5FA9-B58D-4AAD-91B3-80B410C53DC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.IdentityServer", "Marketplace.IdentityServer\Marketplace.IdentityServer.csproj", "{900C5FA9-B58D-4AAD-91B3-80B410C53DC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +37,6 @@ Global
 		{4328560D-D76B-474B-8081-2DE9F500E77B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4328560D-D76B-474B-8081-2DE9F500E77B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4328560D-D76B-474B-8081-2DE9F500E77B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89432215-227A-4898-8730-A222FC7BA843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89432215-227A-4898-8730-A222FC7BA843}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89432215-227A-4898-8730-A222FC7BA843}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89432215-227A-4898-8730-A222FC7BA843}.Release|Any CPU.Build.0 = Release|Any CPU
 		{65EE9FCA-B191-4BE4-ACFC-2111988B08BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{65EE9FCA-B191-4BE4-ACFC-2111988B08BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65EE9FCA-B191-4BE4-ACFC-2111988B08BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
