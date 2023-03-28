@@ -19,4 +19,6 @@ public class ProductDetailsDto
     public ICollection<PhotoDto>? Photos { get; set; }
 
     public bool? IsLiked { get; set; }
+
+    public DetailsUserDto? Seller { get; set; }
 }

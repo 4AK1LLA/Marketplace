@@ -69,6 +69,8 @@ public class ProductService : IProductService
             return false;
         }
 
+        product.AppUser = user;
+
         var tagValues = new List<TagValue>();
 
         foreach (var pair in tagIdsAndValues)

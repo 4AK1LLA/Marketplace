@@ -23,6 +23,7 @@ public class ProductRepository : Repository<Product>, IProductRepository
     public Product GetIncludingTagValuesAndPhotos(int id) =>
         GetAll()
         .AsQueryable()
+        .Include(pr => pr.AppUser)
         .Include(pr => pr.Photos)
         .Include(pr => pr.TagValues)!
         .ThenInclude(tv => tv.Tag)

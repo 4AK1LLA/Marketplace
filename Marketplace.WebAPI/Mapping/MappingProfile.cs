@@ -46,6 +46,7 @@ public class MappingProfile : Profile
 
         CreateMap<CreateUserDto, AppUser>();
         CreateMap<AppUser, GetUserDto>();
+        CreateMap<AppUser, DetailsUserDto>();
 
         CreateMap<MainCategory, MainCategoryPostDto>();
         CreateMap<Category, CategoryPostDto>();

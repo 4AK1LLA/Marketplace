@@ -85,6 +85,7 @@ public class ProductController : Controller
         var dto = _mapper.Map<ProductDetailsDto>(product);
 
         dto.PriceInfo = priceInfo;
+        dto.Seller = _mapper.Map<DetailsUserDto>(product.AppUser);
 
         string userStsId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
