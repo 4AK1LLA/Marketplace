@@ -59,7 +59,7 @@ using (var scope = app.Services.CreateScope())
 {
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-    await Seeder.SeedAsync(userManager);
+    await IdentitySeeder.SeedAsync(userManager);
 }
 
 app.UseStaticFiles();
