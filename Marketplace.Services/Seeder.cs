@@ -1,6 +1,7 @@
 ﻿using Marketplace.Core.Entities;
 using Marketplace.Core.Interfaces;
 using Marketplace.Services.SerializationModels;
+using Marketplace.Shared.Constants;
 using Microsoft.Extensions.Configuration;
 
 namespace Marketplace.Services;
@@ -13,6 +14,11 @@ public class Seeder : ISeeder
     private readonly ISerializator _serializator;
     private readonly IConfiguration _configuration;
 
+    private bool AnyData =>
+        _uow.MainCategoryRepository.Count() != 0 || 
+        _uow.ProductRepository.Count() != 0 || 
+        _uow.AppUserRepository.Count() != 0;
+
     public Seeder(IUnitOfWork uow, ISerializator serializator, IConfiguration configuration)
     {
         _uow = uow;
@@ -22,7 +28,7 @@ public class Seeder : ISeeder
 
     public bool Seed()
     {
-        if (_uow.MainCategoryRepository.Count() != 0 || _uow.ProductRepository.Count() != 0)
+        if (AnyData)
         {
             return false;
         }
@@ -50,6 +56,18 @@ public class Seeder : ISeeder
             //TODO: Log that there is error, most likely caused by tag ids difference in seed data
             return false;
         }
+
+        AppUser testUser = new AppUser
+        {
+            StsIdentifier = AppConstants.DefaultUserId,
+            UserName = AppConstants.DefaultUserEmail,
+            Email = AppConstants.DefaultUserEmail,
+            DisplayName = "Test User",
+            PhoneNumber = "+380661234567",
+            ProfilePictureUrl = "https://res.cloudinary.com/dfs6whqzs/image/upload/v1680092719/users/test-user-profile-picture_dvlavz.jpg"
+        };
+
+        _uow.AppUserRepository.Add(testUser);
 
         _uow.Save();
 
