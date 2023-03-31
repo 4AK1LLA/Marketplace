@@ -1,6 +1,4 @@
-﻿using Marketplace.Core.Entities;
-
-namespace Marketplace.Services.SerializationModels;
+﻿namespace Marketplace.Services.SerializationModels;
 
 internal class ProductModel
 {
