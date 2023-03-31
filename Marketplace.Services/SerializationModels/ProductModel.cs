@@ -2,17 +2,17 @@
 
 internal class ProductModel
 {
-    internal string? Title { get; set; }
+    public string? Title { get; set; }
 
-    internal string? Description { get; set; }
+    public string? Description { get; set; }
 
-    internal DateTime? PublicationDate { get; set; }
+    public string? PublicationDate { get; set; }
 
-    internal string? Location { get; set; }
+    public string? Location { get; set; }
 
-    internal string? CategoryName { get; set; }
+    public string? CategoryName { get; set; }
 
-    internal Dictionary<string, string>? TagValues { get; set; }
+    public Dictionary<string, string>? TagValues { get; set; }
 
-    internal List<string>? PhotoUrls { get; set; }
+    public List<string>? PhotoUrls { get; set; }
 }

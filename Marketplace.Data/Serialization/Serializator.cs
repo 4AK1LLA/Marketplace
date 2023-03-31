@@ -16,4 +16,16 @@ public class Serializator : ISerializator
 
         return JsonSerializer.Deserialize<T>(json)!;
     }
+
+    public T Deserialize<T>(Stream stream)
+    {
+        string json;
+
+        using (var reader = new StreamReader(stream))
+        {
+            json = reader.ReadToEnd();
+        }
+
+        return JsonSerializer.Deserialize<T>(json)!;
+    }
 }

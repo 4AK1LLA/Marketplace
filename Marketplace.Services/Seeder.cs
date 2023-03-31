@@ -3,12 +3,13 @@ using Marketplace.Core.Interfaces;
 using Marketplace.Services.SerializationModels;
 using Marketplace.Shared.Constants;
 using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace Marketplace.Services;
 
 public class Seeder : ISeeder
 {
-    private const string sectionName = "SeedFilePaths";
+    private const string sectionName = "ResourceNames";
 
     private readonly IUnitOfWork _uow;
     private readonly ISerializator _serializator;
@@ -33,17 +34,21 @@ public class Seeder : ISeeder
             return false;
         }
 
-        var filePaths =
+        var assembly = Assembly.GetExecutingAssembly();
+
+        var resources =
             _configuration
             .GetRequiredSection(sectionName)
             .GetChildren()
-            .ToDictionary(section => section.Key, section => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, section.Value!));
+            .ToDictionary(section => section.Key, section => assembly.GetManifestResourceStream(section.Value!));
 
-        var tagModels = _serializator.Deserialize<List<TagModel>>(filePaths["Tags"]!);
-        var mcModels = _serializator.Deserialize<List<MainCategoryModel>>(filePaths["Categories"]!);
+        var tagModels = _serializator.Deserialize<List<TagModel>>(resources["Tags"]!);
+        var mcModels = _serializator.Deserialize<List<MainCategoryModel>>(resources["Categories"]!);
+        var productModels = _serializator.Deserialize<List<ProductModel>>(resources["Products"]!);
 
-        IEnumerable<Tag> tags = MapTags(tagModels);
-        IEnumerable<MainCategory> mainCategories = MapMainCategories(mcModels, tags);
+        var tags = MapTags(tagModels);
+        var mainCategories = MapMainCategories(mcModels, tags);
+        //var products = Map();
 
         _uow.TagRepository.AddRange(tags);
 

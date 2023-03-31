@@ -8,20 +8,14 @@
 
 	<ItemGroup>
 	  <None Remove="SeedData\categories.json" />
+	  <None Remove="SeedData\products.json" />
 	  <None Remove="SeedData\tags.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="SeedData\categories.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	  </Content>
-	  <Content Include="SeedData\tags.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	  </Content>
+	  <EmbeddedResource Include="SeedData\categories.json" />
+	  <EmbeddedResource Include="SeedData\products.json" />
+	  <EmbeddedResource Include="SeedData\tags.json" />
 	</ItemGroup>
 
 	<ItemGroup>
